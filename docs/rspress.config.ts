@@ -2,7 +2,7 @@ import * as path from "node:path";
 import { defineConfig } from "rspress/config";
 
 export default defineConfig({
-  icon: "/logo.svg",
+  icon: "/logo-light.svg",
   logo: {
     light: "/logo-light.svg",
     dark: "/logo-dark.svg",
@@ -10,6 +10,9 @@ export default defineConfig({
   globalStyles: path.join(__dirname, "styles/theme.css"),
   root: path.join(__dirname, "pages"),
   themeConfig: {
+    footer: {
+      message: "Copyright © 2025 Unimorphic",
+    },
     socialLinks: [
       {
         icon: "github",

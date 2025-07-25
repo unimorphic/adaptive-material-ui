@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Adaptive Material UI
-  text: React Components that Adapt to the Device
+  text: React Components that Device Adapt
   tagline: The Awesomeness of Material UI + Adaptiveness
   actions:
     - theme: brand
@@ -13,7 +13,9 @@ hero:
       text: GitHub
       link: https://github.com/unimorphic/adaptive-material-ui
   image:
-    src: /logo.svg
+    src:
+      dark: /logo-dark.svg
+      light: /logo-light.svg
     alt: Logo
 features:
   - title: TODO

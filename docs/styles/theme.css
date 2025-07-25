@@ -4,8 +4,10 @@
   --rp-c-brand-light: #0073e6;
   --rp-c-brand-lighter: #0073e6;
   --rp-c-brand: #0073e6;
-  --rp-radius: 0;
   --rp-c-text-2: #67676c;
+  --rp-home-hero-image-width-sm: 150px;
+  --rp-home-hero-image-width: 225px;
+  --rp-radius: 0;
 
   --rp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
@@ -16,16 +18,29 @@
 
 .dark {
   --rp-c-bg: #1b1b1f;
-  --rp-c-text-2: #98989f;
+  --rp-c-text-2: #b2b2ba;
+}
 
-  .rspress-sidebar {
-    --rp-c-bg: #161618;
-  }
+.rspress-nav {
+  background: rgb(from var(--rp-c-bg) r g b / 0.9);
+}
+
+.rspress-logo {
+  height: 3rem;
 }
 
 .rspress-sidebar {
   --rp-c-bg: #f6f6f7;
+  z-index: var(--rp-z-index-sidebar);
+
+  .dark & {
+    --rp-c-bg: #161618;
+  }
+  .font-medium span {
+    font-size: 0.88rem !important;
+  }
 }
-.rspress-sidebar-item .font-medium {
-  font-size: 14px !important;
+
+.rspress-home-feature-card:hover {
+  border-color: transparent;
 }
