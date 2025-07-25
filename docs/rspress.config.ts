@@ -7,7 +7,8 @@ export default defineConfig({
     light: "/logo-light.svg",
     dark: "/logo-dark.svg",
   },
-  globalStyles: path.join(__dirname, "styles/theme.css"),
+  globalStyles: path.join(__dirname, "theme/styles.css"),
+  globalUIComponents: [path.join(__dirname, "theme", "robotoFont.tsx")],
   root: path.join(__dirname, "pages"),
   themeConfig: {
     footer: {

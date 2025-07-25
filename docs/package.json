@@ -12,6 +12,7 @@
     "@emotion/styled": "11.14.1",
     "@fontsource/roboto": "5.2.6",
     "@mui/material": "7.2.0",
+    "adaptive-material-ui": "file:../",
     "rspress": "1.45.0"
   },
   "overrides": {

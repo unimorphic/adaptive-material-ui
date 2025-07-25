@@ -13,7 +13,7 @@ export default tseslint.config({
     importPlugin.flatConfigs.recommended,
     importPlugin.flatConfigs.typescript,
   ],
-  ignores: ["*.*"],
+  ignores: ["*.*", "dist/**"],
   plugins: {
     react: react,
   },
@@ -22,7 +22,7 @@ export default tseslint.config({
     sourceType: "module",
     parserOptions: {
       ecmaFeatures: { jsx: true },
-      project: ["./tsconfig.json"],
+      project: ["./tsconfig.json", "./docs/tsconfig.json"],
       warnOnUnsupportedTypeScriptVersion: true,
     },
   },
