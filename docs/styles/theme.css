@@ -1,0 +1,31 @@
+:root {
+  --rp-c-brand-dark: #0067cf;
+  --rp-c-brand-darker: #0062c4;
+  --rp-c-brand-light: #0073e6;
+  --rp-c-brand-lighter: #0073e6;
+  --rp-c-brand: #0073e6;
+  --rp-radius: 0;
+  --rp-c-text-2: #67676c;
+
+  --rp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    var(--rp-c-brand) 30%,
+    #0073e6
+  );
+}
+
+.dark {
+  --rp-c-bg: #1b1b1f;
+  --rp-c-text-2: #98989f;
+
+  .rspress-sidebar {
+    --rp-c-bg: #161618;
+  }
+}
+
+.rspress-sidebar {
+  --rp-c-bg: #f6f6f7;
+}
+.rspress-sidebar-item .font-medium {
+  font-size: 14px !important;
+}
