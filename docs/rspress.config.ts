@@ -1,3 +1,4 @@
+import { pluginPreview } from "@rspress/plugin-preview";
 import * as path from "node:path";
 import { defineConfig } from "rspress/config";
 
@@ -9,6 +10,7 @@ export default defineConfig({
   },
   globalStyles: path.join(__dirname, "theme/styles.css"),
   globalUIComponents: [path.join(__dirname, "theme", "robotoFont.tsx")],
+  plugins: [pluginPreview()],
   root: path.join(__dirname, "pages"),
   themeConfig: {
     footer: {

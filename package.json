@@ -3,13 +3,20 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "module": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "module": "./dist/*.js",
+      "types": "./dist/*.d.ts"
     }
   },
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -38,7 +45,6 @@
     "jsdom": "26.1.0",
     "prettier": "3.6.2",
     "react": "19.1.0",
-    "tss-react": "4.9.19",
     "typescript": "5.8.3",
     "typescript-eslint": "8.38.0",
     "vitest": "3.2.4"
@@ -47,5 +53,9 @@
     "@mui/material": "^7.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@mui/utils": "7.2.0",
+    "clsx": "2.1.1"
   }
 }

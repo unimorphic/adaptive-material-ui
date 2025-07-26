@@ -1,5 +1,62 @@
-import { SwitchAdaptive } from "adaptive-material-ui";
+import AdaptiveSwitch from "adaptive-material-ui/components/AdaptiveSwitch";
 
 # Adaptive Switch
 
-<SwitchAdaptive adaptiveMode="ios" defaultChecked />
+<AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+
+## Customization
+
+### Classes
+
+```tsx
+import { styled } from "@mui/material/styles";
+import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+
+const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
+  "&.ios": {
+    "& .MuiSwitch-track": {
+      backgroundColor: "blue",
+    },
+  },
+});
+
+export default function Customization_Classes() {
+  return (
+    <AdaptiveSwitchStyled
+      adaptiveMode="ios"
+      classes={{ ios: "ios" }}
+      defaultChecked
+    />
+  );
+}
+```
+
+### Theme
+
+```tsx
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+import type {} from "adaptive-material-ui/themeAugmentation";
+
+const theme = createTheme({
+  components: {
+    AdaptiveSwitch: {
+      styleOverrides: {
+        ios: {
+          "& .MuiSwitch-track": {
+            backgroundColor: "blue",
+          },
+        },
+      },
+    },
+  },
+});
+
+export default function Customization_Theme() {
+  return (
+    <ThemeProvider theme={theme}>
+      <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+    </ThemeProvider>
+  );
+}
+```

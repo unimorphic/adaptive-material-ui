@@ -6,9 +6,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "rootDir": "src",
     "skipLibCheck": true,
     "strict": true,
     "useDefineForClassFields": true
   },
-  "include": ["src", "tests", "types"]
+  "include": ["src"]
 }

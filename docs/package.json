@@ -3,19 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "rspress build",
+    "build": "rspress build && pnpm build",
     "preview": "rspress preview",
     "start": "rspress dev"
   },
   "dependencies": {
-    "@emotion/react": "11.14.0",
-    "@emotion/styled": "11.14.1",
     "@fontsource/roboto": "5.2.6",
-    "@mui/material": "7.2.0",
-    "adaptive-material-ui": "file:../",
+    "adaptive-material-ui": "workspace:*",
     "rspress": "1.45.0"
   },
   "overrides": {
     "prismjs": "1.30.0"
+  },
+  "devDependencies": {
+    "@rspress/plugin-preview": "1.45.0"
   }
 }

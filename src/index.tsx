@@ -1,1 +1,2 @@
-export { default as SwitchAdaptive } from "./components/switchAdaptive";
+export * from "./components";
+export type * from "./themeAugmentation";
