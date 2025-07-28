@@ -67,20 +67,23 @@ import { Tab, Tabs } from "rspress/theme";
 
 ## Customization
 
-The IOS mode uses the [Base UI Switch](https://base-ui.com/react/components/switch). All other modes use the [Material UI Switch](https://mui.com/material-ui/react-switch/#customization)
+[Material UI Switch](https://mui.com/material-ui/react-switch/#customization)
 
 ### IOS Custom Class
 
 ```tsx
 import { styled } from "@mui/material/styles";
+import { switchClasses } from "@mui/material/Switch";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 import BasicTheme from "../../../components/basicTheme";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   "&.ios": {
-    backgroundColor: "grey",
+    [`& .${switchClasses.track}`]: {
+      backgroundColor: "rebeccapurple",
+    },
 
-    "&[data-checked]": {
+    [`& .${switchClasses.checked} + .${switchClasses.track}`]: {
       backgroundColor: "purple",
     },
   },
@@ -103,6 +106,7 @@ export default function Customization_Classes() {
 
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { switchClasses } from "@mui/material/Switch";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themeAugmentation";
 import BasicTheme from "../../../components/basicTheme";
@@ -115,9 +119,11 @@ function customizeTheme(theme: Theme) {
       AdaptiveSwitch: {
         styleOverrides: {
           ios: {
-            backgroundColor: "lightblue",
+            [`& .${switchClasses.track}`]: {
+              backgroundColor: "lightblue",
+            },
 
-            "&[data-checked]": {
+            [`& .${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: "blue",
             },
           },
