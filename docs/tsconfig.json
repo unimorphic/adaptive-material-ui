@@ -17,5 +17,8 @@
   "include": ["components", "pages", "rspress.config.ts", "theme"],
   "mdx": {
     "checkMdx": true
+  },
+  "paths": {
+    "@/*": ["*"]
   }
 }

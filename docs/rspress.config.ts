@@ -3,6 +3,13 @@ import * as path from "node:path";
 import { defineConfig } from "rspress/config";
 
 export default defineConfig({
+  builderConfig: {
+    resolve: {
+      alias: {
+        "@": "./",
+      },
+    },
+  },
   icon: "/logo-light.svg",
   logo: {
     light: "/logo-light.svg",
