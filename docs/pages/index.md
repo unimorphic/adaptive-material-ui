@@ -7,8 +7,8 @@ hero:
   tagline: The Awesomeness of Material UI + Adaptiveness
   actions:
     - theme: brand
-      text: Quick Start
-      link: /docs/
+      text: Getting Started
+      link: /docs/gettingStarted
     - theme: alt
       text: GitHub
       link: https://github.com/unimorphic/adaptive-material-ui

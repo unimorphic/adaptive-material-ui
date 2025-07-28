@@ -1,1 +1,5 @@
-["index", { "label": "Components", "name": "components", "type": "dir" }]
+[
+  "index",
+  "gettingStarted",
+  { "label": "Components", "name": "components", "type": "dir" }
+]

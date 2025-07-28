@@ -1,17 +1,14 @@
 import { useThemeProps } from "@mui/material/styles";
 import { SwitchClasses, SwitchProps } from "@mui/material/Switch";
-import composeClasses from "@mui/utils/composeClasses";
-import generateUtilityClass from "@mui/utils/generateUtilityClass";
-import { clsx } from "clsx";
 import { lazy } from "react";
+import AdaptiveModeProp from "../shared/adaptiveModeProp";
 
-export interface AdaptiveSwitchProps extends SwitchProps {
-  adaptiveMode?: "android" | "desktop" | "ios";
+export interface AdaptiveSwitchProps extends SwitchProps, AdaptiveModeProp {
   classes?: Partial<SwitchClasses> & Partial<AdaptiveSwitchClasses>;
 }
 
 export interface AdaptiveSwitchClasses {
-  /** Styles applied to the IOS adaptive mode */
+  /** Styles applied to the iOS mode */
   ios: string;
 }
 
@@ -29,24 +26,11 @@ const SwitchIOS = lazy(async () => {
 
 export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
-  const { adaptiveMode, className, classes, ...otherProps } = props;
+  const { adaptiveMode, ...otherProps } = props;
 
   if (adaptiveMode === "ios") {
-    const composedClasses = composeClasses(
-      { ios: ["ios"] },
-      (s) => generateUtilityClass("AdaptiveSwitch", s),
-      classes,
-    );
-
-    return (
-      <SwitchIOS
-        className={clsx(composedClasses.ios, className)}
-        {...otherProps}
-      />
-    );
+    return <SwitchIOS {...otherProps} />;
   }
 
-  return (
-    <SwitchDesktop className={className} classes={classes} {...otherProps} />
-  );
+  return <SwitchDesktop {...otherProps} />;
 }
