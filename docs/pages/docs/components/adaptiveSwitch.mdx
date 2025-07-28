@@ -1,62 +1,139 @@
-import AdaptiveSwitch from "adaptive-material-ui/components/AdaptiveSwitch";
+import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Switch
 
-<AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+<Tabs>
+  <Tab label="Adaptive">
+    ```tsx
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+    import BasicTheme from "../../../components/basicTheme";
+
+    export default function Basic() {
+      return (
+        <BasicTheme>
+          <AdaptiveSwitch defaultChecked />
+        </BasicTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="IOS">
+    ```tsx
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+    import BasicTheme from "../../../components/basicTheme";
+
+    export default function Basic() {
+      return (
+        <BasicTheme>
+          <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+        </BasicTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Android">
+    ```tsx
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+    import BasicTheme from "../../../components/basicTheme";
+
+    export default function Basic() {
+      return (
+        <BasicTheme>
+          <AdaptiveSwitch adaptiveMode="android" defaultChecked />
+        </BasicTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Desktop">
+    ```tsx
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+    import BasicTheme from "../../../components/basicTheme";
+
+    export default function Basic() {
+      return (
+        <BasicTheme>
+          <AdaptiveSwitch adaptiveMode="desktop" defaultChecked />
+        </BasicTheme>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
 
 ## Customization
 
-### Classes
+The IOS mode uses the [Base UI Switch](https://base-ui.com/react/components/switch). All other modes use the [Material UI Switch](https://mui.com/material-ui/react-switch/#customization)
+
+### IOS Custom Class
 
 ```tsx
 import { styled } from "@mui/material/styles";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+import BasicTheme from "../../../components/basicTheme";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   "&.ios": {
-    "& .MuiSwitch-track": {
-      backgroundColor: "blue",
+    backgroundColor: "grey",
+
+    "&[data-checked]": {
+      backgroundColor: "purple",
     },
   },
 });
 
 export default function Customization_Classes() {
   return (
-    <AdaptiveSwitchStyled
-      adaptiveMode="ios"
-      classes={{ ios: "ios" }}
-      defaultChecked
-    />
+    <BasicTheme>
+      <AdaptiveSwitchStyled
+        adaptiveMode="ios"
+        classes={{ ios: "ios" }}
+        defaultChecked
+      />
+    </BasicTheme>
   );
 }
 ```
 
-### Theme
+### IOS Custom Theme
 
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themeAugmentation";
+import BasicTheme from "../../../components/basicTheme";
 
-const theme = createTheme({
-  components: {
-    AdaptiveSwitch: {
-      styleOverrides: {
-        ios: {
-          "& .MuiSwitch-track": {
-            backgroundColor: "blue",
+function customizeTheme(theme: Theme) {
+  return createTheme({
+    ...theme,
+    components: {
+      ...theme.components,
+      AdaptiveSwitch: {
+        styleOverrides: {
+          ios: {
+            backgroundColor: "lightblue",
+
+            "&[data-checked]": {
+              backgroundColor: "blue",
+            },
           },
         },
       },
     },
-  },
-});
+  });
+}
 
 export default function Customization_Theme() {
   return (
-    <ThemeProvider theme={theme}>
-      <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
-    </ThemeProvider>
+    <BasicTheme>
+      <ThemeProvider theme={customizeTheme}>
+        <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+      </ThemeProvider>
+    </BasicTheme>
   );
 }
 ```

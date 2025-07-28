@@ -31,4 +31,7 @@ export default tseslint.config({
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
   },
+  rules: {
+    "@typescript-eslint/no-unused-vars": ["warn", { ignoreRestSiblings: true }],
+  },
 });
