@@ -4,13 +4,9 @@ import { defineConfig } from "@rslib/core";
 export default defineConfig({
   source: {
     entry: {
-      index: [
-        "./src/**",
-        "!src/**/*.test.*",
-        "!src/**/*testUtils*",
-      ],
+      index: ["./src/**", "!src/**/*.test.*", "!src/**/*testUtils*"],
     },
-    tsconfigPath: "./tsconfig.build.json"
+    tsconfigPath: "./tsconfig.build.json",
   },
   lib: [
     {

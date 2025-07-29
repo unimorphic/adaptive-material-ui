@@ -1,7 +1,11 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, expect, test } from "vitest";
-import { AdaptiveMode, configureAdaptiveMode, resolveAdaptiveMode } from "./adaptiveMode";
+import {
+  AdaptiveMode,
+  configureAdaptiveMode,
+  resolveAdaptiveMode,
+} from "./adaptiveMode";
 import { adaptiveModeToString } from "./testUtils/adaptiveModeToString";
 import { RenderAdaptiveMode } from "./testUtils/renderAdaptiveMode";
 

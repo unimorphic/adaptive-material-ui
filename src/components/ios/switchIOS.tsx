@@ -36,7 +36,7 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
     transition: theme.transitions.create(["background-color"], {
       duration: 200,
     }),
-    
+
     ...theme.applyStyles("dark", {
       backgroundColor: "rgba(120, 120, 128, 0.36)",
     }),

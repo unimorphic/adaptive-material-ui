@@ -59,9 +59,7 @@ export function resolveAdaptiveModeFromProps<T>(
  * @param adaptiveMode Adaptive mode override
  * @returns The adaptive mode to use
  */
-export function resolveAdaptiveMode(
-  adaptiveMode?: AdaptiveMode,
-): AdaptiveMode {
+export function resolveAdaptiveMode(adaptiveMode?: AdaptiveMode): AdaptiveMode {
   if (adaptiveMode) {
     return adaptiveMode;
   }
