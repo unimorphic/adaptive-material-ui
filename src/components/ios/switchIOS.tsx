@@ -27,6 +27,27 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   [`& .${switchClasses.switchBase}`]: {
     margin: 2,
     padding: 0,
+
+    [`&.${switchClasses.checked}`]: {
+      [`&.${switchClasses.switchBase}`]: {
+        transform: "translateX(21px)",
+      },
+
+      [`& + .${switchClasses.track}`]: {
+        backgroundColor: "rgba(52, 199, 89, 1)",
+        opacity: 1,
+
+        ...theme.applyStyles("dark", {
+          backgroundColor: "rgba(48, 209, 88, 1)",
+        }),
+      },
+    },
+
+    [`&.${switchClasses.disabled}`]: {
+      [`& + .${switchClasses.track}, & .${switchClasses.thumb}`]: {
+        opacity: 0.4,
+      },
+    },
   },
 
   [`& .${switchClasses.track}`]: {
@@ -54,27 +75,6 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       height: 20,
       width: 31,
     }),
-  },
-
-  [`& .${switchClasses.checked}`]: {
-    [`&.${switchClasses.switchBase}`]: {
-      transform: "translateX(21px)",
-    },
-
-    [`& + .${switchClasses.track}`]: {
-      backgroundColor: "rgba(52, 199, 89, 1)",
-      opacity: 1,
-
-      ...theme.applyStyles("dark", {
-        backgroundColor: "rgba(48, 209, 88, 1)",
-      }),
-    },
-  },
-
-  [`& .${switchClasses.disabled}`]: {
-    [`& + .${switchClasses.track}, & .${switchClasses.thumb}`]: {
-      opacity: 0.4,
-    },
   },
 }));
 

@@ -4,7 +4,7 @@ import { lazy } from "react";
 import {
   AdaptiveMode,
   AdaptiveModeProp,
-  resolveAdaptiveModeFromProps,
+  useAdaptiveModeFromProps,
 } from "../adaptiveMode/adaptiveMode";
 
 export interface AdaptiveSwitchProps extends SwitchProps, AdaptiveModeProp {
@@ -30,7 +30,7 @@ const SwitchIOS = lazy(async () => {
 
 export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
-  const [adaptiveMode, otherProps] = resolveAdaptiveModeFromProps(props);
+  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
   if (adaptiveMode === AdaptiveMode.ios) {
     return <SwitchIOS {...otherProps} />;

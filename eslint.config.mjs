@@ -22,7 +22,11 @@ export default tseslint.config({
     sourceType: "module",
     parserOptions: {
       ecmaFeatures: { jsx: true },
-      project: ["./tsconfig.json", "./docs/tsconfig.json"],
+      project: [
+        "./tsconfig.json",
+        "./docs/tsconfig.json",
+        "./examples/next-js/tsconfig.json",
+      ],
       warnOnUnsupportedTypeScriptVersion: true,
     },
   },

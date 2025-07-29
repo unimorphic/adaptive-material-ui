@@ -87,10 +87,10 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
     [`& .${switchClasses.track}`]: {
       backgroundColor: "rebeccapurple",
     },
-
-    [`& .${switchClasses.checked} + .${switchClasses.track}`]: {
-      backgroundColor: "purple",
-    },
+    [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
+      {
+        backgroundColor: "purple",
+      },
   },
 });
 
@@ -129,9 +129,10 @@ function customizeTheme(theme: Theme) {
               backgroundColor: "lightblue",
             },
 
-            [`& .${switchClasses.checked} + .${switchClasses.track}`]: {
-              backgroundColor: "blue",
-            },
+            [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
+              {
+                backgroundColor: "blue",
+              },
           },
         },
       },

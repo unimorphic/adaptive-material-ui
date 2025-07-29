@@ -1,54 +1,102 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, expect, test } from "vitest";
-import {
-  AdaptiveMode,
-  configureAdaptiveMode,
-  resolveAdaptiveMode,
-} from "./adaptiveMode";
+import { AdaptiveMode, AdaptiveModeContext } from "./adaptiveMode";
 import { adaptiveModeToString } from "./testUtils/adaptiveModeToString";
 import { RenderAdaptiveMode } from "./testUtils/renderAdaptiveMode";
 
 afterEach(() => {
-  configureAdaptiveMode("");
   cleanup();
 });
 
 test("Theme", () => {
-  const theme = createTheme({
+  let theme = createTheme({
     components: {
-      AdaptiveSwitch: {
-        defaultProps: { adaptiveMode: AdaptiveMode.ios },
-      },
+      AdaptiveSwitch: { defaultProps: { adaptiveMode: AdaptiveMode.ios } },
     },
   });
-
-  const result = render(
+  let result = render(
     <ThemeProvider theme={theme}>
       <RenderAdaptiveMode />
     </ThemeProvider>,
   );
 
-  const adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
+  let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
+  expect(adaptiveMode).toBeDefined();
+
+  theme = createTheme({
+    components: {
+      AdaptiveSwitch: { defaultProps: { adaptiveMode: AdaptiveMode.android } },
+    },
+  });
+  result = render(
+    <ThemeProvider theme={theme}>
+      <RenderAdaptiveMode />
+    </ThemeProvider>,
+  );
+
+  adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));
   expect(adaptiveMode).toBeDefined();
 });
 
-test("Config - Mode", () => {
-  configureAdaptiveMode(AdaptiveMode.android);
-
-  expect(resolveAdaptiveMode()).toEqual(AdaptiveMode.android);
-});
-
-test("Config - User Agent", () => {
-  configureAdaptiveMode(
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1",
+test("Context - Mode", () => {
+  let result = render(
+    <AdaptiveModeContext value={{ mode: AdaptiveMode.ios }}>
+      <RenderAdaptiveMode />
+    </AdaptiveModeContext>,
   );
 
-  expect(resolveAdaptiveMode()).toEqual(AdaptiveMode.ios);
+  let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
+  expect(adaptiveMode).toBeDefined();
+
+  result = render(
+    <AdaptiveModeContext value={{ mode: AdaptiveMode.android }}>
+      <RenderAdaptiveMode />
+    </AdaptiveModeContext>,
+  );
+
+  adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));
+  expect(adaptiveMode).toBeDefined();
+});
+
+test("Context - User Agent", () => {
+  let result = render(
+    <AdaptiveModeContext
+      value={{
+        userAgent:
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1",
+      }}
+    >
+      <RenderAdaptiveMode />
+    </AdaptiveModeContext>,
+  );
+
+  let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
+  expect(adaptiveMode).toBeDefined();
+
+  result = render(
+    <AdaptiveModeContext
+      value={{
+        userAgent:
+          "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.7204.158 Mobile Safari/537.36",
+      }}
+    >
+      <RenderAdaptiveMode />
+    </AdaptiveModeContext>,
+  );
+
+  adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));
+  expect(adaptiveMode).toBeDefined();
 });
 
 test("Prop", () => {
-  expect(resolveAdaptiveMode(AdaptiveMode.android)).toEqual(
-    AdaptiveMode.android,
-  );
+  let result = render(<RenderAdaptiveMode adaptiveMode={AdaptiveMode.ios} />);
+
+  let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
+  expect(adaptiveMode).toBeDefined();
+
+  result = render(<RenderAdaptiveMode adaptiveMode={AdaptiveMode.android} />);
+
+  adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));
+  expect(adaptiveMode).toBeDefined();
 });

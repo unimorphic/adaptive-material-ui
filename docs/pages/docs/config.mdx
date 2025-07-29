@@ -1,16 +1,16 @@
 # Config
 
-## configureAdaptiveMode
+## Adaptive Mode Context
 
-The `configureAdaptiveMode` function can be used if you want to use a different user agent
+The `AdaptiveModeContext` can be used if you want to use a different user agent
 or completely control the adaptive logic yourself.
 
 ### Different User Agent
 
 ```tsx pure
-import { configureAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 
-configureAdaptiveMode(req.headers["user-agent"]);
+<AdaptiveModeContext value={{ userAgent: req.headers["user-agent"] }}></AdaptiveModeContext>
 ```
 
 ### Custom Logic
@@ -18,12 +18,16 @@ configureAdaptiveMode(req.headers["user-agent"]);
 ```tsx pure
 import {
   AdaptiveMode,
-  configureAdaptiveMode,
+  AdaptiveModeContext,
 } from "adaptive-material-ui/adaptiveMode";
 
 let mode = AdaptiveMode.desktop;
 if (user.name === "personIdoNotLike") {
   mode = AdaptiveMode.ios;
 }
-configureAdaptiveMode(mode);
+<AdaptiveModeContext value={{ mode: mode }}></AdaptiveModeContext>
 ```
+
+### SSR
+
+See the [example project](https://github.com/unimorphic/adaptive-material-ui/tree/master/examples/next-js) using Next.js
