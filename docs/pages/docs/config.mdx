@@ -1,0 +1,29 @@
+# Config
+
+## configureAdaptiveMode
+
+The `configureAdaptiveMode` function can be used if you want to use a different user agent
+or completely control the adaptive logic yourself.
+
+### Different User Agent
+
+```tsx pure
+import { configureAdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+
+configureAdaptiveMode(req.headers["user-agent"]);
+```
+
+### Custom Logic
+
+```tsx pure
+import {
+  AdaptiveMode,
+  configureAdaptiveMode,
+} from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+
+let mode = AdaptiveMode.desktop;
+if (user.name === "personIdoNotLike") {
+  mode = AdaptiveMode.ios;
+}
+configureAdaptiveMode(mode);
+```

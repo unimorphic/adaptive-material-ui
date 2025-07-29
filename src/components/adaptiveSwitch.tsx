@@ -1,7 +1,11 @@
 import { useThemeProps } from "@mui/material/styles";
 import { SwitchClasses, SwitchProps } from "@mui/material/Switch";
 import { lazy } from "react";
-import AdaptiveModeProp from "../shared/adaptiveModeProp";
+import {
+  AdaptiveMode,
+  AdaptiveModeProp,
+  resolveAdaptiveModeFromProps,
+} from "../adaptiveMode/adaptiveMode";
 
 export interface AdaptiveSwitchProps extends SwitchProps, AdaptiveModeProp {
   classes?: Partial<SwitchClasses> & Partial<AdaptiveSwitchClasses>;
@@ -26,9 +30,9 @@ const SwitchIOS = lazy(async () => {
 
 export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
-  const { adaptiveMode, ...otherProps } = props;
+  const [adaptiveMode, otherProps] = resolveAdaptiveModeFromProps(props);
 
-  if (adaptiveMode === "ios") {
+  if (adaptiveMode === AdaptiveMode.ios) {
     return <SwitchIOS {...otherProps} />;
   }
 

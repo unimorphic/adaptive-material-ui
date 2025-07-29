@@ -5,8 +5,9 @@ import { Tab, Tabs } from "rspress/theme";
 <Tabs>
   <Tab label="Adaptive">
     ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
     import BasicTheme from "@/components/basicTheme";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
       return (
@@ -20,13 +21,14 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
     import BasicTheme from "@/components/basicTheme";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
       return (
         <BasicTheme>
-          <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+          <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
         </BasicTheme>
       );
     }
@@ -35,13 +37,14 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Android">
     ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
     import BasicTheme from "@/components/basicTheme";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
       return (
         <BasicTheme>
-          <AdaptiveSwitch adaptiveMode="android" defaultChecked />
+          <AdaptiveSwitch adaptiveMode={AdaptiveMode.android} defaultChecked />
         </BasicTheme>
       );
     }
@@ -50,13 +53,14 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
     import BasicTheme from "@/components/basicTheme";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
+    import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
       return (
         <BasicTheme>
-          <AdaptiveSwitch adaptiveMode="desktop" defaultChecked />
+          <AdaptiveSwitch adaptiveMode={AdaptiveMode.desktop} defaultChecked />
         </BasicTheme>
       );
     }
@@ -75,6 +79,7 @@ The iOS mode can be customized using the iOS class or theme as shown below. The 
 import BasicTheme from "@/components/basicTheme";
 import { styled } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
@@ -93,7 +98,7 @@ export default function Customization_Classes() {
   return (
     <BasicTheme>
       <AdaptiveSwitchStyled
-        adaptiveMode="ios"
+        adaptiveMode={AdaptiveMode.ios}
         classes={{ ios: "ios" }}
         defaultChecked
       />
@@ -108,6 +113,7 @@ export default function Customization_Classes() {
 import BasicTheme from "@/components/basicTheme";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode/adaptiveMode";
 import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themeAugmentation";
 
@@ -137,7 +143,7 @@ export default function Customization_Theme() {
   return (
     <BasicTheme>
       <ThemeProvider theme={customizeTheme}>
-        <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+        <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
       </ThemeProvider>
     </BasicTheme>
   );
