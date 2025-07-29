@@ -3,7 +3,8 @@ import { defineConfig, devices } from "@playwright/experimental-ct-react";
 export default defineConfig({
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
-  reporter: "html",
+  outputDir: "./playwright/results",
+  reporter: [["html", { outputFolder: "./playwright/results" }]],
   retries: process.env.CI ? 2 : 0,
   snapshotDir: "./__snapshots__",
   testDir: "./src",

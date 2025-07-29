@@ -6,10 +6,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "skipLibCheck": true,
     "strict": true,
     "useDefineForClassFields": true
   },
-  "include": ["src"]
+  "include": ["playwright", "src"]
 }

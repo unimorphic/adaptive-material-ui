@@ -10,6 +10,7 @@ export default defineConfig({
         "!src/**/*testUtils*",
       ],
     },
+    tsconfigPath: "./tsconfig.build.json"
   },
   lib: [
     {

@@ -23,7 +23,7 @@ function DarkModeMonitor() {
   return null;
 }
 
-export default function BasicTheme(props: Props) {
+export default function DocsTheme(props: Props) {
   return (
     <ThemeProvider theme={theme}>
       <DarkModeMonitor />

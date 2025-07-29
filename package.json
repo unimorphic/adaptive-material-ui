@@ -12,6 +12,10 @@
       "module": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./adaptiveMode": {
+      "module": "./dist/adaptiveMode/index.js",
+      "types": "./dist/adaptiveMode/index.d.ts"
+    },
     "./*": {
       "module": "./dist/*.js",
       "types": "./dist/*.d.ts"
