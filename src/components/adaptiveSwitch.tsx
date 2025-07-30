@@ -18,7 +18,11 @@ export interface AdaptiveSwitchClasses {
 
 export type AdaptiveSwitchKey = keyof AdaptiveSwitchClasses;
 
-// The below import statements have to be destructured for proper tree shaking
+// See docs\pages\docs\tech.mdx
+const SwitchAndroid = lazy(async () => {
+  const { SwitchAndroid } = await import("./android");
+  return { default: SwitchAndroid };
+});
 const SwitchDesktop = lazy(async () => {
   const { SwitchDesktop } = await import("./desktop");
   return { default: SwitchDesktop };
@@ -32,9 +36,12 @@ export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
-  if (adaptiveMode === AdaptiveMode.ios) {
-    return <SwitchIOS {...otherProps} />;
+  switch (adaptiveMode) {
+    case AdaptiveMode.android:
+      return <SwitchAndroid {...otherProps} />;
+    case AdaptiveMode.ios:
+      return <SwitchIOS {...otherProps} />;
+    default:
+      return <SwitchDesktop {...otherProps} />;
   }
-
-  return <SwitchDesktop {...otherProps} />;
 }

@@ -1,3 +1,162 @@
+import SourceLinks from "@/shared/sourceLinks";
+import { SourceCode, Tab, Tabs } from "rspress/theme";
+
 # Adaptive Select
 
-TODO
+<Tabs>
+  <Tab label="Adaptive">
+    ```tsx
+    import DocsTheme from "@/shared/docsTheme";
+    import MenuItem from "@mui/material/MenuItem";
+    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+
+    export default function Basic() {
+      return (
+        <DocsTheme>
+          <AdaptiveSelect defaultValue={1}>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+          </AdaptiveSelect>
+        </DocsTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="iOS">
+    ```tsx
+    import DocsTheme from "@/shared/docsTheme";
+    import MenuItem from "@mui/material/MenuItem";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+
+    export default function Basic() {
+      return (
+        <DocsTheme>
+          <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+          </AdaptiveSelect>
+        </DocsTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Android">
+    ```tsx
+    import DocsTheme from "@/shared/docsTheme";
+    import MenuItem from "@mui/material/MenuItem";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+
+    export default function Basic() {
+      return (
+        <DocsTheme>
+          <AdaptiveSelect adaptiveMode={AdaptiveMode.android} defaultValue={1}>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+          </AdaptiveSelect>
+        </DocsTheme>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Desktop">
+    ```tsx
+    import DocsTheme from "@/shared/docsTheme";
+    import MenuItem from "@mui/material/MenuItem";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+
+    export default function Basic() {
+      return (
+        <DocsTheme>
+          <AdaptiveSelect adaptiveMode={AdaptiveMode.desktop} defaultValue={1}>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+          </AdaptiveSelect>
+        </DocsTheme>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Customization
+
+The iOS mode can be customized using the iOS class or theme as shown below. The other modes use the standard [Material UI Select](https://mui.com/material-ui/react-select/#customization).
+
+### iOS Custom Class
+
+```tsx
+import DocsTheme from "@/shared/docsTheme";
+import MenuItem from "@mui/material/MenuItem";
+import { styled } from "@mui/material/styles";
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+
+const AdaptiveSelectStyled = styled(AdaptiveSelect)({
+  "&.ios": {},
+});
+
+export default function Customization_Classes() {
+  return (
+    <DocsTheme>
+      <AdaptiveSelect
+        adaptiveMode={AdaptiveMode.ios}
+        classes={{ ios: "ios" }}
+        defaultValue={1}
+      >
+        <MenuItem value={1}>One</MenuItem>
+        <MenuItem value={2}>Two</MenuItem>
+      </AdaptiveSelect>
+    </DocsTheme>
+  );
+}
+```
+
+### iOS Custom Theme
+
+```tsx
+import DocsTheme from "@/shared/docsTheme";
+import MenuItem from "@mui/material/MenuItem";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+import type {} from "adaptive-material-ui/themeAugmentation";
+
+function customizeTheme(theme: Theme) {
+  return createTheme({
+    ...theme,
+    components: {
+      ...theme.components,
+      AdaptiveSelect: {
+        styleOverrides: {
+          ios: {},
+        },
+      },
+    },
+  });
+}
+
+export default function Customization_Theme() {
+  return (
+    <DocsTheme>
+      <ThemeProvider theme={customizeTheme}>
+        <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
+          <MenuItem value={1}>One</MenuItem>
+          <MenuItem value={2}>Two</MenuItem>
+        </AdaptiveSelect>
+      </ThemeProvider>
+    </DocsTheme>
+  );
+}
+```
+
+<SourceLinks
+  codeUrl="components/adaptiveSelect.tsx"
+  docsUrl="components/adaptiveSelect.mdx"
+/>

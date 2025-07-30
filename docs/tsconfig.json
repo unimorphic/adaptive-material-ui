@@ -14,7 +14,7 @@
     "target": "ES2020",
     "useDefineForClassFields": true
   },
-  "include": ["components", "pages", "rspress.config.ts", "theme"],
+  "include": ["pages", "rspress.config.ts", "shared", "theme"],
   "mdx": {
     "checkMdx": true
   },

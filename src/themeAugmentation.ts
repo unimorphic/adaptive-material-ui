@@ -5,6 +5,10 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveSelectKey,
+  AdaptiveSelectProps,
+} from "./components/adaptiveSelect";
+import {
   AdaptiveSwitchKey,
   AdaptiveSwitchProps,
 } from "./components/adaptiveSwitch";
@@ -12,6 +16,10 @@ import {
 type Theme = Omit<MuiTheme, "components">;
 
 export interface AdaptiveComponents {
+  AdaptiveSelect?: {
+    defaultProps?: ComponentsProps["AdaptiveSelect"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelect"];
+  };
   AdaptiveSwitch?: {
     defaultProps?: ComponentsProps["AdaptiveSwitch"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSwitch"];
@@ -19,10 +27,12 @@ export interface AdaptiveComponents {
 }
 
 export interface AdaptiveComponentsPropsList {
+  AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSwitch: AdaptiveSwitchProps;
 }
 
 export interface AdaptiveComponentNameToClassKey {
+  AdaptiveSelect: AdaptiveSelectKey;
   AdaptiveSwitch: AdaptiveSwitchKey;
 }
 

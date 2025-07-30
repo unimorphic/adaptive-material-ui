@@ -36,6 +36,10 @@ export default tseslint.config({
     },
   },
   rules: {
+    "@typescript-eslint/no-confusing-void-expression": [
+      "warn",
+      { ignoreArrowShorthand: true },
+    ],
     "@typescript-eslint/no-unused-vars": ["warn", { ignoreRestSiblings: true }],
   },
 });

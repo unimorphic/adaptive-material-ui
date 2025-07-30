@@ -44,3 +44,23 @@
 .rspress-home-feature-card:hover {
   border-color: transparent;
 }
+
+.source-links {
+  border-color: var(--rp-c-divider-light);
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  display: flex;
+  margin-top: 50px;
+  padding: 10px 0;
+
+  div {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+  a {
+    color: var(--rp-c-link);
+    font-weight: 500;
+    padding: 10px;
+  }
+}
