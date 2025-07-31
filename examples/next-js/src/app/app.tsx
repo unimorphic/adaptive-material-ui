@@ -22,8 +22,8 @@ export default function App({
   userAgent,
 }: Readonly<{ children: React.ReactNode; userAgent: string }>) {
   return (
-    <AdaptiveModeContext value={{ userAgent: userAgent }}>
+    <AdaptiveModeContext.Provider value={{ userAgent: userAgent }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </AdaptiveModeContext>
+    </AdaptiveModeContext.Provider>
   );
 }

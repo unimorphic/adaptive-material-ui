@@ -10,7 +10,9 @@ or completely control the adaptive logic yourself.
 ```tsx pure
 import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 
-<AdaptiveModeContext value={{ userAgent: req.headers["user-agent"] }}></AdaptiveModeContext>
+<AdaptiveModeContext.Provider
+  value={{ userAgent: req.headers["user-agent"] }}
+></AdaptiveModeContext.Provider>;
 ```
 
 ### Custom Logic
@@ -25,7 +27,9 @@ let mode = AdaptiveMode.desktop;
 if (user.name === "personIdoNotLike") {
   mode = AdaptiveMode.ios;
 }
-<AdaptiveModeContext value={{ mode: mode }}></AdaptiveModeContext>
+<AdaptiveModeContext.Provider
+  value={{ mode: mode }}
+></AdaptiveModeContext.Provider>;
 ```
 
 ### SSR

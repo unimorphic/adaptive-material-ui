@@ -41,18 +41,18 @@ test("Theme", () => {
 
 test("Context - Mode", () => {
   let result = render(
-    <AdaptiveModeContext value={{ mode: AdaptiveMode.ios }}>
+    <AdaptiveModeContext.Provider value={{ mode: AdaptiveMode.ios }}>
       <RenderAdaptiveMode />
-    </AdaptiveModeContext>,
+    </AdaptiveModeContext.Provider>,
   );
 
   let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
   expect(adaptiveMode).toBeDefined();
 
   result = render(
-    <AdaptiveModeContext value={{ mode: AdaptiveMode.android }}>
+    <AdaptiveModeContext.Provider value={{ mode: AdaptiveMode.android }}>
       <RenderAdaptiveMode />
-    </AdaptiveModeContext>,
+    </AdaptiveModeContext.Provider>,
   );
 
   adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));
@@ -61,28 +61,28 @@ test("Context - Mode", () => {
 
 test("Context - User Agent", () => {
   let result = render(
-    <AdaptiveModeContext
+    <AdaptiveModeContext.Provider
       value={{
         userAgent:
           "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1",
       }}
     >
       <RenderAdaptiveMode />
-    </AdaptiveModeContext>,
+    </AdaptiveModeContext.Provider>,
   );
 
   let adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.ios));
   expect(adaptiveMode).toBeDefined();
 
   result = render(
-    <AdaptiveModeContext
+    <AdaptiveModeContext.Provider
       value={{
         userAgent:
           "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.7204.158 Mobile Safari/537.36",
       }}
     >
       <RenderAdaptiveMode />
-    </AdaptiveModeContext>,
+    </AdaptiveModeContext.Provider>,
   );
 
   adaptiveMode = result.getByText(adaptiveModeToString(AdaptiveMode.android));

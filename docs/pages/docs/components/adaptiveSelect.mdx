@@ -1,81 +1,98 @@
+import Adaptiveness from "@/shared/Adaptiveness";
 import SourceLinks from "@/shared/sourceLinks";
+import Warning from "@/shared/warning";
 import { SourceCode, Tab, Tabs } from "rspress/theme";
 
 # Adaptive Select
+
+<Adaptiveness
+  items={[
+    "Desktop: doesn't block interaction with other page elements when open",
+    "Android & iOS: uses the native device select",
+    "iOS: native styling",
+  ]}
+/>
 
 <Tabs>
   <Tab label="Adaptive">
     ```tsx
     import DocsTheme from "@/shared/docsTheme";
-    import MenuItem from "@mui/material/MenuItem";
-    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+    import AdaptiveSelect, {
+      AdaptiveSelectItem,
+    } from "adaptive-material-ui/components/adaptiveSelect";
 
     export default function Basic() {
       return (
         <DocsTheme>
           <AdaptiveSelect defaultValue={1}>
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={2}>Two</MenuItem>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
           </AdaptiveSelect>
         </DocsTheme>
       );
     }
+
     ```
 
   </Tab>
   <Tab label="iOS">
     ```tsx
     import DocsTheme from "@/shared/docsTheme";
-    import MenuItem from "@mui/material/MenuItem";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+    import AdaptiveSelect, {
+      AdaptiveSelectItem,
+    } from "adaptive-material-ui/components/adaptiveSelect";
 
     export default function Basic() {
       return (
         <DocsTheme>
           <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={2}>Two</MenuItem>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
           </AdaptiveSelect>
         </DocsTheme>
       );
     }
     ```
+    <Warning>This select uses the native device select so will behave differently depending on the device</Warning>
 
   </Tab>
   <Tab label="Android">
     ```tsx
     import DocsTheme from "@/shared/docsTheme";
-    import MenuItem from "@mui/material/MenuItem";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+    import AdaptiveSelect, {
+      AdaptiveSelectItem,
+    } from "adaptive-material-ui/components/adaptiveSelect";
 
     export default function Basic() {
       return (
         <DocsTheme>
           <AdaptiveSelect adaptiveMode={AdaptiveMode.android} defaultValue={1}>
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={2}>Two</MenuItem>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
           </AdaptiveSelect>
         </DocsTheme>
       );
     }
     ```
+    <Warning>This select uses the native device select so will behave differently depending on the device</Warning>
 
   </Tab>
   <Tab label="Desktop">
     ```tsx
     import DocsTheme from "@/shared/docsTheme";
-    import MenuItem from "@mui/material/MenuItem";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-    import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+    import AdaptiveSelect, {
+      AdaptiveSelectItem,
+    } from "adaptive-material-ui/components/adaptiveSelect";
 
     export default function Basic() {
       return (
         <DocsTheme>
           <AdaptiveSelect adaptiveMode={AdaptiveMode.desktop} defaultValue={1}>
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={2}>Two</MenuItem>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
           </AdaptiveSelect>
         </DocsTheme>
       );
@@ -93,10 +110,11 @@ The iOS mode can be customized using the iOS class or theme as shown below. The 
 
 ```tsx
 import DocsTheme from "@/shared/docsTheme";
-import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+import AdaptiveSelect, {
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/adaptiveSelect";
 
 const AdaptiveSelectStyled = styled(AdaptiveSelect)({
   "&.ios": {},
@@ -110,8 +128,8 @@ export default function Customization_Classes() {
         classes={{ ios: "ios" }}
         defaultValue={1}
       >
-        <MenuItem value={1}>One</MenuItem>
-        <MenuItem value={2}>Two</MenuItem>
+        <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+        <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
       </AdaptiveSelect>
     </DocsTheme>
   );
@@ -122,10 +140,11 @@ export default function Customization_Classes() {
 
 ```tsx
 import DocsTheme from "@/shared/docsTheme";
-import MenuItem from "@mui/material/MenuItem";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSelect from "adaptive-material-ui/components/adaptiveSelect";
+import AdaptiveSelect, {
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/adaptiveSelect";
 import type {} from "adaptive-material-ui/themeAugmentation";
 
 function customizeTheme(theme: Theme) {
@@ -147,8 +166,8 @@ export default function Customization_Theme() {
     <DocsTheme>
       <ThemeProvider theme={customizeTheme}>
         <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
-          <MenuItem value={1}>One</MenuItem>
-          <MenuItem value={2}>Two</MenuItem>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
         </AdaptiveSelect>
       </ThemeProvider>
     </DocsTheme>

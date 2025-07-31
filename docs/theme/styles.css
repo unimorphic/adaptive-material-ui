@@ -46,8 +46,8 @@
 }
 
 .source-links {
-  border-color: var(--rp-c-divider-light);
   border-bottom-width: 1px;
+  border-color: var(--rp-c-divider-light);
   border-top-width: 1px;
   display: flex;
   margin-top: 50px;
@@ -62,5 +62,23 @@
     color: var(--rp-c-link);
     font-weight: 500;
     padding: 10px;
+  }
+}
+
+.warning {
+  display: flex;
+  font-size: 0.8rem;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.adaptiveness {
+  background-color: var(--rp-c-bg-soft);
+  margin-bottom: 2.5rem;
+  padding: 0.5rem;
+
+  & > div {
+    margin-bottom: 0.5rem;
   }
 }

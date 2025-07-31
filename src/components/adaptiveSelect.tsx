@@ -1,23 +1,37 @@
 import { SelectClasses, SelectProps } from "@mui/material/Select";
 import { useThemeProps } from "@mui/material/styles";
-import { lazy } from "react";
+import { lazy, ReactNode, useContext } from "react";
 import {
   AdaptiveMode,
+  AdaptiveModeContext,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../adaptiveMode/adaptiveMode";
+import SelectItemProps, {
+  DefaultAdditionalProps,
+} from "./shared/selectItemProps";
 
-export type AdaptiveSelectProps = SelectProps &
+export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
   AdaptiveModeProp & {
     classes?: Partial<SelectClasses> & Partial<AdaptiveSelectClasses>;
   };
-
 export interface AdaptiveSelectClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
-
 export type AdaptiveSelectKey = keyof AdaptiveSelectClasses;
+
+export type AdaptiveSelectItemProps<
+  RootComponent extends React.ElementType = "li",
+  AdditionalProps = DefaultAdditionalProps,
+> = SelectItemProps<RootComponent, AdditionalProps> & {
+  classes?: Partial<AdaptiveSelectItemClasses>;
+};
+export interface AdaptiveSelectItemClasses {
+  /** Styles applied to the iOS mode */
+  ios: string;
+}
+export type AdaptiveSelectItemKey = keyof AdaptiveSelectItemClasses;
 
 // See docs\pages\docs\tech.mdx
 const SelectAndroid = lazy(async () => {
@@ -33,16 +47,58 @@ const SelectIOS = lazy(async () => {
   return { default: SelectIOS };
 });
 
-export default function AdaptiveSelect(inProps: AdaptiveSelectProps) {
+const SelectItemAndroid = lazy(async () => {
+  const { SelectItemAndroid } = await import("./android");
+  return { default: SelectItemAndroid };
+});
+const SelectItemDesktop = lazy(async () => {
+  const { SelectItemDesktop } = await import("./desktop");
+  return { default: SelectItemDesktop };
+});
+const SelectItemIOS = lazy(async () => {
+  const { SelectItemIOS } = await import("./ios");
+  return { default: SelectItemIOS };
+});
+
+export function AdaptiveSelectItem<
+  RootComponent extends React.ElementType = "li",
+  AdditionalProps = DefaultAdditionalProps,
+>(inProps: AdaptiveSelectItemProps<RootComponent, AdditionalProps>) {
+  const props = useThemeProps({ props: inProps, name: "AdaptiveSelectItem" });
+  const modeContext = useContext(AdaptiveModeContext);
+
+  switch (modeContext.mode) {
+    case AdaptiveMode.android:
+      return <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />;
+    case AdaptiveMode.ios:
+      return <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
+    default:
+      return <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />;
+  }
+}
+
+export default function AdaptiveSelect<Value = unknown>(
+  inProps: AdaptiveSelectProps<Value>,
+) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelect" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
+  let content: ReactNode;
   switch (adaptiveMode) {
     case AdaptiveMode.android:
-      return <SelectAndroid {...otherProps} />;
+      content = <SelectAndroid<Value> {...otherProps} />;
+      break;
     case AdaptiveMode.ios:
-      return <SelectIOS {...otherProps} />;
+      content = <SelectIOS<Value> {...otherProps} />;
+      break;
     default:
-      return <SelectDesktop {...otherProps} />;
+      content = <SelectDesktop<Value> {...otherProps} />;
+      break;
   }
+
+  return (
+    <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>
+      {content}
+    </AdaptiveModeContext.Provider>
+  );
 }
