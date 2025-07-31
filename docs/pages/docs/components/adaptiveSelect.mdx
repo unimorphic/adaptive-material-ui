@@ -1,17 +1,14 @@
-import Adaptiveness from "@/shared/Adaptiveness";
-import SourceLinks from "@/shared/sourceLinks";
+import Links from "@/shared/links";
 import Warning from "@/shared/warning";
 import { SourceCode, Tab, Tabs } from "rspress/theme";
 
 # Adaptive Select
 
-<Adaptiveness
-  items={[
-    "Desktop: doesn't block interaction with other page elements when open",
-    "Android & iOS: uses the native device select",
-    "iOS: native styling",
-  ]}
-/>
+## Adaptiveness
+
+- Desktop: doesn't block interaction with other page elements when open
+- Android & iOS: uses the native device select
+- iOS: native styling
 
 <Tabs>
   <Tab label="Adaptive">
@@ -106,76 +103,10 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
 The iOS mode can be customized using the iOS class or theme as shown below. The other modes use the standard [Material UI Select](https://mui.com/material-ui/react-select/#customization).
 
-### iOS Custom Class
+## Links
 
-```tsx
-import DocsTheme from "@/shared/docsTheme";
-import { styled } from "@mui/material/styles";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSelect, {
-  AdaptiveSelectItem,
-} from "adaptive-material-ui/components/adaptiveSelect";
-
-const AdaptiveSelectStyled = styled(AdaptiveSelect)({
-  "&.ios": {},
-});
-
-export default function Customization_Classes() {
-  return (
-    <DocsTheme>
-      <AdaptiveSelect
-        adaptiveMode={AdaptiveMode.ios}
-        classes={{ ios: "ios" }}
-        defaultValue={1}
-      >
-        <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-        <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-      </AdaptiveSelect>
-    </DocsTheme>
-  );
-}
-```
-
-### iOS Custom Theme
-
-```tsx
-import DocsTheme from "@/shared/docsTheme";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSelect, {
-  AdaptiveSelectItem,
-} from "adaptive-material-ui/components/adaptiveSelect";
-import type {} from "adaptive-material-ui/themeAugmentation";
-
-function customizeTheme(theme: Theme) {
-  return createTheme({
-    ...theme,
-    components: {
-      ...theme.components,
-      AdaptiveSelect: {
-        styleOverrides: {
-          ios: {},
-        },
-      },
-    },
-  });
-}
-
-export default function Customization_Theme() {
-  return (
-    <DocsTheme>
-      <ThemeProvider theme={customizeTheme}>
-        <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
-      </ThemeProvider>
-    </DocsTheme>
-  );
-}
-```
-
-<SourceLinks
+<Links
   codeUrl="components/adaptiveSelect.tsx"
   docsUrl="components/adaptiveSelect.mdx"
+  mui={{ title: "Select", url: "react-select" }}
 />

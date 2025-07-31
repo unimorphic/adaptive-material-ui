@@ -1,10 +1,11 @@
-import Adaptiveness from "@/shared/Adaptiveness";
-import SourceLinks from "@/shared/sourceLinks";
+import Links from "@/shared/links";
 import { SourceCode, Tab, Tabs } from "rspress/theme";
 
 # Adaptive Switch
 
-<Adaptiveness items={["iOS: native styling"]} />
+## Adaptiveness
+
+- iOS: native styling
 
 <Tabs>
   <Tab label="Adaptive">
@@ -155,7 +156,10 @@ export default function Customization_Theme() {
 }
 ```
 
-<SourceLinks
+## Links
+
+<Links
   codeUrl="components/adaptiveSwitch.tsx"
   docsUrl="components/adaptiveSwitch.mdx"
+  mui={{ title: "Switch", url: "react-switch" }}
 />

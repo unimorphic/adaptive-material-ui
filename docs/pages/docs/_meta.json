@@ -3,5 +3,5 @@
   "gettingStarted",
   "config",
   { "label": "Components", "name": "components", "type": "dir" },
-  "tech"
+  { "label": "The Codes", "name": "theCodes", "type": "dir" }
 ]

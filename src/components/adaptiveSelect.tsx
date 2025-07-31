@@ -33,7 +33,7 @@ export interface AdaptiveSelectItemClasses {
 }
 export type AdaptiveSelectItemKey = keyof AdaptiveSelectItemClasses;
 
-// See docs\pages\docs\tech.mdx
+// See docs\pages\docs\theCodes\codeSplitting.md
 const SelectAndroid = lazy(async () => {
   const { SelectAndroid } = await import("./android");
   return { default: SelectAndroid };
