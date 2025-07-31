@@ -10,7 +10,7 @@ const StyledOption = styled("option", {
   slot: "root",
 })();
 
-export function SelectItemMobile(props: SelectItemProps<"option">) {
+export function SelectItemNative(props: SelectItemProps<"option">) {
   const {
     action,
     classes,
@@ -45,7 +45,7 @@ export function SelectItemMobile(props: SelectItemProps<"option">) {
   );
 }
 
-export default function SelectMobile<Value = unknown>(
+export default function SelectNative<Value = unknown>(
   props: SelectProps<Value>,
 ) {
   return <Select native {...props} />;

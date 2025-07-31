@@ -2,15 +2,15 @@ import { SelectProps } from "@mui/material/Select";
 import SelectItemProps, {
   DefaultAdditionalProps,
 } from "../shared/selectItemProps";
-import SelectMobile, { SelectItemMobile } from "../shared/selectMobile";
+import SelectNative, { SelectItemNative } from "../shared/selectNative";
 
 export function SelectItemIOS<
   RootComponent extends React.ElementType = "li",
   AdditionalProps = DefaultAdditionalProps,
 >(props: SelectItemProps<RootComponent, AdditionalProps>) {
-  return <SelectItemMobile {...props} />;
+  return <SelectItemNative {...props} />;
 }
 
 export default function SelectIOS<Value = unknown>(props: SelectProps<Value>) {
-  return <SelectMobile {...props} />;
+  return <SelectNative {...props} />;
 }
