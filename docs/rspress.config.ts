@@ -16,7 +16,6 @@ export default defineConfig({
     dark: "/logo-dark.svg",
   },
   globalStyles: path.join(__dirname, "theme/styles.css"),
-  globalUIComponents: [path.join(__dirname, "theme", "robotoFont.tsx")],
   outDir: "dist",
   plugins: [pluginPreview()],
   root: path.join(__dirname, "pages"),

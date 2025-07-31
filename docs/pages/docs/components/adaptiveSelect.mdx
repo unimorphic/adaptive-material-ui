@@ -13,19 +13,16 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 <Tabs>
   <Tab label="Adaptive">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
     } from "adaptive-material-ui/components/adaptiveSelect";
 
     export default function Basic() {
       return (
-        <DocsTheme>
-          <AdaptiveSelect defaultValue={1}>
-            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-          </AdaptiveSelect>
-        </DocsTheme>
+        <AdaptiveSelect defaultValue={1}>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+        </AdaptiveSelect>
       );
     }
 
@@ -34,7 +31,6 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
@@ -42,12 +38,10 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
     export default function Basic() {
       return (
-        <DocsTheme>
-          <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
-            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-          </AdaptiveSelect>
-        </DocsTheme>
+        <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+        </AdaptiveSelect>
       );
     }
     ```
@@ -56,7 +50,6 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Android">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
@@ -64,12 +57,10 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
     export default function Basic() {
       return (
-        <DocsTheme>
-          <AdaptiveSelect adaptiveMode={AdaptiveMode.android} defaultValue={1}>
-            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-          </AdaptiveSelect>
-        </DocsTheme>
+        <AdaptiveSelect adaptiveMode={AdaptiveMode.android} defaultValue={1}>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+        </AdaptiveSelect>
       );
     }
     ```
@@ -78,7 +69,6 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
@@ -86,22 +76,16 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
     export default function Basic() {
       return (
-        <DocsTheme>
-          <AdaptiveSelect adaptiveMode={AdaptiveMode.desktop} defaultValue={1}>
-            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-          </AdaptiveSelect>
-        </DocsTheme>
+        <AdaptiveSelect adaptiveMode={AdaptiveMode.desktop} defaultValue={1}>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+        </AdaptiveSelect>
       );
     }
     ```
 
   </Tab>
 </Tabs>
-
-## Customization
-
-The iOS mode can be customized using the iOS class or theme as shown below. The other modes use the standard [Material UI Select](https://mui.com/material-ui/react-select/#customization).
 
 ## Links
 

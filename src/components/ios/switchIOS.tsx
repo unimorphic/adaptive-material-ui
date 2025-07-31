@@ -34,12 +34,7 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       },
 
       [`& + .${switchClasses.track}`]: {
-        backgroundColor: "rgba(52, 199, 89, 1)",
         opacity: 1,
-
-        ...theme.applyStyles("dark", {
-          backgroundColor: "rgba(48, 209, 88, 1)",
-        }),
       },
     },
 
@@ -51,20 +46,14 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   },
 
   [`& .${switchClasses.track}`]: {
-    backgroundColor: "rgba(120, 120, 120, 0.2)",
     borderRadius: 15,
-    opacity: 1,
     transition: theme.transitions.create(["background-color"], {
       duration: 200,
-    }),
-
-    ...theme.applyStyles("dark", {
-      backgroundColor: "rgba(120, 120, 128, 0.36)",
     }),
   },
 
   [`& .${switchClasses.thumb}`]: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.palette.common.white,
     borderRadius: 13,
     boxShadow: "none",
     display: "block",

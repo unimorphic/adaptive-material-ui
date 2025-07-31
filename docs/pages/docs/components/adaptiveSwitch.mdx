@@ -10,151 +10,49 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 <Tabs>
   <Tab label="Adaptive">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
-      return (
-        <DocsTheme>
-          <AdaptiveSwitch defaultChecked />
-        </DocsTheme>
-      );
+      return <AdaptiveSwitch defaultChecked />;
     }
     ```
 
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
-      return (
-        <DocsTheme>
-          <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
-        </DocsTheme>
-      );
+      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />;
     }
     ```
 
   </Tab>
   <Tab label="Android">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
-      return (
-        <DocsTheme>
-          <AdaptiveSwitch adaptiveMode={AdaptiveMode.android} defaultChecked />
-        </DocsTheme>
-      );
+      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.android} defaultChecked />;
     }
     ```
 
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import DocsTheme from "@/shared/docsTheme";
     import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
 
     export default function Basic() {
-      return (
-        <DocsTheme>
-          <AdaptiveSwitch adaptiveMode={AdaptiveMode.desktop} defaultChecked />
-        </DocsTheme>
-      );
+      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.desktop} defaultChecked />;
     }
     ```
 
   </Tab>
 </Tabs>
-
-## Customization
-
-The iOS mode can be customized using the iOS class or theme as shown below. The other modes use the standard [Material UI Switch](https://mui.com/material-ui/react-switch/#customization).
-
-### iOS Custom Class
-
-```tsx
-import DocsTheme from "@/shared/docsTheme";
-import { styled } from "@mui/material/styles";
-import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
-
-const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
-  "&.ios": {
-    [`& .${switchClasses.track}`]: {
-      backgroundColor: "rebeccapurple",
-    },
-    [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
-      {
-        backgroundColor: "purple",
-      },
-  },
-});
-
-export default function Customization_Classes() {
-  return (
-    <DocsTheme>
-      <AdaptiveSwitchStyled
-        adaptiveMode={AdaptiveMode.ios}
-        classes={{ ios: "ios" }}
-        defaultChecked
-      />
-    </DocsTheme>
-  );
-}
-```
-
-### iOS Custom Theme
-
-```tsx
-import DocsTheme from "@/shared/docsTheme";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
-import type {} from "adaptive-material-ui/themeAugmentation";
-
-function customizeTheme(theme: Theme) {
-  return createTheme({
-    ...theme,
-    components: {
-      ...theme.components,
-      AdaptiveSwitch: {
-        styleOverrides: {
-          ios: {
-            [`& .${switchClasses.track}`]: {
-              backgroundColor: "lightblue",
-            },
-
-            [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
-              {
-                backgroundColor: "blue",
-              },
-          },
-        },
-      },
-    },
-  });
-}
-
-export default function Customization_Theme() {
-  return (
-    <DocsTheme>
-      <ThemeProvider theme={customizeTheme}>
-        <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
-      </ThemeProvider>
-    </DocsTheme>
-  );
-}
-```
 
 ## Links
 

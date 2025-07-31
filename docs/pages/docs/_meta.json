@@ -2,6 +2,7 @@
   "index",
   "gettingStarted",
   "config",
+  "styles",
   { "label": "Components", "name": "components", "type": "dir" },
   { "label": "The Codes", "name": "theCodes", "type": "dir" }
 ]
