@@ -1,0 +1,295 @@
+import Links from "@/shared/links";
+import { SourceCode, Tab, Tabs } from "rspress/theme";
+
+# Adaptive Dialog
+
+## Adaptiveness
+
+The adaptiveness behaviour changes based on the value of the `variant` prop
+
+### Variant Tall
+
+- Defaults to full screen mode on the extra-small breakpoint (cutomizable using the `fullScreenBreakpoint` prop)
+- Streches dialog actions on the extra-small breakpoint (cutomizable using the `strechActionsBreakpoint` prop)
+
+<Tabs>
+  <Tab label="Adaptive">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)}>
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="tall" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="iOS">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.ios} open={open} onClose={() => setOpen(false)}>
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="tall" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Android">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.android} open={open} onClose={() => setOpen(false)}>
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="tall" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Desktop">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.desktop} open={open} onClose={() => setOpen(false)}>
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="tall" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Variant Short
+
+- Streches dialog actions on the extra-small breakpoint (cutomizable using the `strechActionsBreakpoint` prop)
+- iOS: native styling
+
+<Tabs>
+  <Tab label="Adaptive">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short">
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="iOS">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.ios} open={open} onClose={() => setOpen(false)} variant="short">
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Android">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.android} open={open} onClose={() => setOpen(false)} variant="short">
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Desktop">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog adaptiveMode={AdaptiveMode.desktop} open={open} onClose={() => setOpen(false)} variant="short">
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Action Streching
+
+When actions are streched by the `strechActionsBreakpoint` prop, they behave differently based on the number of actions:
+
+- One or two: buttons are stacked horizontally and streched to 50% of the dialog width
+- More: buttons are stacked vertically
+
+<Tabs>
+  <Tab label="One Action">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+            <ExampleDialogContent numberOfActions={1} onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Two Actions">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+            <ExampleDialogContent numberOfActions={2} onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Three Actions">
+    ```tsx
+    import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+    import Button from "@mui/material/Button";
+    import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+    import { useState } from "react";
+
+    export default function Basic() {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setOpen(true)}>Open</Button>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+            <ExampleDialogContent numberOfActions={3} onClose={() => setOpen(false)} variant="short" />
+          </AdaptiveDialog>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+:::warning
+This behavior relies on the `nth-of-type` css selector, so mixing actions with different html tags will cause unexpected behavior.
+This is due to the current Emotion setup not supporting `nth-child` in SSR [Emotion docs](https://emotion.sh/docs/ssr#default-approach)
+:::
+
+## Links
+
+<Links
+  codeUrl="components/adaptiveDialog.tsx"
+  docsUrl="components/adaptiveDialog.mdx"
+  mui={{ title: "Dialog", url: "react-dialog" }}
+/>

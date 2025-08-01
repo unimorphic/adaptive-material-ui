@@ -5,19 +5,27 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveDialogKey,
+  AdaptiveDialogProps,
+} from "../components/adaptiveDialog";
+import {
   AdaptiveSelectItemKey,
   AdaptiveSelectItemProps,
   AdaptiveSelectKey,
   AdaptiveSelectProps,
-} from "./components/adaptiveSelect";
+} from "../components/adaptiveSelect";
 import {
   AdaptiveSwitchKey,
   AdaptiveSwitchProps,
-} from "./components/adaptiveSwitch";
+} from "../components/adaptiveSwitch";
 
 type Theme = Omit<MuiTheme, "components">;
 
 export interface AdaptiveComponents {
+  AdaptiveDialog?: {
+    defaultProps?: ComponentsProps["AdaptiveDialog"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
+  };
   AdaptiveSelect?: {
     defaultProps?: ComponentsProps["AdaptiveSelect"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelect"];
@@ -33,12 +41,14 @@ export interface AdaptiveComponents {
 }
 
 export interface AdaptiveComponentsPropsList {
+  AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
   AdaptiveSwitch: AdaptiveSwitchProps;
 }
 
 export interface AdaptiveComponentNameToClassKey {
+  AdaptiveDialog: AdaptiveDialogKey;
   AdaptiveSelect: AdaptiveSelectKey;
   AdaptiveSelectItem: AdaptiveSelectItemKey;
   AdaptiveSwitch: AdaptiveSwitchKey;

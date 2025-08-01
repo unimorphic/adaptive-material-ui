@@ -1,9 +1,9 @@
 :root {
-  --rp-c-brand-dark: #0067cf;
-  --rp-c-brand-darker: #0062c4;
-  --rp-c-brand-light: #0073e6;
-  --rp-c-brand-lighter: #0073e6;
-  --rp-c-brand: #0073e6;
+  --rp-c-brand-dark: hsl(210, 100%, 45%);
+  --rp-c-brand-darker: hsl(210, 100%, 42%);
+  --rp-c-brand-light: hsl(210, 100%, 70%);
+  --rp-c-brand-lighter: hsl(210, 100%, 80%);
+  --rp-c-brand: hsl(210, 100%, 60%);
   --rp-c-text-2: #67676c;
   --rp-home-hero-image-width-sm: 150px;
   --rp-home-hero-image-width: 225px;
@@ -44,12 +44,4 @@
 
 .rspress-home-feature-card:hover {
   border-color: transparent;
-}
-
-.warning {
-  display: flex;
-  font-size: 0.8rem;
-  gap: 0.5rem;
-  justify-content: center;
-  margin: 5px 0;
 }
