@@ -64,23 +64,26 @@ const StyledDialog = styled(Dialog)<{
       "& > *": {
         margin: 0,
       },
-      "&:has(> :last-child:nth-of-type(1))": {
-        alignItems: "center",
-        flexDirection: "row",
+      // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
+      "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+        {
+          alignItems: "center",
+          flexDirection: "row",
 
-        "& > *": {
-          flex: 0.5,
-          flexBasis: "content",
+          "& > *": {
+            flex: 0.5,
+            flexBasis: "content",
+          },
         },
-      },
-      "&:has(> :last-child:nth-of-type(2))": {
-        alignItems: "center",
-        flexDirection: "row",
+      "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+        {
+          alignItems: "center",
+          flexDirection: "row",
 
-        "& > *": {
-          flex: 1,
+          "& > *": {
+            flex: 1,
+          },
         },
-      },
     },
   },
 }));
