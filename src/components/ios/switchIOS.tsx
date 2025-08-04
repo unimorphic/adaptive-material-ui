@@ -1,13 +1,9 @@
-import {
-  createTheme,
-  styled,
-  Theme,
-  ThemeProvider,
-} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Toggle
@@ -77,23 +73,14 @@ export default function SwitchIOS(props: SwitchProps) {
   );
 
   return (
-    <ThemeProvider
-      theme={(theme: Theme) =>
-        createTheme({
-          ...theme,
-          components: {
-            ...theme.components,
-            MuiSwitch: {}, // Only use AdaptiveSwitch styles
-          },
-        })
-      }
-    >
+    // Only use AdaptiveSwitch styles
+    <RemoveComponentFromTheme componentName="MuiSwitch">
       <StyledSwitch
         className={clsx(composedClasses.ios, className)}
         disableRipple
         ownerState={props}
         {...otherProps}
       />
-    </ThemeProvider>
+    </RemoveComponentFromTheme>
   );
 }
