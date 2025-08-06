@@ -5,6 +5,10 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveButtonStackKey,
+  AdaptiveButtonStackProps,
+} from "../components/adaptiveButtonStack";
+import {
   AdaptiveDialogKey,
   AdaptiveDialogProps,
 } from "../components/adaptiveDialog";
@@ -22,6 +26,10 @@ import {
 type Theme = Omit<MuiTheme, "components">;
 
 export interface AdaptiveComponents {
+  AdaptiveButtonStack?: {
+    defaultProps?: ComponentsProps["AdaptiveButtonStack"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButtonStack"];
+  };
   AdaptiveDialog?: {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
@@ -41,6 +49,7 @@ export interface AdaptiveComponents {
 }
 
 export interface AdaptiveComponentsPropsList {
+  AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
@@ -48,6 +57,7 @@ export interface AdaptiveComponentsPropsList {
 }
 
 export interface AdaptiveComponentNameToClassKey {
+  AdaptiveButtonStack: AdaptiveButtonStackKey;
   AdaptiveDialog: AdaptiveDialogKey;
   AdaptiveSelect: AdaptiveSelectKey;
   AdaptiveSelectItem: AdaptiveSelectItemKey;

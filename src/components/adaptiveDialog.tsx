@@ -1,5 +1,5 @@
-import { DialogClasses } from "@mui/material/Dialog";
-import { useThemeProps } from "@mui/material/styles";
+import { DialogClassKey } from "@mui/material/Dialog";
+import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy } from "react";
 import {
   AdaptiveMode,
@@ -9,10 +9,9 @@ import {
 import { DialogResponsiveProps } from "./shared/dialogResponsive";
 
 export interface AdaptiveDialogProps
-  extends DialogResponsiveProps,
-    AdaptiveModeProp {
-  classes?: Partial<DialogClasses> & Partial<AdaptiveDialogClasses>;
-}
+  extends Omit<DialogResponsiveProps, "classes">,
+    StyledComponentProps<DialogClassKey | AdaptiveDialogKey>,
+    AdaptiveModeProp {}
 
 export interface AdaptiveDialogClasses {
   /** Styles applied to the iOS mode */

@@ -12,6 +12,12 @@ interface Props {
   variant: "short" | "tall";
 }
 
+const buttonLabelsForNumber = [
+  ["Submit"],
+  ["Cancel", "Submit"],
+  ["Delete", "Cancel", "Submit"]
+]
+
 export default function ExampleDialogContent(props: Props) {
   if (props.variant === "short") {
     return (
@@ -30,7 +36,7 @@ export default function ExampleDialogContent(props: Props) {
             <Fragment>
               {Array.from(Array(props.numberOfActions).keys()).map((i) => (
                 <Button key={i} onClick={props.onClose}>
-                  Action {i + 1}
+                  {buttonLabelsForNumber[props.numberOfActions! - 1][i]}
                 </Button>
               ))}
             </Fragment>

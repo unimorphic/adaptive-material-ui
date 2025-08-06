@@ -2,8 +2,9 @@ import Dialog, { DialogProps } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-type ValidBreakpoints = Exclude<Breakpoint, "xl">;
+import inclusiveToExclusiveBreakpoint, {
+  ValidInclusiveBreakpoint,
+} from "./inclusiveToExclusiveBreakpoint";
 
 export interface DialogResponsiveProps extends DialogProps {
   /**
@@ -11,14 +12,14 @@ export interface DialogResponsiveProps extends DialogProps {
    * This behaviour can be disabled by setting the fullScreen or variant properties or setting it to false
    * @default xs
    */
-  fullScreenBreakpoint?: ValidBreakpoints | number | false;
+  fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | false;
 
   /**
-   * Breakpoint or screen width in px and below at which the actions will be streched
+   * Breakpoint or screen width in px and below at which the actions will be stretched
    * This behaviour can be disabled by setting it to false
    * @default xs
    */
-  strechActionsBreakpoint?: ValidBreakpoints | number | false;
+  stretchActionsBreakpoint?: ValidInclusiveBreakpoint | number | false;
 
   /**
    * Short dialogs ignore the fullScreenBreakpoint logic and may be styled differently depending on the device
@@ -28,37 +29,17 @@ export interface DialogResponsiveProps extends DialogProps {
 }
 
 interface OwnerState
-  extends Omit<DialogResponsiveProps, "strechActionsBreakpoint"> {
-  strechActionsBreakpointExclusive: Breakpoint | number;
-}
-
-/**
- * Used to transform breakpoints since the down method is exclusive
- */
-function inclusiveToExclusiveBreakpoint(
-  breakpoint: ValidBreakpoints | number | false,
-) {
-  const breakpointMap: Record<ValidBreakpoints, Breakpoint> = {
-    lg: "xl",
-    md: "lg",
-    sm: "md",
-    xs: "sm",
-  };
-
-  return breakpoint === false
-    ? 0
-    : typeof breakpoint === "string"
-      ? breakpointMap[breakpoint]
-      : breakpoint + 1;
+  extends Omit<DialogResponsiveProps, "stretchActionsBreakpoint"> {
+  stretchActionsBreakpointExclusive: Breakpoint | number;
 }
 
 const StyledDialog = styled(Dialog)<{
   ownerState: OwnerState;
 }>(({ theme, ownerState }) => ({
-  [theme.breakpoints.down(ownerState.strechActionsBreakpointExclusive)]: {
+  [theme.breakpoints.down(ownerState.stretchActionsBreakpointExclusive)]: {
     [`& .${dialogActionsClasses.root}`]: {
       alignItems: "stretch",
-      flexDirection: "column",
+      flexDirection: "column-reverse",
       gap: 5,
 
       "& > *": {
@@ -71,8 +52,7 @@ const StyledDialog = styled(Dialog)<{
           flexDirection: "row",
 
           "& > *": {
-            flex: 0.5,
-            flexBasis: "content",
+            minWidth: "50%",
           },
         },
       "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
@@ -90,7 +70,7 @@ const StyledDialog = styled(Dialog)<{
 
 export default function DialogResponsive(props: DialogResponsiveProps) {
   const {
-    strechActionsBreakpoint = "xs",
+    stretchActionsBreakpoint = "xs",
     fullScreenBreakpoint = "xs",
     variant = "tall",
     ...otherProps
@@ -107,8 +87,8 @@ export default function DialogResponsive(props: DialogResponsiveProps) {
       fullScreen={variant === "tall" ? isFullScreenBreakpoint : undefined}
       ownerState={{
         ...props,
-        strechActionsBreakpointExclusive: inclusiveToExclusiveBreakpoint(
-          strechActionsBreakpoint,
+        stretchActionsBreakpointExclusive: inclusiveToExclusiveBreakpoint(
+          stretchActionsBreakpoint,
         ),
       }}
       {...otherProps}

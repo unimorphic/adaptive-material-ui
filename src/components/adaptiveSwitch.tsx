@@ -1,5 +1,5 @@
-import { useThemeProps } from "@mui/material/styles";
-import { SwitchClasses, SwitchProps } from "@mui/material/Switch";
+import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import { SwitchClassKey, SwitchProps } from "@mui/material/Switch";
 import { lazy } from "react";
 import {
   AdaptiveMode,
@@ -7,9 +7,10 @@ import {
   useAdaptiveModeFromProps,
 } from "../adaptiveMode/adaptiveMode";
 
-export interface AdaptiveSwitchProps extends SwitchProps, AdaptiveModeProp {
-  classes?: Partial<SwitchClasses> & Partial<AdaptiveSwitchClasses>;
-}
+export interface AdaptiveSwitchProps
+  extends Omit<SwitchProps, "classes">,
+    StyledComponentProps<SwitchClassKey | AdaptiveSwitchKey>,
+    AdaptiveModeProp {}
 
 export interface AdaptiveSwitchClasses {
   /** Styles applied to the iOS mode */

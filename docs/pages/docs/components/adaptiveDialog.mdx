@@ -10,7 +10,7 @@ The adaptiveness behaviour changes based on the value of the `variant` prop
 ### Variant Tall
 
 - Defaults to full screen mode on the extra-small breakpoint (cutomizable using the `fullScreenBreakpoint` prop)
-- Streches dialog actions on the extra-small breakpoint (cutomizable using the `strechActionsBreakpoint` prop)
+- Stretches dialog actions on the extra-small breakpoint (cutomizable using the `stretchActionsBreakpoint` prop)
 
 <Tabs>
   <Tab label="Adaptive">
@@ -108,7 +108,7 @@ The adaptiveness behaviour changes based on the value of the `variant` prop
 
 ### Variant Short
 
-- Streches dialog actions on the extra-small breakpoint (cutomizable using the `strechActionsBreakpoint` prop)
+- Stretches dialog actions on the extra-small breakpoint (cutomizable using the `stretchActionsBreakpoint` prop)
 - iOS: native styling
 
 <Tabs>
@@ -205,12 +205,12 @@ The adaptiveness behaviour changes based on the value of the `variant` prop
   </Tab>
 </Tabs>
 
-### Action Streching
+### Action Stretching
 
-When actions are streched by the `strechActionsBreakpoint` prop, they behave differently based on the number of actions:
+When actions are Stretched by the `stretchActionsBreakpoint` prop, they behave differently based on the number of actions:
 
-- One or two: buttons are stacked horizontally and streched to 50% of the dialog width
-- More: buttons are stacked vertically
+- One or two: buttons are stacked horizontally and stretched to 50% of the dialog width
+- More: buttons are stacked vertically and stretched to 100% of the dialog width
 
 <Tabs>
   <Tab label="One Action">
@@ -226,7 +226,7 @@ When actions are streched by the `strechActionsBreakpoint` prop, they behave dif
       return (
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
-          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
             <ExampleDialogContent numberOfActions={1} onClose={() => setOpen(false)} variant="short" />
           </AdaptiveDialog>
         </div>
@@ -248,7 +248,7 @@ When actions are streched by the `strechActionsBreakpoint` prop, they behave dif
       return (
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
-          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
             <ExampleDialogContent numberOfActions={2} onClose={() => setOpen(false)} variant="short" />
           </AdaptiveDialog>
         </div>
@@ -270,7 +270,7 @@ When actions are streched by the `strechActionsBreakpoint` prop, they behave dif
       return (
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
-          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" strechActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
             <ExampleDialogContent numberOfActions={3} onClose={() => setOpen(false)} variant="short" />
           </AdaptiveDialog>
         </div>

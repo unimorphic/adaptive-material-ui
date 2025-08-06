@@ -1,0 +1,94 @@
+import Links from "@/shared/links";
+import { SourceCode, Tab, Tabs } from "rspress/theme";
+
+# Adaptive Button Stack
+
+Container for buttons based on the MUI Stack component with the following changes:
+
+- `useFlexGap` is always true
+- `direction` is managed internally for the adaptiveness behavior
+- `justifyContent` defaults to `flex-end`
+- `spacing` defaults to `2`
+
+## Adaptiveness
+
+- Stretches it's children (probably buttons) on the extra-small breakpoint (cutomizable using the `stretchBreakpoint` prop)
+
+```tsx
+import Button from "@mui/material/Button";
+import AdaptiveButtonStack from "adaptive-material-ui/components/adaptiveButtonStack";
+
+export default function Basic() {
+  return (
+    <AdaptiveButtonStack>
+      <Button variant="contained">Submit</Button>
+    </AdaptiveButtonStack>
+  );
+}
+```
+
+### Stretching
+
+When children are stretched by the `stretchBreakpoint` prop, they behave differently based on the number of children:
+
+- One or two: children are stacked horizontally and stretched to 50% of the component width
+- More: children are stacked vertically and stretched to 100% of the component width
+
+<Tabs>
+  <Tab label="One Child">
+    ```tsx
+    import Button from "@mui/material/Button";
+    import AdaptiveButtonStack from "adaptive-material-ui/components/adaptiveButtonStack";
+
+    export default function Basic() {
+      return (
+        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <Button variant="contained">Submit</Button>
+        </AdaptiveButtonStack>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Two Children">
+    ```tsx
+    import Button from "@mui/material/Button";
+    import AdaptiveButtonStack from "adaptive-material-ui/components/adaptiveButtonStack";
+
+    export default function Basic() {
+      return (
+        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <Button variant="contained">Back</Button>
+          <Button variant="contained">Submit</Button>
+        </AdaptiveButtonStack>
+      );
+    }
+    ```
+
+  </Tab>
+  <Tab label="Three Children">
+    ```tsx
+    import Button from "@mui/material/Button";
+    import AdaptiveButtonStack from "adaptive-material-ui/components/adaptiveButtonStack";
+
+    export default function Basic() {
+      return (
+        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+          <Button variant="contained">Delete</Button>
+          <Button variant="contained">Back</Button>
+          <Button variant="contained">Submit</Button>
+        </AdaptiveButtonStack>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Links
+
+<Links
+  codeUrl="components/adaptiveButtonStack.tsx"
+  docsUrl="components/adaptiveButtonStack.mdx"
+  mui={{ title: "Stack", url: "react-stack" }}
+/>

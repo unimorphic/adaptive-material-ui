@@ -1,5 +1,5 @@
-import { SelectClasses, SelectProps } from "@mui/material/Select";
-import { useThemeProps } from "@mui/material/styles";
+import { SelectClassKey, SelectProps } from "@mui/material/Select";
+import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import {
   AdaptiveMode,
@@ -12,9 +12,9 @@ import SelectItemProps, {
 } from "./shared/selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
-  AdaptiveModeProp & {
-    classes?: Partial<SelectClasses> & Partial<AdaptiveSelectClasses>;
-  };
+  StyledComponentProps<SelectClassKey | AdaptiveSelectKey> &
+  AdaptiveModeProp;
+  
 export interface AdaptiveSelectClasses {
   /** Styles applied to the iOS mode */
   ios: string;
