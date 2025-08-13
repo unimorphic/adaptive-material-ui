@@ -2,6 +2,7 @@ import Dialog, { DialogProps } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { AdaptiveButtonStackSpacerContext } from "../adaptiveButtonStackSpacer";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
 } from "./inclusiveToExclusiveBreakpoint";
@@ -82,16 +83,22 @@ export default function DialogResponsive(props: DialogResponsiveProps) {
     ),
   );
 
+  const stretchBreakpointExclusive = inclusiveToExclusiveBreakpoint(
+    stretchActionsBreakpoint,
+  );
+
   return (
-    <StyledDialog
-      fullScreen={variant === "tall" ? isFullScreenBreakpoint : undefined}
-      ownerState={{
-        ...props,
-        stretchActionsBreakpointExclusive: inclusiveToExclusiveBreakpoint(
-          stretchActionsBreakpoint,
-        ),
-      }}
-      {...otherProps}
-    />
+    <AdaptiveButtonStackSpacerContext.Provider
+      value={stretchBreakpointExclusive}
+    >
+      <StyledDialog
+        fullScreen={variant === "tall" ? isFullScreenBreakpoint : undefined}
+        ownerState={{
+          ...props,
+          stretchActionsBreakpointExclusive: stretchBreakpointExclusive,
+        }}
+        {...otherProps}
+      />
+    </AdaptiveButtonStackSpacerContext.Provider>
   );
 }

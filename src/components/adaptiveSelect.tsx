@@ -14,7 +14,7 @@ import SelectItemProps, {
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
   StyledComponentProps<SelectClassKey | AdaptiveSelectKey> &
   AdaptiveModeProp;
-  
+
 export interface AdaptiveSelectClasses {
   /** Styles applied to the iOS mode */
   ios: string;

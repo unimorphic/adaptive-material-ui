@@ -5,7 +5,7 @@ import { defineConfig } from "rspress/config";
 export default defineConfig({
   builderConfig: {
     html: {
-      template: "./index.html"
+      template: "./index.html",
     },
     resolve: {
       alias: {

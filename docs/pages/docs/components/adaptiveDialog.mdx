@@ -227,7 +227,9 @@ When actions are Stretched by the `stretchActionsBreakpoint` prop, they behave d
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
           <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
-            <ExampleDialogContent numberOfActions={1} onClose={() => setOpen(false)} variant="short" />
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short">
+              <Button onClick={() => setOpen(false)}>Submit</Button>
+            </ExampleDialogContent>
           </AdaptiveDialog>
         </div>
       );
@@ -249,7 +251,10 @@ When actions are Stretched by the `stretchActionsBreakpoint` prop, they behave d
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
           <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
-            <ExampleDialogContent numberOfActions={2} onClose={() => setOpen(false)} variant="short" />
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short">
+              <Button onClick={() => setOpen(false)}>Cancel</Button>
+              <Button onClick={() => setOpen(false)}>Submit</Button>
+            </ExampleDialogContent>
           </AdaptiveDialog>
         </div>
       );
@@ -271,7 +276,11 @@ When actions are Stretched by the `stretchActionsBreakpoint` prop, they behave d
         <div>
           <Button onClick={() => setOpen(true)}>Open</Button>
           <AdaptiveDialog open={open} onClose={() => setOpen(false)} variant="short" stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}>
-            <ExampleDialogContent numberOfActions={3} onClose={() => setOpen(false)} variant="short" />
+            <ExampleDialogContent onClose={() => setOpen(false)} variant="short">
+              <Button onClick={() => setOpen(false)}>Delete</Button>
+              <Button onClick={() => setOpen(false)}>Cancel</Button>
+              <Button onClick={() => setOpen(false)}>Submit</Button>
+            </ExampleDialogContent>
           </AdaptiveDialog>
         </div>
       );
@@ -280,6 +289,40 @@ When actions are Stretched by the `stretchActionsBreakpoint` prop, they behave d
 
   </Tab>
 </Tabs>
+
+## Action Split Alignment
+
+`AdaptiveButtonStackSpacer` can be used to align actions at both ends of the dialog when stacked horizontally
+
+```tsx
+import ExampleDialogContent from "@/shared/examples/exampleDialogContent";
+import Button from "@mui/material/Button";
+import AdaptiveButtonStackSpacer from "adaptive-material-ui/components/adaptiveButtonStackSpacer";
+import AdaptiveDialog from "adaptive-material-ui/components/adaptiveDialog";
+import { useState } from "react";
+
+export default function Basic() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+      <AdaptiveDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        variant="short"
+      >
+        <ExampleDialogContent onClose={() => setOpen(false)} variant="short">
+          <Button onClick={() => setOpen(false)}>Delete</Button>
+          <AdaptiveButtonStackSpacer />
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Submit</Button>
+        </ExampleDialogContent>
+      </AdaptiveDialog>
+    </div>
+  );
+}
+```
 
 ## Links
 

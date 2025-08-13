@@ -4,19 +4,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { ReactNode } from "react";
 import { Fragment } from "react/jsx-runtime";
 
 interface Props {
-  numberOfActions?: number;
+  children?: ReactNode;
   onClose: () => void;
   variant: "short" | "tall";
 }
-
-const buttonLabelsForNumber = [
-  ["Submit"],
-  ["Cancel", "Submit"],
-  ["Delete", "Cancel", "Submit"],
-];
 
 export default function ExampleDialogContent(props: Props) {
   if (props.variant === "short") {
@@ -32,20 +27,10 @@ export default function ExampleDialogContent(props: Props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {props.numberOfActions ? (
-            <Fragment>
-              {Array.from(Array(props.numberOfActions).keys()).map((i) => (
-                <Button key={i} onClick={props.onClose}>
-                  {buttonLabelsForNumber[(props.numberOfActions ?? 1) - 1][i]}
-                </Button>
-              ))}
-            </Fragment>
-          ) : (
+          {props.children ?? (
             <Fragment>
               <Button onClick={props.onClose}>Disagree</Button>
-              <Button onClick={props.onClose} autoFocus>
-                Agree
-              </Button>
+              <Button onClick={props.onClose}>Agree</Button>
             </Fragment>
           )}
         </DialogActions>
@@ -75,8 +60,12 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClose}>Cancel</Button>
-        <Button onClick={props.onClose}>Subscribe</Button>
+        {props.children ?? (
+          <Fragment>
+            <Button onClick={props.onClose}>Cancel</Button>
+            <Button onClick={props.onClose}>Subscribe</Button>
+          </Fragment>
+        )}
       </DialogActions>
     </Fragment>
   );

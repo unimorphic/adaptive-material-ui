@@ -8,7 +8,7 @@ import {
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { createContext, useContext } from "react";
+import { AdaptiveButtonStackSpacerContext } from "./adaptiveButtonStackSpacer";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
 } from "./shared/inclusiveToExclusiveBreakpoint";
@@ -31,10 +31,6 @@ export interface AdaptiveButtonStackClasses {
 }
 
 export type AdaptiveButtonStackKey = keyof AdaptiveButtonStackClasses;
-
-const StretchBreakpointExclusiveContext = createContext<Breakpoint | number>(
-  "sm",
-);
 
 const StyledStack = styled(Stack, {
   name: "AdaptiveButtonStack",
@@ -76,28 +72,6 @@ const StyledStack = styled(Stack, {
   },
 }));
 
-const SpacerDiv = styled("div")<{
-  ownerState: { stretchBreakpointExclusive: Breakpoint | number };
-}>(({ theme, ownerState }) => ({
-  marginLeft: "auto",
-
-  [theme.breakpoints.down(ownerState.stretchBreakpointExclusive)]: {
-    display: "none",
-  },
-}));
-
-export function AdaptiveButtonStackSpacer() {
-  const stretchBreakpointExclusive = useContext(
-    StretchBreakpointExclusiveContext,
-  );
-
-  return (
-    <SpacerDiv
-      ownerState={{ stretchBreakpointExclusive: stretchBreakpointExclusive }}
-    />
-  );
-}
-
 export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
   const props = useThemeProps({
     props: inProps,
@@ -124,7 +98,7 @@ export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
   return (
     // Only use AdaptiveButtonStack styles
     <RemoveComponentFromTheme componentName="MuiStack">
-      <StretchBreakpointExclusiveContext.Provider
+      <AdaptiveButtonStackSpacerContext.Provider
         value={stretchBreakpointExclusive}
       >
         <StyledStack
@@ -138,7 +112,7 @@ export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
           useFlexGap
           {...otherProps}
         />
-      </StretchBreakpointExclusiveContext.Provider>
+      </AdaptiveButtonStackSpacerContext.Provider>
     </RemoveComponentFromTheme>
   );
 }
