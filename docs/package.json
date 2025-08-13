@@ -8,14 +8,24 @@
     "start": "rspress dev"
   },
   "dependencies": {
+    "@emotion/cache": "11.14.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@fontsource/roboto": "5.2.6",
+    "@mui/icons-material": "7.3.1",
+    "@mui/material": "7.3.1",
+    "@mui/stylis-plugin-rtl": "7.3.1",
     "adaptive-material-ui": "workspace:*",
-    "rspress": "1.45.0"
+    "react-dom": "19.1.1",
+    "react": "19.1.1",
+    "rspress": "1.45.1",
+    "stylis": "4.3.6"
   },
   "overrides": {
     "prismjs": "1.30.0"
   },
   "devDependencies": {
-    "@rspress/plugin-preview": "1.45.0"
+    "@rspress/plugin-preview": "1.45.0",
+    "@types/stylis": "4.2.7"
   }
 }

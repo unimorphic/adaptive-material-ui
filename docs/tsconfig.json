@@ -8,6 +8,9 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
+    "paths": {
+      "@/*": ["*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,8 +20,5 @@
   "include": ["pages", "rspress.config.ts", "shared", "theme"],
   "mdx": {
     "checkMdx": true
-  },
-  "paths": {
-    "@/*": ["*"]
   }
 }

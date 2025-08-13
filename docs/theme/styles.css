@@ -24,6 +24,10 @@
 
 .rspress-nav {
   background: rgb(from var(--rp-c-bg) r g b / 0.9);
+
+  .flex-center:has(> div > .rspress-nav-appearance) {
+    display: none;
+  }
 }
 
 .rspress-logo {
@@ -44,4 +48,8 @@
 
 .rspress-home-feature-card:hover {
   border-color: transparent;
+}
+
+a[href="/docs/gettingStarted.html"] {
+  background: var(--rp-c-brand-dark) !important;
 }

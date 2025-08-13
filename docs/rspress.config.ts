@@ -4,6 +4,9 @@ import { defineConfig } from "rspress/config";
 
 export default defineConfig({
   builderConfig: {
+    html: {
+      template: "./index.html"
+    },
     resolve: {
       alias: {
         "@": "./",
@@ -23,13 +26,6 @@ export default defineConfig({
     footer: {
       message: "Copyright © 2025 Unimorphic",
     },
-    socialLinks: [
-      {
-        icon: "github",
-        mode: "link",
-        content: "https://github.com/unimorphic/adaptive-material-ui",
-      },
-    ],
   },
   title: "Adaptive Material UI",
 });

@@ -3,16 +3,9 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
 # Adaptive Button Stack
 
-Container for buttons based on the MUI Stack component with the following changes:
-
-- `useFlexGap` is always true
-- `direction` is managed internally for the adaptiveness behavior
-- `justifyContent` defaults to `flex-end`
-- `spacing` defaults to `2`
-
 ## Adaptiveness
 
-- Stretches it's children (probably buttons) on the extra-small breakpoint (cutomizable using the `stretchBreakpoint` prop)
+- Stretches it's children (probably buttons) on the extra-small breakpoint (customizable using the `stretchBreakpoint` prop)
 
 ```tsx
 import Button from "@mui/material/Button";
@@ -84,6 +77,38 @@ When children are stretched by the `stretchBreakpoint` prop, they behave differe
 
   </Tab>
 </Tabs>
+
+## Split Alignment
+
+`AdaptiveButtonStackSpacer` can be used to align children at both ends of the stack when stacked horizontally
+
+```tsx
+import Button from "@mui/material/Button";
+import AdaptiveButtonStack, {
+  AdaptiveButtonStackSpacer,
+} from "adaptive-material-ui/components/adaptiveButtonStack";
+
+export default function Basic() {
+  return (
+    <AdaptiveButtonStack>
+      <Button color="error" variant="contained">
+        Delete
+      </Button>
+      <AdaptiveButtonStackSpacer />
+      <Button variant="contained">Submit</Button>
+    </AdaptiveButtonStack>
+  );
+}
+```
+
+## API
+
+[MUI Stack API](https://mui.com/material-ui/api/stack/) with the following changes:
+
+- `useFlexGap` is always true
+- `direction` is managed internally for the adaptiveness behavior
+- `justifyContent` defaults to `flex-end`
+- `spacing` defaults to `2`
 
 ## Links
 

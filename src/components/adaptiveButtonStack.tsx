@@ -7,7 +7,8 @@ import {
 } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
-import clsx from "clsx";
+import { clsx } from "clsx";
+import { createContext, useContext } from "react";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
 } from "./shared/inclusiveToExclusiveBreakpoint";
@@ -18,7 +19,7 @@ export interface AdaptiveButtonStackProps
     StyledComponentProps<AdaptiveButtonStackKey> {
   /**
    * Breakpoint or screen width in px and below at which the children will be stretched
-   * This behaviour can be disabled by setting it to false
+   * This behavior can be disabled by setting it to false
    * @default xs
    */
   stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
@@ -31,15 +32,19 @@ export interface AdaptiveButtonStackClasses {
 
 export type AdaptiveButtonStackKey = keyof AdaptiveButtonStackClasses;
 
-interface OwnerState
-  extends Omit<AdaptiveButtonStackProps, "stretchBreakpoint"> {
-  stretchBreakpointExclusive: Breakpoint | number;
-}
+const StretchBreakpointExclusiveContext = createContext<Breakpoint | number>(
+  "sm",
+);
 
 const StyledStack = styled(Stack, {
   name: "AdaptiveButtonStack",
   slot: "root",
-})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
+})<{
+  ownerState: { stretchBreakpointExclusive: Breakpoint | number } & Omit<
+    AdaptiveButtonStackProps,
+    "stretchBreakpoint"
+  >;
+}>(({ theme, ownerState }) => ({
   flexDirection: "row",
 
   [theme.breakpoints.down(ownerState.stretchBreakpointExclusive)]: {
@@ -71,6 +76,28 @@ const StyledStack = styled(Stack, {
   },
 }));
 
+const SpacerDiv = styled("div")<{
+  ownerState: { stretchBreakpointExclusive: Breakpoint | number };
+}>(({ theme, ownerState }) => ({
+  marginLeft: "auto",
+
+  [theme.breakpoints.down(ownerState.stretchBreakpointExclusive)]: {
+    display: "none",
+  },
+}));
+
+export function AdaptiveButtonStackSpacer() {
+  const stretchBreakpointExclusive = useContext(
+    StretchBreakpointExclusiveContext,
+  );
+
+  return (
+    <SpacerDiv
+      ownerState={{ stretchBreakpointExclusive: stretchBreakpointExclusive }}
+    />
+  );
+}
+
 export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
   const props = useThemeProps({
     props: inProps,
@@ -91,21 +118,27 @@ export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
     classes,
   );
 
+  const stretchBreakpointExclusive =
+    inclusiveToExclusiveBreakpoint(stretchBreakpoint);
+
   return (
     // Only use AdaptiveButtonStack styles
     <RemoveComponentFromTheme componentName="MuiStack">
-      <StyledStack
-        className={clsx(composedClasses.root, className)}
-        justifyContent={justifyContent}
-        ownerState={{
-          ...props,
-          stretchBreakpointExclusive:
-            inclusiveToExclusiveBreakpoint(stretchBreakpoint),
-        }}
-        spacing={spacing}
-        useFlexGap
-        {...otherProps}
-      />
+      <StretchBreakpointExclusiveContext.Provider
+        value={stretchBreakpointExclusive}
+      >
+        <StyledStack
+          className={clsx(composedClasses.root, className)}
+          justifyContent={justifyContent}
+          ownerState={{
+            ...props,
+            stretchBreakpointExclusive: stretchBreakpointExclusive,
+          }}
+          spacing={spacing}
+          useFlexGap
+          {...otherProps}
+        />
+      </StretchBreakpointExclusiveContext.Provider>
     </RemoveComponentFromTheme>
   );
 }

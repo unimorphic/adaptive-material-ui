@@ -10,8 +10,8 @@ hero:
       text: Getting Started
       link: /docs/gettingStarted
     - theme: alt
-      text: GitHub
-      link: https://github.com/unimorphic/adaptive-material-ui
+      text: Overview
+      link: /docs
   image:
     src:
       dark: /logo-dark.svg

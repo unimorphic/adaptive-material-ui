@@ -9,14 +9,14 @@ import inclusiveToExclusiveBreakpoint, {
 export interface DialogResponsiveProps extends DialogProps {
   /**
    * Breakpoint or screen width in px and below at which the dialog starts rendering full screen
-   * This behaviour can be disabled by setting the fullScreen or variant properties or setting it to false
+   * This behavior can be disabled by setting the fullScreen or variant properties or setting it to false
    * @default xs
    */
   fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | false;
 
   /**
    * Breakpoint or screen width in px and below at which the actions will be stretched
-   * This behaviour can be disabled by setting it to false
+   * This behavior can be disabled by setting it to false
    * @default xs
    */
   stretchActionsBreakpoint?: ValidInclusiveBreakpoint | number | false;
