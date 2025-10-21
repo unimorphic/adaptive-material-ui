@@ -11,40 +11,43 @@ import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   ownerState: SwitchProps;
 }>(({ theme, ownerState }) => ({
-  height: 28,
-  padding: 0,
-  width: 64,
+  height: 32,
+  padding: "2px 4px",
+  width: 72,
 
   ...(ownerState.size === "small" && {
     height: 24,
     width: 56,
   }),
 
+  "&:before": {
+    backgroundColor: theme.palette.grey[700],
+    borderRadius: 15,
+    content: '""',
+    display: "block",
+    height: "calc(100% - 4px)",
+    position: "absolute",
+    right: 4,
+    transition: theme.transitions.create(["background-color", "right"], {
+      duration: 300,
+    }),
+    width: 28,
+  },
+
   [`& .${switchClasses.switchBase}`]: {
-    margin: 2,
+    margin: "4px 6px",
     padding: 0,
-
-    [`&.${switchClasses.checked}`]: {
-      [`&.${switchClasses.switchBase}`]: {
-        transform: "translateX(21px)",
-      },
-
-      [`& + .${switchClasses.track}`]: {
-        opacity: 1,
-      },
-    },
-
-    [`&.${switchClasses.disabled}`]: {
-      [`& + .${switchClasses.track}, & .${switchClasses.thumb}`]: {
-        opacity: 0.4,
-      },
-    },
+    transition: theme.transitions.create(["transform"], {
+      duration: 300,
+    }),
   },
 
   [`& .${switchClasses.track}`]: {
+    backgroundColor: theme.palette.grey[700],
     borderRadius: 15,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 200,
+    opacity: 1,
+    transition: theme.transitions.create(["background-color", "transform"], {
+      duration: 300,
     }),
   },
 
@@ -54,12 +57,49 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
     boxShadow: "none",
     display: "block",
     height: 24,
+    transition: theme.transitions.create(["background-color", "transform"], {
+      duration: 300,
+    }),
     width: 39,
 
     ...(ownerState.size === "small" && {
       height: 20,
       width: 31,
     }),
+  },
+
+  [`&:has(.${switchClasses.checked})`]: {
+    "&:before": {
+      backgroundColor: theme.palette.primary.main,
+      right: 39,
+    },
+    [`& .${switchClasses.switchBase}`]: {
+      transform: "translateX(21px)",
+    },
+    [`& .${switchClasses.track}`]: {
+      opacity: 1,
+    },
+  },
+
+  [`&:has(:active)`]: {
+    [`& .${switchClasses.thumb}`]: {
+      backgroundColor: "transparent",
+      boxShadow:
+        "inset 3px 3px 0px -3.5px #fff, inset -3px -3px 0px -3.5px #fff, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px #ffffff40, inset 0px -5px 5px #ffffff40",
+      transform: "scale(1.3)",
+    },
+    [`& .${switchClasses.track}`]: {
+      transform: "scale(0.75)",
+    },
+  },
+
+  [`&:has(.${switchClasses.disabled})`]: {
+    [`& .${switchClasses.track}, & .${switchClasses.thumb}`]: {
+      opacity: 0.4,
+    },
+    "&:before": {
+      display: "none"
+    },
   },
 }));
 
