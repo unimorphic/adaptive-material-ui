@@ -11,35 +11,73 @@ import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   ownerState: SwitchProps;
 }>(({ theme, ownerState }) => ({
-  height: 32,
-  padding: "2px 4px",
-  width: 72,
+  height: 36,
+  padding: "4px 6px",
+  width: 76,
 
   ...(ownerState.size === "small" && {
     height: 24,
     width: 56,
   }),
 
-  "&:before": {
-    backgroundColor: theme.palette.grey[700],
-    borderRadius: 15,
-    content: '""',
-    display: "block",
-    height: "calc(100% - 4px)",
-    position: "absolute",
-    right: 4,
-    transition: theme.transitions.create(["background-color", "right"], {
-      duration: 300,
-    }),
-    width: 28,
-  },
-
   [`& .${switchClasses.switchBase}`]: {
-    margin: "4px 6px",
+    margin: "6px 8px",
     padding: 0,
     transition: theme.transitions.create(["transform"], {
       duration: 300,
     }),
+
+    "&:before": {
+      backgroundColor: theme.palette.grey[700],
+      borderRadius: 15,
+      content: '""',
+      display: "block",
+      height: "calc(100% + 4px)",
+      position: "absolute",
+      right: -23,
+      transition: theme.transitions.create(["background-color", "right"], {
+        duration: 300,
+      }),
+      width: 28,
+      top: -2,
+      zIndex: -1,
+    },
+
+    [`&.${switchClasses.checked}`]: {
+      transform: "translateX(21px)",
+
+      "&:before": {
+        backgroundColor: theme.palette.primary.main,
+        right: 34,
+      },
+      [`& + .${switchClasses.track}`]: {
+        opacity: 1,
+      },
+    },
+
+    [`&:active`]: {
+      [`& .${switchClasses.thumb}`]: {
+        backgroundColor: "transparent",
+        boxShadow: "0 .5px 4px #0000001f, 0 0px 1px #0000001f",
+        transform: "scale(1.3)",
+
+        "&:before": {
+          display: "block",
+        },
+      },
+      [`& + .${switchClasses.track}`]: {
+        transform: "scale(0.75)",
+      },
+    },
+
+    [`&.${switchClasses.disabled}`]: {
+      [`& + .${switchClasses.track}, & .${switchClasses.thumb}`]: {
+        opacity: 0.4,
+      },
+      "&:before": {
+        display: "none",
+      },
+    },
   },
 
   [`& .${switchClasses.track}`]: {
@@ -66,39 +104,17 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       height: 20,
       width: 31,
     }),
-  },
 
-  [`&:has(.${switchClasses.checked})`]: {
     "&:before": {
-      backgroundColor: theme.palette.primary.main,
-      right: 39,
-    },
-    [`& .${switchClasses.switchBase}`]: {
-      transform: "translateX(21px)",
-    },
-    [`& .${switchClasses.track}`]: {
-      opacity: 1,
-    },
-  },
-
-  [`&:has(:active)`]: {
-    [`& .${switchClasses.thumb}`]: {
-      backgroundColor: "transparent",
+      borderRadius: 15,
       boxShadow:
-        "inset 3px 3px 0px -3.5px #fff, inset -3px -3px 0px -3.5px #fff, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px #ffffff40, inset 0px -5px 5px #ffffff40",
-      transform: "scale(1.3)",
-    },
-    [`& .${switchClasses.track}`]: {
-      transform: "scale(0.75)",
-    },
-  },
-
-  [`&:has(.${switchClasses.disabled})`]: {
-    [`& .${switchClasses.track}, & .${switchClasses.thumb}`]: {
-      opacity: 0.4,
-    },
-    "&:before": {
-      display: "none"
+        theme.palette.mode === "dark"
+          ? "inset 3px 3px 0px -3.5px #fff, inset -3px -3px 0px -3.5px #fff, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px #ffffff40, inset 0px -5px 5px #ffffff40"
+          : "inset -3px -3px 0px -3.5px #fff, inset 3px 3px 0px -3.5px #fff, inset 0px 0px 0px .5px #ffffff80, inset 3px 3px 10px -2px #eee, inset -3px -3px 10px -2px #eee, inset 0 0 5px 1px #fff",
+      content: '""',
+      display: "none",
+      height: "100%",
+      width: "100%",
     },
   },
 }));

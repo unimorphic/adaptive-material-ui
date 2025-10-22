@@ -12,7 +12,7 @@ export default function Links(props: Props) {
   return (
     <ul className="list-disc pl-5 leading-7">
       <li className="[&:not(:first-child)]:mt-1">
-        Source Code&nbsp;
+        Component Source&nbsp;
         <a
           className="link_a7cea link_a9ef4 inline-link_f855c"
           href={`${githubRootUrl}/src/${props.codeUrl}`}
