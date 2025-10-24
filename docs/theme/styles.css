@@ -46,10 +46,15 @@
   }
 }
 
-.rspress-home-feature-card:hover {
+.rspress-home-feature-card[style*="cursor: auto"]:hover {
   border-color: transparent;
 }
 
-a[href="/docs/gettingStarted.html"] {
-  background: var(--rp-c-brand-dark) !important;
+.items-center a[href="/docs/gettingStarted.html"] {
+  background: var(--rp-c-brand-dark);
+}
+
+.rspress-doc:not(.rp-not-doc *) ul ul {
+  margin-bottom: 0;
+  margin-top: 0;
 }

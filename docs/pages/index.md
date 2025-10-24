@@ -11,14 +11,15 @@ hero:
       link: /docs/gettingStarted
     - theme: alt
       text: Overview
-      link: /docs
+      link: /docs/index
   image:
     src:
       dark: /logo-dark.svg
       light: /logo-light.svg
     alt: Logo
 features:
-  - title: TODO
-    details: TODO
-    icon: 🏃🏻‍♀️
+  - title: Optimized
+    details: Each device & project only loads the components it uses
+    icon: 🏎️
+    link: /docs/theCodes/codeSplitting.html
 ---
