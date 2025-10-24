@@ -6,29 +6,25 @@ const iosColorsTheme = createTheme({
     AdaptiveSwitch: {
       styleOverrides: {
         ios: {
-          [`& .${switchClasses.switchBase}:before, & .${switchClasses.track}`]:
+          [`& .${switchClasses.track}`]: {
+            backgroundColor: "#28282C",
+            opacity: 1,
+          },
+          [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
             {
-              backgroundColor: "#1C1C1F",
-            },
-          [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-            [`&:before, & + .${switchClasses.track}`]: {
               backgroundColor: "rgba(52, 199, 89, 1)",
             },
-          },
-
           variants: [
             {
               props: (props) => props.theme.palette.mode === "dark",
               style: {
-                [`& .${switchClasses.switchBase}:before, & .${switchClasses.track}`]:
+                [`& .${switchClasses.track}`]: {
+                  backgroundColor: "#5D5D62",
+                },
+                [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
                   {
-                    backgroundColor: "#515155",
-                  },
-                [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-                  [`&:before, & + .${switchClasses.track}`]: {
                     backgroundColor: "rgba(48, 209, 88, 1)",
                   },
-                },
               },
             },
           ],

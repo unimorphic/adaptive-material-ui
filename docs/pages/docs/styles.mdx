@@ -39,14 +39,14 @@ import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitc
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   "&.ios": {
-    [`& .${switchClasses.switchBase}:before, & .${switchClasses.track}`]: {
+    [`& .${switchClasses.track}`]: {
       backgroundColor: "rebeccapurple",
+      opacity: 1,
     },
-    [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-      [`&:before, & + .${switchClasses.track}`]: {
+    [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
+      {
         backgroundColor: "purple",
       },
-    },
   },
 });
 
@@ -76,15 +76,14 @@ const theme = createTheme({
     AdaptiveSwitch: {
       styleOverrides: {
         ios: {
-          [`& .${switchClasses.switchBase}:before, & .${switchClasses.track}`]:
+          [`& .${switchClasses.track}`]: {
+            backgroundColor: "lightblue",
+            opacity: 1,
+          },
+          [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
             {
-              backgroundColor: "lightblue",
-            },
-          [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-            [`&:before, & + .${switchClasses.track}`]: {
               backgroundColor: "blue",
             },
-          },
         },
       },
     },

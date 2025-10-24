@@ -58,3 +58,11 @@
   margin-bottom: 0;
   margin-top: 0;
 }
+
+.rspress-preview-card {
+  padding: 0 16px 0 0;
+
+  & > div:first-child {
+    padding: 16px 28px;
+  }
+}

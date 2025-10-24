@@ -14,3 +14,25 @@ Read the [contributing guide](/CONTRIBUTING.md) to learn about our development p
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE)
+
+## TODO
+
+- Document browser compatibility
+- Style iOS dialog
+
+- Menu
+- Date picker
+- Checkbox
+- Radio
+- Textfield
+- Progress bar & circle
+- Button
+- FAB
+- Snackbar
+
+- Convert RunAll.ps1 to pnpm script
+- Ionic example
+- Finish Contributing.md
+- Finish documentation home page
+- Cross browser test
+- Update links in ReadMe
