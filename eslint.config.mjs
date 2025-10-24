@@ -2,15 +2,17 @@ import eslint from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [
       "*.*",
       "dist/**",
       "docs/dist/**",
       "examples/next-js/.next/**",
+      "examples/next-js/next-env.d.ts",
       "playwright/**",
     ],
   },
@@ -19,7 +21,7 @@ export default tseslint.config(
       eslint.configs.recommended,
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
-      reactHooks.configs["recommended-latest"],
+      reactHooks.configs.flat["recommended-latest"],
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
     ],
