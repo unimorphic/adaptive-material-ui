@@ -6,10 +6,8 @@ import {
   AdaptiveModeContext,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
-} from "../adaptiveMode/adaptiveMode";
-import SelectItemProps, {
-  DefaultAdditionalProps,
-} from "./shared/selectItemProps";
+} from "../../adaptiveMode/adaptiveMode";
+import SelectItemProps, { DefaultAdditionalProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
   StyledComponentProps<SelectClassKey | AdaptiveSelectKey> &
@@ -35,28 +33,28 @@ export type AdaptiveSelectItemKey = keyof AdaptiveSelectItemClasses;
 
 // See docs\pages\docs\theCodes\codeSplitting.md
 const SelectAndroid = lazy(async () => {
-  const { SelectAndroid } = await import("./android");
+  const { SelectAndroid } = await import("../android");
   return { default: SelectAndroid };
 });
 const SelectDesktop = lazy(async () => {
-  const { SelectDesktop } = await import("./desktop");
+  const { SelectDesktop } = await import("../desktop");
   return { default: SelectDesktop };
 });
 const SelectIOS = lazy(async () => {
-  const { SelectIOS } = await import("./ios");
+  const { SelectIOS } = await import("../ios");
   return { default: SelectIOS };
 });
 
 const SelectItemAndroid = lazy(async () => {
-  const { SelectItemAndroid } = await import("./android");
+  const { SelectItemAndroid } = await import("../android");
   return { default: SelectItemAndroid };
 });
 const SelectItemDesktop = lazy(async () => {
-  const { SelectItemDesktop } = await import("./desktop");
+  const { SelectItemDesktop } = await import("../desktop");
   return { default: SelectItemDesktop };
 });
 const SelectItemIOS = lazy(async () => {
-  const { SelectItemIOS } = await import("./ios");
+  const { SelectItemIOS } = await import("../ios");
   return { default: SelectItemIOS };
 });
 

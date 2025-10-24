@@ -8,11 +8,11 @@ import {
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { AdaptiveButtonStackSpacerContext } from "./adaptiveButtonStackSpacer";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
-} from "./shared/inclusiveToExclusiveBreakpoint";
-import RemoveComponentFromTheme from "./shared/removeComponentFromTheme";
+} from "../shared/inclusiveToExclusiveBreakpoint";
+import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
+import { AdaptiveButtonStackSpacerContext } from "./adaptiveButtonStackSpacer";
 
 export interface AdaptiveButtonStackProps
   extends Omit<StackProps, "classes" | "direction" | "useFlexGap">,

@@ -2,10 +2,10 @@ import Dialog, { DialogProps } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { AdaptiveButtonStackSpacerContext } from "../adaptiveButtonStackSpacer";
+import { AdaptiveButtonStackSpacerContext } from "../buttonStack/adaptiveButtonStackSpacer";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
-} from "./inclusiveToExclusiveBreakpoint";
+} from "../shared/inclusiveToExclusiveBreakpoint";
 
 export interface DialogResponsiveProps extends DialogProps {
   /**

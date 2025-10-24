@@ -1,6 +1,4 @@
-import DialogResponsive, {
-  DialogResponsiveProps,
-} from "../shared/dialogResponsive";
+import DialogResponsive, { DialogResponsiveProps } from "./dialogResponsive";
 
 export default function DialogAndroid(props: DialogResponsiveProps) {
   return <DialogResponsive {...props} />;

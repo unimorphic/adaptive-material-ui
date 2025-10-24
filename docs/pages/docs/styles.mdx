@@ -8,7 +8,7 @@ to use iOS native colors you can use `iosColorsTheme`
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import iosColorsTheme from "adaptive-material-ui/themes/iosColorsTheme";
 
 const yourTheme = createTheme({ colorSchemes: { dark: true } });
@@ -35,7 +35,7 @@ Other styles can be customized using the standard Material UI methods, for examp
 import { styled } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   "&.ios": {
@@ -67,7 +67,7 @@ export default function Customization_Classes() {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import AdaptiveSwitch from "adaptive-material-ui/components/adaptiveSwitch";
+import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themes/themeAugmentation";
 
 const theme = createTheme({

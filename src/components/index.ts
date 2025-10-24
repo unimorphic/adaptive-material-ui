@@ -1,5 +1,5 @@
-export { default as AdaptiveButtonStack } from "./adaptiveButtonStack";
-export { default as AdaptiveButtonStackSpacer } from "./adaptiveButtonStackSpacer";
-export { default as AdaptiveDialog } from "./adaptiveDialog";
-export { default as AdaptiveSelect } from "./adaptiveSelect";
-export { default as AdaptiveSwitch } from "./adaptiveSwitch";
+export { default as AdaptiveButtonStack } from "./buttonStack/adaptiveButtonStack";
+export { default as AdaptiveButtonStackSpacer } from "./buttonStack/adaptiveButtonStackSpacer";
+export { default as AdaptiveDialog } from "./dialog/adaptiveDialog";
+export { default as AdaptiveSelect } from "./select/adaptiveSelect";
+export { default as AdaptiveSwitch } from "./switch/adaptiveSwitch";

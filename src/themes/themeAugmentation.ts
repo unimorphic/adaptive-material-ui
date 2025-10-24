@@ -7,21 +7,21 @@ import {
 import {
   AdaptiveButtonStackKey,
   AdaptiveButtonStackProps,
-} from "../components/adaptiveButtonStack";
+} from "../components/buttonStack/adaptiveButtonStack";
 import {
   AdaptiveDialogKey,
   AdaptiveDialogProps,
-} from "../components/adaptiveDialog";
+} from "../components/dialog/adaptiveDialog";
 import {
   AdaptiveSelectItemKey,
   AdaptiveSelectItemProps,
   AdaptiveSelectKey,
   AdaptiveSelectProps,
-} from "../components/adaptiveSelect";
+} from "../components/select/adaptiveSelect";
 import {
   AdaptiveSwitchKey,
   AdaptiveSwitchProps,
-} from "../components/adaptiveSwitch";
+} from "../components/switch/adaptiveSwitch";
 
 type Theme = Omit<MuiTheme, "components">;
 

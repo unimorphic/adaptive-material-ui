@@ -5,8 +5,8 @@ import {
   AdaptiveMode,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
-} from "../adaptiveMode/adaptiveMode";
-import { DialogResponsiveProps } from "./shared/dialogResponsive";
+} from "../../adaptiveMode/adaptiveMode";
+import { DialogResponsiveProps } from "./dialogResponsive";
 
 export interface AdaptiveDialogProps
   extends Omit<DialogResponsiveProps, "classes">,
@@ -22,15 +22,15 @@ export type AdaptiveDialogKey = keyof AdaptiveDialogClasses;
 
 // See docs\pages\docs\theCodes\codeSplitting.md
 const DialogAndroid = lazy(async () => {
-  const { DialogAndroid } = await import("./android");
+  const { DialogAndroid } = await import("../android");
   return { default: DialogAndroid };
 });
 const DialogDesktop = lazy(async () => {
-  const { DialogDesktop } = await import("./desktop");
+  const { DialogDesktop } = await import("../desktop");
   return { default: DialogDesktop };
 });
 const DialogIOS = lazy(async () => {
-  const { DialogIOS } = await import("./ios");
+  const { DialogIOS } = await import("../ios");
   return { default: DialogIOS };
 });
 

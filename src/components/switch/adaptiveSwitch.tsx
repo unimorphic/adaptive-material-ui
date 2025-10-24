@@ -5,7 +5,7 @@ import {
   AdaptiveMode,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
-} from "../adaptiveMode/adaptiveMode";
+} from "../../adaptiveMode/adaptiveMode";
 
 export interface AdaptiveSwitchProps
   extends Omit<SwitchProps, "classes">,
@@ -21,15 +21,15 @@ export type AdaptiveSwitchKey = keyof AdaptiveSwitchClasses;
 
 // See docs\pages\docs\theCodes\codeSplitting.md
 const SwitchAndroid = lazy(async () => {
-  const { SwitchAndroid } = await import("./android");
+  const { SwitchAndroid } = await import("../android");
   return { default: SwitchAndroid };
 });
 const SwitchDesktop = lazy(async () => {
-  const { SwitchDesktop } = await import("./desktop");
+  const { SwitchDesktop } = await import("../desktop");
   return { default: SwitchDesktop };
 });
 const SwitchIOS = lazy(async () => {
-  const { SwitchIOS } = await import("./ios");
+  const { SwitchIOS } = await import("../ios");
   return { default: SwitchIOS };
 });
 
