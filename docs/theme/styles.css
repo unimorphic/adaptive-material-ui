@@ -63,6 +63,12 @@
   padding: 0 16px 0 0;
 
   & > div:first-child {
-    padding: 16px 28px;
+    padding: 28px;
+  }
+  .rspress-preview-operations button:focus {
+    outline: 1px solid currentColor;
+  }
+  .MuiSlider-root {
+    display: block;
   }
 }

@@ -1,5 +1,5 @@
 import Links from "@/shared/links";
-import { SourceCode, Tab, Tabs } from "rspress/theme";
+import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Switch
 
@@ -52,6 +52,58 @@ import { SourceCode, Tab, Tabs } from "rspress/theme";
 
   </Tab>
 </Tabs>
+
+## iOS Variants
+
+```tsx
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
+
+export default function Basic() {
+  return (
+    <Grid container direction="row" spacing={2}>
+      <Grid>
+        <FormControlLabel
+          control={
+            <AdaptiveSwitch
+              adaptiveMode={AdaptiveMode.ios}
+              color="secondary"
+              defaultChecked
+            />
+          }
+          label="Secondary Color"
+        />
+      </Grid>
+      <Grid>
+        <FormControlLabel
+          control={
+            <AdaptiveSwitch
+              adaptiveMode={AdaptiveMode.ios}
+              defaultChecked
+              disabled
+            />
+          }
+          label="Disabled"
+        />
+      </Grid>
+      <Grid>
+        <FormControlLabel
+          control={
+            <AdaptiveSwitch
+              adaptiveMode={AdaptiveMode.ios}
+              defaultChecked
+              size="small"
+            />
+          }
+          label="Small"
+        />
+      </Grid>
+    </Grid>
+  );
+}
+```
 
 ## Links
 

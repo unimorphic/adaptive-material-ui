@@ -4,6 +4,7 @@ import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import iosLiquidGlass from "../shared/iosLiquidGlass";
 import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 
 /**
@@ -12,21 +13,22 @@ import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   ownerState: SwitchProps;
 }>(({ theme, ownerState }) => {
-  const borderRadius = 15;
   const height = ownerState.size === "small" ? 24 : 28;
-  const width = ownerState.size === "small" ? 56 : 64;
+  const width = ownerState.size === "small" ? 70 : 88;
+  const padding = ownerState.size === "small" ? 7 : 12;
 
   return {
     height: height,
     overflow: "visible",
-    padding: 0,
+    padding: `0 ${padding.toString()}px`,
     width: width,
 
     [`& .${switchClasses.switchBase}`]: {
+      left: padding,
       margin: 2,
       padding: 0,
       transition: theme.transitions.create(["color", "transform"], {
-        duration: 300,
+        duration: iosLiquidGlass.transitionDuration,
       }),
 
       [`&.${switchClasses.checked}`]: {
@@ -36,34 +38,21 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
           opacity: 1,
 
           "&:before": {
-            right: `calc(100% - ${height.toString()}px)`,
+            marginLeft: 0,
           },
         },
       },
 
-      [`&.${buttonBaseClasses.focusVisible} .${switchClasses.thumb}:after`]: {
-        opacity: 1,
-      },
+      [`&.${buttonBaseClasses.focusVisible} .${switchClasses.thumb}`]:
+        iosLiquidGlass.thumbFocused(),
 
       "&:active": {
-        [`& .${switchClasses.thumb}`]: {
-          backgroundColor: "transparent",
-          boxShadow: "0 .5px 4px #0000001f, 0 6px 13px #0000001f",
-          transform: "scale(1.3)",
-
-          "&:after": {
-            opacity: 1,
-            transform: "scale(0.7)",
-          },
-          "&:before": {
-            display: "block",
-          },
-        },
+        [`& .${switchClasses.thumb}`]: iosLiquidGlass.thumbActive(1.3),
         [`& + .${switchClasses.track}`]: {
           transform: "scale(0.75)",
 
           "&:before": {
-            transform: "scale(1.25)",
+            transform: "scale(calc(1/0.75))",
           },
         },
       },
@@ -76,61 +65,30 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
     },
 
     [`& .${switchClasses.thumb}`]: {
-      backgroundColor: theme.palette.common.white,
       borderRadius: 13,
       boxShadow: "none",
-      display: "block",
       height: height - 4,
-      transition: theme.transitions.create(["background-color", "transform"], {
-        duration: 300,
-      }),
-      width: width - 25,
-
-      "&:after": {
-        content: '""',
-        boxShadow: "0 0 40px 15px currentColor",
-        display: "block",
-        height: 1,
-        left: "50%",
-        opacity: 0,
-        position: "absolute",
-        top: "50%",
-        transition: theme.transitions.create(["opacity", "transform"], {
-          duration: 300,
-        }),
-        width: 1,
-      },
-
-      "&:before": {
-        borderRadius: borderRadius,
-        boxShadow:
-          theme.palette.mode === "dark"
-            ? "inset 3px 3px 0px -3.5px #fff, inset -3px -3px 0px -3.5px #fff, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px #ffffff40, inset 0px -5px 5px #ffffff40"
-            : "inset -3px -3px 0px -3.5px #fff, inset 3px 3px 0px -3.5px #fff, inset 0px 0px 0px .5px #ffffff80, inset 3px 3px 10px -2px #eee, inset -3px -3px 10px -2px #eee, inset 0 0 5px 1px #fff",
-        content: '""',
-        display: "none",
-        height: "100%",
-        width: "100%",
-      },
+      width: width - 25 - padding * 2,
+      ...iosLiquidGlass.thumb(theme),
     },
 
     [`& .${switchClasses.track}`]: {
-      borderRadius: borderRadius,
+      borderRadius: 15,
       transition: theme.transitions.create(
         ["background-color", "opacity", "transform"],
-        { duration: 300 },
+        { duration: iosLiquidGlass.transitionDuration },
       ),
 
       "&:before": {
         backgroundColor: "inherit",
-        borderRadius: borderRadius,
+        borderRadius: "inherit",
         content: '""',
         display: "block",
         height: "100%",
         position: "absolute",
-        right: 0,
-        transition: theme.transitions.create(["right", "transform"], {
-          duration: 300,
+        marginLeft: width - height - padding * 2,
+        transition: theme.transitions.create(["margin-left", "transform"], {
+          duration: iosLiquidGlass.transitionDuration,
         }),
         width: height,
         top: 0,

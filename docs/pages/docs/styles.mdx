@@ -6,8 +6,10 @@ The components use the theme palette colors for iOS components by default,
 to use iOS native colors you can use `iosColorsTheme`
 
 ```tsx
+import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import iosColorsTheme from "adaptive-material-ui/themes/iosColorsTheme";
 
@@ -16,7 +18,16 @@ const yourTheme = createTheme({ colorSchemes: { dark: true } });
 export default function IOSColors() {
   return (
     <ThemeProvider theme={createTheme(iosColorsTheme, yourTheme)}>
-      <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
+      <Stack spacing={2}>
+        <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
+        <AdaptiveSlider
+          adaptiveMode={AdaptiveMode.ios}
+          defaultValue={30}
+          marks
+          shiftStep={20}
+          step={10}
+        />
+      </Stack>
     </ThemeProvider>
   );
 }
@@ -43,10 +54,14 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
       backgroundColor: "rebeccapurple",
       opacity: 1,
     },
-    [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
-      {
+
+    [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
+      color: "purple",
+
+      [`& + .${switchClasses.track}`]: {
         backgroundColor: "purple",
       },
+    },
   },
 });
 
@@ -77,13 +92,17 @@ const theme = createTheme({
       styleOverrides: {
         ios: {
           [`& .${switchClasses.track}`]: {
-            backgroundColor: "lightblue",
+            backgroundColor: "pink",
             opacity: 1,
           },
-          [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
-            {
-              backgroundColor: "blue",
+
+          [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
+            color: "red",
+
+            [`& + .${switchClasses.track}`]: {
+              backgroundColor: "red",
             },
+          },
         },
       },
     },
