@@ -1,5 +1,4 @@
 import Links from "@/shared/links";
-import Warning from "@/shared/warning";
 import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Select
@@ -31,14 +30,13 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
     } from "adaptive-material-ui/components/select/adaptiveSelect";
 
     export default function Basic() {
       return (
-        <AdaptiveSelect adaptiveMode={AdaptiveMode.ios} defaultValue={1}>
+        <AdaptiveSelect adaptiveMode="ios" defaultValue={1}>
           <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
           <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
         </AdaptiveSelect>
@@ -53,14 +51,13 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Android">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
     } from "adaptive-material-ui/components/select/adaptiveSelect";
 
     export default function Basic() {
       return (
-        <AdaptiveSelect adaptiveMode={AdaptiveMode.android} defaultValue={1}>
+        <AdaptiveSelect adaptiveMode="android" defaultValue={1}>
           <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
           <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
         </AdaptiveSelect>
@@ -75,14 +72,13 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSelect, {
       AdaptiveSelectItem,
     } from "adaptive-material-ui/components/select/adaptiveSelect";
 
     export default function Basic() {
       return (
-        <AdaptiveSelect adaptiveMode={AdaptiveMode.desktop} defaultValue={1}>
+        <AdaptiveSelect adaptiveMode="desktop" defaultValue={1}>
           <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
           <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
         </AdaptiveSelect>
@@ -96,7 +92,7 @@ import { Tab, Tabs } from "rspress/theme";
 ## Links
 
 <Links
-  codeUrl="components/adaptiveSelect.tsx"
+  codeUrl="components/select/adaptiveSelect.tsx"
   docsUrl="components/adaptiveSelect.mdx"
   mui={{ title: "Select", url: "react-select" }}
 />

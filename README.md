@@ -18,6 +18,7 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 ## TODO
 
 - Document browser compatibility
+- Combine button stack & dialog logic
 - Style iOS dialog
 
 - Menu

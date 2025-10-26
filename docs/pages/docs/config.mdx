@@ -16,15 +16,13 @@ import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 ### Custom Logic
 
 ```tsx pure
-import {
-  AdaptiveMode,
-  AdaptiveModeContext,
-} from "adaptive-material-ui/adaptiveMode";
+import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 
-let mode = AdaptiveMode.desktop;
+let mode = "android";
 if (user.name === "personIdoNotLike") {
-  mode = AdaptiveMode.ios;
+  mode = "desktop";
 }
+
 <AdaptiveModeContext.Provider value={{ mode: mode }}>
 ```
 

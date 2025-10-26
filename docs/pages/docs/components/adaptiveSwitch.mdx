@@ -20,33 +20,30 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
     export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />;
+      return <AdaptiveSwitch adaptiveMode="ios" defaultChecked />;
     }
     ```
 
   </Tab>
   <Tab label="Android">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
     export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.android} defaultChecked />;
+      return <AdaptiveSwitch adaptiveMode="android" defaultChecked />;
     }
     ```
 
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
     export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode={AdaptiveMode.desktop} defaultChecked />;
+      return <AdaptiveSwitch adaptiveMode="desktop" defaultChecked />;
     }
     ```
 
@@ -58,7 +55,6 @@ import { Tab, Tabs } from "rspress/theme";
 ```tsx
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 export default function Basic() {
@@ -68,7 +64,7 @@ export default function Basic() {
         <FormControlLabel
           control={
             <AdaptiveSwitch
-              adaptiveMode={AdaptiveMode.ios}
+              adaptiveMode="ios"
               color="secondary"
               defaultChecked
             />
@@ -79,11 +75,7 @@ export default function Basic() {
       <Grid>
         <FormControlLabel
           control={
-            <AdaptiveSwitch
-              adaptiveMode={AdaptiveMode.ios}
-              defaultChecked
-              disabled
-            />
+            <AdaptiveSwitch adaptiveMode="ios" defaultChecked disabled />
           }
           label="Disabled"
         />
@@ -91,11 +83,7 @@ export default function Basic() {
       <Grid>
         <FormControlLabel
           control={
-            <AdaptiveSwitch
-              adaptiveMode={AdaptiveMode.ios}
-              defaultChecked
-              size="small"
-            />
+            <AdaptiveSwitch adaptiveMode="ios" defaultChecked size="small" />
           }
           label="Small"
         />
@@ -108,7 +96,7 @@ export default function Basic() {
 ## Links
 
 <Links
-  codeUrl="components/adaptiveSwitch.tsx"
+  codeUrl="components/switch/adaptiveSwitch.tsx"
   docsUrl="components/adaptiveSwitch.mdx"
   mui={{ title: "Switch", url: "react-switch" }}
 />

@@ -2,7 +2,6 @@ import { SelectClassKey, SelectProps } from "@mui/material/Select";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import {
-  AdaptiveMode,
   AdaptiveModeContext,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
@@ -66,9 +65,9 @@ export function AdaptiveSelectItem<
   const modeContext = useContext(AdaptiveModeContext);
 
   switch (modeContext.mode) {
-    case AdaptiveMode.android:
+    case "android":
       return <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />;
-    case AdaptiveMode.ios:
+    case "ios":
       return <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
     default:
       return <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />;
@@ -83,10 +82,10 @@ export default function AdaptiveSelect<Value = unknown>(
 
   let content: ReactNode;
   switch (adaptiveMode) {
-    case AdaptiveMode.android:
+    case "android":
       content = <SelectAndroid<Value> {...otherProps} />;
       break;
-    case AdaptiveMode.ios:
+    case "ios":
       content = <SelectIOS<Value> {...otherProps} />;
       break;
     default:

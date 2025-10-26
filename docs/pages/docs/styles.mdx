@@ -8,7 +8,6 @@ to use iOS native colors you can use `iosColorsTheme`
 ```tsx
 import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import iosColorsTheme from "adaptive-material-ui/themes/iosColorsTheme";
@@ -19,9 +18,9 @@ export default function IOSColors() {
   return (
     <ThemeProvider theme={createTheme(iosColorsTheme, yourTheme)}>
       <Stack spacing={2}>
-        <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
+        <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
         <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
+          adaptiveMode="ios"
           defaultValue={30}
           marks
           shiftStep={20}
@@ -45,7 +44,6 @@ Other styles can be customized using the standard Material UI methods, for examp
 ```tsx
 import { styled } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
@@ -68,7 +66,7 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
 export default function Customization_Classes() {
   return (
     <AdaptiveSwitchStyled
-      adaptiveMode={AdaptiveMode.ios}
+      adaptiveMode="ios"
       classes={{ ios: "ios" }}
       defaultChecked
     />
@@ -81,7 +79,6 @@ export default function Customization_Classes() {
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themes/themeAugmentation";
 
@@ -112,7 +109,7 @@ const theme = createTheme({
 export default function Customization_Theme() {
   return (
     <ThemeProvider theme={theme}>
-      <AdaptiveSwitch adaptiveMode={AdaptiveMode.ios} defaultChecked />
+      <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
     </ThemeProvider>
   );
 }

@@ -2,7 +2,6 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { SwitchClassKey, SwitchProps } from "@mui/material/Switch";
 import { lazy } from "react";
 import {
-  AdaptiveMode,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
@@ -38,9 +37,9 @@ export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
   switch (adaptiveMode) {
-    case AdaptiveMode.android:
+    case "android":
       return <SwitchAndroid {...otherProps} />;
-    case AdaptiveMode.ios:
+    case "ios":
       return <SwitchIOS {...otherProps} />;
     default:
       return <SwitchDesktop {...otherProps} />;

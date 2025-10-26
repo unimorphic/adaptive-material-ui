@@ -2,7 +2,6 @@ import { DialogClassKey } from "@mui/material/Dialog";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy } from "react";
 import {
-  AdaptiveMode,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
@@ -39,9 +38,9 @@ export default function AdaptiveDialog(inProps: AdaptiveDialogProps) {
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
   switch (adaptiveMode) {
-    case AdaptiveMode.android:
+    case "android":
       return <DialogAndroid {...otherProps} />;
-    case AdaptiveMode.ios:
+    case "ios":
       return <DialogIOS {...otherProps} />;
     default:
       return <DialogDesktop {...otherProps} />;

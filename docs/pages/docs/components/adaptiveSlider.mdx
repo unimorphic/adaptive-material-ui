@@ -20,33 +20,30 @@ import { Tab, Tabs } from "rspress/theme";
   </Tab>
   <Tab label="iOS">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 
     export default function Basic() {
-      return <AdaptiveSlider adaptiveMode={AdaptiveMode.ios} defaultValue={30} />;
+      return <AdaptiveSlider adaptiveMode="ios" defaultValue={30} />;
     }
     ```
 
   </Tab>
   <Tab label="Android">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 
     export default function Basic() {
-      return <AdaptiveSlider adaptiveMode={AdaptiveMode.android} defaultValue={30} />;
+      return <AdaptiveSlider adaptiveMode="android" defaultValue={30} />;
     }
     ```
 
   </Tab>
   <Tab label="Desktop">
     ```tsx
-    import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
     import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 
     export default function Basic() {
-      return <AdaptiveSlider adaptiveMode={AdaptiveMode.desktop} defaultValue={30} />;
+      return <AdaptiveSlider adaptiveMode="desktop" defaultValue={30} />;
     }
     ```
 
@@ -57,7 +54,6 @@ import { Tab, Tabs } from "rspress/theme";
 
 ```tsx
 import Grid from "@mui/material/Grid";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
 
 export default function Basic() {
@@ -66,31 +62,23 @@ export default function Basic() {
       <Grid size={3}>Secondary Color</Grid>
       <Grid size={9}>
         <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
+          adaptiveMode="ios"
           color="secondary"
           defaultValue={30}
         />
       </Grid>
       <Grid size={3}>Disabled</Grid>
       <Grid size={9}>
-        <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
-          defaultValue={30}
-          disabled
-        />
+        <AdaptiveSlider adaptiveMode="ios" defaultValue={30} disabled />
       </Grid>
       <Grid size={3}>Small</Grid>
       <Grid size={9}>
-        <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
-          defaultValue={30}
-          size="small"
-        />
+        <AdaptiveSlider adaptiveMode="ios" defaultValue={30} size="small" />
       </Grid>
       <Grid size={3}>Discrete</Grid>
       <Grid size={9}>
         <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
+          adaptiveMode="ios"
           defaultValue={30}
           marks
           shiftStep={30}
@@ -100,7 +88,7 @@ export default function Basic() {
       <Grid size={3}>Vertical</Grid>
       <Grid size={9} sx={{ height: 100 }}>
         <AdaptiveSlider
-          adaptiveMode={AdaptiveMode.ios}
+          adaptiveMode="ios"
           defaultValue={40}
           marks
           orientation="vertical"
@@ -116,7 +104,7 @@ export default function Basic() {
 ## Links
 
 <Links
-  codeUrl="components/adaptiveSlider.tsx"
+  codeUrl="components/slider/adaptiveSlider.tsx"
   docsUrl="components/adaptiveSlider.mdx"
   mui={{ title: "Slider", url: "react-slider" }}
 />

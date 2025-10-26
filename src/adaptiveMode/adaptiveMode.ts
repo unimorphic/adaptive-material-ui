@@ -1,10 +1,6 @@
 import { createContext, useContext } from "react";
 
-export enum AdaptiveMode {
-  android = 1,
-  desktop = 2,
-  ios = 3,
-}
+export type AdaptiveMode = "android" | "desktop" | "ios";
 
 export interface AdaptiveModeProp {
   /** The mode to render the component in. If undefined it chooses a mode based on the current device */
@@ -68,12 +64,12 @@ export function useAdaptiveMode(adaptiveMode?: AdaptiveMode): AdaptiveMode {
   }
 
   if (isIOS(userAgent)) {
-    return AdaptiveMode.ios;
+    return "ios";
   }
 
   if (/(android)/i.test(userAgent)) {
-    return AdaptiveMode.android;
+    return "android";
   }
 
-  return AdaptiveMode.desktop;
+  return "desktop";
 }

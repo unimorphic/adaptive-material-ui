@@ -2,7 +2,6 @@ import { SliderClassKey, SliderProps } from "@mui/material/Slider";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy } from "react";
 import {
-  AdaptiveMode,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
@@ -38,9 +37,9 @@ export default function AdaptiveSlider(inProps: AdaptiveSliderProps) {
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
   switch (adaptiveMode) {
-    case AdaptiveMode.android:
+    case "android":
       return <SliderAndroid {...otherProps} />;
-    case AdaptiveMode.ios:
+    case "ios":
       return <SliderIOS {...otherProps} />;
     default:
       return <SliderDesktop {...otherProps} />;
