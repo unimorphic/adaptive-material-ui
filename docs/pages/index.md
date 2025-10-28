@@ -21,5 +21,5 @@ features:
   - title: Optimized
     details: Each device & project only loads the components it uses
     icon: 🏎️
-    link: /docs/theCodes/codeSplitting.html
+    link: /docs/codeSplitting.html
 ---

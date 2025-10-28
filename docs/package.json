@@ -15,9 +15,10 @@
     "@mui/icons-material": "7.3.4",
     "@mui/material": "7.3.4",
     "@mui/stylis-plugin-rtl": "7.3.3",
+    "@rspress/plugin-preview": "1.45.8",
     "adaptive-material-ui": "workspace:*",
-    "react-dom": "19.2.0",
     "react": "19.2.0",
+    "react-dom": "19.2.0",
     "rspress": "1.45.8",
     "stylis": "4.3.6"
   },
@@ -25,7 +26,6 @@
     "prismjs": "1.30.0"
   },
   "devDependencies": {
-    "@rspress/plugin-preview": "1.45.8",
     "@types/stylis": "4.2.7"
   }
 }

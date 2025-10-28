@@ -18,7 +18,7 @@ export interface AdaptiveSliderClasses {
 
 export type AdaptiveSliderKey = keyof AdaptiveSliderClasses;
 
-// See docs\pages\docs\theCodes\codeSplitting.md
+// See docs\pages\docs\codeSplitting.md
 const SliderAndroid = lazy(async () => {
   const { SliderAndroid } = await import("../android");
   return { default: SliderAndroid };

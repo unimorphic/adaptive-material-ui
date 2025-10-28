@@ -1,5 +1,5 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
 import Links from "@/shared/links";
-import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Switch
 
@@ -7,48 +7,27 @@ import { Tab, Tabs } from "rspress/theme";
 
 - iOS: native styling
 
-<Tabs>
-  <Tab label="Adaptive">
-    ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
+```tsx
+import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import Stack from "@mui/material/Stack";
+import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { useState } from "react";
 
-    export default function Basic() {
-      return <AdaptiveSwitch defaultChecked />;
-    }
-    ```
+export default function Basic() {
+  const [adaptiveMode, setAdaptiveMode] = useState("");
 
-  </Tab>
-  <Tab label="iOS">
-    ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
-
-    export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode="ios" defaultChecked />;
-    }
-    ```
-
-  </Tab>
-  <Tab label="Android">
-    ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
-
-    export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode="android" defaultChecked />;
-    }
-    ```
-
-  </Tab>
-  <Tab label="Desktop">
-    ```tsx
-    import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
-
-    export default function Basic() {
-      return <AdaptiveSwitch adaptiveMode="desktop" defaultChecked />;
-    }
-    ```
-
-  </Tab>
-</Tabs>
+  return (
+    <Stack alignItems="flex-start" spacing={3}>
+      <AdaptiveModeSelector
+        adaptiveMode={adaptiveMode}
+        onChange={setAdaptiveMode}
+      />
+      
+      <AdaptiveSwitch adaptiveMode={adaptiveMode} defaultChecked />
+    </Stack>
+  );
+}
+```
 
 ## iOS Variants
 
@@ -92,6 +71,14 @@ export default function Basic() {
   );
 }
 ```
+
+## API
+
+[MUI Switch API](https://mui.com/material-ui/api/switch/) with the following changes:
+
+- TODO
+
+<AdaptiveModeApi />
 
 ## Links
 

@@ -1,5 +1,4 @@
 import Links from "@/shared/links";
-import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Button Stack
 
@@ -27,56 +26,41 @@ When children are stretched by the `stretchBreakpoint` prop, they behave differe
 - One or two: children are stacked horizontally and stretched to 50% of the component width
 - More: children are stacked vertically and stretched to 100% of the component width
 
-<Tabs>
-  <Tab label="One Child">
-    ```tsx
-    import Button from "@mui/material/Button";
-    import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+```tsx
+import ExampleSelector from "@/shared/ExampleSelector";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+import { useState } from "react";
 
-    export default function Basic() {
-      return (
-        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
-          <Button variant="contained">Submit</Button>
-        </AdaptiveButtonStack>
-      );
-    }
-    ```
+export default function Basic() {
+  const [numberOfButtons, setNumberOfButtons] = useState("1");
 
-  </Tab>
-  <Tab label="Two Children">
-    ```tsx
-    import Button from "@mui/material/Button";
-    import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
-
-    export default function Basic() {
-      return (
-        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
-          <Button variant="contained">Back</Button>
-          <Button variant="contained">Submit</Button>
-        </AdaptiveButtonStack>
-      );
-    }
-    ```
-
-  </Tab>
-  <Tab label="Three Children">
-    ```tsx
-    import Button from "@mui/material/Button";
-    import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
-
-    export default function Basic() {
-      return (
-        <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
-          <Button variant="contained">Delete</Button>
-          <Button variant="contained">Back</Button>
-          <Button variant="contained">Submit</Button>
-        </AdaptiveButtonStack>
-      );
-    }
-    ```
-
-  </Tab>
-</Tabs>
+  return (
+    <Stack spacing={3}>
+      <ExampleSelector
+        onChange={setNumberOfButtons}
+        options={[
+          { label: "One Action", value: "1" },
+          { label: "Two Actions", value: "2" },
+          { label: "Three Actions", value: "3" },
+        ]}
+        value={numberOfButtons}
+      />
+      <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+        {["Submit", "Back", "Delete"]
+          .slice(0, parseInt(numberOfButtons))
+          .reverse()
+          .map((b) => (
+            <Button key={b} variant="contained">
+              {b}
+            </Button>
+          ))}
+      </AdaptiveButtonStack>
+    </Stack>
+  );
+}
+```
 
 ## Split Alignment
 
@@ -108,6 +92,20 @@ export default function Basic() {
 - `direction` is managed internally for the adaptiveness behavior
 - `justifyContent` defaults to `flex-end`
 - `spacing` defaults to `2`
+
+### stretchBreakpoint
+
+Breakpoint or screen width in px and below at which the children will be stretched.
+This behavior can be disabled by setting it to false
+
+- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Default: `xs`
+
+## Browser Compatibility
+
+- CSS [:has()](https://developer.mozilla.org/en-US/docs/Web/CSS/:has#browser_compatibility)
+- CSS [:nth-child(of \<selector\>)](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#browser_compatibility)
+- CSS [flex gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap#browser_compatibility)
 
 ## Links
 

@@ -1,5 +1,5 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
 import Links from "@/shared/links";
-import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Slider
 
@@ -7,48 +7,27 @@ import { Tab, Tabs } from "rspress/theme";
 
 - iOS: native styling
 
-<Tabs>
-  <Tab label="Adaptive">
-    ```tsx
-    import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
+```tsx
+import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import Stack from "@mui/material/Stack";
+import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
+import { useState } from "react";
 
-    export default function Basic() {
-      return <AdaptiveSlider defaultValue={30} />;
-    }
-    ```
+export default function Basic() {
+  const [adaptiveMode, setAdaptiveMode] = useState("");
 
-  </Tab>
-  <Tab label="iOS">
-    ```tsx
-    import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
+  return (
+    <Stack alignItems="flex-start" spacing={3}>
+      <AdaptiveModeSelector
+        adaptiveMode={adaptiveMode}
+        onChange={setAdaptiveMode}
+      />
 
-    export default function Basic() {
-      return <AdaptiveSlider adaptiveMode="ios" defaultValue={30} />;
-    }
-    ```
-
-  </Tab>
-  <Tab label="Android">
-    ```tsx
-    import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
-
-    export default function Basic() {
-      return <AdaptiveSlider adaptiveMode="android" defaultValue={30} />;
-    }
-    ```
-
-  </Tab>
-  <Tab label="Desktop">
-    ```tsx
-    import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
-
-    export default function Basic() {
-      return <AdaptiveSlider adaptiveMode="desktop" defaultValue={30} />;
-    }
-    ```
-
-  </Tab>
-</Tabs>
+      <AdaptiveSlider adaptiveMode={adaptiveMode} defaultValue={30} />
+    </Stack>
+  );
+}
+```
 
 ## iOS Variants
 
@@ -100,6 +79,14 @@ export default function Basic() {
   );
 }
 ```
+
+## API
+
+[MUI Slider API](https://mui.com/material-ui/api/slider/) with the following changes:
+
+- TODO
+
+<AdaptiveModeApi />
 
 ## Links
 

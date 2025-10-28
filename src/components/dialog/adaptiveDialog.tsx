@@ -19,7 +19,7 @@ export interface AdaptiveDialogClasses {
 
 export type AdaptiveDialogKey = keyof AdaptiveDialogClasses;
 
-// See docs\pages\docs\theCodes\codeSplitting.md
+// See docs\pages\docs\codeSplitting.md
 const DialogAndroid = lazy(async () => {
   const { DialogAndroid } = await import("../android");
   return { default: DialogAndroid };

@@ -1,6 +1,7 @@
 import Stack, { StackProps } from "@mui/material/Stack";
 import {
   Breakpoint,
+  CSSProperties,
   styled,
   StyledComponentProps,
   useThemeProps,
@@ -18,7 +19,7 @@ export interface AdaptiveButtonStackProps
   extends Omit<StackProps, "classes" | "direction" | "useFlexGap">,
     StyledComponentProps<AdaptiveButtonStackKey> {
   /**
-   * Breakpoint or screen width in px and below at which the children will be stretched
+   * Breakpoint or screen width in px and below at which the children will be stretched.
    * This behavior can be disabled by setting it to false
    * @default xs
    */
@@ -32,6 +33,31 @@ export interface AdaptiveButtonStackClasses {
 
 export type AdaptiveButtonStackKey = keyof AdaptiveButtonStackClasses;
 
+export const adaptiveButtonStackStyles: CSSProperties = {
+  alignItems: "stretch",
+  flexDirection: "column-reverse",
+
+  // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
+  "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+    {
+      alignItems: "center",
+      flexDirection: "row",
+
+      "& > *": {
+        minWidth: "50%",
+      },
+    },
+  "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+    {
+      alignItems: "center",
+      flexDirection: "row",
+
+      "& > *": {
+        flex: 1,
+      },
+    },
+};
+
 const StyledStack = styled(Stack, {
   name: "AdaptiveButtonStack",
   slot: "root",
@@ -44,31 +70,8 @@ const StyledStack = styled(Stack, {
   flexDirection: "row",
 
   [theme.breakpoints.down(ownerState.stretchBreakpointExclusive)]: {
-    // Required for below emotion-disable comments to work
-    "&": {
-      alignItems: "stretch",
-      flexDirection: "column-reverse",
-
-      // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
-      "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-        {
-          alignItems: "center",
-          flexDirection: "row",
-
-          "& > *": {
-            minWidth: "50%",
-          },
-        },
-      "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-        {
-          alignItems: "center",
-          flexDirection: "row",
-
-          "& > *": {
-            flex: 1,
-          },
-        },
-    },
+    // The & wrapper is required for emotion-disable comments to work
+    "&": adaptiveButtonStackStyles,
   },
 }));
 

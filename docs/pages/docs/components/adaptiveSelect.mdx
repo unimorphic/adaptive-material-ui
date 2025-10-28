@@ -1,5 +1,5 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
 import Links from "@/shared/links";
-import { Tab, Tabs } from "rspress/theme";
 
 # Adaptive Select
 
@@ -9,85 +9,45 @@ import { Tab, Tabs } from "rspress/theme";
 - Android & iOS: uses the native device select
 - iOS: native styling
 
-<Tabs>
-  <Tab label="Adaptive">
-    ```tsx
-    import AdaptiveSelect, {
-      AdaptiveSelectItem,
-    } from "adaptive-material-ui/components/select/adaptiveSelect";
+```tsx
+import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import Stack from "@mui/material/Stack";
+import AdaptiveSelect, {
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/select/adaptiveSelect";
+import { useState } from "react";
 
-    export default function Basic() {
-      return (
-        <AdaptiveSelect defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
-      );
-    }
+export default function Basic() {
+  const [adaptiveMode, setAdaptiveMode] = useState("");
 
-    ```
+  return (
+    <Stack alignItems="flex-start" spacing={3}>
+      <AdaptiveModeSelector
+        adaptiveMode={adaptiveMode}
+        onChange={setAdaptiveMode}
+      />
+      
+      <AdaptiveSelect adaptiveMode={adaptiveMode} defaultValue={1}>
+        <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+        <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+      </AdaptiveSelect>
+    </Stack>
+  );
+}
+```
 
-  </Tab>
-  <Tab label="iOS">
-    ```tsx
-    import AdaptiveSelect, {
-      AdaptiveSelectItem,
-    } from "adaptive-material-ui/components/select/adaptiveSelect";
+## API
 
-    export default function Basic() {
-      return (
-        <AdaptiveSelect adaptiveMode="ios" defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
-      );
-    }
-    ```
+[MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
 
-    :::warning
-    This select uses the native device select so will behave differently depending on the device
-    :::
+- TODO
 
-  </Tab>
-  <Tab label="Android">
-    ```tsx
-    import AdaptiveSelect, {
-      AdaptiveSelectItem,
-    } from "adaptive-material-ui/components/select/adaptiveSelect";
+<AdaptiveModeApi />
 
-    export default function Basic() {
-      return (
-        <AdaptiveSelect adaptiveMode="android" defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
-      );
-    }
-    ```
 
-    :::warning
-    This select uses the native device select so will behave differently depending on the device
-    :::
+### AdaptiveSelectItem
 
-  </Tab>
-  <Tab label="Desktop">
-    ```tsx
-    import AdaptiveSelect, {
-      AdaptiveSelectItem,
-    } from "adaptive-material-ui/components/select/adaptiveSelect";
-
-    export default function Basic() {
-      return (
-        <AdaptiveSelect adaptiveMode="desktop" defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
-      );
-    }
-    ```
-
-  </Tab>
-</Tabs>
+- TODO
 
 ## Links
 

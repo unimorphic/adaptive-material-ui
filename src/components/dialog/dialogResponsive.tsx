@@ -2,6 +2,7 @@ import Dialog, { DialogProps } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { adaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 import { AdaptiveButtonStackSpacerContext } from "../buttonStack/adaptiveButtonStackSpacer";
 import inclusiveToExclusiveBreakpoint, {
   ValidInclusiveBreakpoint,
@@ -9,14 +10,14 @@ import inclusiveToExclusiveBreakpoint, {
 
 export interface DialogResponsiveProps extends DialogProps {
   /**
-   * Breakpoint or screen width in px and below at which the dialog starts rendering full screen
-   * This behavior can be disabled by setting the fullScreen or variant properties or setting it to false
+   * Breakpoint or screen width in px and below at which the dialog starts rendering full screen.
+   * This behavior can be disabled by setting the fullScreen or variant property or setting it to false
    * @default xs
    */
   fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | false;
 
   /**
-   * Breakpoint or screen width in px and below at which the actions will be stretched
+   * Breakpoint or screen width in px and below at which the actions will be stretched.
    * This behavior can be disabled by setting it to false
    * @default xs
    */
@@ -39,32 +40,14 @@ const StyledDialog = styled(Dialog)<{
 }>(({ theme, ownerState }) => ({
   [theme.breakpoints.down(ownerState.stretchActionsBreakpointExclusive)]: {
     [`& .${dialogActionsClasses.root}`]: {
-      alignItems: "stretch",
-      flexDirection: "column-reverse",
-      gap: 5,
+      ...adaptiveButtonStackStyles,
 
+      [`&.${dialogActionsClasses.spacing}`]: {
+        gap: theme.spacing(1),
+      },
       "& > *": {
         margin: 0,
       },
-      // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
-      "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-        {
-          alignItems: "center",
-          flexDirection: "row",
-
-          "& > *": {
-            minWidth: "50%",
-          },
-        },
-      "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-        {
-          alignItems: "center",
-          flexDirection: "row",
-
-          "& > *": {
-            flex: 1,
-          },
-        },
     },
   },
 }));

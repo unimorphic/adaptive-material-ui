@@ -18,7 +18,7 @@ export interface AdaptiveSwitchClasses {
 
 export type AdaptiveSwitchKey = keyof AdaptiveSwitchClasses;
 
-// See docs\pages\docs\theCodes\codeSplitting.md
+// See docs\pages\docs\codeSplitting.md
 const SwitchAndroid = lazy(async () => {
   const { SwitchAndroid } = await import("../android");
   return { default: SwitchAndroid };
