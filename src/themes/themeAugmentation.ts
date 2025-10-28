@@ -13,6 +13,10 @@ import {
   AdaptiveDialogProps,
 } from "../components/dialog/adaptiveDialog";
 import {
+  AdaptiveMenuKey,
+  AdaptiveMenuProps,
+} from "../components/menu/adaptiveMenu";
+import {
   AdaptiveSelectItemKey,
   AdaptiveSelectItemProps,
   AdaptiveSelectKey,
@@ -38,6 +42,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
   };
+  AdaptiveMenu?: {
+    defaultProps?: ComponentsProps["AdaptiveMenu"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveMenu"];
+  };
   AdaptiveSelect?: {
     defaultProps?: ComponentsProps["AdaptiveSelect"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelect"];
@@ -59,6 +67,7 @@ export interface AdaptiveComponents {
 export interface AdaptiveComponentsPropsList {
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveDialog: AdaptiveDialogProps;
+  AdaptiveMenu: AdaptiveMenuProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
   AdaptiveSlider: AdaptiveSliderProps;
@@ -68,6 +77,7 @@ export interface AdaptiveComponentsPropsList {
 export interface AdaptiveComponentNameToClassKey {
   AdaptiveButtonStack: AdaptiveButtonStackKey;
   AdaptiveDialog: AdaptiveDialogKey;
+  AdaptiveMenu: AdaptiveMenuKey;
   AdaptiveSelect: AdaptiveSelectKey;
   AdaptiveSelectItem: AdaptiveSelectItemKey;
   AdaptiveSlider: AdaptiveSliderKey;

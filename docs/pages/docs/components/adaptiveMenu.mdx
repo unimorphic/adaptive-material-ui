@@ -1,0 +1,61 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Menu
+
+## Adaptiveness
+
+- Desktop: doesn't block interaction with other page elements when open
+
+```tsx
+import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import Stack from "@mui/material/Stack";
+import AdaptiveMenu from "adaptive-material-ui/components/menu/adaptiveMenu";
+import { useState } from "react";
+
+export default function Basic() {
+  const [adaptiveMode, setAdaptiveMode] = useState("");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  return (
+    <Stack alignItems="flex-start" spacing={3}>
+      <AdaptiveModeSelector
+        adaptiveMode={adaptiveMode}
+        onChange={setAdaptiveMode}
+      />
+      <Button onClick={(e) => setAnchorEl((v) => (v ? null : e.currentTarget))}>
+        Open
+      </Button>
+
+      <AdaptiveMenu
+        adaptiveMode={adaptiveMode}
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+        open={anchorEl !== null}
+      >
+        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
+      </AdaptiveMenu>
+    </Stack>
+  );
+}
+```
+
+## API
+
+[MUI Menu API](https://mui.com/material-ui/api/menu/) with the following changes:
+
+- `disableScrollLock` defaults to `true` on desktop
+
+<AdaptiveModeApi />
+
+## Links
+
+<Links
+  codeUrl="components/menu/adaptiveMenu.tsx"
+  docsUrl="components/adaptiveMenu.mdx"
+  mui={{ title: "Menu", url: "react-menu" }}
+/>

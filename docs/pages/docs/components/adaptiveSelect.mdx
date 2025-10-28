@@ -7,7 +7,6 @@ import Links from "@/shared/links";
 
 - Desktop: doesn't block interaction with other page elements when open
 - Android & iOS: uses the native device select
-- iOS: native styling
 
 ```tsx
 import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
@@ -26,7 +25,7 @@ export default function Basic() {
         adaptiveMode={adaptiveMode}
         onChange={setAdaptiveMode}
       />
-      
+
       <AdaptiveSelect adaptiveMode={adaptiveMode} defaultValue={1}>
         <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
         <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
@@ -40,10 +39,9 @@ export default function Basic() {
 
 [MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
 
-- TODO
+- `MenuProps.disableScrollLock` defaults to `true` on desktop
 
 <AdaptiveModeApi />
-
 
 ### AdaptiveSelectItem
 

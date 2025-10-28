@@ -15,8 +15,8 @@ type AnchorElType =
   | PopoverVirtualElement
   | (() => Element | PopoverVirtualElement | null);
 
-export interface MenuPopperRootProps extends ModalProps {
-  ownerState?: { anchorEl?: AnchorElType };
+export interface ModalNonBlockingProps extends ModalProps {
+  ignoreAnchorClicks?: AnchorElType;
 }
 
 function resolveAnchorEl(anchorEl?: AnchorElType) {
@@ -51,7 +51,7 @@ const RootContainer = styled("div")(() => ({
  * Modal that doesn't block interaction with other page elements
  * https://github.com/mui/material-ui/blob/v7.2.0/packages/mui-material/src/Modal/Modal.js
  */
-export default function ModalNonBlocking(inProps: MenuPopperRootProps) {
+export default function ModalNonBlocking(inProps: ModalNonBlockingProps) {
   const props = useDefaultProps({ name: "MuiModal", props: inProps });
   const {
     BackdropComponent,
@@ -71,6 +71,7 @@ export default function ModalNonBlocking(inProps: MenuPopperRootProps) {
     disableRestoreFocus,
     disableScrollLock,
     hideBackdrop,
+    ignoreAnchorClicks,
     keepMounted = false,
     onClose,
     onKeyDown,
@@ -87,9 +88,8 @@ export default function ModalNonBlocking(inProps: MenuPopperRootProps) {
 
   function onClickAway(event: MouseEvent | TouchEvent): void {
     if (
-      resolveAnchorEl(props.ownerState?.anchorEl)?.contains(
-        event.target as HTMLElement,
-      )
+      ignoreAnchorClicks &&
+      resolveAnchorEl(ignoreAnchorClicks)?.contains(event.target as HTMLElement)
     ) {
       return;
     }
@@ -150,7 +150,11 @@ export default function ModalNonBlocking(inProps: MenuPopperRootProps) {
           open={open}
         >
           <div>
-            <ClickAwayListener onClickAway={onClickAway}>
+            <ClickAwayListener
+              mouseEvent="onMouseDown"
+              onClickAway={onClickAway}
+              touchEvent="onTouchStart"
+            >
               {cloneElement(children, newChildProps)}
             </ClickAwayListener>
           </div>

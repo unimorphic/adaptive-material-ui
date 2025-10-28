@@ -22,9 +22,8 @@ export default function SelectDesktop<Value = unknown>(
   return (
     <Select
       MenuProps={{
-        ...MenuProps,
         disableScrollLock: true,
-        marginThreshold: null,
+        ...MenuProps,
         slots: { ...MenuProps?.slots, root: ModalNonBlocking },
       }}
       {...otherProps}
