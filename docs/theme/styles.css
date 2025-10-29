@@ -7,6 +7,7 @@
   --rp-c-text-2: #67676c;
   --rp-home-hero-image-width-sm: 150px;
   --rp-home-hero-image-width: 225px;
+  --rp-nav-height: 60px;
   --rp-radius: 0;
   --rp-radius-small: 0;
 
@@ -22,16 +23,17 @@
   --rp-c-text-2: #b2b2ba;
 }
 
-.rspress-nav {
-  background: rgb(from var(--rp-c-bg) r g b / 0.9);
+div.rspress-nav {
+  backdrop-filter: blur(8px);
+  background: rgb(from var(--rp-c-bg) r g b / 0.7);
+  border-bottom: 1px solid var(--rp-c-divider);
 
-  .flex-center:has(> div > .rspress-nav-appearance) {
+  .rp-flex:has(> div > .rspress-nav-appearance) {
     display: none;
   }
-}
-
-.rspress-logo {
-  height: 3rem;
+  .rspress-logo {
+    height: 2.5rem;
+  }
 }
 
 .rspress-sidebar {
@@ -41,21 +43,22 @@
   .dark & {
     --rp-c-bg: #161618;
   }
-  .font-medium span {
-    font-size: 0.88rem !important;
+  .rp-font-medium span {
+    font-size: 0.88rem;
   }
 }
 
 .rspress-home-feature-card[style*="cursor: auto"]:hover {
   border-color: transparent;
 }
-
 .rspress-home-hero-text ~ div > div:first-child > a {
   background: var(--rp-c-brand-dark);
 }
 
-.overview-index {
-  .items-start {
+div.overview-index {
+  padding: var(--rp-content-padding-y) var(--rp-content-padding-x);
+
+  .rp-items-start {
     align-items: flex-start;
     flex-direction: column;
     gap: 30px;
@@ -67,7 +70,7 @@
 
   div[class*="overview-groups"] {
     columns: 1;
-    
+
     div[class*="overview-group"] {
       margin-bottom: 10px;
       padding: 0;
@@ -83,21 +86,23 @@
   }
 }
 
-.rspress-doc:not(.rp-not-doc *) ul ul {
-  margin-bottom: 0;
-  margin-top: 0;
-}
+div.rspress-preview {
+  .rspress-preview-card {
+    padding: 0 16px 0 0;
 
-.rspress-preview-card {
-  padding: 0 16px 0 0;
-
-  & > div:first-child {
-    padding: 28px;
+    & > div:first-child {
+      padding: 28px;
+    }
+    .rspress-preview-operations button:focus {
+      outline: 1px solid currentColor;
+    }
+    .MuiSlider-root {
+      display: block;
+    }
   }
-  .rspress-preview-operations button:focus {
-    outline: 1px solid currentColor;
-  }
-  .MuiSlider-root {
-    display: block;
+  .shiki {
+    font-size: 0.875rem;
+    overflow: auto;
+    padding: 1.25rem 0;
   }
 }

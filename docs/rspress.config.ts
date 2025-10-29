@@ -1,6 +1,6 @@
+import { defineConfig } from "@rspress/core";
 import { pluginPreview } from "@rspress/plugin-preview";
 import * as path from "node:path";
-import { defineConfig } from "rspress/config";
 import placeholderPlugin from "./config/placeholderPlugin";
 
 export default defineConfig({

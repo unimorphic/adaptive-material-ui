@@ -1,4 +1,4 @@
-import { getCustomMDXComponent } from "rspress/theme";
+import { getCustomMDXComponent } from "@rspress/core/theme";
 
 interface Props {
   codeUrl: string;

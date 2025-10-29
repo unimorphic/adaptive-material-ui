@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import "@fontsource/roboto/300.css";
@@ -17,9 +18,9 @@ import {
   useColorScheme,
 } from "@mui/material/styles";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
+import { ThemeContext, useDark } from "@rspress/core/runtime";
+import { Layout as BasicLayout } from "@rspress/core/theme";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext, useDark } from "rspress/runtime";
-import Theme from "rspress/theme";
 import { prefixer } from "stylis";
 
 function DarkModeMonitor() {
@@ -78,7 +79,7 @@ function Layout() {
     <CacheProvider value={isRtl ? rtlCache : ltrCache}>
       <ThemeProvider theme={isRtl ? rtlTheme : ltrTheme}>
         <DarkModeMonitor />
-        <Theme.Layout
+        <BasicLayout
           afterNavMenu={
             <StyledStack direction="row" spacing={1}>
               <IconButton
@@ -112,9 +113,6 @@ function Layout() {
   );
 }
 
-export default {
-  ...Theme,
-  Layout,
-};
+export { Layout };
 
-export * from "rspress/theme";
+export * from "@rspress/core/theme";

@@ -3,7 +3,9 @@ pageType: home
 
 hero:
   name: Adaptive Material UI
-  text: React Components that Device Adapt
+  text: |
+    React Components that
+    Device Adapt
   tagline: The Awesomeness of Material UI + Adaptiveness
   actions:
     - theme: brand
