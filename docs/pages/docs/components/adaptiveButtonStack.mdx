@@ -10,7 +10,7 @@ import Links from "@/shared/links";
 import Button from "@mui/material/Button";
 import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 
-export default function Basic() {
+export default function () {
   return (
     <AdaptiveButtonStack>
       <Button variant="contained">Submit</Button>
@@ -33,7 +33,7 @@ import Stack from "@mui/material/Stack";
 import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 import { useState } from "react";
 
-export default function Basic() {
+export default function () {
   const [numberOfButtons, setNumberOfButtons] = useState("1");
 
   return (
@@ -71,7 +71,7 @@ import Button from "@mui/material/Button";
 import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 import AdaptiveButtonStackSpacer from "adaptive-material-ui/components/buttonStack/adaptiveButtonStackSpacer";
 
-export default function Basic() {
+export default function () {
   return (
     <AdaptiveButtonStack>
       <Button color="error" variant="contained">

@@ -14,7 +14,7 @@ import iosColorsTheme from "adaptive-material-ui/themes/iosColorsTheme";
 
 const yourTheme = createTheme({ colorSchemes: { dark: true } });
 
-export default function IOSColors() {
+export default function () {
   return (
     <ThemeProvider theme={createTheme(iosColorsTheme, yourTheme)}>
       <Stack spacing={2}>
@@ -63,7 +63,7 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   },
 });
 
-export default function Customization_Classes() {
+export default function () {
   return (
     <AdaptiveSwitchStyled
       adaptiveMode="ios"
@@ -106,7 +106,7 @@ const theme = createTheme({
   },
 });
 
-export default function Customization_Theme() {
+export default function () {
   return (
     <ThemeProvider theme={theme}>
       <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
