@@ -8,7 +8,7 @@ interface Props {
   value: string;
 }
 
-export default function ExampleSelector(props: Props) {
+export default function DemoSelector(props: Props) {
   return (
     <RadioGroup row value={props.value} onChange={(e, v) => props.onChange(v)}>
       {props.options.map((option) => (

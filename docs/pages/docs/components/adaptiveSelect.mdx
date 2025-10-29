@@ -9,7 +9,7 @@ import Links from "@/shared/links";
 - Android & iOS: uses the native device select
 
 ```tsx
-import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
 import AdaptiveSelect, {
   AdaptiveSelectItem,
@@ -20,17 +20,12 @@ export default function Basic() {
   const [adaptiveMode, setAdaptiveMode] = useState("");
 
   return (
-    <Stack alignItems="flex-start" spacing={3}>
-      <AdaptiveModeSelector
-        adaptiveMode={adaptiveMode}
-        onChange={setAdaptiveMode}
-      />
-
+    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
       <AdaptiveSelect adaptiveMode={adaptiveMode} defaultValue={1}>
         <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
         <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
       </AdaptiveSelect>
-    </Stack>
+    </AdaptiveModeDemo>
   );
 }
 ```

@@ -27,7 +27,7 @@ When children are stretched by the `stretchBreakpoint` prop, they behave differe
 - More: children are stacked vertically and stretched to 100% of the component width
 
 ```tsx
-import ExampleSelector from "@/shared/ExampleSelector";
+import DemoSelector from "@/shared/demoSelector";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import AdaptiveButtonStack from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
@@ -38,7 +38,7 @@ export default function Basic() {
 
   return (
     <Stack spacing={3}>
-      <ExampleSelector
+      <DemoSelector
         onChange={setNumberOfButtons}
         options={[
           { label: "One Action", value: "1" },

@@ -2,6 +2,7 @@ import { defineConfig } from "@rspress/core";
 import { pluginPreview } from "@rspress/plugin-preview";
 import * as path from "node:path";
 import placeholderPlugin from "./config/placeholderPlugin";
+import previewWrapSuspensePlugin from "./config/previewWrapSuspensePlugin";
 
 export default defineConfig({
   builderConfig: {
@@ -11,6 +12,11 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": "./",
+      },
+    },
+    tools: {
+      rspack: {
+        experiments: { lazyBarrel: false }, // https://github.com/web-infra-dev/rspack/issues/11531
       },
     },
   },
@@ -24,7 +30,7 @@ export default defineConfig({
     remarkPlugins: [placeholderPlugin],
   },
   outDir: "dist",
-  plugins: [pluginPreview()],
+  plugins: [pluginPreview(), previewWrapSuspensePlugin()],
   root: path.join(__dirname, "pages"),
   themeConfig: {
     footer: {

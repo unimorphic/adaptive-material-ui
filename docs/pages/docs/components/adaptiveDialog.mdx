@@ -12,7 +12,7 @@ import Links from "@/shared/links";
   - iOS: native styling
 
 ```tsx
-import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Button from "@mui/material/Button";
 import DialogActions from "@mui/material/DialogActions";
 import Stack from "@mui/material/Stack";
@@ -25,11 +25,7 @@ export default function Basic() {
   const [adaptiveMode, setAdaptiveMode] = useState("");
 
   return (
-    <Stack spacing={3}>
-      <AdaptiveModeSelector
-        adaptiveMode={adaptiveMode}
-        onChange={setAdaptiveMode}
-      />
+    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
       <Stack direction="row" spacing={2}>
         <Button onClick={() => setIsShortOpen(true)}>Open Short</Button>
         <Button onClick={() => setIsTallOpen(true)}>Open Tall</Button>
@@ -60,7 +56,7 @@ export default function Basic() {
           <Button onClick={() => setIsTallOpen(false)}>Subscribe</Button>
         </DialogActions>
       </AdaptiveDialog>
-    </Stack>
+    </AdaptiveModeDemo>
   );
 }
 ```
@@ -72,7 +68,7 @@ Actions have the same [stretching](adaptiveButtonStack.html#stretching) and
 using the `stretchActionsBreakpoint` prop & `AdaptiveButtonStackSpacer` component
 
 ```tsx
-import ExampleSelector from "@/shared/ExampleSelector";
+import DemoSelector from "@/shared/demoSelector";
 import Button from "@mui/material/Button";
 import DialogActions from "@mui/material/DialogActions";
 import Stack from "@mui/material/Stack";
@@ -85,7 +81,7 @@ export default function Basic() {
 
   return (
     <Stack alignItems="flex-start" spacing={3}>
-      <ExampleSelector
+      <DemoSelector
         onChange={setNumberOfButtons}
         options={[
           { label: "One Action", value: "1" },

@@ -8,7 +8,7 @@ import Links from "@/shared/links";
 - iOS: native styling
 
 ```tsx
-import AdaptiveModeSelector from "@/shared/AdaptiveModeSelector";
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
 import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import { useState } from "react";
@@ -17,14 +17,9 @@ export default function Basic() {
   const [adaptiveMode, setAdaptiveMode] = useState("");
 
   return (
-    <Stack alignItems="flex-start" spacing={3}>
-      <AdaptiveModeSelector
-        adaptiveMode={adaptiveMode}
-        onChange={setAdaptiveMode}
-      />
-
+    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
       <AdaptiveSwitch adaptiveMode={adaptiveMode} defaultChecked />
-    </Stack>
+    </AdaptiveModeDemo>
   );
 }
 ```

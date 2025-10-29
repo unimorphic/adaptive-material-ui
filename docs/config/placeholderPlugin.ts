@@ -1,11 +1,6 @@
 import { readFile, watch } from "node:fs/promises";
 import { format as prettier } from "prettier";
-
-interface RemarkTreeNode {
-  children?: RemarkTreeNode[];
-  type: string;
-  value: string;
-}
+import RemarkTreeNode from "./remarkTreeNode";
 
 const placeholderContentByFileName: Record<string, string> = {};
 
@@ -18,10 +13,8 @@ async function watchFile(filePath: string, filename: string) {
 }
 
 async function replacePlaceholders(node: RemarkTreeNode) {
-  if (node.children) {
-    for (const child of node.children) {
-      await replacePlaceholders(child);
-    }
+  for (const child of node.children ?? []) {
+    await replacePlaceholders(child);
   }
 
   if (node.type !== "code" || !node.value.includes("[[")) {
