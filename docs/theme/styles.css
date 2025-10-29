@@ -50,8 +50,37 @@
   border-color: transparent;
 }
 
-.items-center a[href="/docs/gettingStarted.html"] {
+.rspress-home-hero-text ~ div > div:first-child > a {
   background: var(--rp-c-brand-dark);
+}
+
+.overview-index {
+  .items-start {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  h2 {
+    display: none;
+  }
+
+  div[class*="overview-groups"] {
+    columns: 1;
+    
+    div[class*="overview-group"] {
+      margin-bottom: 10px;
+      padding: 0;
+
+      a {
+        padding: 20px;
+      }
+      h3 {
+        flex: 1;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
 }
 
 .rspress-doc:not(.rp-not-doc *) ul ul {

@@ -1,4 +1,7 @@
 {
-  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^@mui/[^/]+$"],
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^@mui/[^/]+$",
+    "^.*dist.*$"
+  ],
   "cSpell.words": ["prefixer", "rspress", "stylis"]
 }

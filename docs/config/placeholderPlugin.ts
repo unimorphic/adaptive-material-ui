@@ -1,5 +1,4 @@
 import { readFile, watch } from "node:fs/promises";
-import { EOL } from "node:os";
 import { format as prettier } from "prettier";
 
 interface RemarkTreeNode {
@@ -42,7 +41,7 @@ async function replacePlaceholders(node: RemarkTreeNode) {
       watchFile(filePath, filename).catch((ex: unknown) => console.log(ex));
     }
 
-    const parts = fileContent.split(EOL + "<>" + EOL);
+    const parts = fileContent.split("\n<>\n");
 
     if (parts.length !== 2) {
       throw new Error(`Invalid placeholder file ${filePath}`);
@@ -52,10 +51,7 @@ async function replacePlaceholders(node: RemarkTreeNode) {
 
     node.value =
       imports +
-      node.value.replace(
-        placeholder,
-        component.replace(EOL + "</>;" + EOL, ""),
-      );
+      node.value.replace(placeholder, component.replace("\n</>;\n", ""));
   }
 
   node.value = await prettier(node.value, { parser: "typescript" });

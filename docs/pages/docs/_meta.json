@@ -4,5 +4,11 @@
   "config",
   "styles",
   "codeSplitting",
-  { "label": "Components", "name": "components", "type": "dir" }
+  {
+    "collapsible": false,
+    "label": "Components",
+    "name": "components",
+    "overviewHeaders": [],
+    "type": "dir"
+  }
 ]

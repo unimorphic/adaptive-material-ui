@@ -26,6 +26,7 @@
     "prismjs": "1.30.0"
   },
   "devDependencies": {
+    "@types/mdx": "2.0.13",
     "@types/stylis": "4.2.7"
   }
 }

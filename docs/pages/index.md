@@ -7,11 +7,11 @@ hero:
   tagline: The Awesomeness of Material UI + Adaptiveness
   actions:
     - theme: brand
-      text: Getting Started
-      link: /docs/gettingStarted
-    - theme: alt
       text: Overview
       link: /docs/index
+    - theme: alt
+      text: Components
+      link: /docs/components
   image:
     src:
       dark: /logo-dark.svg
