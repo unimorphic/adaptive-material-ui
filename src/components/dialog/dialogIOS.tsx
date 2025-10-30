@@ -1,3 +1,4 @@
+import { backdropClasses } from "@mui/material/Backdrop";
 import { dialogClasses } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { dialogContentClasses } from "@mui/material/DialogContent";
@@ -6,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import iosLiquidGlass from "../shared/iosLiquidGlass";
 import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
 import DialogResponsive, { DialogResponsiveProps } from "./dialogResponsive";
 
@@ -17,34 +19,42 @@ const StyledDialogResponsive = styled(DialogResponsive, {
   slot: "ios",
 })<{
   ownerState: DialogResponsiveProps;
-}>(() => ({
-  variants: [
-    {
-      props: (props) => props.variant === "short",
-      style: {
-        [`& .${dialogClasses.paper}`]: {
-          borderRadius: 34,
-        },
+}>(({ theme }) => {
+  const bottomPadding = theme.spacing(1.75);
+  const topPadding = theme.spacing(3);
 
-        [`& .${dialogTitleClasses.root}`]: {
-          padding: 14,
+  return {
+    variants: [
+      {
+        props: (props) => props.variant === "short",
+        style: {
+          [`& .${backdropClasses.root}`]: iosLiquidGlass.backdrop(theme),
 
-          [`& + .${dialogContentClasses.root}`]: {
-            paddingTop: 0,
+          [`& .${dialogClasses.paper}`]: {
+            ...iosLiquidGlass.overlay(theme),
+            borderRadius: 34,
+          },
+
+          [`& .${dialogTitleClasses.root}`]: {
+            padding: `${topPadding} ${topPadding} ${theme.spacing(1.25)} ${topPadding}`,
+
+            [`& + .${dialogContentClasses.root}`]: {
+              paddingTop: 0,
+            },
+          },
+
+          [`& .${dialogContentClasses.root}`]: {
+            padding: topPadding,
+          },
+
+          [`& .${dialogActionsClasses.root}`]: {
+            padding: `0 ${bottomPadding} ${bottomPadding} ${bottomPadding}`,
           },
         },
-
-        [`& .${dialogContentClasses.root}`]: {
-          padding: 14,
-        },
-
-        [`& .${dialogActionsClasses.root}`]: {
-          padding: 14,
-        },
       },
-    },
-  ],
-}));
+    ],
+  };
+});
 
 export default function DialogIOS(props: DialogResponsiveProps) {
   const { className, classes, ...otherProps } = props;

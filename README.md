@@ -17,14 +17,12 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- Style iOS dialog
-- Menu
+- Button & dialog button
 - Date picker
 - Checkbox
 - Radio
 - Textfield
 - Progress bar & circle
-- Button
 - FAB
 - Snackbar
 

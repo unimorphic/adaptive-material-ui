@@ -6,10 +6,18 @@ import Links from "@/shared/links";
 ## Adaptiveness
 
 - Desktop: doesn't block interaction with other page elements when open
+- iOS: native styling
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import CloudIcon from "@mui/icons-material/Cloud";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import ContentCutIcon from "@mui/icons-material/ContentCut";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import AdaptiveMenu from "adaptive-material-ui/components/menu/adaptiveMenu";
@@ -31,9 +39,31 @@ export default function () {
         onClose={() => setAnchorEl(null)}
         open={anchorEl !== null}
       >
-        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>
+          <ListItemIcon>
+            <ContentCutIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Cut</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>
+          <ListItemIcon>
+            <ContentCopyIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Copy</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>
+          <ListItemIcon>
+            <ContentPasteIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Paste</ListItemText>
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={() => setAnchorEl(null)}>
+          <ListItemIcon>
+            <CloudIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Web Clipboard</ListItemText>
+        </MenuItem>
       </AdaptiveMenu>
     </AdaptiveModeDemo>
   );
