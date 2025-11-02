@@ -1,11 +1,11 @@
-import { ThemeContext } from "@emotion/react";
 import {
   ComponentsProps,
   createTheme,
   Theme,
   ThemeProvider,
+  useTheme,
 } from "@mui/material/styles";
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 
 export interface RemoveComponentFromThemeProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ export interface RemoveComponentFromThemeProps {
 export default function RemoveComponentFromTheme(
   props: RemoveComponentFromThemeProps,
 ) {
-  const outerTheme = useContext(ThemeContext) as Theme;
+  const outerTheme = useTheme();
 
   if (Object.keys(outerTheme).length === 0) {
     return props.children;

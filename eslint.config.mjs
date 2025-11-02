@@ -14,6 +14,7 @@ export default defineConfig(
       "examples/next-js/.next/**",
       "examples/next-js/next-env.d.ts",
       "playwright/**",
+      "scripts/**",
     ],
   },
   {
