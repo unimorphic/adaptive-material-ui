@@ -3,6 +3,11 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "./src",
+  build: {
+    outDir: "../dist",
+    minify: false,
+    emptyOutDir: true,
+  },
   plugins: [react()],
   preview: {
     port: 3001,

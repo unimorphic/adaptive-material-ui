@@ -145,6 +145,9 @@ importers:
 
   examples/capacitor:
     dependencies:
+      '@capacitor/android':
+        specifier: 7.4.4
+        version: 7.4.4(@capacitor/core@7.4.4)
       '@capacitor/camera':
         specifier: latest
         version: 7.0.2(@capacitor/core@7.4.4)
@@ -497,6 +500,11 @@ packages:
 
   '@bufbuild/protobuf@2.6.2':
     resolution: {integrity: sha512-vLu7SRY84CV/Dd+NUdgtidn2hS5hSMUC1vDBY0VcviTdgRYkU43vIz3vIFbmx14cX1r+mM7WjzE5Fl1fGEM0RQ==}
+
+  '@capacitor/android@7.4.4':
+    resolution: {integrity: sha512-y8knfV1JXNrd6XZZLZireGT+EBCN0lvOo+HZ/s7L8LkrPBu4nY5UZn0Wxz4yOezItEII9rqYJSHsS5fMJG9gdw==}
+    peerDependencies:
+      '@capacitor/core': ^7.4.0
 
   '@capacitor/camera@7.0.2':
     resolution: {integrity: sha512-1/UbZZ8MSbRTMMvjQHQFJ0cs2ZNURNoyuUex0rAJwECsyHO0I5SRvu7YoMY5qTcRWScBcqT+3QZcJvETtRg7ug==}
@@ -5346,6 +5354,10 @@ snapshots:
 
   '@bufbuild/protobuf@2.6.2':
     optional: true
+
+  '@capacitor/android@7.4.4(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@capacitor/camera@7.0.2(@capacitor/core@7.4.4)':
     dependencies:
