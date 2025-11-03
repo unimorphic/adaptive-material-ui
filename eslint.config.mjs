@@ -37,6 +37,7 @@ export default defineConfig(
         project: [
           "./tsconfig.json",
           "./docs/tsconfig.json",
+          "./examples/capacitor/tsconfig.json",
           "./examples/next-js/tsconfig.json",
         ],
         warnOnUnsupportedTypeScriptVersion: true,

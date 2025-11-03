@@ -3,8 +3,8 @@ import {
   createTheme,
   Theme,
   ThemeProvider,
-  useTheme,
 } from "@mui/material/styles";
+import { useThemeWithoutDefault } from "@mui/system";
 import { ReactNode } from "react";
 
 export interface RemoveComponentFromThemeProps {
@@ -15,9 +15,9 @@ export interface RemoveComponentFromThemeProps {
 export default function RemoveComponentFromTheme(
   props: RemoveComponentFromThemeProps,
 ) {
-  const outerTheme = useTheme();
+  const outerTheme = useThemeWithoutDefault<Theme | null>();
 
-  if (Object.keys(outerTheme).length === 0) {
+  if (!outerTheme) {
     return props.children;
   }
 

@@ -61,6 +61,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@mui/system": "7.3.3",
     "@mui/utils": "7.3.3",
     "clsx": "2.1.1"
   },

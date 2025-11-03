@@ -1,4 +1,5 @@
 packages:
   - docs
+  - examples/capacitor
   - examples/next-js
 networkConcurrency: 8

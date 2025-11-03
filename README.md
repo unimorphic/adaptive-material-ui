@@ -27,7 +27,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 - Snackbar
 
 - Convert RunAll.ps1 to pnpm script
-- Ionic example
 - Finish Contributing.md
 - Finish documentation home page
 - Cross browser test
