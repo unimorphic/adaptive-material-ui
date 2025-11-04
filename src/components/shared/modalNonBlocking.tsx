@@ -51,7 +51,7 @@ const RootContainer = styled("div")(() => ({
  * Modal that doesn't block interaction with other page elements
  * https://github.com/mui/material-ui/blob/v7.2.0/packages/mui-material/src/Modal/Modal.js
  */
-export default function ModalNonBlocking(inProps: ModalNonBlockingProps) {
+export function ModalNonBlocking(inProps: ModalNonBlockingProps) {
   const props = useDefaultProps({ name: "MuiModal", props: inProps });
   const {
     BackdropComponent,

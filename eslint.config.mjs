@@ -11,6 +11,8 @@ export default defineConfig(
       "*.*",
       "dist/**",
       "docs/dist/**",
+      "examples/capacitor/android/**",
+      "examples/capacitor/dist/**",
       "examples/next-js/.next/**",
       "examples/next-js/next-env.d.ts",
       "playwright/**",

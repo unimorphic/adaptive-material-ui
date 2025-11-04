@@ -1,2 +1,2 @@
-export { default as iosColorsTheme } from "./iosColorsTheme";
+export * from "./iosColorsTheme";
 export type * from "./themeAugmentation";

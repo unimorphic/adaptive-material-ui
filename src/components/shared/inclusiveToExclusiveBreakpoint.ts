@@ -5,7 +5,7 @@ export type ValidInclusiveBreakpoint = Exclude<Breakpoint, "xl">;
 /**
  * Used to transform breakpoints since the down method is exclusive
  */
-export default function inclusiveToExclusiveBreakpoint(
+export function inclusiveToExclusiveBreakpoint(
   breakpoint: ValidInclusiveBreakpoint | number | false,
 ) {
   const breakpointMap: Record<ValidInclusiveBreakpoint, Breakpoint> = {

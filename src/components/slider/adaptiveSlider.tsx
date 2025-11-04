@@ -32,7 +32,7 @@ const SliderIOS = lazy(async () => {
   return { default: SliderIOS };
 });
 
-export default function AdaptiveSlider(inProps: AdaptiveSliderProps) {
+export function AdaptiveSlider(inProps: AdaptiveSliderProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSlider" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 

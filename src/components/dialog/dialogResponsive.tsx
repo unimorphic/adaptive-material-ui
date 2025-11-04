@@ -4,7 +4,8 @@ import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { adaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 import { AdaptiveButtonStackSpacerContext } from "../buttonStack/adaptiveButtonStackSpacer";
-import inclusiveToExclusiveBreakpoint, {
+import {
+  inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
 } from "../shared/inclusiveToExclusiveBreakpoint";
 
@@ -52,7 +53,7 @@ const StyledDialog = styled(Dialog)<{
   },
 }));
 
-export default function DialogResponsive(props: DialogResponsiveProps) {
+export function DialogResponsive(props: DialogResponsiveProps) {
   const {
     stretchActionsBreakpoint = "xs",
     fullScreenBreakpoint = "xs",

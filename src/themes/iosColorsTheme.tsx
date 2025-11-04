@@ -2,7 +2,7 @@ import { sliderClasses } from "@mui/material/Slider";
 import { createTheme } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
 
-const iosColorsTheme = createTheme({
+export const iosColorsTheme = createTheme({
   components: {
     AdaptiveSlider: {
       styleOverrides: {
@@ -71,5 +71,3 @@ const iosColorsTheme = createTheme({
     },
   },
 });
-
-export default iosColorsTheme;

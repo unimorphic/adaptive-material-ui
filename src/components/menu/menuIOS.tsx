@@ -7,8 +7,8 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import iosLiquidGlass from "../shared/iosLiquidGlass";
-import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
+import { iosLiquidGlass } from "../shared/iosLiquidGlass";
+import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Menus
@@ -40,7 +40,7 @@ const StyledMenu = styled(Menu, {
   },
 }));
 
-export default function MenuIOS(props: MenuProps) {
+export function MenuIOS(props: MenuProps) {
   const { className, classes, ...otherProps } = props;
 
   const composedClasses = composeClasses(

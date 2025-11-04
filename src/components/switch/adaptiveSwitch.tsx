@@ -32,7 +32,7 @@ const SwitchIOS = lazy(async () => {
   return { default: SwitchIOS };
 });
 
-export default function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
+export function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 

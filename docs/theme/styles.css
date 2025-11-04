@@ -93,8 +93,12 @@ div.rspress-preview {
     & > div:first-child {
       padding: 28px;
     }
-    .rspress-preview-operations button:focus {
-      outline: 1px solid currentColor;
+    .rspress-preview-operations button {
+      cursor: pointer;
+
+      &:focus {
+        outline: 1px solid currentColor;
+      }
     }
     .MuiSlider-root {
       display: block;

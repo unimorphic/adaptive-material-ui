@@ -1,6 +1,5 @@
-export { default as DialogIOS } from "./dialog/dialogIOS";
-export { default as MenuIOS } from "./menu/menuIOS";
-export { default as SelectIOS } from "./select/selectIOS";
+export * from "./dialog/dialogIOS";
+export * from "./menu/menuIOS";
 export * from "./select/selectIOS";
-export { default as SliderIOS } from "./slider/sliderIOS";
-export { default as SwitchIOS } from "./switch/switchIOS";
+export * from "./slider/sliderIOS";
+export * from "./switch/switchIOS";

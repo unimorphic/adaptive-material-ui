@@ -33,7 +33,7 @@ const DialogIOS = lazy(async () => {
   return { default: DialogIOS };
 });
 
-export default function AdaptiveDialog(inProps: AdaptiveDialogProps) {
+export function AdaptiveDialog(inProps: AdaptiveDialogProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveDialog" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 

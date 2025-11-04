@@ -15,7 +15,7 @@ const SpacerDiv = styled("div")<{
   },
 }));
 
-export default function AdaptiveButtonStackSpacer() {
+export function AdaptiveButtonStackSpacer() {
   const stretchBreakpointExclusive = useContext(
     AdaptiveButtonStackSpacerContext,
   );

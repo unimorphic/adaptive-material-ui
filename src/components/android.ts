@@ -1,6 +1,5 @@
-export { default as DialogAndroid } from "./dialog/dialogAndroid";
-export { default as MenuAndroid } from "./menu/menuAndroid";
-export { default as SelectAndroid } from "./select/selectAndroid";
+export * from "./dialog/dialogAndroid";
+export * from "./menu/menuAndroid";
 export * from "./select/selectAndroid";
-export { default as SliderAndroid } from "./slider/sliderAndroid";
-export { default as SwitchAndroid } from "./switch/switchAndroid";
+export * from "./slider/sliderAndroid";
+export * from "./switch/switchAndroid";

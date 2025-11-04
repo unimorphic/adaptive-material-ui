@@ -12,9 +12,7 @@ export interface RemoveComponentFromThemeProps {
   componentName: keyof ComponentsProps;
 }
 
-export default function RemoveComponentFromTheme(
-  props: RemoveComponentFromThemeProps,
-) {
+export function RemoveComponentFromTheme(props: RemoveComponentFromThemeProps) {
   const outerTheme = useThemeWithoutDefault<Theme | null>();
 
   if (!outerTheme) {

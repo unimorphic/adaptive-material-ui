@@ -6,7 +6,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
-import SelectItemProps, { DefaultAdditionalProps } from "./selectItemProps";
+import { DefaultAdditionalProps, SelectItemProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
   StyledComponentProps<SelectClassKey | AdaptiveSelectKey> &
@@ -74,7 +74,7 @@ export function AdaptiveSelectItem<
   }
 }
 
-export default function AdaptiveSelect<Value = unknown>(
+export function AdaptiveSelect<Value = unknown>(
   inProps: AdaptiveSelectProps<Value>,
 ) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelect" });

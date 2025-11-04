@@ -8,9 +8,9 @@ to use iOS native colors you can use `iosColorsTheme`
 ```tsx
 import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AdaptiveSlider from "adaptive-material-ui/components/slider/adaptiveSlider";
-import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import iosColorsTheme from "adaptive-material-ui/themes/iosColorsTheme";
+import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { iosColorsTheme } from "adaptive-material-ui/themes/iosColorsTheme";
 
 const yourTheme = createTheme({ colorSchemes: { dark: true } });
 
@@ -44,7 +44,7 @@ Other styles can be customized using the standard Material UI methods, for examp
 ```tsx
 import { styled } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
-import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
   "&.ios": {
@@ -79,7 +79,7 @@ export default function () {
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { switchClasses } from "@mui/material/Switch";
-import AdaptiveSwitch from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themes/themeAugmentation";
 
 const theme = createTheme({

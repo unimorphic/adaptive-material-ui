@@ -31,7 +31,7 @@ const MenuIOS = lazy(async () => {
   return { default: MenuIOS };
 });
 
-export default function AdaptiveMenu(inProps: AdaptiveMenuProps) {
+export function AdaptiveMenu(inProps: AdaptiveMenuProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveMenu" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 

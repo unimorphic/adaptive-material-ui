@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import SelectItemProps from "./selectItemProps";
+import { SelectItemProps } from "./selectItemProps";
 
 const StyledOption = styled("option", {
   name: "AdaptiveSelectItem",
@@ -45,8 +45,6 @@ export function SelectItemNative(props: SelectItemProps<"option">) {
   );
 }
 
-export default function SelectNative<Value = unknown>(
-  props: SelectProps<Value>,
-) {
+export function SelectNative<Value = unknown>(props: SelectProps<Value>) {
   return <Select native {...props} />;
 }

@@ -1,6 +1,6 @@
 import { CSSProperties, Theme } from "@mui/material/styles";
 
-const iosLiquidGlass = {
+export const iosLiquidGlass = {
   backdrop: (theme: Theme) => ({
     backgroundColor:
       theme.palette.mode === "dark"
@@ -82,5 +82,3 @@ const iosLiquidGlass = {
 
   transitionDuration: 300,
 };
-
-export default iosLiquidGlass;

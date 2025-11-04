@@ -9,10 +9,11 @@ import {
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import inclusiveToExclusiveBreakpoint, {
+import {
+  inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
 } from "../shared/inclusiveToExclusiveBreakpoint";
-import RemoveComponentFromTheme from "../shared/removeComponentFromTheme";
+import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
 import { AdaptiveButtonStackSpacerContext } from "./adaptiveButtonStackSpacer";
 
 export interface AdaptiveButtonStackProps
@@ -75,7 +76,7 @@ const StyledStack = styled(Stack, {
   },
 }));
 
-export default function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
+export function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
   const props = useThemeProps({
     props: inProps,
     name: "AdaptiveButtonStack",
