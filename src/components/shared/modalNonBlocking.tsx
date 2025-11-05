@@ -149,7 +149,7 @@ export function ModalNonBlocking(inProps: ModalNonBlockingProps) {
           disableRestoreFocus={disableRestoreFocus}
           open={open}
         >
-          <div>
+          <div tabIndex={-1}>
             <ClickAwayListener
               mouseEvent="onMouseDown"
               onClickAway={onClickAway}

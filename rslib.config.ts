@@ -13,7 +13,9 @@ export default defineConfig({
       bundle: false,
       dts: true,
       format: "esm",
+      output: { distPath: "./dist/esm" },
     },
+    { bundle: false, dts: true, format: "cjs" },
   ],
   output: {
     target: "web",
