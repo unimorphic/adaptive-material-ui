@@ -48,9 +48,6 @@ div.rspress-nav {
   }
 }
 
-.rspress-home-feature-card[style*="cursor: auto"]:hover {
-  border-color: transparent;
-}
 .rspress-home-hero-text ~ div > div:first-child > a {
   background: var(--rp-c-brand-dark);
 }

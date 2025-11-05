@@ -28,6 +28,5 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 - Convert RunAll.ps1 to pnpm script
 - Finish Contributing.md
-- Finish documentation home page
 - Cross browser test
 - Update links in ReadMe

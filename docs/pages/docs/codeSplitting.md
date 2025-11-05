@@ -8,6 +8,7 @@ The build tool has to support this feature to work, those known with support:
 - Rspack [issue](https://github.com/web-infra-dev/rspack/pull/7230)
 - Vite/Rollup [issue](https://github.com/rollup/rollup/issues/4951)
 
+Example import code
 ```tsx pure
 const SelectDesktop = lazy(async () => {
   const { SelectDesktop } = await import("./desktop");
