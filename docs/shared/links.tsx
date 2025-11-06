@@ -13,7 +13,7 @@ const ListItem = components.li;
 
 export default function Links(props: Props) {
   const githubRootUrl =
-    "https://github.com/unimorphic/adaptive-material-ui/tree/master";
+    "https://github.com/unimorphic/adaptive-material-ui/blob/master";
   const muiRootUrl = "https://mui.com/material-ui/";
 
   return (
@@ -27,7 +27,7 @@ export default function Links(props: Props) {
       <ListItem>
         Doc Source&nbsp;
         <Link
-          href={`${githubRootUrl}/docs/pages/docs/${props.docsUrl}`}
+          href={`${githubRootUrl}/docs/pages/docs/${props.docsUrl}?plain=1`}
           target="_blank"
         >
           {props.docsUrl.substring(props.docsUrl.lastIndexOf("/") + 1)}

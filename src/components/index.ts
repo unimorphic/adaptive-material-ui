@@ -1,3 +1,4 @@
+export * from "./button/adaptiveButton";
 export * from "./buttonStack/adaptiveButtonStack";
 export * from "./buttonStack/adaptiveButtonStackSpacer";
 export * from "./dialog/adaptiveDialog";

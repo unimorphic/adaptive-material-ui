@@ -1,0 +1,137 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Button
+
+## Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { useState } from "react";
+
+export default function () {
+  const [adaptiveMode, setAdaptiveMode] = useState("");
+
+  return (
+    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
+      <AdaptiveButton adaptiveMode={adaptiveMode} variant="contained">
+        Button
+      </AdaptiveButton>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## iOS Variants
+
+```tsx
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+
+export default function () {
+  return (
+    <Grid container spacing={2}>
+      <Grid size={3}>Size</Grid>
+      <Grid size={9}>
+        <Stack alignItems="center" direction="row" spacing={1}>
+          <AdaptiveButton adaptiveMode="ios" size="small" variant="contained">
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton adaptiveMode="ios" size="medium" variant="contained">
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton adaptiveMode="ios" size="large" variant="contained">
+            Large
+          </AdaptiveButton>
+        </Stack>
+      </Grid>
+    </Grid>
+  );
+}
+```
+
+## Round
+
+The `round` property can be used to make the button rounded on all devices.
+To apply it to only specific devices you can use the [useAdaptiveMode](/docs/useAdaptiveMode.html) hook.
+
+```tsx
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+
+export default function () {
+  return (
+    <Grid container spacing={2}>
+      <Grid size={3}>Variant</Grid>
+      <Grid size={9}>
+        <Stack alignItems="center" direction="row" spacing={1}>
+          <AdaptiveButton round variant="contained">
+            Contained
+          </AdaptiveButton>
+          <AdaptiveButton round variant="outlined">
+            Outlined
+          </AdaptiveButton>
+          <AdaptiveButton round variant="text">
+            Text
+          </AdaptiveButton>
+        </Stack>
+      </Grid>
+      <Grid size={3}>Size</Grid>
+      <Grid size={9}>
+        <Stack alignItems="center" direction="row" spacing={1}>
+          <AdaptiveButton round size="small" variant="contained">
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton round size="medium" variant="contained">
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton round size="large" variant="contained">
+            Large
+          </AdaptiveButton>
+        </Stack>
+      </Grid>
+      <Grid size={3}>Group</Grid>
+      <Grid size={9}>
+        <ButtonGroup variant="contained">
+          <AdaptiveButton round>One</AdaptiveButton>
+          <AdaptiveButton round>Two</AdaptiveButton>
+          <AdaptiveButton round>Three</AdaptiveButton>
+        </ButtonGroup>
+      </Grid>
+    </Grid>
+  );
+}
+```
+
+## API
+
+[MUI Button API](https://mui.com/material-ui/api/button/) with the following changes:
+
+- `disableTouchRipple` defaults to `true` on iOS
+
+### round
+
+Increases the border radius to make the button corners appear rounded
+
+- Type: `boolean`
+- Default: `false`
+
+<AdaptiveModeApi />
+
+## Browser Compatibility
+
+- CSS [:has()](https://developer.mozilla.org/en-US/docs/Web/CSS/:has#browser_compatibility)
+
+## Links
+
+<Links
+  codeUrl="components/button/adaptiveButton.tsx"
+  docsUrl="components/adaptiveButton.mdx"
+  mui={{ title: "Button", url: "react-button" }}
+/>

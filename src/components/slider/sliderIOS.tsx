@@ -39,16 +39,12 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 
     [`& .${sliderClasses.thumb}`]: {
       borderRadius: 12,
-      boxShadow:
-        "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)",
       height: ownerState.size === "small" ? 16 : 24,
       transform: thumbTransform,
       width: ownerState.size === "small" ? 30 : 38,
       ...iosLiquidGlass.thumb(theme),
 
-      [`&.${sliderClasses.focusVisible}`]: iosLiquidGlass.thumbFocused(),
-
-      [`&:hover, &.${sliderClasses.focusVisible}`]: {
+      [`&:not(:hover, .${sliderClasses.focusVisible})`]: {
         boxShadow:
           "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)",
       },

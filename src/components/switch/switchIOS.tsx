@@ -43,8 +43,11 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
         },
       },
 
-      [`&.${buttonBaseClasses.focusVisible} .${switchClasses.thumb}`]:
-        iosLiquidGlass.thumbFocused(),
+      [`&:hover, &.${buttonBaseClasses.focusVisible}`]: {
+        [`& .${switchClasses.thumb}`]: {
+          boxShadow: `0px 0px 0px 8px ${theme.alpha(theme.palette.text.primary, 0.16)}`,
+        },
+      },
 
       "&:active": {
         [`& .${switchClasses.thumb}`]: iosLiquidGlass.thumbActive(1.3),

@@ -29,7 +29,7 @@ function isIOS(userAgent: string) {
 
 /**
  * Resolves the current adaptive mode based on the current context & device
- * @param adaptiveMode The adaptive mode component prop
+ * @param adaptiveModeProps The adaptive mode component props
  * @returns The adaptive mode to use and the rest of the props
  */
 export function useAdaptiveModeFromProps<T>(

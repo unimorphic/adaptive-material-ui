@@ -17,6 +17,8 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
+- iosTheme
+- standardize variants grid
 - Button & dialog button
 - Date picker
 - Checkbox
@@ -25,7 +27,9 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 - Progress bar & circle
 - FAB
 - Snackbar
+- Font
 
+- Create lint rule to enforce component use
 - Convert RunAll.ps1 to pnpm script
 - Finish Contributing.md
 - Cross browser test

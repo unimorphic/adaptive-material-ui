@@ -3,6 +3,7 @@
   "gettingStarted",
   "config",
   "styles",
+  "useAdaptiveMode",
   "codeSplitting",
   {
     "collapsible": false,

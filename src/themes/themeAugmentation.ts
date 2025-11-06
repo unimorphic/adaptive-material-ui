@@ -1,9 +1,12 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 import {
   ComponentsOverrides,
   ComponentsProps,
   Theme as MuiTheme,
 } from "@mui/material/styles";
+import {
+  AdaptiveButtonKey,
+  AdaptiveButtonProps,
+} from "../components/button/adaptiveButton";
 import {
   AdaptiveButtonStackKey,
   AdaptiveButtonStackProps,
@@ -34,6 +37,10 @@ import {
 type Theme = Omit<MuiTheme, "components">;
 
 export interface AdaptiveComponents {
+  AdaptiveButton?: {
+    defaultProps?: ComponentsProps["AdaptiveButton"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButton"];
+  };
   AdaptiveButtonStack?: {
     defaultProps?: ComponentsProps["AdaptiveButtonStack"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButtonStack"];
@@ -65,6 +72,7 @@ export interface AdaptiveComponents {
 }
 
 export interface AdaptiveComponentsPropsList {
+  AdaptiveButton: AdaptiveButtonProps;
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveMenu: AdaptiveMenuProps;
@@ -75,6 +83,7 @@ export interface AdaptiveComponentsPropsList {
 }
 
 export interface AdaptiveComponentNameToClassKey {
+  AdaptiveButton: AdaptiveButtonKey;
   AdaptiveButtonStack: AdaptiveButtonStackKey;
   AdaptiveDialog: AdaptiveDialogKey;
   AdaptiveMenu: AdaptiveMenuKey;
