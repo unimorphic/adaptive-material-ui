@@ -31,30 +31,26 @@ export default function () {
 ## iOS Variants
 
 ```tsx
-import Grid from "@mui/material/Grid";
+import { DemoList, DemoListItem } from "@/shared/demoList";
 import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
 
 export default function () {
   return (
-    <Grid container spacing={2}>
-      <Grid size={3}>Secondary Color</Grid>
-      <Grid size={9}>
+    <DemoList>
+      <DemoListItem title="Secondary Color">
         <AdaptiveSlider
           adaptiveMode="ios"
           color="secondary"
           defaultValue={30}
         />
-      </Grid>
-      <Grid size={3}>Disabled</Grid>
-      <Grid size={9}>
+      </DemoListItem>
+      <DemoListItem title="Disabled">
         <AdaptiveSlider adaptiveMode="ios" defaultValue={30} disabled />
-      </Grid>
-      <Grid size={3}>Small</Grid>
-      <Grid size={9}>
+      </DemoListItem>
+      <DemoListItem title="Small">
         <AdaptiveSlider adaptiveMode="ios" defaultValue={30} size="small" />
-      </Grid>
-      <Grid size={3}>Discrete</Grid>
-      <Grid size={9}>
+      </DemoListItem>
+      <DemoListItem title="Discrete">
         <AdaptiveSlider
           adaptiveMode="ios"
           defaultValue={30}
@@ -62,9 +58,8 @@ export default function () {
           shiftStep={30}
           step={10}
         />
-      </Grid>
-      <Grid size={3}>Vertical</Grid>
-      <Grid size={9} sx={{ height: 100 }}>
+      </DemoListItem>
+      <DemoListItem title="Vertical">
         <AdaptiveSlider
           adaptiveMode="ios"
           defaultValue={40}
@@ -72,9 +67,10 @@ export default function () {
           orientation="vertical"
           shiftStep={40}
           step={20}
+          sx={{ height: 100 }}
         />
-      </Grid>
-    </Grid>
+      </DemoListItem>
+    </DemoList>
   );
 }
 ```
@@ -82,8 +78,6 @@ export default function () {
 ## API
 
 [MUI Slider API](https://mui.com/material-ui/api/slider/) with the following changes:
-
-- TODO
 
 <AdaptiveModeApi />
 

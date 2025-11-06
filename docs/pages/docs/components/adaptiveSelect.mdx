@@ -36,12 +36,17 @@ export default function () {
 [MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
 
 - `MenuProps.disableScrollLock` defaults to `true` on desktop
+- `native` defaults to `true` on Android & iOS
 
 <AdaptiveModeApi />
 
 ### AdaptiveSelectItem
 
-- TODO
+[MUI MenuItem API](https://mui.com/material-ui/api/menu-item/) with the following changes:
+
+- Props not applicable to a `<option>` element are ignored on Android & iOS.
+  See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/62be40b5d1bce3bce0f0131bacf3eb91d9e48e5f/src/components/select/selectNative.tsx#L14)
+  for the full list of ignored props.
 
 ## Links
 

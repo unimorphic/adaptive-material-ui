@@ -27,42 +27,34 @@ export default function () {
 ## iOS Variants
 
 ```tsx
+import { DemoList, DemoListItem } from "@/shared/demoList";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Grid from "@mui/material/Grid";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 export default function () {
   return (
-    <Grid container direction="row" spacing={2}>
-      <Grid>
-        <FormControlLabel
-          control={
-            <AdaptiveSwitch
-              adaptiveMode="ios"
-              color="secondary"
-              defaultChecked
-            />
-          }
-          label="Secondary Color"
-        />
-      </Grid>
-      <Grid>
-        <FormControlLabel
-          control={
-            <AdaptiveSwitch adaptiveMode="ios" defaultChecked disabled />
-          }
-          label="Disabled"
-        />
-      </Grid>
-      <Grid>
+    <DemoList>
+      <DemoListItem title="Secondary Color">
+        <AdaptiveSwitch adaptiveMode="ios" color="secondary" defaultChecked />
+      </DemoListItem>
+      <DemoListItem title="Size">
         <FormControlLabel
           control={
             <AdaptiveSwitch adaptiveMode="ios" defaultChecked size="small" />
           }
           label="Small"
         />
-      </Grid>
-    </Grid>
+        <FormControlLabel
+          control={
+            <AdaptiveSwitch adaptiveMode="ios" defaultChecked size="medium" />
+          }
+          label="Medium"
+        />
+      </DemoListItem>
+      <DemoListItem title="Disabled">
+        <AdaptiveSwitch adaptiveMode="ios" defaultChecked disabled />
+      </DemoListItem>
+    </DemoList>
   );
 }
 ```
@@ -71,7 +63,6 @@ export default function () {
 
 [MUI Switch API](https://mui.com/material-ui/api/switch/) with the following changes:
 
-- TODO
 - `disableRipple` defaults to `true` on iOS
 
 <AdaptiveModeApi />

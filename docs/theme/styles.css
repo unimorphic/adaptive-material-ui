@@ -107,3 +107,7 @@ div.rspress-preview {
     padding: 1.25rem 0;
   }
 }
+
+.rp-link {
+  white-space: nowrap;
+}

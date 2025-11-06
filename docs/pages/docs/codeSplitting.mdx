@@ -1,3 +1,7 @@
+---
+outline: false
+---
+
 # Code Splitting
 
 Each device type is split into it's own file using React [lazy](https://react.dev/reference/react/lazy) so
@@ -9,7 +13,7 @@ The build tool has to support this feature to work, those known with support:
 - Rspack [issue](https://github.com/web-infra-dev/rspack/pull/7230)
 - Vite/Rollup [issue](https://github.com/rollup/rollup/issues/4951)
 
-Example import code
+### Example Import Code
 
 ```tsx pure
 const SelectDesktop = lazy(async () => {
