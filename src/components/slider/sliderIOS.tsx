@@ -24,7 +24,9 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 
     [`& .${sliderClasses.mark}`]: {
       backgroundColor:
-        theme.palette.grey[theme.palette.mode === "dark" ? 700 : 400],
+        theme.palette.mode === "dark"
+          ? "rgba(235, 235, 245, 0.16)"
+          : "rgba(60, 60, 67, 0.18)",
       borderRadius: 3,
       height: 4,
       [ownerState.orientation === "vertical" ? "left" : "top"]:
@@ -34,7 +36,10 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 
     [`& .${sliderClasses.rail}`]: {
       backgroundColor:
-        theme.palette.grey[theme.palette.mode === "dark" ? 700 : 400],
+        theme.palette.mode === "dark"
+          ? "rgba(120, 120, 128, 0.36)"
+          : "rgba(120, 120, 120, 0.2)",
+      opacity: 1,
     },
 
     [`& .${sliderClasses.thumb}`]: {

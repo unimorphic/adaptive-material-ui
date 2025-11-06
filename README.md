@@ -17,8 +17,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- iosTheme
-- standardize variants grid
 - Button & dialog button
 - Date picker
 - Checkbox

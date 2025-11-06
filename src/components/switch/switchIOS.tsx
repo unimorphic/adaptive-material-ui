@@ -76,7 +76,9 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
     },
 
     [`& .${switchClasses.track}`]: {
+      backgroundColor: theme.palette.mode === "dark" ? "#5B5B5F" : "#C4C4C6",
       borderRadius: 15,
+      opacity: 1,
       transition: theme.transitions.create(
         ["background-color", "opacity", "transform"],
         { duration: iosLiquidGlass.transitionDuration },
