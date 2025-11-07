@@ -4,34 +4,35 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
-  AdaptiveButtonKey,
+  AdaptiveButtonClasses,
   AdaptiveButtonProps,
 } from "../components/button/adaptiveButton";
 import {
-  AdaptiveButtonStackKey,
+  AdaptiveButtonStackClasses,
   AdaptiveButtonStackProps,
 } from "../components/buttonStack/adaptiveButtonStack";
 import {
+  AdaptiveDialogActionsClasses,
   AdaptiveDialogActionsProps,
-  AdaptiveDialogKey,
+  AdaptiveDialogClasses,
   AdaptiveDialogProps,
 } from "../components/dialog/adaptiveDialog";
 import {
-  AdaptiveMenuKey,
+  AdaptiveMenuClasses,
   AdaptiveMenuProps,
 } from "../components/menu/adaptiveMenu";
 import {
-  AdaptiveSelectItemKey,
+  AdaptiveSelectItemClasses,
   AdaptiveSelectItemProps,
-  AdaptiveSelectKey,
+  AdaptiveSelectClasses,
   AdaptiveSelectProps,
 } from "../components/select/adaptiveSelect";
 import {
-  AdaptiveSliderKey,
+  AdaptiveSliderClasses,
   AdaptiveSliderProps,
 } from "../components/slider/adaptiveSlider";
 import {
-  AdaptiveSwitchKey,
+  AdaptiveSwitchClasses,
   AdaptiveSwitchProps,
 } from "../components/switch/adaptiveSwitch";
 
@@ -52,6 +53,7 @@ export interface AdaptiveComponents {
   };
   AdaptiveDialogActions?: {
     defaultProps?: ComponentsProps["AdaptiveDialogActions"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialogActions"];
   };
   AdaptiveMenu?: {
     defaultProps?: ComponentsProps["AdaptiveMenu"];
@@ -88,14 +90,15 @@ export interface AdaptiveComponentsPropsList {
 }
 
 export interface AdaptiveComponentNameToClassKey {
-  AdaptiveButton: AdaptiveButtonKey;
-  AdaptiveButtonStack: AdaptiveButtonStackKey;
-  AdaptiveDialog: AdaptiveDialogKey;
-  AdaptiveMenu: AdaptiveMenuKey;
-  AdaptiveSelect: AdaptiveSelectKey;
-  AdaptiveSelectItem: AdaptiveSelectItemKey;
-  AdaptiveSlider: AdaptiveSliderKey;
-  AdaptiveSwitch: AdaptiveSwitchKey;
+  AdaptiveButton: keyof AdaptiveButtonClasses;
+  AdaptiveButtonStack: keyof AdaptiveButtonStackClasses;
+  AdaptiveDialog: keyof AdaptiveDialogClasses;
+  AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
+  AdaptiveMenu: keyof AdaptiveMenuClasses;
+  AdaptiveSelect: keyof AdaptiveSelectClasses;
+  AdaptiveSelectItem: keyof AdaptiveSelectItemClasses;
+  AdaptiveSlider: keyof AdaptiveSliderClasses;
+  AdaptiveSwitch: keyof AdaptiveSwitchClasses;
 }
 
 declare module "@mui/material/styles" {

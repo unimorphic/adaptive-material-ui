@@ -77,9 +77,10 @@ export default function () {
 
 ## Actions
 
-Actions have the same [stretching](adaptiveButtonStack.html#stretching) and
-[split alignment](adaptiveButtonStack.html#split-alignment) behavior as the Adaptive Button Stack
-using the `stretchActionsBreakpoint` prop & `AdaptiveButtonStackSpacer` component
+### Stretching
+
+Actions have the same [stretching](adaptiveButtonStack.html#stretching) as the Adaptive Button Stack
+using the `stretchActionsBreakpoint` prop
 
 ```tsx
 import DemoSelector from "@/shared/demoSelector";
@@ -133,12 +134,16 @@ export default function () {
 }
 ```
 
+### Split Alignment
+
+`adaptiveDialogClasses.alignActionLeft` can be used to align actions at both ends of the dialog when stacked horizontally
+
 ```tsx
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
-import { AdaptiveButtonStackSpacer } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStackSpacer";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
+  adaptiveDialogClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { useState } from "react";
 
@@ -158,8 +163,12 @@ export default function () {
       >
         [[exampleShortDialogContent]]
         <AdaptiveDialogActions>
-          <AdaptiveButton onClick={() => setOpen(false)}>Delete</AdaptiveButton>
-          <AdaptiveButtonStackSpacer />
+          <AdaptiveButton
+            className={adaptiveDialogClasses.alignActionLeft}
+            onClick={() => setOpen(false)}
+          >
+            Delete
+          </AdaptiveButton>
           <AdaptiveButton onClick={() => setOpen(false)}>Cancel</AdaptiveButton>
           <AdaptiveButton onClick={() => setOpen(false)}>Submit</AdaptiveButton>
         </AdaptiveDialogActions>
@@ -176,10 +185,10 @@ To apply them to only specific devices you can use the [useAdaptiveMode](/docs/u
 
 ```tsx
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
-import { AdaptiveButtonStackSpacer } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStackSpacer";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
+  adaptiveDialogClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { useState } from "react";
 
@@ -199,17 +208,19 @@ export default function () {
         [[exampleShortDialogContent]]
         <AdaptiveDialogActions
           buttonDefaultProps={{
-            adaptiveMode: "ios",
             disableElevation: true,
             round: true,
             size: "large",
             variant: "contained",
           }}
         >
-          <AdaptiveButton color="error" onClick={() => setOpen(false)}>
+          <AdaptiveButton
+            className={adaptiveDialogClasses.alignActionLeft}
+            color="error"
+            onClick={() => setOpen(false)}
+          >
             Delete
           </AdaptiveButton>
-          <AdaptiveButtonStackSpacer />
           <AdaptiveButton color="inherit" onClick={() => setOpen(false)}>
             Cancel
           </AdaptiveButton>

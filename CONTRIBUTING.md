@@ -2,6 +2,10 @@
 
 TODO
 
+## Playground
+A playground file docs\shared\playground.tsx is available when running locally at
+http://localhost:3000/docs/playground.html
+
 ## Adding a new component
 
 - Add a new folder under src\components with the component source code, see the existing components for examples

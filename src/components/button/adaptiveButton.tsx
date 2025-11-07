@@ -1,24 +1,29 @@
-import { ButtonClassKey } from "@mui/material/Button";
+import { buttonClasses, ButtonClasses } from "@mui/material/Button";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { lazy, useContext } from "react";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { lazy, ReactNode, useContext } from "react";
 import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 import { ButtonRoundProps } from "./buttonRound";
 
 export interface AdaptiveButtonProps
   extends Omit<ButtonRoundProps, "classes">,
-    StyledComponentProps<ButtonClassKey | AdaptiveButtonKey>,
+    StyledComponentProps<keyof AdaptiveButtonClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveButtonClasses {
+export interface AdaptiveButtonClasses extends ButtonClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
 
-export type AdaptiveButtonKey = keyof AdaptiveButtonClasses;
+export const adaptiveButtonClasses = {
+  ...buttonClasses,
+  ...generateUtilityClasses("AdaptiveButton", ["ios"]),
+};
 
 // See docs\pages\docs\codeSplitting.md
 const ButtonAndroid = lazy(async () => {
@@ -43,12 +48,25 @@ export function AdaptiveButton(inProps: AdaptiveButtonProps) {
   });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
+  let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      return <ButtonAndroid {...otherProps} />;
+      content = <ButtonAndroid {...otherProps} />;
+      break;
     case "ios":
-      return <ButtonIOS {...otherProps} />;
+      content = <ButtonIOS {...otherProps} />;
+      break;
     default:
-      return <ButtonDesktop {...otherProps} />;
+      content = <ButtonDesktop {...otherProps} />;
+      break;
   }
+
+  return (
+    <ReplaceComponentInTheme
+      sourceComponentName="AdaptiveButton"
+      targetComponentName="MuiButton"
+    >
+      {content}
+    </ReplaceComponentInTheme>
+  );
 }

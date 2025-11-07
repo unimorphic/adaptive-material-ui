@@ -1,21 +1,27 @@
-import { MenuClassKey, MenuProps } from "@mui/material/Menu";
+import { menuClasses, MenuClasses, MenuProps } from "@mui/material/Menu";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 
 export type AdaptiveMenuProps = MenuProps &
-  StyledComponentProps<MenuClassKey | AdaptiveMenuKey> &
+  StyledComponentProps<keyof AdaptiveMenuClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveMenuClasses {
+export interface AdaptiveMenuClasses extends MenuClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
-export type AdaptiveMenuKey = keyof AdaptiveMenuClasses;
+
+export const adaptiveMenuClasses = {
+  ...menuClasses,
+  ...generateUtilityClasses("AdaptiveMenu", ["ios"]),
+};
 
 // See docs\pages\docs\codeSplitting.md
 const MenuAndroid = lazy(async () => {
@@ -50,7 +56,12 @@ export function AdaptiveMenu(inProps: AdaptiveMenuProps) {
 
   return (
     <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>
-      {content}
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveMenu"
+        targetComponentName="MuiMenu"
+      >
+        {content}
+      </ReplaceComponentInTheme>
     </AdaptiveModeContext.Provider>
   );
 }

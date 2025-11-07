@@ -33,7 +33,7 @@ export function SelectItemNative(props: SelectItemProps<"option">) {
 
   const composedClasses = composeClasses(
     { root: ["root"] },
-    (s) => generateUtilityClass("MuiMenuItem", s),
+    (s) => generateUtilityClass("AdaptiveSelectItem", s),
     classes,
   );
 

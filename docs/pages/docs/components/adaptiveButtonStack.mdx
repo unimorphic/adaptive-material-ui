@@ -7,13 +7,13 @@ import Links from "@/shared/links";
 - Stretches it's children (probably buttons) on the extra-small breakpoint (customizable using the `stretchBreakpoint` prop)
 
 ```tsx
-import Button from "@mui/material/Button";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 
 export default function () {
   return (
     <AdaptiveButtonStack>
-      <Button variant="contained">Submit</Button>
+      <AdaptiveButton variant="contained">Submit</AdaptiveButton>
     </AdaptiveButtonStack>
   );
 }
@@ -28,8 +28,8 @@ When children are stretched by the `stretchBreakpoint` prop, they behave differe
 
 ```tsx
 import DemoSelector from "@/shared/demoSelector";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 import { useState } from "react";
 
@@ -52,9 +52,9 @@ export default function () {
           .slice(0, parseInt(numberOfButtons))
           .reverse()
           .map((b) => (
-            <Button key={b} variant="contained">
+            <AdaptiveButton key={b} variant="contained">
               {b}
-            </Button>
+            </AdaptiveButton>
           ))}
       </AdaptiveButtonStack>
     </Stack>
@@ -64,21 +64,26 @@ export default function () {
 
 ## Split Alignment
 
-`AdaptiveButtonStackSpacer` can be used to align children at both ends of the stack when stacked horizontally
+`adaptiveButtonStackClasses.alignLeft` can be used to align children at both ends of the stack when stacked horizontally
 
 ```tsx
-import Button from "@mui/material/Button";
-import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
-import { AdaptiveButtonStackSpacer } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStackSpacer";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import {
+  AdaptiveButtonStack,
+  adaptiveButtonStackClasses,
+} from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 
 export default function () {
   return (
     <AdaptiveButtonStack>
-      <Button color="error" variant="contained">
+      <AdaptiveButton
+        className={adaptiveButtonStackClasses.alignLeft}
+        color="error"
+        variant="contained"
+      >
         Delete
-      </Button>
-      <AdaptiveButtonStackSpacer />
-      <Button variant="contained">Submit</Button>
+      </AdaptiveButton>
+      <AdaptiveButton variant="contained">Submit</AdaptiveButton>
     </AdaptiveButtonStack>
   );
 }

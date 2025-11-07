@@ -1,24 +1,29 @@
-import Stack, { StackProps } from "@mui/material/Stack";
+import Stack, {
+  stackClasses,
+  StackClasses,
+  StackProps,
+} from "@mui/material/Stack";
 import {
   Breakpoint,
   CSSProperties,
   styled,
   StyledComponentProps,
+  Theme,
   useThemeProps,
 } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { clsx } from "clsx";
 import {
   inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
 } from "../shared/inclusiveToExclusiveBreakpoint";
-import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
-import { AdaptiveButtonStackSpacerContext } from "./adaptiveButtonStackSpacer";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 
 export interface AdaptiveButtonStackProps
   extends Omit<StackProps, "classes" | "direction" | "useFlexGap">,
-    StyledComponentProps<AdaptiveButtonStackKey> {
+    StyledComponentProps<keyof AdaptiveButtonStackClasses> {
   /**
    * Breakpoint or screen width in px and below at which the children will be stretched.
    * This behavior can be disabled by setting it to false
@@ -27,37 +32,56 @@ export interface AdaptiveButtonStackProps
   stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
 }
 
-export interface AdaptiveButtonStackClasses {
-  /** Styles applied to the root element */
-  root: string;
-}
+export interface AdaptiveButtonStackClasses extends StackClasses {}
 
-export type AdaptiveButtonStackKey = keyof AdaptiveButtonStackClasses;
-
-export const adaptiveButtonStackStyles: CSSProperties = {
-  alignItems: "stretch",
-  flexDirection: "column-reverse",
-
-  // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
-  "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-    {
-      alignItems: "center",
-      flexDirection: "row",
-
-      "& > *": {
-        minWidth: "50%",
-      },
-    },
-  "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
-    {
-      alignItems: "center",
-      flexDirection: "row",
-
-      "& > *": {
-        flex: 1,
-      },
-    },
+export const adaptiveButtonStackClasses = {
+  ...stackClasses,
+  ...generateUtilityClasses("AdaptiveButtonStack", ["alignLeft"]),
 };
+
+export function createAdaptiveButtonStackStyles(
+  theme: Theme,
+  stretchBreakpointExclusive: Breakpoint | number,
+  alignLeftClass: string,
+  additionalStyles?: CSSProperties,
+): CSSProperties {
+  return {
+    [theme.breakpoints.down(stretchBreakpointExclusive)]: {
+      // The & wrapper is required for emotion-disable comments to work
+      "&": {
+        alignItems: "stretch",
+        flexDirection: "column-reverse",
+
+        // Emotion has issues with nth-child in SSR https://github.com/emotion-js/emotion/issues/1105
+        "&:has(> :last-child:nth-child(1 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+          {
+            alignItems: "center",
+            flexDirection: "row",
+
+            "& > *": {
+              minWidth: "50%",
+            },
+          },
+        "&:has(> :last-child:nth-child(2 of :not(style))) /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */":
+          {
+            alignItems: "center",
+            flexDirection: "row",
+
+            "& > *": {
+              flex: 1,
+            },
+          },
+        ...additionalStyles,
+      },
+    },
+
+    [theme.breakpoints.up(stretchBreakpointExclusive)]: {
+      [`& .${alignLeftClass}`]: {
+        marginRight: "auto",
+      },
+    },
+  };
+}
 
 const StyledStack = styled(Stack, {
   name: "AdaptiveButtonStack",
@@ -69,11 +93,19 @@ const StyledStack = styled(Stack, {
   >;
 }>(({ theme, ownerState }) => ({
   flexDirection: "row",
+  ...createAdaptiveButtonStackStyles(
+    theme,
+    ownerState.stretchBreakpointExclusive,
+    adaptiveButtonStackClasses.alignLeft,
+  ),
 
-  [theme.breakpoints.down(ownerState.stretchBreakpointExclusive)]: {
-    // The & wrapper is required for emotion-disable comments to work
-    "&": adaptiveButtonStackStyles,
-  },
+  ...(ownerState.divider && {
+    [`& .${adaptiveButtonStackClasses.alignLeft} + *`]: {
+      [theme.breakpoints.up(ownerState.stretchBreakpointExclusive)]: {
+        display: "none",
+      },
+    },
+  }),
 }));
 
 export function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
@@ -82,7 +114,6 @@ export function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
     name: "AdaptiveButtonStack",
   });
   const {
-    classes,
     className,
     justifyContent = "flex-end",
     spacing = 2,
@@ -93,30 +124,26 @@ export function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
   const composedClasses = composeClasses(
     { root: ["root"] },
     (s) => generateUtilityClass("AdaptiveButtonStack", s),
-    classes,
+    props.classes,
   );
 
-  const stretchBreakpointExclusive =
-    inclusiveToExclusiveBreakpoint(stretchBreakpoint);
-
   return (
-    // Only use AdaptiveButtonStack styles
-    <RemoveComponentFromTheme componentName="MuiStack">
-      <AdaptiveButtonStackSpacerContext.Provider
-        value={stretchBreakpointExclusive}
-      >
-        <StyledStack
-          className={clsx(composedClasses.root, className)}
-          justifyContent={justifyContent}
-          ownerState={{
-            ...props,
-            stretchBreakpointExclusive: stretchBreakpointExclusive,
-          }}
-          spacing={spacing}
-          useFlexGap
-          {...otherProps}
-        />
-      </AdaptiveButtonStackSpacerContext.Provider>
-    </RemoveComponentFromTheme>
+    <ReplaceComponentInTheme
+      sourceComponentName="AdaptiveButtonStack"
+      targetComponentName="MuiStack"
+    >
+      <StyledStack
+        className={clsx(composedClasses.root, className)}
+        justifyContent={justifyContent}
+        ownerState={{
+          ...props,
+          stretchBreakpointExclusive:
+            inclusiveToExclusiveBreakpoint(stretchBreakpoint),
+        }}
+        spacing={spacing}
+        useFlexGap
+        {...otherProps}
+      />
+    </ReplaceComponentInTheme>
   );
 }

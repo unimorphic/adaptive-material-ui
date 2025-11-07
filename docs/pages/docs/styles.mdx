@@ -2,29 +2,59 @@
 
 ## Component Styles
 
-Components with device specific styles can be customized using the related classes prop or theme style override as shown below.
-Other styles can be customized using the standard Material UI methods, for example:
-[Themed Components](https://mui.com/material-ui/customization/theme-components/),
-[Switch Customization](https://mui.com/material-ui/react-switch/#customization)
+Component styles can be customized using the standard Material UI methods but targeting the Adaptive components
 
-### iOS Custom Class
+### Single Component
+
+The following is a example of styling a single `AdaptiveSwitch` component, there are examples in the
+MUI documentation for many components, like [Switch Customization](https://mui.com/material-ui/react-switch/#customization)
 
 ```tsx
 import { styled } from "@mui/material/styles";
-import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import {
+  AdaptiveSwitch,
+  adaptiveSwitchClasses,
+} from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
-  "&.ios": {
-    [`& .${switchClasses.track}`]: {
-      backgroundColor: "rebeccapurple",
+  [`& .${adaptiveSwitchClasses.switchBase}.${adaptiveSwitchClasses.checked} .${adaptiveSwitchClasses.thumb}`]:
+    {
+      backgroundColor: "purple",
     },
+});
 
-    [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-      color: "purple",
+export default function () {
+  return <AdaptiveSwitchStyled defaultChecked />;
+}
+```
 
-      [`& + .${switchClasses.track}`]: {
-        backgroundColor: "purple",
+### Theme
+
+The following is a example of styling all `AdaptiveSwitch` components using a theme, see
+[Themed Components](https://mui.com/material-ui/customization/theme-components/) for more info
+
+```tsx
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  AdaptiveSwitch,
+  adaptiveSwitchClasses,
+} from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import type {} from "adaptive-material-ui/themes/themeAugmentation";
+
+const theme = createTheme({
+  colorSchemes: { dark: true },
+  components: {
+    AdaptiveSwitch: {
+      styleOverrides: {
+        root: {
+          [`& .${adaptiveSwitchClasses.switchBase}.${adaptiveSwitchClasses.checked} .${adaptiveSwitchClasses.thumb}`]:
+            {
+              backgroundColor: "red",
+            },
+        },
+      },
+      defaultProps: {
+        defaultChecked: true,
       },
     },
   },
@@ -32,21 +62,96 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
 
 export default function () {
   return (
+    <ThemeProvider theme={theme}>
+      <AdaptiveSwitch />
+    </ThemeProvider>
+  );
+}
+```
+
+## Device Specific Styles
+
+Components with device specific styles can be customized using the related classes prop, the class name,
+or a theme style override as shown below.
+
+### Classes Prop
+
+```tsx
+import { styled } from "@mui/material/styles";
+import {
+  AdaptiveSwitch,
+  adaptiveSwitchClasses,
+} from "adaptive-material-ui/components/switch/adaptiveSwitch";
+
+const iosClassName = "ios_class";
+
+const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
+  [`&.${iosClassName}`]: {
+    [`& .${adaptiveSwitchClasses.track}`]: {
+      backgroundColor: "rebeccapurple",
+    },
+
+    [`& .${adaptiveSwitchClasses.switchBase}.${adaptiveSwitchClasses.checked}`]:
+      {
+        color: "purple",
+
+        [`& + .${adaptiveSwitchClasses.track}`]: {
+          backgroundColor: "purple",
+        },
+      },
+  },
+});
+
+export default function () {
+  return (
     <AdaptiveSwitchStyled
       adaptiveMode="ios"
-      classes={{ ios: "ios" }}
+      classes={{ ios: iosClassName }}
       defaultChecked
     />
   );
 }
 ```
 
-### iOS Custom Theme
+### Class Name
+
+```tsx
+import { styled } from "@mui/material/styles";
+import {
+  AdaptiveSwitch,
+  adaptiveSwitchClasses,
+} from "adaptive-material-ui/components/switch/adaptiveSwitch";
+
+const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
+  [`&.${adaptiveSwitchClasses.ios}`]: {
+    [`& .${adaptiveSwitchClasses.track}`]: {
+      backgroundColor: "yellow",
+    },
+
+    [`& .${adaptiveSwitchClasses.switchBase}.${adaptiveSwitchClasses.checked}`]:
+      {
+        color: "orange",
+
+        [`& + .${adaptiveSwitchClasses.track}`]: {
+          backgroundColor: "orange",
+        },
+      },
+  },
+});
+
+export default function () {
+  return <AdaptiveSwitchStyled adaptiveMode="ios" defaultChecked />;
+}
+```
+
+### Theme
 
 ```tsx
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { switchClasses } from "@mui/material/Switch";
-import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import {
+  AdaptiveSwitch,
+  adaptiveSwitchClasses,
+} from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import type {} from "adaptive-material-ui/themes/themeAugmentation";
 
 const theme = createTheme({
@@ -55,17 +160,18 @@ const theme = createTheme({
     AdaptiveSwitch: {
       styleOverrides: {
         ios: {
-          [`& .${switchClasses.track}`]: {
+          [`& .${adaptiveSwitchClasses.track}`]: {
             backgroundColor: "pink",
           },
 
-          [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-            color: "red",
+          [`& .${adaptiveSwitchClasses.switchBase}.${adaptiveSwitchClasses.checked}`]:
+            {
+              color: "red",
 
-            [`& + .${switchClasses.track}`]: {
-              backgroundColor: "red",
+              [`& + .${adaptiveSwitchClasses.track}`]: {
+                backgroundColor: "red",
+              },
             },
-          },
         },
       },
     },

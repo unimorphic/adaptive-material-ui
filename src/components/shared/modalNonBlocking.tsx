@@ -7,6 +7,9 @@ import Portal from "@mui/material/Portal";
 import { styled } from "@mui/material/styles";
 import { TransitionProps } from "@mui/material/transitions";
 import FocusTrap from "@mui/material/Unstable_TrapFocus";
+import composeClasses from "@mui/utils/composeClasses";
+import generateUtilityClass from "@mui/utils/generateUtilityClass";
+import { clsx } from "clsx";
 import { cloneElement, useState } from "react";
 
 type AnchorElType =
@@ -136,13 +139,23 @@ export function ModalNonBlocking(inProps: ModalNonBlockingProps) {
     newChildProps.onExited = onExited;
   }
 
+  const composedClasses = composeClasses(
+    { root: ["root", !open && exited && "hidden"] },
+    (s) => generateUtilityClass("ModalNonBlocking", s),
+    classesProp,
+  );
+
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
 
   return (
     <Portal container={props.container} disablePortal={props.disablePortal}>
-      <RootContainer onKeyDown={onKeyDownRoot} {...otherProps}>
+      <RootContainer
+        className={clsx(className, composedClasses.root)}
+        onKeyDown={onKeyDownRoot}
+        {...otherProps}
+      >
         <FocusTrap
           disableEnforceFocus={true}
           disableAutoFocus={disableAutoFocus}

@@ -1,11 +1,11 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectProps } from "@mui/material/Select";
 import { ModalNonBlocking } from "../shared/modalNonBlocking";
-import { DefaultAdditionalProps, SelectItemProps } from "./selectItemProps";
+import { SelectItemProps } from "./selectItemProps";
 
 export function SelectItemDesktop<
   RootComponent extends React.ElementType = "li",
-  AdditionalProps = DefaultAdditionalProps,
+  AdditionalProps = {},
 >(props: SelectItemProps<RootComponent, AdditionalProps>) {
   return <MenuItem {...props} />;
 }

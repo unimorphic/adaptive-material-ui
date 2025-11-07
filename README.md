@@ -17,6 +17,9 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
+- Font
+- Create lint rule to enforce component use
+
 - Date picker
 - Checkbox
 - Radio
@@ -24,9 +27,7 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 - Progress bar & circle
 - FAB
 - Snackbar
-- Font
 
-- Create lint rule to enforce component use
 - Convert RunAll.ps1 to pnpm script
 - Finish Contributing.md
 - Cross browser test

@@ -1,4 +1,9 @@
-import { SelectClassKey, SelectProps } from "@mui/material/Select";
+import { menuItemClasses, MenuItemClasses } from "@mui/material/MenuItem";
+import {
+  selectClasses,
+  SelectClasses,
+  SelectProps,
+} from "@mui/material/Select";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import {
@@ -6,29 +11,26 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
-import { DefaultAdditionalProps, SelectItemProps } from "./selectItemProps";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+import { SelectItemProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
-  StyledComponentProps<SelectClassKey | AdaptiveSelectKey> &
+  StyledComponentProps<keyof AdaptiveSelectClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveSelectClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
-export type AdaptiveSelectKey = keyof AdaptiveSelectClasses;
+export interface AdaptiveSelectClasses extends SelectClasses {}
+
+export const adaptiveSelectClasses = selectClasses;
 
 export type AdaptiveSelectItemProps<
   RootComponent extends React.ElementType = "li",
-  AdditionalProps = DefaultAdditionalProps,
-> = SelectItemProps<RootComponent, AdditionalProps> & {
-  classes?: Partial<AdaptiveSelectItemClasses>;
-};
-export interface AdaptiveSelectItemClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
-export type AdaptiveSelectItemKey = keyof AdaptiveSelectItemClasses;
+  AdditionalProps = {},
+> = SelectItemProps<RootComponent, AdditionalProps> &
+  StyledComponentProps<keyof AdaptiveSelectItemClasses>;
+
+export interface AdaptiveSelectItemClasses extends MenuItemClasses {}
+
+export const adaptiveSelectItemClasses = menuItemClasses;
 
 // See docs\pages\docs\codeSplitting.md
 const SelectAndroid = lazy(async () => {
@@ -59,19 +61,36 @@ const SelectItemIOS = lazy(async () => {
 
 export function AdaptiveSelectItem<
   RootComponent extends React.ElementType = "li",
-  AdditionalProps = DefaultAdditionalProps,
+  AdditionalProps = {},
 >(inProps: AdaptiveSelectItemProps<RootComponent, AdditionalProps>) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelectItem" });
   const modeContext = useContext(AdaptiveModeContext);
 
+  let content: ReactNode;
   switch (modeContext.mode) {
     case "android":
-      return <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />;
+      content = (
+        <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />
+      );
+      break;
     case "ios":
-      return <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
+      content = <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
+      break;
     default:
-      return <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />;
+      content = (
+        <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />
+      );
+      break;
   }
+
+  return (
+    <ReplaceComponentInTheme
+      sourceComponentName="AdaptiveSelectItem"
+      targetComponentName="MuiMenuItem"
+    >
+      {content}
+    </ReplaceComponentInTheme>
+  );
 }
 
 export function AdaptiveSelect<Value = unknown>(
@@ -95,7 +114,12 @@ export function AdaptiveSelect<Value = unknown>(
 
   return (
     <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>
-      {content}
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveSelect"
+        targetComponentName="MuiSelect"
+      >
+        {content}
+      </ReplaceComponentInTheme>
     </AdaptiveModeContext.Provider>
   );
 }

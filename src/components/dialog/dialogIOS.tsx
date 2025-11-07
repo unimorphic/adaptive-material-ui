@@ -8,7 +8,6 @@ import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import { iosLiquidGlass } from "../shared/iosLiquidGlass";
-import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
 import { DialogResponsive, DialogResponsiveProps } from "./dialogResponsive";
 
 /**
@@ -57,22 +56,19 @@ const StyledDialogResponsive = styled(DialogResponsive, {
 });
 
 export function DialogIOS(props: DialogResponsiveProps) {
-  const { className, classes, ...otherProps } = props;
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },
     (s) => generateUtilityClass("AdaptiveDialog", s),
-    classes,
+    props.classes,
   );
 
   return (
-    // Only use AdaptiveDialog styles
-    <RemoveComponentFromTheme componentName="MuiDialog">
-      <StyledDialogResponsive
-        className={clsx(composedClasses.ios, className)}
-        ownerState={props}
-        {...otherProps}
-      />
-    </RemoveComponentFromTheme>
+    <StyledDialogResponsive
+      className={clsx(composedClasses.ios, className)}
+      ownerState={props}
+      {...otherProps}
+    />
   );
 }

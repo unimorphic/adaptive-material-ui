@@ -4,7 +4,6 @@ import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import { iosLiquidGlass } from "../shared/iosLiquidGlass";
-import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Sliders
@@ -71,22 +70,19 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 });
 
 export function SliderIOS(props: SliderProps) {
-  const { className, classes, ...otherProps } = props;
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },
     (s) => generateUtilityClass("AdaptiveSlider", s),
-    classes,
+    props.classes,
   );
 
   return (
-    // Only use AdaptiveSlider styles
-    <RemoveComponentFromTheme componentName="MuiSlider">
-      <StyledSlider
-        className={clsx(composedClasses.ios, className)}
-        ownerState={props}
-        {...otherProps}
-      />
-    </RemoveComponentFromTheme>
+    <StyledSlider
+      className={clsx(composedClasses.ios, className)}
+      ownerState={props}
+      {...otherProps}
+    />
   );
 }

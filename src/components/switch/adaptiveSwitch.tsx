@@ -1,22 +1,31 @@
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { SwitchClassKey, SwitchProps } from "@mui/material/Switch";
-import { lazy } from "react";
+import {
+  switchClasses,
+  SwitchClasses,
+  SwitchProps,
+} from "@mui/material/Switch";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 
 export interface AdaptiveSwitchProps
   extends Omit<SwitchProps, "classes">,
-    StyledComponentProps<SwitchClassKey | AdaptiveSwitchKey>,
+    StyledComponentProps<keyof AdaptiveSwitchClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveSwitchClasses {
+export interface AdaptiveSwitchClasses extends SwitchClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
 
-export type AdaptiveSwitchKey = keyof AdaptiveSwitchClasses;
+export const adaptiveSwitchClasses = {
+  ...switchClasses,
+  ...generateUtilityClasses("AdaptiveSwitch", ["ios"]),
+};
 
 // See docs\pages\docs\codeSplitting.md
 const SwitchAndroid = lazy(async () => {
@@ -36,12 +45,25 @@ export function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
+  let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      return <SwitchAndroid {...otherProps} />;
+      content = <SwitchAndroid {...otherProps} />;
+      break;
     case "ios":
-      return <SwitchIOS {...otherProps} />;
+      content = <SwitchIOS {...otherProps} />;
+      break;
     default:
-      return <SwitchDesktop {...otherProps} />;
+      content = <SwitchDesktop {...otherProps} />;
+      break;
   }
+
+  return (
+    <ReplaceComponentInTheme
+      sourceComponentName="AdaptiveSwitch"
+      targetComponentName="MuiSwitch"
+    >
+      {content}
+    </ReplaceComponentInTheme>
+  );
 }

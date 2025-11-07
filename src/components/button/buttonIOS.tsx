@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { RemoveComponentFromTheme } from "../shared/removeComponentFromTheme";
 import { ButtonRound, ButtonRoundProps } from "./buttonRound";
 
 /**
@@ -27,23 +26,20 @@ export function ButtonIOS<
   RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
 >(props: ButtonRoundProps<RootComponent, AdditionalProps>) {
-  const { className, classes, ...otherProps } = props;
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },
     (s) => generateUtilityClass("AdaptiveButton", s),
-    classes,
+    props.classes,
   );
 
   return (
-    // Only use AdaptiveButton styles
-    <RemoveComponentFromTheme componentName="MuiButton">
-      <StyledButton
-        className={clsx(composedClasses.ios, className)}
-        disableTouchRipple
-        ownerState={props}
-        {...(otherProps as ButtonRoundProps<RootComponent, AdditionalProps>)}
-      />
-    </RemoveComponentFromTheme>
+    <StyledButton
+      className={clsx(composedClasses.ios, className)}
+      disableTouchRipple
+      ownerState={props}
+      {...(otherProps as ButtonRoundProps<RootComponent, AdditionalProps>)}
+    />
   );
 }

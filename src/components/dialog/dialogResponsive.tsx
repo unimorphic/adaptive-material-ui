@@ -1,9 +1,9 @@
-import Dialog, { DialogProps } from "@mui/material/Dialog";
+import Dialog, { dialogClasses, DialogProps } from "@mui/material/Dialog";
 import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { adaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
-import { AdaptiveButtonStackSpacerContext } from "../buttonStack/adaptiveButtonStackSpacer";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 import {
   inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
@@ -31,6 +31,11 @@ export interface DialogResponsiveProps extends DialogProps {
   variant?: "short" | "tall";
 }
 
+export const dialogResponsiveClasses = {
+  ...dialogClasses,
+  ...generateUtilityClasses("DialogResponsive", ["alignActionLeft"]),
+};
+
 interface OwnerState
   extends Omit<DialogResponsiveProps, "stretchActionsBreakpoint"> {
   stretchActionsBreakpointExclusive: Breakpoint | number;
@@ -39,17 +44,20 @@ interface OwnerState
 const StyledDialog = styled(Dialog)<{
   ownerState: OwnerState;
 }>(({ theme, ownerState }) => ({
-  [theme.breakpoints.down(ownerState.stretchActionsBreakpointExclusive)]: {
-    [`& .${dialogActionsClasses.root}`]: {
-      ...adaptiveButtonStackStyles,
-
-      [`&.${dialogActionsClasses.spacing}`]: {
-        gap: theme.spacing(1),
+  [`& .${dialogActionsClasses.root}`]: {
+    ...createAdaptiveButtonStackStyles(
+      theme,
+      ownerState.stretchActionsBreakpointExclusive,
+      dialogResponsiveClasses.alignActionLeft,
+      {
+        [`&.${dialogActionsClasses.spacing}`]: {
+          gap: theme.spacing(1),
+        },
+        "& > *": {
+          margin: 0,
+        },
       },
-      "& > *": {
-        margin: 0,
-      },
-    },
+    ),
   },
 }));
 
@@ -67,22 +75,16 @@ export function DialogResponsive(props: DialogResponsiveProps) {
     ),
   );
 
-  const stretchBreakpointExclusive = inclusiveToExclusiveBreakpoint(
-    stretchActionsBreakpoint,
-  );
-
   return (
-    <AdaptiveButtonStackSpacerContext.Provider
-      value={stretchBreakpointExclusive}
-    >
-      <StyledDialog
-        fullScreen={variant === "tall" ? isFullScreenBreakpoint : undefined}
-        ownerState={{
-          ...props,
-          stretchActionsBreakpointExclusive: stretchBreakpointExclusive,
-        }}
-        {...otherProps}
-      />
-    </AdaptiveButtonStackSpacerContext.Provider>
+    <StyledDialog
+      fullScreen={variant === "tall" ? isFullScreenBreakpoint : undefined}
+      ownerState={{
+        ...props,
+        stretchActionsBreakpointExclusive: inclusiveToExclusiveBreakpoint(
+          stretchActionsBreakpoint,
+        ),
+      }}
+      {...otherProps}
+    />
   );
 }

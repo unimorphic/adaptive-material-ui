@@ -1,22 +1,31 @@
-import { SliderClassKey, SliderProps } from "@mui/material/Slider";
+import {
+  sliderClasses,
+  SliderClasses,
+  SliderProps,
+} from "@mui/material/Slider";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { lazy } from "react";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 
 export interface AdaptiveSliderProps
   extends Omit<SliderProps, "classes">,
-    StyledComponentProps<SliderClassKey | AdaptiveSliderKey>,
+    StyledComponentProps<keyof AdaptiveSliderClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveSliderClasses {
+export interface AdaptiveSliderClasses extends SliderClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
 
-export type AdaptiveSliderKey = keyof AdaptiveSliderClasses;
+export const adaptiveSliderClasses = {
+  ...sliderClasses,
+  ...generateUtilityClasses("AdaptiveSlider", ["ios"]),
+};
 
 // See docs\pages\docs\codeSplitting.md
 const SliderAndroid = lazy(async () => {
@@ -36,12 +45,25 @@ export function AdaptiveSlider(inProps: AdaptiveSliderProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSlider" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
+  let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      return <SliderAndroid {...otherProps} />;
+      content = <SliderAndroid {...otherProps} />;
+      break;
     case "ios":
-      return <SliderIOS {...otherProps} />;
+      content = <SliderIOS {...otherProps} />;
+      break;
     default:
-      return <SliderDesktop {...otherProps} />;
+      content = <SliderDesktop {...otherProps} />;
+      break;
   }
+
+  return (
+    <ReplaceComponentInTheme
+      sourceComponentName="AdaptiveSlider"
+      targetComponentName="MuiSlider"
+    >
+      {content}
+    </ReplaceComponentInTheme>
+  );
 }

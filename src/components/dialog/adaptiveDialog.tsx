@@ -1,30 +1,49 @@
-import { DialogClassKey } from "@mui/material/Dialog";
-import DialogActions, { DialogActionsProps } from "@mui/material/DialogActions";
+import { DialogClasses } from "@mui/material/Dialog";
+import DialogActions, {
+  dialogActionsClasses,
+  DialogActionsClasses,
+  DialogActionsProps,
+} from "@mui/material/DialogActions";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { createContext, lazy } from "react";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { createContext, lazy, ReactNode } from "react";
 import {
+  AdaptiveModeContext,
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
 import { AdaptiveButtonProps } from "../button/adaptiveButton";
-import { DialogResponsiveProps } from "./dialogResponsive";
+import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+import {
+  dialogResponsiveClasses,
+  DialogResponsiveProps,
+} from "./dialogResponsive";
 
 export interface AdaptiveDialogProps
   extends Omit<DialogResponsiveProps, "classes">,
-    StyledComponentProps<DialogClassKey | AdaptiveDialogKey>,
+    StyledComponentProps<keyof AdaptiveDialogClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveDialogActionsProps extends DialogActionsProps {
-  /** Props passed to child AdaptiveButton components */
-  buttonDefaultProps?: AdaptiveButtonProps;
-}
-
-export interface AdaptiveDialogClasses {
+export interface AdaptiveDialogClasses extends DialogClasses {
   /** Styles applied to the iOS mode */
   ios: string;
 }
 
-export type AdaptiveDialogKey = keyof AdaptiveDialogClasses;
+export const adaptiveDialogClasses = {
+  ...dialogResponsiveClasses,
+  ...generateUtilityClasses("AdaptiveDialog", ["ios"]),
+};
+
+export interface AdaptiveDialogActionsProps
+  extends Omit<DialogActionsProps, "classes">,
+    StyledComponentProps<keyof AdaptiveDialogActionsClasses> {
+  /** Props passed to child AdaptiveButton components */
+  buttonDefaultProps?: AdaptiveButtonProps;
+}
+
+export interface AdaptiveDialogActionsClasses extends DialogActionsClasses {}
+
+export const adaptiveDialogActionsClasses = dialogActionsClasses;
 
 /** Context used to pass buttonDefaultProps */
 export const AdaptiveDialogActionsContext = createContext<
@@ -54,7 +73,12 @@ export function AdaptiveDialogActions(inProps: AdaptiveDialogActionsProps) {
 
   return (
     <AdaptiveDialogActionsContext value={buttonDefaultProps}>
-      <DialogActions {...otherProps} />
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveDialogActions"
+        targetComponentName="MuiDialogActions"
+      >
+        <DialogActions {...otherProps} />
+      </ReplaceComponentInTheme>
     </AdaptiveDialogActionsContext>
   );
 }
@@ -63,12 +87,27 @@ export function AdaptiveDialog(inProps: AdaptiveDialogProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveDialog" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
+  let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      return <DialogAndroid {...otherProps} />;
+      content = <DialogAndroid {...otherProps} />;
+      break;
     case "ios":
-      return <DialogIOS {...otherProps} />;
+      content = <DialogIOS {...otherProps} />;
+      break;
     default:
-      return <DialogDesktop {...otherProps} />;
+      content = <DialogDesktop {...otherProps} />;
+      break;
   }
+
+  return (
+    <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveDialog"
+        targetComponentName="MuiDialog"
+      >
+        {content}
+      </ReplaceComponentInTheme>
+    </AdaptiveModeContext.Provider>
+  );
 }

@@ -1,10 +1,10 @@
 import { SelectProps } from "@mui/material/Select";
-import { DefaultAdditionalProps, SelectItemProps } from "./selectItemProps";
+import { SelectItemProps } from "./selectItemProps";
 import { SelectItemNative, SelectNative } from "./selectNative";
 
 export function SelectItemAndroid<
   RootComponent extends React.ElementType = "li",
-  AdditionalProps = DefaultAdditionalProps,
+  AdditionalProps = {},
 >(props: SelectItemProps<RootComponent, AdditionalProps>) {
   return <SelectItemNative {...props} />;
 }

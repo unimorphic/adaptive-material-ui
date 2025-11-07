@@ -14,12 +14,12 @@ import CloudIcon from "@mui/icons-material/Cloud";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ContentCutIcon from "@mui/icons-material/ContentCut";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import { AdaptiveMenu } from "adaptive-material-ui/components/menu/adaptiveMenu";
 import { useState } from "react";
 
@@ -29,9 +29,11 @@ export default function () {
 
   return (
     <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
-      <Button onClick={(e) => setAnchorEl((v) => (v ? null : e.currentTarget))}>
+      <AdaptiveButton
+        onClick={(e) => setAnchorEl((v) => (v ? null : e.currentTarget))}
+      >
         Open
-      </Button>
+      </AdaptiveButton>
 
       <AdaptiveMenu
         adaptiveMode={adaptiveMode}
