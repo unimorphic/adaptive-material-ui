@@ -12,6 +12,7 @@ import {
   AdaptiveButtonStackProps,
 } from "../components/buttonStack/adaptiveButtonStack";
 import {
+  AdaptiveDialogActionsProps,
   AdaptiveDialogKey,
   AdaptiveDialogProps,
 } from "../components/dialog/adaptiveDialog";
@@ -49,6 +50,9 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
   };
+  AdaptiveDialogActions?: {
+    defaultProps?: ComponentsProps["AdaptiveDialogActions"];
+  };
   AdaptiveMenu?: {
     defaultProps?: ComponentsProps["AdaptiveMenu"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveMenu"];
@@ -75,6 +79,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveButton: AdaptiveButtonProps;
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveDialog: AdaptiveDialogProps;
+  AdaptiveDialogActions: AdaptiveDialogActionsProps;
   AdaptiveMenu: AdaptiveMenuProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;

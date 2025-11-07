@@ -1,10 +1,11 @@
 import { ButtonClassKey } from "@mui/material/Button";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { lazy } from "react";
+import { lazy, useContext } from "react";
 import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
 import { ButtonRoundProps } from "./buttonRound";
 
 export interface AdaptiveButtonProps
@@ -34,7 +35,12 @@ const ButtonIOS = lazy(async () => {
 });
 
 export function AdaptiveButton(inProps: AdaptiveButtonProps) {
-  const props = useThemeProps({ props: inProps, name: "AdaptiveButton" });
+  const defaultProps = useContext(AdaptiveDialogActionsContext);
+
+  const props = useThemeProps({
+    props: { ...defaultProps, ...inProps },
+    name: "AdaptiveButton",
+  });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
   switch (adaptiveMode) {
