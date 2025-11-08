@@ -17,7 +17,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- Convert RunAll.ps1 to pnpm script
 - Textfield
 - Date picker
 - Checkbox

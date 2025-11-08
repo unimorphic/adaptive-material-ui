@@ -46,6 +46,7 @@
     "lint": "eslint .",
     "publish": "npm run build && node scripts/cleanAndCopyPackageJson.cjs && cd dist && npm pack",
     "start": "rslib build --watch",
+    "start-docs": "concurrently --kill-others \"npm run start\" \"cd docs && npm run start\"",
     "test": "vitest",
     "test-ct": "playwright test -c playwright-ct.config.ts",
     "test-ct-debug": "playwright test --ui -c playwright-ct.config.ts"
@@ -61,6 +62,7 @@
     "@types/node": "24.9.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "concurrently": "9.2.1",
     "eslint": "9.38.0",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
