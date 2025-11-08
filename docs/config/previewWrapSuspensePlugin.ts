@@ -1,4 +1,4 @@
-import { RspressPlugin } from "@rspress/core";
+import type { RspressPlugin } from "@rspress/shared";
 import * as path from "node:path";
 import RemarkTreeNode from "./remarkTreeNode";
 

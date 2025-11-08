@@ -28,12 +28,13 @@ div.rspress-nav {
   background: rgb(from var(--rp-c-bg) r g b / 0.7);
   border-bottom: 1px solid var(--rp-c-divider);
 
-  .rp-flex:has(> div > .rspress-nav-appearance) {
+  .flex-center:has(> div > .rspress-nav-appearance) {
     display: none;
   }
-  .rspress-logo {
-    height: 2.5rem;
-  }
+}
+
+.rspress-logo {
+  height: 2.5rem;
 }
 
 .rspress-sidebar {
@@ -43,7 +44,7 @@ div.rspress-nav {
   .dark & {
     --rp-c-bg: #161618;
   }
-  .rp-font-medium span {
+  .font-medium span {
     font-size: 0.88rem;
   }
 }
@@ -55,7 +56,7 @@ div.rspress-nav {
 div.overview-index {
   padding: var(--rp-content-padding-y) var(--rp-content-padding-x);
 
-  .rp-items-start {
+  .items-start {
     align-items: flex-start;
     flex-direction: column;
     gap: 30px;
@@ -101,13 +102,4 @@ div.rspress-preview {
       display: block;
     }
   }
-  .shiki {
-    font-size: 0.875rem;
-    overflow: auto;
-    padding: 1.25rem 0;
-  }
-}
-
-.rp-link {
-  white-space: nowrap;
 }

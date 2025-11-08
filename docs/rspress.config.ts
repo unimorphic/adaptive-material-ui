@@ -1,6 +1,6 @@
-import { defineConfig } from "@rspress/core";
 import { pluginPreview } from "@rspress/plugin-preview";
 import * as path from "node:path";
+import { defineConfig } from "rspress/config";
 import placeholderPlugin from "./config/placeholderPlugin";
 import previewWrapSuspensePlugin from "./config/previewWrapSuspensePlugin";
 
@@ -12,11 +12,6 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": "./",
-      },
-    },
-    tools: {
-      rspack: {
-        experiments: { lazyBarrel: false }, // https://github.com/web-infra-dev/rspack/issues/11531
       },
     },
   },
