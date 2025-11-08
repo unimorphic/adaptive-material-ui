@@ -1,5 +1,29 @@
 # Config
 
+## ESLint
+
+ESLint can be configured to warn when using components that have Adaptive counterparts
+by adding the following to the `rules` section in `eslint.config.mjs`.
+This will for example warn if the `<Button>` component is used instead of `<AdaptiveButton>`.
+
+```tsx pure
+import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+
+rules: {
+  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
+}
+```
+
+Specific components can be excluded by passing a list of names into `warnNonAdaptiveComponents`.
+
+```tsx pure
+import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+
+rules: {
+  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents(["Button"])],
+}
+```
+
 ## Custom Adaptive Logic
 
 `AdaptiveThemeProvider.adaptiveModeInfo` can be set if you want to use a different user agent

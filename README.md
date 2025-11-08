@@ -17,17 +17,15 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- Create lint rule to enforce component use
-
+- Convert RunAll.ps1 to pnpm script
+- Textfield
 - Date picker
 - Checkbox
 - Radio
-- Textfield
 - Progress bar & circle
 - FAB
 - Snackbar
 
-- Convert RunAll.ps1 to pnpm script
 - Finish Contributing.md
 - Cross browser test
 - Update links in ReadMe
