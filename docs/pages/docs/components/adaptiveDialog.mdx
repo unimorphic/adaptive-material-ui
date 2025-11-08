@@ -24,10 +24,9 @@ import { useState } from "react";
 export default function () {
   const [isShortOpen, setIsShortOpen] = useState(false);
   const [isTallOpen, setIsTallOpen] = useState(false);
-  const [adaptiveMode, setAdaptiveMode] = useState("");
 
   return (
-    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
+    <AdaptiveModeDemo>
       <Stack direction="row" spacing={2}>
         <AdaptiveButton onClick={() => setIsShortOpen(true)}>
           Open Short
@@ -38,7 +37,6 @@ export default function () {
       </Stack>
 
       <AdaptiveDialog
-        adaptiveMode={adaptiveMode}
         open={isShortOpen}
         onClose={() => setIsShortOpen(false)}
         variant="short"
@@ -55,7 +53,6 @@ export default function () {
       </AdaptiveDialog>
 
       <AdaptiveDialog
-        adaptiveMode={adaptiveMode}
         open={isTallOpen}
         onClose={() => setIsTallOpen(false)}
         variant="tall"
@@ -184,6 +181,7 @@ The `buttonDefaultProps` prop on `AdaptiveDialogActions` can be used to set prop
 To apply them to only specific devices you can use the [useAdaptiveMode](/docs/useAdaptiveMode.html) hook.
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import {
   AdaptiveDialog,
@@ -196,11 +194,10 @@ export default function () {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
+    <AdaptiveModeDemo adaptiveMode="ios">
       <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
 
       <AdaptiveDialog
-        adaptiveMode="ios"
         open={open}
         onClose={() => setOpen(false)}
         variant="short"
@@ -227,7 +224,7 @@ export default function () {
           <AdaptiveButton onClick={() => setOpen(false)}>Submit</AdaptiveButton>
         </AdaptiveDialogActions>
       </AdaptiveDialog>
-    </div>
+    </AdaptiveModeDemo>
   );
 }
 ```

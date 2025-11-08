@@ -7,7 +7,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveMenuProps = MenuProps &
   StyledComponentProps<keyof AdaptiveMenuClasses> &

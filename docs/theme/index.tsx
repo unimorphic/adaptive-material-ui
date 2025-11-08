@@ -11,15 +11,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import IconButton, { iconButtonClasses } from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import {
-  createTheme,
-  styled,
-  ThemeProvider,
-  useColorScheme,
-} from "@mui/material/styles";
+import { styled, ThemeOptions, useColorScheme } from "@mui/material/styles";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { ThemeContext, useDark } from "@rspress/core/runtime";
 import { Layout as BasicLayout } from "@rspress/core/theme";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { useContext, useEffect, useState } from "react";
 import { prefixer } from "stylis";
 
@@ -43,21 +39,19 @@ const StyledStack = styled(Stack)(() => ({
 const ltrCache = createCache({
   key: "ltr",
 });
-
 const rtlCache = createCache({
   key: "rtl",
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-const ltrTheme = createTheme({
+const ltrTheme: ThemeOptions = {
   colorSchemes: { dark: true },
   direction: "ltr",
-});
-
-const rtlTheme = createTheme({
+};
+const rtlTheme: ThemeOptions = {
   colorSchemes: { dark: true },
   direction: "rtl",
-});
+};
 
 function Layout() {
   const [isRtl, setIsRtl] = useState(false);
@@ -77,7 +71,7 @@ function Layout() {
 
   return (
     <CacheProvider value={isRtl ? rtlCache : ltrCache}>
-      <ThemeProvider theme={isRtl ? rtlTheme : ltrTheme}>
+      <AdaptiveThemeProvider theme={isRtl ? rtlTheme : ltrTheme}>
         <DarkModeMonitor />
         <BasicLayout
           afterNavMenu={
@@ -108,7 +102,7 @@ function Layout() {
             </StyledStack>
           }
         />
-      </ThemeProvider>
+      </AdaptiveThemeProvider>
     </CacheProvider>
   );
 }

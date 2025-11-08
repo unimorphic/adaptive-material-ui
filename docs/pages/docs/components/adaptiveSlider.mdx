@@ -11,18 +11,11 @@ import Links from "@/shared/links";
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
 import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
-import { useState } from "react";
 
 export default function () {
-  const [adaptiveMode, setAdaptiveMode] = useState("");
-
   return (
-    <AdaptiveModeDemo
-      alignItems="stretch"
-      adaptiveMode={adaptiveMode}
-      onChange={setAdaptiveMode}
-    >
-      <AdaptiveSlider adaptiveMode={adaptiveMode} defaultValue={30} />
+    <AdaptiveModeDemo alignItems="stretch">
+      <AdaptiveSlider defaultValue={30} />
     </AdaptiveModeDemo>
   );
 }
@@ -31,46 +24,38 @@ export default function () {
 ## iOS Variants
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
 
 export default function () {
   return (
-    <DemoList>
-      <DemoListItem title="Secondary Color">
-        <AdaptiveSlider
-          adaptiveMode="ios"
-          color="secondary"
-          defaultValue={30}
-        />
-      </DemoListItem>
-      <DemoListItem title="Disabled">
-        <AdaptiveSlider adaptiveMode="ios" defaultValue={30} disabled />
-      </DemoListItem>
-      <DemoListItem title="Small">
-        <AdaptiveSlider adaptiveMode="ios" defaultValue={30} size="small" />
-      </DemoListItem>
-      <DemoListItem title="Discrete">
-        <AdaptiveSlider
-          adaptiveMode="ios"
-          defaultValue={30}
-          marks
-          shiftStep={30}
-          step={10}
-        />
-      </DemoListItem>
-      <DemoListItem title="Vertical">
-        <AdaptiveSlider
-          adaptiveMode="ios"
-          defaultValue={40}
-          marks
-          orientation="vertical"
-          shiftStep={40}
-          step={20}
-          sx={{ height: 100 }}
-        />
-      </DemoListItem>
-    </DemoList>
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Secondary Color">
+          <AdaptiveSlider color="secondary" defaultValue={30} />
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveSlider defaultValue={30} disabled />
+        </DemoListItem>
+        <DemoListItem title="Small">
+          <AdaptiveSlider defaultValue={30} size="small" />
+        </DemoListItem>
+        <DemoListItem title="Discrete">
+          <AdaptiveSlider defaultValue={30} marks shiftStep={30} step={10} />
+        </DemoListItem>
+        <DemoListItem title="Vertical">
+          <AdaptiveSlider
+            defaultValue={40}
+            marks
+            orientation="vertical"
+            shiftStep={40}
+            step={20}
+            sx={{ height: 100 }}
+          />
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
   );
 }
 ```

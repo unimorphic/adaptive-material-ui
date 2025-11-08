@@ -12,8 +12,8 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveButtonProps } from "../button/adaptiveButton";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 import {
   dialogResponsiveClasses,
   DialogResponsiveProps,

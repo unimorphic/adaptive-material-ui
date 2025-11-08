@@ -2,12 +2,12 @@
 
 ## Component Styles
 
-Component styles can be customized using the standard Material UI methods but targeting the Adaptive components
+Component styles can be customized using the standard Material UI methods but targeting the Adaptive components.
 
 ### Single Component
 
 The following is a example of styling a single `AdaptiveSwitch` component, there are examples in the
-MUI documentation for many components, like [Switch Customization](https://mui.com/material-ui/react-switch/#customization)
+MUI documentation for many components, like [Switch Customization](https://mui.com/material-ui/react-switch/#customization).
 
 ```tsx
 import { styled } from "@mui/material/styles";
@@ -31,17 +31,18 @@ export default function () {
 ### Theme
 
 The following is a example of styling all `AdaptiveSwitch` components using a theme, see
-[Themed Components](https://mui.com/material-ui/customization/theme-components/) for more info
+[Themed Components](https://mui.com/material-ui/customization/theme-components/) for more info.
 
 ```tsx
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
 } from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import type {} from "adaptive-material-ui/themes/themeAugmentation";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-const theme = createTheme({
+const theme: ThemeOptions = {
   colorSchemes: { dark: true },
   components: {
     AdaptiveSwitch: {
@@ -58,13 +59,13 @@ const theme = createTheme({
       },
     },
   },
-});
+};
 
 export default function () {
   return (
-    <ThemeProvider theme={theme}>
+    <AdaptiveThemeProvider theme={theme}>
       <AdaptiveSwitch />
-    </ThemeProvider>
+    </AdaptiveThemeProvider>
   );
 }
 ```
@@ -147,14 +148,15 @@ export default function () {
 ### Theme
 
 ```tsx
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
 } from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import type {} from "adaptive-material-ui/themes/themeAugmentation";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-const theme = createTheme({
+const theme: ThemeOptions = {
   colorSchemes: { dark: true },
   components: {
     AdaptiveSwitch: {
@@ -176,13 +178,13 @@ const theme = createTheme({
       },
     },
   },
-});
+};
 
 export default function () {
   return (
-    <ThemeProvider theme={theme}>
+    <AdaptiveThemeProvider theme={theme}>
       <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
-    </ThemeProvider>
+    </AdaptiveThemeProvider>
   );
 }
 ```

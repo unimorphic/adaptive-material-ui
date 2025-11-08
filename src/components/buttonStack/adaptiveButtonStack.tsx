@@ -5,7 +5,7 @@ import Stack, {
 } from "@mui/material/Stack";
 import {
   Breakpoint,
-  CSSProperties,
+  CSSObject,
   styled,
   StyledComponentProps,
   Theme,
@@ -18,8 +18,8 @@ import { clsx } from "clsx";
 import {
   inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
-} from "../shared/inclusiveToExclusiveBreakpoint";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+} from "../../shared/inclusiveToExclusiveBreakpoint";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export interface AdaptiveButtonStackProps
   extends Omit<StackProps, "classes" | "direction" | "useFlexGap">,
@@ -43,8 +43,8 @@ export function createAdaptiveButtonStackStyles(
   theme: Theme,
   stretchBreakpointExclusive: Breakpoint | number,
   alignLeftClass: string,
-  additionalStyles?: CSSProperties,
-): CSSProperties {
+  additionalStyles?: CSSObject,
+): CSSObject {
   return {
     [theme.breakpoints.down(stretchBreakpointExclusive)]: {
       // The & wrapper is required for emotion-disable comments to work

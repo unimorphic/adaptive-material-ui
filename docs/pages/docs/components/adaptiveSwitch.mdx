@@ -11,14 +11,11 @@ import Links from "@/shared/links";
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import { useState } from "react";
 
 export default function () {
-  const [adaptiveMode, setAdaptiveMode] = useState("");
-
   return (
-    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
-      <AdaptiveSwitch adaptiveMode={adaptiveMode} defaultChecked />
+    <AdaptiveModeDemo>
+      <AdaptiveSwitch defaultChecked />
     </AdaptiveModeDemo>
   );
 }
@@ -27,34 +24,33 @@ export default function () {
 ## iOS Variants
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 
 export default function () {
   return (
-    <DemoList>
-      <DemoListItem title="Secondary Color">
-        <AdaptiveSwitch adaptiveMode="ios" color="secondary" defaultChecked />
-      </DemoListItem>
-      <DemoListItem title="Size">
-        <FormControlLabel
-          control={
-            <AdaptiveSwitch adaptiveMode="ios" defaultChecked size="small" />
-          }
-          label="Small"
-        />
-        <FormControlLabel
-          control={
-            <AdaptiveSwitch adaptiveMode="ios" defaultChecked size="medium" />
-          }
-          label="Medium"
-        />
-      </DemoListItem>
-      <DemoListItem title="Disabled">
-        <AdaptiveSwitch adaptiveMode="ios" defaultChecked disabled />
-      </DemoListItem>
-    </DemoList>
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Secondary Color">
+          <AdaptiveSwitch color="secondary" defaultChecked />
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <FormControlLabel
+            control={<AdaptiveSwitch defaultChecked size="small" />}
+            label="Small"
+          />
+          <FormControlLabel
+            control={<AdaptiveSwitch defaultChecked size="medium" />}
+            label="Medium"
+          />
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveSwitch defaultChecked disabled />
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
   );
 }
 ```

@@ -10,16 +10,11 @@ import Links from "@/shared/links";
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
-import { useState } from "react";
 
 export default function () {
-  const [adaptiveMode, setAdaptiveMode] = useState("");
-
   return (
-    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
-      <AdaptiveButton adaptiveMode={adaptiveMode} variant="contained">
-        Button
-      </AdaptiveButton>
+    <AdaptiveModeDemo>
+      <AdaptiveButton variant="contained">Button</AdaptiveButton>
     </AdaptiveModeDemo>
   );
 }
@@ -28,24 +23,27 @@ export default function () {
 ## iOS Variants
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 
 export default function () {
   return (
-    <DemoList>
-      <DemoListItem title="Size">
-        <AdaptiveButton adaptiveMode="ios" size="small" variant="contained">
-          Small
-        </AdaptiveButton>
-        <AdaptiveButton adaptiveMode="ios" size="medium" variant="contained">
-          Medium
-        </AdaptiveButton>
-        <AdaptiveButton adaptiveMode="ios" size="large" variant="contained">
-          Large
-        </AdaptiveButton>
-      </DemoListItem>
-    </DemoList>
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Size">
+          <AdaptiveButton size="small" variant="contained">
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton size="medium" variant="contained">
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton size="large" variant="contained">
+            Large
+          </AdaptiveButton>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
   );
 }
 ```

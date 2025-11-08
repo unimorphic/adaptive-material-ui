@@ -24,11 +24,10 @@ import { AdaptiveMenu } from "adaptive-material-ui/components/menu/adaptiveMenu"
 import { useState } from "react";
 
 export default function () {
-  const [adaptiveMode, setAdaptiveMode] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   return (
-    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
+    <AdaptiveModeDemo>
       <AdaptiveButton
         onClick={(e) => setAnchorEl((v) => (v ? null : e.currentTarget))}
       >
@@ -36,7 +35,6 @@ export default function () {
       </AdaptiveButton>
 
       <AdaptiveMenu
-        adaptiveMode={adaptiveMode}
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
         open={anchorEl !== null}

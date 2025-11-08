@@ -30,7 +30,7 @@ import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
 } from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import type {} from "adaptive-material-ui/themes/themeAugmentation";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
 
 const theme = createTheme({

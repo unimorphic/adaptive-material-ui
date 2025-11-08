@@ -3,11 +3,11 @@ import { dialogActionsClasses } from "@mui/material/DialogActions";
 import { Breakpoint, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
-import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 import {
   inclusiveToExclusiveBreakpoint,
   ValidInclusiveBreakpoint,
-} from "../shared/inclusiveToExclusiveBreakpoint";
+} from "../../shared/inclusiveToExclusiveBreakpoint";
+import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 
 export interface DialogResponsiveProps extends DialogProps {
   /**

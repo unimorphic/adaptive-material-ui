@@ -11,7 +11,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { SelectItemProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &

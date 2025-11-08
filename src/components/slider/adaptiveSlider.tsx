@@ -10,7 +10,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export interface AdaptiveSliderProps
   extends Omit<SliderProps, "classes">,

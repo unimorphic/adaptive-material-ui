@@ -7,7 +7,7 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { iosLiquidGlass } from "../shared/iosLiquidGlass";
+import { iosLiquidGlass } from "../../shared/iosLiquidGlass";
 import { DialogResponsive, DialogResponsiveProps } from "./dialogResponsive";
 
 /**

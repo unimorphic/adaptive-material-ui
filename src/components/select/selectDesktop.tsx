@@ -1,6 +1,6 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectProps } from "@mui/material/Select";
-import { ModalNonBlocking } from "../shared/modalNonBlocking";
+import { ModalNonBlocking } from "../../shared/modalNonBlocking";
 import { SelectItemProps } from "./selectItemProps";
 
 export function SelectItemDesktop<

@@ -41,14 +41,16 @@ export function useAdaptiveModeFromProps<T>(
 
 /**
  * Resolves the current adaptive mode based on the current context & device
- * @param adaptiveMode Adaptive mode override
  * @returns The adaptive mode to use
  */
-export function useAdaptiveMode(adaptiveMode?: AdaptiveMode): AdaptiveMode {
+export function useAdaptiveMode(
+  adaptiveModeOverride?: AdaptiveMode,
+  userAgentOverride?: string,
+): AdaptiveMode {
   const modeContext = useContext(AdaptiveModeContext);
 
-  if (adaptiveMode) {
-    return adaptiveMode;
+  if (adaptiveModeOverride) {
+    return adaptiveModeOverride;
   }
 
   if (modeContext.mode) {
@@ -56,6 +58,7 @@ export function useAdaptiveMode(adaptiveMode?: AdaptiveMode): AdaptiveMode {
   }
 
   const userAgent =
+    userAgentOverride ??
     modeContext.userAgent ??
     (typeof window !== "undefined" ? window.navigator.userAgent : "");
 

@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { iosLiquidGlass } from "../shared/iosLiquidGlass";
+import { iosLiquidGlass } from "../../shared/iosLiquidGlass";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Sliders
@@ -22,23 +22,25 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       ownerState.size === "small" ? 4 : 6,
 
     [`& .${sliderClasses.mark}`]: {
-      backgroundColor:
-        theme.palette.mode === "dark"
-          ? "rgba(235, 235, 245, 0.16)"
-          : "rgba(60, 60, 67, 0.18)",
+      backgroundColor: "rgba(60, 60, 67, 0.18)",
       borderRadius: 3,
       height: 4,
       [ownerState.orientation === "vertical" ? "left" : "top"]:
         "calc(50% + 8px)",
       width: 4,
+
+      ...theme.applyStyles("dark", {
+        backgroundColor: "rgba(235, 235, 245, 0.16)",
+      }),
     },
 
     [`& .${sliderClasses.rail}`]: {
-      backgroundColor:
-        theme.palette.mode === "dark"
-          ? "rgba(120, 120, 128, 0.36)"
-          : "rgba(120, 120, 120, 0.2)",
+      backgroundColor: "rgba(120, 120, 120, 0.2)",
       opacity: 1,
+
+      ...theme.applyStyles("dark", {
+        backgroundColor: "rgba(120, 120, 128, 0.36)",
+      }),
     },
 
     [`& .${sliderClasses.thumb}`]: {

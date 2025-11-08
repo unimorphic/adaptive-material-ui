@@ -4,7 +4,7 @@ import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { iosLiquidGlass } from "../shared/iosLiquidGlass";
+import { iosLiquidGlass } from "../../shared/iosLiquidGlass";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Toggle
@@ -75,13 +75,16 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
     },
 
     [`& .${switchClasses.track}`]: {
-      backgroundColor: theme.palette.mode === "dark" ? "#5B5B5F" : "#C4C4C6",
+      backgroundColor: "#C4C4C6",
       borderRadius: 15,
       opacity: 1,
       transition: theme.transitions.create(
         ["background-color", "opacity", "transform"],
         { duration: iosLiquidGlass.transitionDuration },
       ),
+      ...theme.applyStyles("dark", {
+        backgroundColor: "#5B5B5F",
+      }),
 
       "&:before": {
         backgroundColor: "inherit",

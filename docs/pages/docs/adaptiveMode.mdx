@@ -1,0 +1,47 @@
+# Adaptive Mode
+
+## useAdaptiveMode
+
+The `useAdaptiveMode` hook can be used to get the current adaptive mode based on the current context & device.
+In this example the button will be `round` only on iOS devices.
+
+```tsx pure
+import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+
+export default function () {
+  const adaptiveMode = useAdaptiveMode();
+
+  return <AdaptiveButton round={adaptiveMode === "ios"}>Button</AdaptiveButton>;
+}
+```
+
+## AdaptiveThemeProvider
+
+`AdaptiveThemeProvider.theme` accepts a function which is passed the current adaptive mode based
+on the current context & device. In this example all buttons will default to `round` only on iOS devices.
+
+```tsx pure
+import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
+
+function createTheme(adaptiveMode: AdaptiveMode) {
+  return {
+    components: {
+      AdaptiveButton: {
+        defaultProps: { round: adaptiveMode === "ios" },
+      },
+    },
+  };
+}
+
+export default function () {
+  return (
+    <AdaptiveThemeProvider theme={createTheme}>
+      <AdaptiveButton>Button</AdaptiveButton>
+    </AdaptiveThemeProvider>
+  );
+}
+```

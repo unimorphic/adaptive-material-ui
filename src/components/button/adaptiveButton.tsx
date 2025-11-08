@@ -6,8 +6,8 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
-import { ReplaceComponentInTheme } from "../shared/replaceComponentInTheme";
 import { ButtonRoundProps } from "./buttonRound";
 
 export interface AdaptiveButtonProps

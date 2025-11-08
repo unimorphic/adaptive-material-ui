@@ -10,6 +10,22 @@ import { PackageManagerTabs } from "@rspress/core/theme";
 
 1. If you don't already have Material UI follow the [Material UI install steps](https://mui.com/material-ui/getting-started/installation/)
 
+## Theme Provider
+
+Add the `AdaptiveThemeProvider` component to the root of your app
+
+```tsx pure
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+
+export default function App() {
+  return (
+    <AdaptiveThemeProvider>
+      <ChildComponentsGoHere />
+    </AdaptiveThemeProvider>
+  );
+}
+```
+
 ## Next Steps
 
 - Add some [components](components.html)

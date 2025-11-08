@@ -15,14 +15,11 @@ import {
   AdaptiveSelect,
   AdaptiveSelectItem,
 } from "adaptive-material-ui/components/select/adaptiveSelect";
-import { useState } from "react";
 
 export default function () {
-  const [adaptiveMode, setAdaptiveMode] = useState("");
-
   return (
-    <AdaptiveModeDemo adaptiveMode={adaptiveMode} onChange={setAdaptiveMode}>
-      <AdaptiveSelect adaptiveMode={adaptiveMode} defaultValue={1}>
+    <AdaptiveModeDemo>
+      <AdaptiveSelect defaultValue={1}>
         <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
         <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
       </AdaptiveSelect>

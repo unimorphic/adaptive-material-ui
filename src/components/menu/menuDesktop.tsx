@@ -3,7 +3,7 @@ import resolveComponentProps from "@mui/utils/resolveComponentProps";
 import {
   ModalNonBlocking,
   ModalNonBlockingProps,
-} from "../shared/modalNonBlocking";
+} from "../../shared/modalNonBlocking";
 
 /**
  * Menu that doesn't block interaction with other page elements when open

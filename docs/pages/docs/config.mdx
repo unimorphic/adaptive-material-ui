@@ -1,19 +1,49 @@
 # Config
 
-## Adaptive Mode Context
+## Custom Adaptive Logic
 
-The `AdaptiveModeContext` can be used if you want to use a different user agent
-or completely control the adaptive logic yourself.
+`AdaptiveThemeProvider.adaptiveModeInfo` can be set if you want to use a different user agent
+or completely control the adaptive logic yourself. The theme uses `AdaptiveModeContext` to pass
+this info to the child components which can be used separately if needed.
 
 ### Different User Agent
+
+#### Theme
+
+```tsx pure
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+
+<AdaptiveThemeProvider
+  adaptiveModeInfo={{ userAgent: req.headers["user-agent"] }}
+>
+```
+
+#### Context
 
 ```tsx pure
 import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 
-<AdaptiveModeContext.Provider value={{ userAgent: req.headers["user-agent"] }}>
+<AdaptiveModeContext.Provider
+  value={{ userAgent: req.headers["user-agent"] }}
+>
 ```
 
 ### Custom Logic
+
+#### Theme
+
+```tsx pure
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+
+let mode = "android";
+if (user.name === "personIdoNotLike") {
+  mode = "desktop";
+}
+
+<AdaptiveThemeProvider adaptiveModeInfo={{ mode: mode }} >
+```
+
+#### Context
 
 ```tsx pure
 import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
@@ -23,7 +53,7 @@ if (user.name === "personIdoNotLike") {
   mode = "desktop";
 }
 
-<AdaptiveModeContext.Provider value={{ mode: mode }}>
+<AdaptiveModeContext.Provider value={{ mode: mode }} >
 ```
 
 ### SSR
