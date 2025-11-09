@@ -7,6 +7,7 @@ import Links from "@/shared/links";
 
 - Desktop: doesn't block interaction with other page elements when open
 - Android & iOS: uses the native device select
+- iOS: native styling
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -27,13 +28,74 @@ export default function () {
 }
 ```
 
+## iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import {
+  AdaptiveSelect,
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/select/adaptiveSelect";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Variant">
+          <AdaptiveSelect
+            defaultValue={1}
+            variant="standard"
+            sx={{ width: 120 }}
+          >
+            <AdaptiveSelectItem value={1}>Standard</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+          <AdaptiveSelect
+            defaultValue={1}
+            variant="outlined"
+            sx={{ width: 120 }}
+          >
+            <AdaptiveSelectItem value={1}>Outlined</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+          <AdaptiveSelect
+            defaultValue={1}
+            hiddenLabel
+            variant="filled"
+            sx={{ width: 120 }}
+          >
+            <AdaptiveSelectItem value={1}>Filled</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+        </DemoListItem>
+        <DemoListItem title="Label">
+          <FormControl sx={{ width: 120 }}>
+            <InputLabel focused={false} id="demo-label">
+              Label
+            </InputLabel>
+            <AdaptiveSelect defaultValue={1} labelId="demo-label" label="Label">
+              <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+              <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+            </AdaptiveSelect>
+          </FormControl>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
 ## API
 
 [MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
 
-- `MenuProps.disableScrollLock` defaults to `true` on desktop
-- `MenuProps.slots.root` defaults to `ModalNonBlocking` on desktop
-- `native` defaults to `true` on Android & iOS
+- `input` defaults to `AdaptiveInput`, `AdaptiveFilledInput`, or `AdaptiveOutlinedInput`
+- Desktop: `MenuProps.disableScrollLock` defaults to `true`
+- Desktop: `MenuProps.slots.root` defaults to `ModalNonBlocking`
+- Android & iOS: `native` defaults to `true`
 
 <AdaptiveModeApi />
 

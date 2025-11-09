@@ -10,7 +10,13 @@ export function DemoListItem(props: {
     <React.Fragment>
       <Grid size={3}>{props.title}</Grid>
       <Grid size={9}>
-        <Stack alignItems="center" direction="row" spacing={2}>
+        <Stack
+          alignItems="center"
+          direction="row"
+          spacing={2}
+          sx={{ flexWrap: "wrap" }}
+          useFlexGap
+        >
           {props.children}
         </Stack>
       </Grid>

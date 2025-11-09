@@ -34,14 +34,41 @@ export default function () {
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
         <DemoListItem title="Variant">
-          <AdaptiveTextField label="Standard" variant="standard" />
-          <AdaptiveTextField label="Outlined" variant="outlined" />
-          <AdaptiveTextField label="Filled" variant="filled" />
+          <AdaptiveTextField
+            label="Standard"
+            variant="standard"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            label="Outlined"
+            variant="outlined"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            label="Filled"
+            variant="filled"
+            sx={{ width: 100 }}
+          />
         </DemoListItem>
         <DemoListItem title="Error">
-          <AdaptiveTextField error label="Standard" variant="standard" />
-          <AdaptiveTextField error label="Outlined" variant="outlined" />
-          <AdaptiveTextField error label="Filled" variant="filled" />
+          <AdaptiveTextField
+            error
+            label="Standard"
+            variant="standard"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            error
+            label="Outlined"
+            variant="outlined"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            error
+            label="Filled"
+            variant="filled"
+            sx={{ width: 100 }}
+          />
         </DemoListItem>
         <DemoListItem title="Select">
           <AdaptiveTextField
@@ -87,7 +114,7 @@ export default function () {
 
 - `slots.input` defaults to `AdaptiveInput`, `AdaptiveFilledInput`, or `AdaptiveOutlinedInput`
 - `slots.select` defaults to `AdaptiveSelect`
-- `slotProps.inputLabel.focused` defaults to `false` on iOS
+- iOS: `slotProps.inputLabel.focused` defaults to `false`
 
 <AdaptiveModeApi />
 

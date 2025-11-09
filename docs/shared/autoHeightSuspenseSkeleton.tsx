@@ -1,5 +1,10 @@
 import Skeleton from "@mui/material/Skeleton";
+import { styled } from "@mui/material/styles";
 import { Suspense, useEffect, useRef, useState } from "react";
+
+const StyledDiv = styled("div")(() => ({
+  width: "100%",
+}));
 
 function Container(props: {
   children?: React.ReactNode;
@@ -14,7 +19,7 @@ function Container(props: {
     }
   }, [onLoad]);
 
-  return <div ref={containerElement}>{children}</div>;
+  return <StyledDiv ref={containerElement}>{children}</StyledDiv>;
 }
 
 /**

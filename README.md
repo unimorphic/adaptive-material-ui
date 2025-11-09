@@ -17,10 +17,9 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- Textfield
-- Date picker
 - Checkbox
 - Radio
+- Date picker
 - Progress bar & circle
 - FAB
 - Snackbar

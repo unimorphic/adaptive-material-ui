@@ -4,7 +4,11 @@ import {
   SelectClasses,
   SelectProps,
 } from "@mui/material/Select";
-import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import {
+  styled,
+  StyledComponentProps,
+  useThemeProps,
+} from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import {
   AdaptiveModeContext,
@@ -12,6 +16,11 @@ import {
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import {
+  AdaptiveFilledInput,
+  AdaptiveInput,
+  AdaptiveOutlinedInput,
+} from "../textField/adaptiveInput";
 import { SelectItemProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &
@@ -59,6 +68,14 @@ const SelectItemIOS = lazy(async () => {
   return { default: SelectItemIOS };
 });
 
+const styleConfig = { name: "AdaptiveSelect", slot: "Root" };
+const StyledAdaptiveInput = styled(AdaptiveInput, styleConfig)();
+const StyledAdaptiveOutlinedInput = styled(
+  AdaptiveOutlinedInput,
+  styleConfig,
+)();
+const StyledAdaptiveFilledInput = styled(AdaptiveFilledInput, styleConfig)();
+
 export function AdaptiveSelectItem<
   RootComponent extends React.ElementType = "li",
   AdditionalProps = {},
@@ -98,17 +115,30 @@ export function AdaptiveSelect<Value = unknown>(
 ) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelect" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const { input, ...selectProps } = otherProps;
+
+  const inputComponent =
+    input ??
+    {
+      standard: <StyledAdaptiveInput />,
+      outlined: <StyledAdaptiveOutlinedInput label={selectProps.label} />,
+      filled: <StyledAdaptiveFilledInput />,
+    }[selectProps.variant ?? "outlined"];
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <SelectAndroid<Value> {...otherProps} />;
+      content = (
+        <SelectAndroid<Value> input={inputComponent} {...selectProps} />
+      );
       break;
     case "ios":
-      content = <SelectIOS<Value> {...otherProps} />;
+      content = <SelectIOS<Value> input={inputComponent} {...selectProps} />;
       break;
     default:
-      content = <SelectDesktop<Value> {...otherProps} />;
+      content = (
+        <SelectDesktop<Value> input={inputComponent} {...selectProps} />
+      );
       break;
   }
 
