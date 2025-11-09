@@ -22,7 +22,7 @@ export function SelectDesktop<Value = unknown>(props: SelectProps<Value>) {
       MenuProps={{
         disableScrollLock: true,
         ...MenuProps,
-        slots: { ...MenuProps?.slots, root: ModalNonBlocking },
+        slots: { root: ModalNonBlocking, ...MenuProps?.slots },
       }}
       {...otherProps}
     />

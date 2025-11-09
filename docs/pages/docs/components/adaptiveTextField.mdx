@@ -1,0 +1,112 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Text Field
+
+## Adaptiveness
+
+- iOS: native styling
+- `AdaptiveSelect` behavior when `select={true}`
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField/adaptiveTextField";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveTextField label="Text field" variant="standard" />
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import { AdaptiveSelectItem } from "adaptive-material-ui/components/select/adaptiveSelect";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField/adaptiveTextField";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Variant">
+          <AdaptiveTextField label="Standard" variant="standard" />
+          <AdaptiveTextField label="Outlined" variant="outlined" />
+          <AdaptiveTextField label="Filled" variant="filled" />
+        </DemoListItem>
+        <DemoListItem title="Error">
+          <AdaptiveTextField error label="Standard" variant="standard" />
+          <AdaptiveTextField error label="Outlined" variant="outlined" />
+          <AdaptiveTextField error label="Filled" variant="filled" />
+        </DemoListItem>
+        <DemoListItem title="Select">
+          <AdaptiveTextField
+            label="Standard"
+            select
+            value={1}
+            variant="standard"
+            sx={{ width: 100 }}
+          >
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveTextField>
+          <AdaptiveTextField
+            label="Outlined"
+            select
+            value={1}
+            variant="outlined"
+            sx={{ width: 100 }}
+          >
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveTextField>
+          <AdaptiveTextField
+            label="Filled"
+            select
+            value={1}
+            variant="filled"
+            sx={{ width: 100 }}
+          >
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveTextField>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Text Field API](https://mui.com/material-ui/api/text-field/) with the following changes:
+
+- `slots.input` defaults to `AdaptiveInput`, `AdaptiveFilledInput`, or `AdaptiveOutlinedInput`
+- `slots.select` defaults to `AdaptiveSelect`
+- `slotProps.inputLabel.focused` defaults to `false` on iOS
+
+<AdaptiveModeApi />
+
+### AdaptiveInput
+
+[MUI Input API](https://mui.com/material-ui/api/input/) with a `adaptiveMode` prop
+
+### AdaptiveFilledInput
+
+[MUI Filled Input API](https://mui.com/material-ui/api/filled-input/) with a `adaptiveMode` prop
+
+### AdaptiveOutlinedInput
+
+[MUI Outlined Input API](https://mui.com/material-ui/api/outlined-input/) with a `adaptiveMode` prop
+
+## Links
+
+<Links
+  codeUrl="components/textField/adaptiveTextField.tsx"
+  docsUrl="components/adaptiveTextField.mdx"
+  mui={{ title: "Text Field", url: "react-text-field" }}
+/>

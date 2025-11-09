@@ -2,7 +2,10 @@ const componentMap = [
   { old: "Button", new: "AdaptiveButton" },
   { old: "Dialog", new: "AdaptiveDialog" },
   { old: "DialogActions", new: "AdaptiveDialogActions" },
+  { old: "FilledInput", new: "AdaptiveFilledInput" },
+  { old: "Input", new: "AdaptiveInput" },
   { old: "Menu", new: "AdaptiveMenu" },
+  { old: "OutlinedInput", new: "AdaptiveOutlinedInput" },
   {
     old: "Select",
     new: "AdaptiveSelect",
@@ -16,6 +19,17 @@ const componentMap = [
   },
   { old: "Slider", new: "AdaptiveSlider" },
   { old: "Switch", new: "AdaptiveSwitch" },
+  {
+    old: "TextField",
+    new: "AdaptiveTextField",
+    rules: [
+      {
+        selector:
+          "JSXElement[openingElement.name.name='AdaptiveTextField'] JSXElement[openingElement.name.name='MenuItem']",
+        message: "Use <AdaptiveSelectItem> instead",
+      },
+    ],
+  },
 ];
 
 export function warnNonAdaptiveComponents(excludeComponentNames?: string[]) {

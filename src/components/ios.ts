@@ -4,3 +4,4 @@ export * from "./menu/menuIOS";
 export * from "./select/selectIOS";
 export * from "./slider/sliderIOS";
 export * from "./switch/switchIOS";
+export * from "./textField/inputIOS";

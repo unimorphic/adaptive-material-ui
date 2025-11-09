@@ -5,3 +5,5 @@ export * from "./menu/adaptiveMenu";
 export * from "./select/adaptiveSelect";
 export * from "./slider/adaptiveSlider";
 export * from "./switch/adaptiveSwitch";
+export * from "./textField/adaptiveInput";
+export * from "./textField/adaptiveTextField";

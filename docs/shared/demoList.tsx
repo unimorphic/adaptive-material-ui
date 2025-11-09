@@ -10,7 +10,7 @@ export function DemoListItem(props: {
     <React.Fragment>
       <Grid size={3}>{props.title}</Grid>
       <Grid size={9}>
-        <Stack alignItems="center" direction="row" spacing={1}>
+        <Stack alignItems="center" direction="row" spacing={2}>
           {props.children}
         </Stack>
       </Grid>
@@ -20,7 +20,7 @@ export function DemoListItem(props: {
 
 export function DemoList(props: { children: React.ReactNode }) {
   return (
-    <Grid alignItems="center" container spacing={2}>
+    <Grid alignItems="center" container spacing={3}>
       {props.children}
     </Grid>
   );

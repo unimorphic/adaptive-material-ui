@@ -10,7 +10,6 @@ import Links from "@/shared/links";
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
-import Stack from "@mui/material/Stack";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
@@ -33,6 +32,7 @@ export default function () {
 [MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
 
 - `MenuProps.disableScrollLock` defaults to `true` on desktop
+- `MenuProps.slots.root` defaults to `ModalNonBlocking` on desktop
 - `native` defaults to `true` on Android & iOS
 
 <AdaptiveModeApi />

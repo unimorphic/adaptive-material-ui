@@ -35,6 +35,18 @@ import {
   AdaptiveSwitchClasses,
   AdaptiveSwitchProps,
 } from "../components/switch/adaptiveSwitch";
+import {
+  AdaptiveFilledInputClasses,
+  AdaptiveFilledInputProps,
+  AdaptiveInputClasses,
+  AdaptiveInputProps,
+  AdaptiveOutlinedInputClasses,
+  AdaptiveOutlinedInputProps,
+} from "../components/textField/adaptiveInput";
+import {
+  AdaptiveTextFieldClasses,
+  AdaptiveTextFieldProps,
+} from "../components/textField/adaptiveTextField";
 
 type Theme = Omit<MuiTheme, "components">;
 
@@ -55,9 +67,21 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveDialogActions"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialogActions"];
   };
+  AdaptiveFilledInput?: {
+    defaultProps?: ComponentsProps["AdaptiveFilledInput"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFilledInput"];
+  };
+  AdaptiveInput?: {
+    defaultProps?: ComponentsProps["AdaptiveInput"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveInput"];
+  };
   AdaptiveMenu?: {
     defaultProps?: ComponentsProps["AdaptiveMenu"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveMenu"];
+  };
+  AdaptiveOutlinedInput?: {
+    defaultProps?: ComponentsProps["AdaptiveOutlinedInput"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveOutlinedInput"];
   };
   AdaptiveSelect?: {
     defaultProps?: ComponentsProps["AdaptiveSelect"];
@@ -75,6 +99,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveSwitch"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSwitch"];
   };
+  AdaptiveTextField?: {
+    defaultProps?: ComponentsProps["AdaptiveTextField"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveTextField"];
+  };
 }
 
 export interface AdaptiveComponentsPropsList {
@@ -82,11 +110,15 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveDialogActions: AdaptiveDialogActionsProps;
+  AdaptiveFilledInput: AdaptiveFilledInputProps;
+  AdaptiveInput: AdaptiveInputProps;
   AdaptiveMenu: AdaptiveMenuProps;
+  AdaptiveOutlinedInput: AdaptiveOutlinedInputProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
   AdaptiveSlider: AdaptiveSliderProps;
   AdaptiveSwitch: AdaptiveSwitchProps;
+  AdaptiveTextField: AdaptiveTextFieldProps;
 }
 
 export interface AdaptiveComponentNameToClassKey {
@@ -94,11 +126,15 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveButtonStack: keyof AdaptiveButtonStackClasses;
   AdaptiveDialog: keyof AdaptiveDialogClasses;
   AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
+  AdaptiveFilledInput: keyof AdaptiveFilledInputClasses;
+  AdaptiveInput: keyof AdaptiveInputClasses;
   AdaptiveMenu: keyof AdaptiveMenuClasses;
+  AdaptiveOutlinedInput: keyof AdaptiveOutlinedInputClasses;
   AdaptiveSelect: keyof AdaptiveSelectClasses;
   AdaptiveSelectItem: keyof AdaptiveSelectItemClasses;
   AdaptiveSlider: keyof AdaptiveSliderClasses;
   AdaptiveSwitch: keyof AdaptiveSwitchClasses;
+  AdaptiveTextField: keyof AdaptiveTextFieldClasses;
 }
 
 declare module "@mui/material/styles" {

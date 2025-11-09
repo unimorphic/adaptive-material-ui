@@ -24,7 +24,7 @@ export function MenuDesktop(props: MenuProps) {
           ignoreAnchorClicks: otherProps.anchorEl,
         } as ModalNonBlockingProps,
       }}
-      slots={{ ...slots, root: ModalNonBlocking }}
+      slots={{ root: ModalNonBlocking, ...slots }}
       {...otherProps}
     />
   );

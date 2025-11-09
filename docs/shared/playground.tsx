@@ -30,6 +30,7 @@ import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
 } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField/adaptiveTextField";
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
 
@@ -93,6 +94,36 @@ const theme = createTheme({
           [`.${adaptiveDialogClasses.ios} &`]: {
             background: "blue",
           },
+        },
+      },
+    },
+    AdaptiveFilledInput: {
+      defaultProps: {
+        startAdornment: <span>a</span>,
+      },
+      styleOverrides: {
+        ios: {
+          outline: "1px solid blue",
+        },
+      },
+    },
+    AdaptiveInput: {
+      defaultProps: {
+        startAdornment: <span>b</span>,
+      },
+      styleOverrides: {
+        ios: {
+          outline: "1px solid blue",
+        },
+      },
+    },
+    AdaptiveOutlinedInput: {
+      defaultProps: {
+        startAdornment: <span>c</span>,
+      },
+      styleOverrides: {
+        ios: {
+          outline: "1px solid blue",
         },
       },
     },
@@ -161,6 +192,16 @@ const theme = createTheme({
         },
       },
     },
+    AdaptiveTextField: {
+      defaultProps: {
+        helperText: "hi",
+      },
+      styleOverrides: {
+        root: {
+          borderBottom: "1px dashed blue",
+        },
+      },
+    },
   },
 });
 
@@ -186,72 +227,80 @@ export default function () {
           <AdaptiveButton>Stack</AdaptiveButton>
         </AdaptiveButtonStack>
 
-        <AdaptiveButton onClick={() => setOpen(1)}>Dialog 1</AdaptiveButton>
-        <AdaptiveDialog
-          adaptiveMode="ios"
-          open={open === 1}
-          onClose={() => setOpen(0)}
-          variant="short"
-        >
-          <DialogTitle>Use Google's location service?</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
-            </DialogContentText>
-          </DialogContent>
-          <AdaptiveDialogActions buttonDefaultProps={{ variant: "contained" }}>
-            <AdaptiveButton>Button 1</AdaptiveButton>
-            <AdaptiveButton>Button 2</AdaptiveButton>
-          </AdaptiveDialogActions>
-        </AdaptiveDialog>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveButton onClick={() => setOpen(1)}>Dialog 1</AdaptiveButton>
+          <AdaptiveDialog
+            adaptiveMode="ios"
+            open={open === 1}
+            onClose={() => setOpen(0)}
+            variant="short"
+          >
+            <DialogTitle>Use Google's location service?</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Let Google help apps determine location. This means sending
+                anonymous location data to Google, even when no apps are
+                running.
+              </DialogContentText>
+            </DialogContent>
+            <AdaptiveDialogActions
+              buttonDefaultProps={{ variant: "contained" }}
+            >
+              <AdaptiveButton>Button 1</AdaptiveButton>
+              <AdaptiveButton>Button 2</AdaptiveButton>
+            </AdaptiveDialogActions>
+          </AdaptiveDialog>
 
-        <AdaptiveButton onClick={() => setOpen(2)}>Dialog 2</AdaptiveButton>
-        <AdaptiveDialog
-          open={open === 2}
-          onClose={() => setOpen(0)}
-          variant="short"
-        >
-          <DialogTitle>Use Google's location service?</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
-            </DialogContentText>
-          </DialogContent>
-          <AdaptiveDialogActions>
-            <AdaptiveButton>Button</AdaptiveButton>
-          </AdaptiveDialogActions>
-        </AdaptiveDialog>
+          <AdaptiveButton onClick={() => setOpen(2)}>Dialog 2</AdaptiveButton>
+          <AdaptiveDialog
+            open={open === 2}
+            onClose={() => setOpen(0)}
+            variant="short"
+          >
+            <DialogTitle>Use Google's location service?</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Let Google help apps determine location. This means sending
+                anonymous location data to Google, even when no apps are
+                running.
+              </DialogContentText>
+            </DialogContent>
+            <AdaptiveDialogActions>
+              <AdaptiveButton>Button</AdaptiveButton>
+            </AdaptiveDialogActions>
+          </AdaptiveDialog>
+        </Stack>
 
-        <AdaptiveButton
-          onClick={(e) => setAnchorEl1((v) => (v ? null : e.currentTarget))}
-        >
-          Menu 1
-        </AdaptiveButton>
-        <AdaptiveMenu
-          anchorEl={anchorEl1}
-          onClose={() => setAnchorEl1(null)}
-          open={anchorEl1 !== null}
-        >
-          <MenuItem>MenuItem 1</MenuItem>
-          <MenuItem>MenuItem 2</MenuItem>
-        </AdaptiveMenu>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveButton
+            onClick={(e) => setAnchorEl1((v) => (v ? null : e.currentTarget))}
+          >
+            Menu 1
+          </AdaptiveButton>
+          <AdaptiveMenu
+            anchorEl={anchorEl1}
+            onClose={() => setAnchorEl1(null)}
+            open={anchorEl1 !== null}
+          >
+            <MenuItem>MenuItem 1</MenuItem>
+            <MenuItem>MenuItem 2</MenuItem>
+          </AdaptiveMenu>
 
-        <AdaptiveButton
-          onClick={(e) => setAnchorEl2((v) => (v ? null : e.currentTarget))}
-        >
-          Menu 2
-        </AdaptiveButton>
-        <AdaptiveMenu
-          adaptiveMode="ios"
-          anchorEl={anchorEl2}
-          onClose={() => setAnchorEl2(null)}
-          open={anchorEl2 !== null}
-        >
-          <MenuItem>MenuItem 1</MenuItem>
-          <MenuItem>MenuItem 2</MenuItem>
-        </AdaptiveMenu>
+          <AdaptiveButton
+            onClick={(e) => setAnchorEl2((v) => (v ? null : e.currentTarget))}
+          >
+            Menu 2
+          </AdaptiveButton>
+          <AdaptiveMenu
+            adaptiveMode="ios"
+            anchorEl={anchorEl2}
+            onClose={() => setAnchorEl2(null)}
+            open={anchorEl2 !== null}
+          >
+            <MenuItem>MenuItem 1</MenuItem>
+            <MenuItem>MenuItem 2</MenuItem>
+          </AdaptiveMenu>
+        </Stack>
 
         <AdaptiveSelect defaultValue={1}>
           <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
@@ -261,8 +310,33 @@ export default function () {
         <AdaptiveSlider defaultValue={30} />
         <AdaptiveSlider adaptiveMode="ios" defaultValue={30} />
 
-        <AdaptiveSwitch />
-        <AdaptiveSwitch adaptiveMode="ios" />
+        <Stack direction="row" spacing={2}>
+          <AdaptiveSwitch />
+          <AdaptiveSwitch adaptiveMode="ios" />
+        </Stack>
+
+        <Stack direction="row" spacing={2}>
+          <AdaptiveTextField label="Standard" variant="standard" />
+          <AdaptiveTextField label="Outlined" variant="outlined" />
+          <AdaptiveTextField label="Filled" variant="filled" />
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveTextField
+            adaptiveMode="ios"
+            label="Standard"
+            variant="standard"
+          />
+          <AdaptiveTextField
+            adaptiveMode="ios"
+            label="Outlined"
+            variant="outlined"
+          />
+          <AdaptiveTextField
+            adaptiveMode="ios"
+            label="Filled"
+            variant="filled"
+          />
+        </Stack>
       </Stack>
     </ThemeProvider>
   );

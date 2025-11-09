@@ -21,28 +21,30 @@ export default function AdaptiveModeDemo(props: Props) {
   }
 
   return (
-    <AdaptiveThemeProvider
-      adaptiveModeInfo={{ mode: selectedAdaptiveMode }}
-      theme={{
-        colorSchemes: { dark: theme.palette.mode === "dark" },
-        direction: theme.direction,
-      }}
-    >
-      <Stack alignItems="flex-start" spacing={3} {...otherProps}>
-        {!adaptiveMode ? (
-          <DemoSelector
-            onChange={onChange}
-            options={[
-              { label: "Adaptive", value: "" },
-              { label: "iOS", value: "ios" },
-              { label: "Android", value: "android" },
-              { label: "Desktop", value: "desktop" },
-            ]}
-            value={selectedAdaptiveMode ?? ""}
-          />
-        ) : null}
-        <AutoHeightSuspenseSkeleton>{children}</AutoHeightSuspenseSkeleton>
-      </Stack>
-    </AdaptiveThemeProvider>
+    <Stack alignItems="flex-start" spacing={3} {...otherProps}>
+      {!adaptiveMode ? (
+        <DemoSelector
+          onChange={onChange}
+          options={[
+            { label: "Adaptive", value: "" },
+            { label: "iOS", value: "ios" },
+            { label: "Android", value: "android" },
+            { label: "Desktop", value: "desktop" },
+          ]}
+          value={selectedAdaptiveMode ?? ""}
+        />
+      ) : null}
+      <AutoHeightSuspenseSkeleton>
+        <AdaptiveThemeProvider
+          adaptiveModeInfo={{ mode: selectedAdaptiveMode }}
+          theme={{
+            colorSchemes: { dark: theme.palette.mode === "dark" },
+            direction: theme.direction,
+          }}
+        >
+          {children}
+        </AdaptiveThemeProvider>
+      </AutoHeightSuspenseSkeleton>
+    </Stack>
   );
 }

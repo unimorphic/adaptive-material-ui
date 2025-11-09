@@ -4,3 +4,4 @@ export * from "./menu/menuDesktop";
 export * from "./select/selectDesktop";
 export * from "./slider/sliderDesktop";
 export * from "./switch/switchDesktop";
+export * from "./textField/inputDesktop";
