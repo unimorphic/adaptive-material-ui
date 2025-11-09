@@ -45,6 +45,10 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       [`&:hover, &.${buttonBaseClasses.focusVisible}`]: {
         [`& .${switchClasses.thumb}`]: {
           boxShadow: `0px 0px 0px 8px ${theme.alpha(theme.palette.text.primary, 0.16)}`,
+
+          "@media (hover: none)": {
+            boxShadow: "none",
+          },
         },
       },
 
