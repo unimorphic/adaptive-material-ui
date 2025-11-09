@@ -31,7 +31,9 @@ async function replacePlaceholders(node: RemarkTreeNode) {
       fileContent = await readFile(filePath, { encoding: "utf8" });
       placeholderContentByFileName[filename] = fileContent;
 
-      watchFile(filePath, filename).catch((ex: unknown) => console.log(ex));
+      if (process.env.NODE_ENV === "development") {
+        watchFile(filePath, filename).catch((ex: unknown) => console.log(ex));
+      }
     }
 
     const parts = fileContent.split("\n<>\n");
