@@ -1,24 +1,35 @@
-import { DialogClasses } from "@mui/material/Dialog";
+import { dialogClasses, DialogClasses } from "@mui/material/Dialog";
 import DialogActions, {
   dialogActionsClasses,
   DialogActionsClasses,
   DialogActionsProps,
 } from "@mui/material/DialogActions";
-import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import {
+  Breakpoint,
+  styled,
+  StyledComponentProps,
+  useThemeProps,
+} from "@mui/material/styles";
+import composeClasses from "@mui/utils/composeClasses";
+import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
+import { clsx } from "clsx";
 import { createContext, lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
   AdaptiveModeProp,
+  useAdaptiveMode,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import {
+  inclusiveToExclusiveBreakpoint,
+  ValidInclusiveBreakpoint,
+} from "../../shared/inclusiveToExclusiveBreakpoint";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveButtonProps } from "../button/adaptiveButton";
-import {
-  dialogResponsiveClasses,
-  DialogResponsiveProps,
-} from "./dialogResponsive";
+import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
+import { DialogResponsiveProps } from "./dialogResponsive";
 
 export interface AdaptiveDialogProps
   extends Omit<DialogResponsiveProps, "classes">,
@@ -28,7 +39,7 @@ export interface AdaptiveDialogProps
 export interface AdaptiveDialogClasses extends DialogClasses, IosClasses {}
 
 export const adaptiveDialogClasses = {
-  ...dialogResponsiveClasses,
+  ...dialogClasses,
   ...generateUtilityClasses("AdaptiveDialog", ["ios"]),
 };
 
@@ -37,11 +48,21 @@ export interface AdaptiveDialogActionsProps
     StyledComponentProps<keyof AdaptiveDialogActionsClasses> {
   /** Props passed to child AdaptiveButton components */
   buttonDefaultProps?: AdaptiveButtonProps;
+
+  /**
+   * Breakpoint or screen width in px and below at which the children will be stretched.
+   * This behavior can be disabled by setting it to false
+   * @default xs
+   */
+  stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
 }
 
 export interface AdaptiveDialogActionsClasses extends DialogActionsClasses {}
 
-export const adaptiveDialogActionsClasses = dialogActionsClasses;
+export const adaptiveDialogActionsClasses = {
+  ...dialogActionsClasses,
+  ...generateUtilityClasses("AdaptiveDialogActions", ["alignStart"]),
+};
 
 /** Context used to pass buttonDefaultProps */
 export const AdaptiveDialogActionsContext = createContext<
@@ -62,12 +83,53 @@ const DialogIOS = lazy(async () => {
   return { default: DialogIOS };
 });
 
+const StyledDialogActions = styled(DialogActions, {
+  name: "AdaptiveDialogActions",
+  slot: "root",
+})<{
+  ownerState: { stretchBreakpointExclusive: Breakpoint | number };
+}>(({ theme, ownerState }) => ({
+  ...createAdaptiveButtonStackStyles(
+    theme,
+    ownerState.stretchBreakpointExclusive,
+    adaptiveDialogActionsClasses.alignStart,
+    {
+      [`&.${dialogActionsClasses.spacing}`]: {
+        gap: theme.spacing(1),
+      },
+      "& > *:not(style)~:not(style)": {
+        margin: 0,
+      },
+    },
+  ),
+}));
+
 export function AdaptiveDialogActions(inProps: AdaptiveDialogActionsProps) {
   const props = useThemeProps({
     props: inProps,
     name: "AdaptiveDialogActions",
   });
-  const { buttonDefaultProps, ...otherProps } = props;
+  const adaptiveMode = useAdaptiveMode();
+
+  const {
+    buttonDefaultProps = adaptiveMode === "ios"
+      ? {
+          disableElevation: true,
+          round: true,
+          size: "large",
+          variant: "contained",
+        }
+      : undefined,
+    className,
+    stretchBreakpoint = "xs",
+    ...otherProps
+  } = props;
+
+  const composedClasses = composeClasses(
+    { root: ["root"] },
+    (s) => generateUtilityClass("AdaptiveDialogActions", s),
+    props.classes,
+  );
 
   return (
     <AdaptiveDialogActionsContext value={buttonDefaultProps}>
@@ -75,7 +137,15 @@ export function AdaptiveDialogActions(inProps: AdaptiveDialogActionsProps) {
         sourceComponentName="AdaptiveDialogActions"
         targetComponentName="MuiDialogActions"
       >
-        <DialogActions {...otherProps} />
+        <StyledDialogActions
+          className={clsx(composedClasses.root, className)}
+          ownerState={{
+            ...props,
+            stretchBreakpointExclusive:
+              inclusiveToExclusiveBreakpoint(stretchBreakpoint),
+          }}
+          {...otherProps}
+        />
       </ReplaceComponentInTheme>
     </AdaptiveDialogActionsContext>
   );

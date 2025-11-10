@@ -32,8 +32,8 @@ function isIOS(userAgent: string) {
  * @param adaptiveModeProps The adaptive mode component props
  * @returns The adaptive mode to use and the rest of the props
  */
-export function useAdaptiveModeFromProps<T>(
-  adaptiveModeProps: AdaptiveModeProp & T,
+export function useAdaptiveModeFromProps<T extends AdaptiveModeProp>(
+  adaptiveModeProps: T,
 ): [AdaptiveMode, Omit<T, "adaptiveMode">] {
   const { adaptiveMode, ...rest } = adaptiveModeProps;
   return [useAdaptiveMode(adaptiveMode), rest];

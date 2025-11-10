@@ -36,13 +36,13 @@ export interface AdaptiveButtonStackClasses extends StackClasses {}
 
 export const adaptiveButtonStackClasses = {
   ...stackClasses,
-  ...generateUtilityClasses("AdaptiveButtonStack", ["alignLeft"]),
+  ...generateUtilityClasses("AdaptiveButtonStack", ["alignStart"]),
 };
 
 export function createAdaptiveButtonStackStyles(
   theme: Theme,
   stretchBreakpointExclusive: Breakpoint | number,
-  alignLeftClass: string,
+  alignStartClass: string,
   additionalStyles?: CSSObject,
 ): CSSObject {
   return {
@@ -76,7 +76,7 @@ export function createAdaptiveButtonStackStyles(
     },
 
     [theme.breakpoints.up(stretchBreakpointExclusive)]: {
-      [`& .${alignLeftClass}`]: {
+      [`& .${alignStartClass}`]: {
         marginRight: "auto",
       },
     },
@@ -96,11 +96,11 @@ const StyledStack = styled(Stack, {
   ...createAdaptiveButtonStackStyles(
     theme,
     ownerState.stretchBreakpointExclusive,
-    adaptiveButtonStackClasses.alignLeft,
+    adaptiveButtonStackClasses.alignStart,
   ),
 
   ...(ownerState.divider && {
-    [`& .${adaptiveButtonStackClasses.alignLeft} + *`]: {
+    [`& .${adaptiveButtonStackClasses.alignStart} + *`]: {
       [theme.breakpoints.up(ownerState.stretchBreakpointExclusive)]: {
         display: "none",
       },

@@ -16,42 +16,33 @@ import { DialogResponsive, DialogResponsiveProps } from "./dialogResponsive";
 const StyledDialogResponsive = styled(DialogResponsive, {
   name: "AdaptiveDialog",
   slot: "ios",
-})<{
-  ownerState: DialogResponsiveProps;
-}>(({ theme }) => {
+})<{ ownerState: DialogResponsiveProps }>(({ theme }) => {
   const bottomPadding = theme.spacing(1.75);
   const topPadding = theme.spacing(3);
 
   return {
-    variants: [
-      {
-        props: (props) => props.variant === "short",
-        style: {
-          [`& .${backdropClasses.root}`]: iosLiquidGlass.backdrop(theme),
+    [`& .${backdropClasses.root}`]: iosLiquidGlass.backdrop(theme),
 
-          [`& .${dialogClasses.paper}`]: {
-            ...iosLiquidGlass.overlay(theme),
-            borderRadius: 34,
-          },
+    [`& .${dialogClasses.paper}:not(.${dialogClasses.paperFullScreen})`]: {
+      ...iosLiquidGlass.overlay(theme),
+      borderRadius: 34,
 
-          [`& .${dialogTitleClasses.root}`]: {
-            padding: `${topPadding} ${topPadding} ${theme.spacing(1.25)} ${topPadding}`,
+      [`& .${dialogTitleClasses.root}`]: {
+        padding: `${topPadding} ${topPadding} ${theme.spacing(1.25)} ${topPadding}`,
 
-            [`& + .${dialogContentClasses.root}`]: {
-              paddingTop: 0,
-            },
-          },
-
-          [`& .${dialogContentClasses.root}`]: {
-            padding: topPadding,
-          },
-
-          [`& .${dialogActionsClasses.root}`]: {
-            padding: `0 ${bottomPadding} ${bottomPadding} ${bottomPadding}`,
-          },
+        [`& + .${dialogContentClasses.root}`]: {
+          paddingTop: 0,
         },
       },
-    ],
+
+      [`& .${dialogContentClasses.root}`]: {
+        padding: topPadding,
+      },
+
+      [`& .${dialogActionsClasses.root}`]: {
+        padding: `0 ${bottomPadding} ${bottomPadding} ${bottomPadding}`,
+      },
+    },
   };
 });
 

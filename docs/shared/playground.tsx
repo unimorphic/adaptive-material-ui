@@ -262,7 +262,7 @@ export default function () {
           <AdaptiveButton>Button</AdaptiveButton>
           <AdaptiveButton
             adaptiveMode="ios"
-            className={adaptiveButtonStackClasses.alignLeft}
+            className={adaptiveButtonStackClasses.alignStart}
           >
             Stack
           </AdaptiveButton>

@@ -39,6 +39,7 @@ export default function AdaptiveModeDemo(props: Props) {
           adaptiveModeInfo={{ mode: selectedAdaptiveMode }}
           theme={{
             colorSchemes: { dark: theme.palette.mode === "dark" },
+            components: theme.components,
             direction: theme.direction,
           }}
         >

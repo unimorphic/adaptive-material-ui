@@ -43,12 +43,22 @@ const rtlCache = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-const ltrTheme: ThemeOptions = {
+const sharedTheme: ThemeOptions = {
   colorSchemes: { dark: true },
+  components: {
+    AdaptiveDialog: {
+      defaultProps: {
+        container: document.getElementById("dialog-container"),
+      },
+    },
+  },
+};
+const ltrTheme: ThemeOptions = {
+  ...sharedTheme,
   direction: "ltr",
 };
 const rtlTheme: ThemeOptions = {
-  colorSchemes: { dark: true },
+  ...sharedTheme,
   direction: "rtl",
 };
 
@@ -62,9 +72,15 @@ function Layout() {
   } = useContext(ThemeContext);
 
   useEffect(() => {
+    const direction = isRtl ? "rtl" : "ltr";
+
     const root = document.getElementById("root");
     if (root) {
-      root.setAttribute("dir", isRtl ? "rtl" : "ltr");
+      root.setAttribute("dir", direction);
+    }
+    const dialogContainer = document.getElementById("dialog-container");
+    if (dialogContainer) {
+      dialogContainer.setAttribute("dir", direction);
     }
   }, [isRtl]);
 

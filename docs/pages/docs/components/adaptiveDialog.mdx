@@ -5,15 +5,14 @@ import Links from "@/shared/links";
 
 ## Adaptiveness
 
-- Stretches it's dialog actions on the extra-small breakpoint (customizable using the `stretchActionsBreakpoint` prop)
-- `variant="tall"`
-  - Defaults to full screen mode on the extra-small breakpoint (customizable using the `fullScreenBreakpoint` prop)
-- `variant="short"`
-  - iOS: native styling
+- iOS: native styling
+- Stretches it's actions on the extra-small breakpoint (customizable using the `AdaptiveDialogActions.stretchBreakpoint` prop)
+- `variant="tall"` defaults to full screen mode on the extra-small breakpoint (customizable using the `fullScreenBreakpoint` prop)
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
+import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import {
   AdaptiveDialog,
@@ -21,12 +20,13 @@ import {
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { useState } from "react";
 
-export default function () {
+function Content() {
   const [isShortOpen, setIsShortOpen] = useState(false);
   const [isTallOpen, setIsTallOpen] = useState(false);
+  const adaptiveMode = useAdaptiveMode();
 
   return (
-    <AdaptiveModeDemo>
+    <>
       <Stack direction="row" spacing={2}>
         <AdaptiveButton onClick={() => setIsShortOpen(true)}>
           Open Short
@@ -35,7 +35,6 @@ export default function () {
           Open Tall
         </AdaptiveButton>
       </Stack>
-
       <AdaptiveDialog
         open={isShortOpen}
         onClose={() => setIsShortOpen(false)}
@@ -43,7 +42,10 @@ export default function () {
       >
         [[exampleShortDialogContent]]
         <AdaptiveDialogActions>
-          <AdaptiveButton onClick={() => setIsShortOpen(false)}>
+          <AdaptiveButton
+            color={adaptiveMode === "ios" ? "inherit" : undefined}
+            onClick={() => setIsShortOpen(false)}
+          >
             Disagree
           </AdaptiveButton>
           <AdaptiveButton onClick={() => setIsShortOpen(false)}>
@@ -51,7 +53,6 @@ export default function () {
           </AdaptiveButton>
         </AdaptiveDialogActions>
       </AdaptiveDialog>
-
       <AdaptiveDialog
         open={isTallOpen}
         onClose={() => setIsTallOpen(false)}
@@ -59,7 +60,10 @@ export default function () {
       >
         [[exampleTallDialogContent]]
         <AdaptiveDialogActions>
-          <AdaptiveButton onClick={() => setIsTallOpen(false)}>
+          <AdaptiveButton
+            color={adaptiveMode === "ios" ? "inherit" : undefined}
+            onClick={() => setIsTallOpen(false)}
+          >
             Cancel
           </AdaptiveButton>
           <AdaptiveButton onClick={() => setIsTallOpen(false)}>
@@ -67,6 +71,14 @@ export default function () {
           </AdaptiveButton>
         </AdaptiveDialogActions>
       </AdaptiveDialog>
+    </>
+  );
+}
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <Content />
     </AdaptiveModeDemo>
   );
 }
@@ -77,7 +89,7 @@ export default function () {
 ### Stretching
 
 Actions have the same [stretching](./adaptiveButtonStack.html#stretching) as the Adaptive Button Stack
-using the `stretchActionsBreakpoint` prop
+using the `AdaptiveDialogActions.stretchBreakpoint` prop
 
 ```tsx
 import DemoSelector from "@/shared/demoSelector";
@@ -112,10 +124,9 @@ export default function () {
         open={open}
         onClose={() => setOpen(false)}
         variant="short"
-        stretchActionsBreakpoint={Number.MAX_SAFE_INTEGER}
       >
         [[exampleShortDialogContent]]
-        <AdaptiveDialogActions>
+        <AdaptiveDialogActions stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
           {["Submit", "Cancel", "Delete"]
             .slice(0, parseInt(numberOfButtons))
             .reverse()
@@ -133,14 +144,14 @@ export default function () {
 
 ### Split Alignment
 
-`adaptiveDialogClasses.alignActionLeft` can be used to align actions at both ends of the dialog when stacked horizontally
+`adaptiveDialogActionsClasses.alignStart` can be used to align actions at both ends of the dialog when stacked horizontally
 
 ```tsx
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
-  adaptiveDialogClasses,
+  adaptiveDialogActionsClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { useState } from "react";
 
@@ -149,9 +160,7 @@ export default function () {
 
   return (
     <div>
-      <AdaptiveButton onClick={() => setOpen(true)}>
-        Open Split Actions
-      </AdaptiveButton>
+      <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
 
       <AdaptiveDialog
         open={open}
@@ -161,7 +170,7 @@ export default function () {
         [[exampleShortDialogContent]]
         <AdaptiveDialogActions>
           <AdaptiveButton
-            className={adaptiveDialogClasses.alignActionLeft}
+            className={adaptiveDialogActionsClasses.alignStart}
             onClick={() => setOpen(false)}
           >
             Delete
@@ -177,7 +186,7 @@ export default function () {
 
 ### buttonDefaultProps
 
-The `buttonDefaultProps` prop on `AdaptiveDialogActions` can be used to set props on all the child buttons on all devices.
+`AdaptiveDialogActions.buttonDefaultProps` can be used to set props on all the child buttons on all devices.
 To apply them to only specific devices you can use the [useAdaptiveMode](/docs/adaptiveMode.html#useadaptivemode) hook.
 
 ```tsx
@@ -186,7 +195,6 @@ import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveB
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
-  adaptiveDialogClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { useState } from "react";
 
@@ -194,7 +202,7 @@ export default function () {
   const [open, setOpen] = useState(false);
 
   return (
-    <AdaptiveModeDemo adaptiveMode="ios">
+    <AdaptiveModeDemo adaptiveMode="desktop">
       <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
 
       <AdaptiveDialog
@@ -203,24 +211,8 @@ export default function () {
         variant="short"
       >
         [[exampleShortDialogContent]]
-        <AdaptiveDialogActions
-          buttonDefaultProps={{
-            disableElevation: true,
-            round: true,
-            size: "large",
-            variant: "contained",
-          }}
-        >
-          <AdaptiveButton
-            className={adaptiveDialogClasses.alignActionLeft}
-            color="error"
-            onClick={() => setOpen(false)}
-          >
-            Delete
-          </AdaptiveButton>
-          <AdaptiveButton color="inherit" onClick={() => setOpen(false)}>
-            Cancel
-          </AdaptiveButton>
+        <AdaptiveDialogActions buttonDefaultProps={{ variant: "outlined" }}>
+          <AdaptiveButton onClick={() => setOpen(false)}>Cancel</AdaptiveButton>
           <AdaptiveButton onClick={() => setOpen(false)}>Submit</AdaptiveButton>
         </AdaptiveDialogActions>
       </AdaptiveDialog>
@@ -243,17 +235,9 @@ This behavior can be disabled by setting the fullScreen or variant property or s
 - Type: `"xs" | "sm" | "md" | "lg" | number | false`
 - Default: `xs`
 
-### stretchActionsBreakpoint
-
-Breakpoint or screen width in px and below at which the actions will be stretched.
-This behavior can be disabled by setting it to false
-
-- Type: `"xs" | "sm" | "md" | "lg" | number | false`
-- Default: `xs`
-
 ### variant
 
-Short dialogs ignore the fullScreenBreakpoint logic and may be styled differently depending on the device
+Short dialogs ignore the fullScreenBreakpoint logic
 
 - Type: `"short" | "tall"`
 - Default: `tall`
@@ -267,7 +251,15 @@ Short dialogs ignore the fullScreenBreakpoint logic and may be styled differentl
 Props passed to child `AdaptiveButton` components
 
 - Type: `AdaptiveButtonProps`
-- Default: `undefined`
+- Default: `adaptiveMode === "ios" ? { disableElevation: true, round: true, size: "large", variant: "contained" } : undefined`
+
+#### stretchBreakpoint
+
+Breakpoint or screen width in px and below at which the children will be stretched.
+This behavior can be disabled by setting it to false
+
+- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Default: `xs`
 
 ## Browser Compatibility
 
