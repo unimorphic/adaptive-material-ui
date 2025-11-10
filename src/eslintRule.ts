@@ -7,6 +7,7 @@ const componentMap = [
   { old: "Input", new: "AdaptiveInput" },
   { old: "Menu", new: "AdaptiveMenu" },
   { old: "OutlinedInput", new: "AdaptiveOutlinedInput" },
+  { old: "Radio", new: "AdaptiveRadio" },
   {
     old: "Select",
     new: "AdaptiveSelect",

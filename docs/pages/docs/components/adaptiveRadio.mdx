@@ -1,0 +1,140 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Radio
+
+## Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import RadioGroup from "@mui/material/RadioGroup";
+import { AdaptiveRadio } from "adaptive-material-ui/components/radio/adaptiveRadio";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <RadioGroup defaultValue="1" row>
+        <FormControlLabel control={<AdaptiveRadio />} label="One" value="1" />
+        <FormControlLabel control={<AdaptiveRadio />} label="Two" value="2" />
+      </RadioGroup>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import RadioGroup from "@mui/material/RadioGroup";
+import { AdaptiveRadio } from "adaptive-material-ui/components/radio/adaptiveRadio";
+import { useState } from "react";
+
+// Demo functionality to show the checked state, don't try this at home
+export default function () {
+  const [count, setCount] = useState(0);
+  const isChecked = count % 2 === 0;
+
+  function onClick() {
+    setCount((v) => v + 1);
+  }
+
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Color">
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                color="secondary"
+                onClick={onClick}
+              />
+            }
+            label="Secondary"
+          />
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                color="success"
+                onClick={onClick}
+              />
+            }
+            label="Success"
+          />
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                color="default"
+                onClick={onClick}
+              />
+            }
+            label="Default"
+          />
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                onClick={onClick}
+                size="small"
+              />
+            }
+            label="Small"
+          />
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                onClick={onClick}
+                size="medium"
+              />
+            }
+            label="Medium"
+          />
+          <FormControlLabel
+            control={
+              <AdaptiveRadio
+                checked={isChecked}
+                onClick={onClick}
+                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              />
+            }
+            label="Custom"
+          />
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <RadioGroup defaultValue="1" row>
+            <AdaptiveRadio disabled value="1" />
+            <AdaptiveRadio disabled value="2" />
+          </RadioGroup>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Radio API](https://mui.com/material-ui/api/radio/) with the following changes:
+
+- iOS: `disableTouchRipple` defaults to `true`
+
+<AdaptiveModeApi />
+
+## Links
+
+<Links
+  codeUrl="components/radio/adaptiveRadio.tsx"
+  docsUrl="components/adaptiveRadio.mdx"
+  mui={{ title: "Radio Group", url: "react-radio-button" }}
+/>

@@ -22,6 +22,7 @@ import {
   AdaptiveMenu,
   adaptiveMenuClasses,
 } from "adaptive-material-ui/components/menu/adaptiveMenu";
+import { AdaptiveRadio } from "adaptive-material-ui/components/radio/adaptiveRadio";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
@@ -153,6 +154,19 @@ const theme = createTheme({
         },
         paper: {
           backgroundColor: "blue",
+        },
+      },
+    },
+    AdaptiveRadio: {
+      defaultProps: {
+        checked: true,
+      },
+      styleOverrides: {
+        ios: {
+          backgroundColor: "blue",
+        },
+        root: {
+          backgroundColor: "purple",
         },
       },
     },
@@ -354,6 +368,10 @@ export default function () {
         <Stack direction="row" spacing={2}>
           <AdaptiveCheckbox />
           <AdaptiveCheckbox adaptiveMode="ios" />
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveRadio />
+          <AdaptiveRadio adaptiveMode="ios" />
         </Stack>
       </Stack>
     </ThemeProvider>

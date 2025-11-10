@@ -4,7 +4,7 @@ import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { iosLiquidGlass } from "../../shared/iosLiquidGlass";
+import { iosLiquidGlass } from "../../shared/ios/iosLiquidGlass";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Toggle
