@@ -6,5 +6,6 @@ export * from "./menu/menuIOS";
 export * from "./radio/radioIOS";
 export * from "./select/selectIOS";
 export * from "./slider/sliderIOS";
+export * from "./snackbar/snackbarIOS";
 export * from "./switch/switchIOS";
 export * from "./textField/inputIOS";

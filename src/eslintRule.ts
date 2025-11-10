@@ -21,6 +21,7 @@ const componentMap = [
     ],
   },
   { old: "Slider", new: "AdaptiveSlider" },
+  { old: "Snackbar", new: "AdaptiveSnackbar" },
   { old: "Switch", new: "AdaptiveSwitch" },
   {
     old: "TextField",

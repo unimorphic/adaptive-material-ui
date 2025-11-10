@@ -1,0 +1,59 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Snackbar
+
+## Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
+import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar/adaptiveSnackbar";
+import { useState } from "react";
+
+export default function () {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
+
+      <AdaptiveSnackbar
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={() => setOpen(false)}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+        anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+        autoHideDuration={6000}
+        message="Note archived"
+        onClose={() => setOpen(false)}
+        open={open}
+      />
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Snackbar API](https://mui.com/material-ui/api/snackbar/) with the following changes:
+
+<AdaptiveModeApi />
+
+## Links
+
+<Links
+  codeUrl="components/snackbar/adaptiveSnackbar.tsx"
+  docsUrl="components/adaptiveSnackbar.mdx"
+  mui={{ title: "Snackbar", url: "react-snackbar" }}
+/>

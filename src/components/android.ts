@@ -6,5 +6,6 @@ export * from "./menu/menuAndroid";
 export * from "./radio/radioAndroid";
 export * from "./select/selectAndroid";
 export * from "./slider/sliderAndroid";
+export * from "./snackbar/snackbarAndroid";
 export * from "./switch/switchAndroid";
 export * from "./textField/inputAndroid";

@@ -6,5 +6,6 @@ export * from "./menu/menuDesktop";
 export * from "./radio/radioDesktop";
 export * from "./select/selectDesktop";
 export * from "./slider/sliderDesktop";
+export * from "./snackbar/snackbarDesktop";
 export * from "./switch/switchDesktop";
 export * from "./textField/inputDesktop";

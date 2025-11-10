@@ -1,8 +1,11 @@
 import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
+import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
@@ -30,6 +33,7 @@ import {
   AdaptiveSelectItem,
 } from "adaptive-material-ui/components/select/adaptiveSelect";
 import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
+import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar/adaptiveSnackbar";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
@@ -222,6 +226,23 @@ const theme = createTheme({
         },
       },
     },
+    AdaptiveSnackbar: {
+      defaultProps: {
+        transitionDuration: 1000,
+      },
+      styleOverrides: {
+        ios: {
+          [`& .${snackbarContentClasses.root}`]: {
+            color: "red",
+          },
+        },
+        root: {
+          [`& .${snackbarContentClasses.root}`]: {
+            color: "purple",
+          },
+        },
+      },
+    },
     AdaptiveSwitch: {
       defaultProps: {
         defaultChecked: true,
@@ -395,6 +416,43 @@ export default function () {
           <AdaptiveFab adaptiveMode="ios">
             <AddIcon />
           </AdaptiveFab>
+        </Stack>
+
+        <Stack direction="row" spacing={2}>
+          <AdaptiveButton onClick={() => setOpen(3)}>Snackbar 1</AdaptiveButton>
+          <AdaptiveSnackbar
+            action={
+              <IconButton
+                size="small"
+                color="inherit"
+                onClick={() => setOpen(0)}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            }
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            message="Note archived"
+            onClose={() => setOpen(0)}
+            open={open === 3}
+          />
+
+          <AdaptiveButton onClick={() => setOpen(4)}>Snackbar 2</AdaptiveButton>
+          <AdaptiveSnackbar
+            action={
+              <IconButton
+                size="small"
+                color="inherit"
+                onClick={() => setOpen(0)}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            }
+            adaptiveMode="ios"
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            message="Note archived"
+            onClose={() => setOpen(0)}
+            open={open === 4}
+          />
         </Stack>
       </Stack>
     </ThemeProvider>

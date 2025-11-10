@@ -44,6 +44,10 @@ import {
   AdaptiveSliderProps,
 } from "../components/slider/adaptiveSlider";
 import {
+  AdaptiveSnackbarClasses,
+  AdaptiveSnackbarProps,
+} from "../components/snackbar/adaptiveSnackbar";
+import {
   AdaptiveSwitchClasses,
   AdaptiveSwitchProps,
 } from "../components/switch/adaptiveSwitch";
@@ -119,6 +123,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveSlider"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSlider"];
   };
+  AdaptiveSnackbar?: {
+    defaultProps?: ComponentsProps["AdaptiveSnackbar"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSnackbar"];
+  };
   AdaptiveSwitch?: {
     defaultProps?: ComponentsProps["AdaptiveSwitch"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSwitch"];
@@ -144,6 +152,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
   AdaptiveSlider: AdaptiveSliderProps;
+  AdaptiveSnackbar: AdaptiveSnackbarProps;
   AdaptiveSwitch: AdaptiveSwitchProps;
   AdaptiveTextField: AdaptiveTextFieldProps;
 }
@@ -163,6 +172,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveSelect: keyof AdaptiveSelectClasses;
   AdaptiveSelectItem: keyof AdaptiveSelectItemClasses;
   AdaptiveSlider: keyof AdaptiveSliderClasses;
+  AdaptiveSnackbar: keyof AdaptiveSnackbarClasses;
   AdaptiveSwitch: keyof AdaptiveSwitchClasses;
   AdaptiveTextField: keyof AdaptiveTextFieldClasses;
 }

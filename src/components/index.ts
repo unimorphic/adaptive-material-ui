@@ -7,6 +7,7 @@ export * from "./menu/adaptiveMenu";
 export * from "./radio/adaptiveRadio";
 export * from "./select/adaptiveSelect";
 export * from "./slider/adaptiveSlider";
+export * from "./snackbar/adaptiveSnackbar";
 export * from "./switch/adaptiveSwitch";
 export * from "./textField/adaptiveInput";
 export * from "./textField/adaptiveTextField";
