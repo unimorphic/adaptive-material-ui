@@ -19,7 +19,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 - Date picker
 - Progress bar & circle
-- FAB
 - Snackbar
 
 - Finish Contributing.md

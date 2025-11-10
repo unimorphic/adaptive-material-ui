@@ -11,9 +11,7 @@ import { ButtonRound, ButtonRoundProps } from "./buttonRound";
 const StyledButton = styled(ButtonRound, {
   name: "AdaptiveButton",
   slot: "ios",
-})<{
-  ownerState: ButtonRoundProps;
-}>(({ ownerState }) => ({
+})<{ ownerState: ButtonRoundProps }>(({ ownerState }) => ({
   padding:
     ownerState.size === "large"
       ? "12px 20px"

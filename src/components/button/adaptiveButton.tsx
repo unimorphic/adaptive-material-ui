@@ -1,4 +1,8 @@
-import { buttonClasses, ButtonClasses } from "@mui/material/Button";
+import {
+  buttonClasses,
+  ButtonClasses,
+  ButtonTypeMap,
+} from "@mui/material/Button";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode, useContext } from "react";
@@ -11,10 +15,12 @@ import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
 import { ButtonRoundProps } from "./buttonRound";
 
-export interface AdaptiveButtonProps
-  extends Omit<ButtonRoundProps, "classes">,
-    StyledComponentProps<keyof AdaptiveButtonClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveButtonProps<
+  RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
+  AdditionalProps = {},
+> = Omit<ButtonRoundProps<RootComponent, AdditionalProps>, "classes"> &
+  StyledComponentProps<keyof AdaptiveButtonClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveButtonClasses extends ButtonClasses, IosClasses {}
 
@@ -37,7 +43,10 @@ const ButtonIOS = lazy(async () => {
   return { default: ButtonIOS };
 });
 
-export function AdaptiveButton(inProps: AdaptiveButtonProps) {
+export function AdaptiveButton<
+  RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
+  AdditionalProps = {},
+>(inProps: AdaptiveButtonProps<RootComponent, AdditionalProps>) {
   const defaultProps = useContext(AdaptiveDialogActionsContext);
 
   const props = useThemeProps({
@@ -49,13 +58,13 @@ export function AdaptiveButton(inProps: AdaptiveButtonProps) {
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <ButtonAndroid {...otherProps} />;
+      content = <ButtonAndroid {...(otherProps as AdaptiveButtonProps)} />;
       break;
     case "ios":
-      content = <ButtonIOS {...otherProps} />;
+      content = <ButtonIOS {...(otherProps as AdaptiveButtonProps)} />;
       break;
     default:
-      content = <ButtonDesktop {...otherProps} />;
+      content = <ButtonDesktop {...(otherProps as AdaptiveButtonProps)} />;
       break;
   }
 

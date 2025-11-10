@@ -1,0 +1,62 @@
+import Fab, { fabClasses, FabProps, FabTypeMap } from "@mui/material/Fab";
+import { styled } from "@mui/material/styles";
+import composeClasses from "@mui/utils/composeClasses";
+import generateUtilityClass from "@mui/utils/generateUtilityClass";
+import { clsx } from "clsx";
+
+const StyledFab = styled(Fab, {
+  name: "AdaptiveFab",
+  slot: "ios",
+})<{ ownerState: FabProps }>(({ ownerState, theme }) => {
+  const colorName =
+    !ownerState.color ||
+    ownerState.color === "default" ||
+    ownerState.color === "inherit"
+      ? "grey"
+      : ownerState.color;
+
+  const currentColor =
+    colorName === "grey"
+      ? (theme.vars ?? theme).palette.grey[300]
+      : (theme.vars ?? theme).palette[colorName].main;
+  const currentColorTransparent = theme.alpha(currentColor, 0.5);
+
+  return {
+    backgroundColor: currentColor,
+    backdropFilter: "blur(16px)",
+
+    ...theme.applyStyles("dark", {
+      backgroundColor: currentColorTransparent,
+    }),
+
+    [`&, &:active, &.${fabClasses.focusVisible}`]: {
+      boxShadow: `inset -3px -3px 0px -3.5px #fff, inset 3px 3px 0px -3.5px #fff,inset 0px 0px 0px .5px #ffffff80, inset 3px 3px 10px -2px ${currentColor}, inset -3px -3px 10px -2px ${currentColor}, inset 0 0 5px 1px #fff, 0 0 15px 4px ${colorName === "grey" ? "#00000010" : "#00000030"}`,
+
+      ...theme.applyStyles("dark", {
+        boxShadow: `inset 3px 3px 0px -3.5px ${currentColor}, inset -3px -3px 0px -3.5px ${currentColor}, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px ${currentColorTransparent}, inset 0px -5px 5px ${currentColorTransparent}, 0 0 15px 4px #0003`,
+      }),
+    },
+  };
+});
+
+export function FabIOS<
+  RootComponent extends React.ElementType = FabTypeMap["defaultComponent"],
+  AdditionalProps = {},
+>(props: FabProps<RootComponent, AdditionalProps>) {
+  const { className, ...otherProps } = props;
+
+  const composedClasses = composeClasses(
+    { ios: ["ios"] },
+    (s) => generateUtilityClass("AdaptiveButton", s),
+    props.classes,
+  );
+
+  return (
+    <StyledFab
+      className={clsx(composedClasses.ios, className)}
+      disableTouchRipple
+      ownerState={props}
+      {...otherProps}
+    />
+  );
+}

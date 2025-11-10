@@ -1,0 +1,108 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Floating Action Button
+
+## Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import AddIcon from "@mui/icons-material/Add";
+import { AdaptiveFab } from "adaptive-material-ui/components/fab/AdaptiveFab";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveFab aria-label="add">
+        <AddIcon />
+      </AdaptiveFab>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import AddIcon from "@mui/icons-material/Add";
+import { AdaptiveFab } from "adaptive-material-ui/components/fab/AdaptiveFab";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Color">
+          <AdaptiveFab aria-label="add" color="error">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="info">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="inherit">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="primary">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="secondary">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="success">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" color="warning">
+            <AddIcon />
+          </AdaptiveFab>
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <AdaptiveFab aria-label="add" size="small">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" size="medium">
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab aria-label="add" size="large">
+            <AddIcon />
+          </AdaptiveFab>
+        </DemoListItem>
+        <DemoListItem title="Variant">
+          <AdaptiveFab variant="extended" size="small">
+            Extended S
+          </AdaptiveFab>
+          <AdaptiveFab variant="extended" size="medium">
+            Extended M
+          </AdaptiveFab>
+          <AdaptiveFab variant="extended" size="large">
+            Extended L
+          </AdaptiveFab>
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveFab aria-label="add" disabled>
+            <AddIcon />
+          </AdaptiveFab>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Fab API](https://mui.com/material-ui/api/fab/) with the following changes:
+
+- iOS: `disableTouchRipple` defaults to `true`
+
+<AdaptiveModeApi />
+
+## Links
+
+<Links
+  codeUrl="components/fab/adaptiveFab.tsx"
+  docsUrl="components/adaptiveFab.mdx"
+  mui={{ title: "Floating Action Button", url: "react-floating-action-button" }}
+/>

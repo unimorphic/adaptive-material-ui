@@ -22,6 +22,10 @@ import {
   AdaptiveDialogProps,
 } from "../components/dialog/adaptiveDialog";
 import {
+  AdaptiveFabClasses,
+  AdaptiveFabProps,
+} from "../components/fab/adaptiveFab";
+import {
   AdaptiveMenuClasses,
   AdaptiveMenuProps,
 } from "../components/menu/adaptiveMenu";
@@ -79,6 +83,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveDialogActions"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialogActions"];
   };
+  AdaptiveFab?: {
+    defaultProps?: ComponentsProps["AdaptiveFab"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFab"];
+  };
   AdaptiveFilledInput?: {
     defaultProps?: ComponentsProps["AdaptiveFilledInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFilledInput"];
@@ -127,6 +135,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveCheckbox: AdaptiveCheckboxProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveDialogActions: AdaptiveDialogActionsProps;
+  AdaptiveFab: AdaptiveFabProps;
   AdaptiveFilledInput: AdaptiveFilledInputProps;
   AdaptiveInput: AdaptiveInputProps;
   AdaptiveMenu: AdaptiveMenuProps;
@@ -145,6 +154,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveCheckbox: keyof AdaptiveCheckboxClasses;
   AdaptiveDialog: keyof AdaptiveDialogClasses;
   AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
+  AdaptiveFab: keyof AdaptiveFabClasses;
   AdaptiveFilledInput: keyof AdaptiveFilledInputClasses;
   AdaptiveInput: keyof AdaptiveInputClasses;
   AdaptiveMenu: keyof AdaptiveMenuClasses;

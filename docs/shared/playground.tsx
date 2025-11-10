@@ -1,3 +1,4 @@
+import AddIcon from "@mui/icons-material/Add";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -18,6 +19,7 @@ import {
   AdaptiveDialogActions,
   adaptiveDialogClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
+import { AdaptiveFab } from "adaptive-material-ui/components/fab/adaptiveFab";
 import {
   AdaptiveMenu,
   adaptiveMenuClasses,
@@ -109,6 +111,19 @@ const theme = createTheme({
           [`.${adaptiveDialogClasses.ios} &`]: {
             background: "blue",
           },
+        },
+      },
+    },
+    AdaptiveFab: {
+      defaultProps: {
+        color: "primary",
+      },
+      styleOverrides: {
+        ios: {
+          color: "blue",
+        },
+        root: {
+          color: "purple",
         },
       },
     },
@@ -372,6 +387,14 @@ export default function () {
         <Stack direction="row" spacing={2}>
           <AdaptiveRadio />
           <AdaptiveRadio adaptiveMode="ios" />
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveFab>
+            <AddIcon />
+          </AdaptiveFab>
+          <AdaptiveFab adaptiveMode="ios">
+            <AddIcon />
+          </AdaptiveFab>
         </Stack>
       </Stack>
     </ThemeProvider>

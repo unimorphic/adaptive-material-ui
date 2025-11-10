@@ -3,6 +3,7 @@ const componentMap = [
   { old: "Checkbox", new: "AdaptiveCheckbox" },
   { old: "Dialog", new: "AdaptiveDialog" },
   { old: "DialogActions", new: "AdaptiveDialogActions" },
+  { old: "Fab", new: "AdaptiveFab" },
   { old: "FilledInput", new: "AdaptiveFilledInput" },
   { old: "Input", new: "AdaptiveInput" },
   { old: "Menu", new: "AdaptiveMenu" },

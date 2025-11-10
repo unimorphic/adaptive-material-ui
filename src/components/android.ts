@@ -1,6 +1,7 @@
 export * from "./button/buttonAndroid";
 export * from "./checkbox/checkboxAndroid";
 export * from "./dialog/dialogAndroid";
+export * from "./fab/fabAndroid";
 export * from "./menu/menuAndroid";
 export * from "./radio/radioAndroid";
 export * from "./select/selectAndroid";
