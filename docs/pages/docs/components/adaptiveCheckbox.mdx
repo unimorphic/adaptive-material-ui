@@ -1,0 +1,102 @@
+import AdaptiveModeApi from "@/shared/adaptiveModeApi.mdx";
+import Links from "@/shared/links";
+
+# Adaptive Checkbox
+
+## Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox/adaptiveCheckbox";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveCheckbox defaultChecked />
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox/adaptiveCheckbox";
+import { useState } from "react";
+
+export default function () {
+  const [count, setCount] = useState(1);
+
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Color">
+          <FormControlLabel
+            control={<AdaptiveCheckbox defaultChecked color="secondary" />}
+            label="Secondary"
+          />
+          <FormControlLabel
+            control={<AdaptiveCheckbox defaultChecked color="success" />}
+            label="Success"
+          />
+          <FormControlLabel
+            control={<AdaptiveCheckbox defaultChecked color="default" />}
+            label="Default"
+          />
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <FormControlLabel
+            control={<AdaptiveCheckbox defaultChecked size="small" />}
+            label="Small"
+          />
+          <FormControlLabel
+            control={<AdaptiveCheckbox defaultChecked size="medium" />}
+            label="Medium"
+          />
+          <FormControlLabel
+            control={
+              <AdaptiveCheckbox
+                defaultChecked
+                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              />
+            }
+            label="Custom"
+          />
+        </DemoListItem>
+        <DemoListItem title="Indeterminate">
+          <AdaptiveCheckbox
+            checked={count === 0}
+            indeterminate={count === 1}
+            onChange={() => setCount((v) => (v >= 2 ? 0 : v + 1))}
+          />
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveCheckbox defaultChecked disabled />
+          <AdaptiveCheckbox disabled />
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Checkbox API](https://mui.com/material-ui/api/checkbox/) with the following changes:
+
+- iOS: `disableTouchRipple` defaults to `true`
+
+<AdaptiveModeApi />
+
+## Links
+
+<Links
+  codeUrl="components/checkbox/adaptiveCheckbox.tsx"
+  docsUrl="components/adaptiveCheckbox.mdx"
+  mui={{ title: "Checkbox", url: "react-checkbox" }}
+/>

@@ -10,6 +10,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { IosClasses } from "../../shared/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export interface AdaptiveSliderProps
@@ -17,10 +18,7 @@ export interface AdaptiveSliderProps
     StyledComponentProps<keyof AdaptiveSliderClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveSliderClasses extends SliderClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveSliderClasses extends SliderClasses, IosClasses {}
 
 export const adaptiveSliderClasses = {
   ...sliderClasses,

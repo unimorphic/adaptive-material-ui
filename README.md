@@ -17,7 +17,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 
 ## TODO
 
-- Checkbox
 - Radio
 - Date picker
 - Progress bar & circle

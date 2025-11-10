@@ -12,6 +12,10 @@ import {
   AdaptiveButtonStackProps,
 } from "../components/buttonStack/adaptiveButtonStack";
 import {
+  AdaptiveCheckboxClasses,
+  AdaptiveCheckboxProps,
+} from "../components/checkbox/adaptiveCheckbox";
+import {
   AdaptiveDialogActionsClasses,
   AdaptiveDialogActionsProps,
   AdaptiveDialogClasses,
@@ -58,6 +62,10 @@ export interface AdaptiveComponents {
   AdaptiveButtonStack?: {
     defaultProps?: ComponentsProps["AdaptiveButtonStack"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButtonStack"];
+  };
+  AdaptiveCheckbox?: {
+    defaultProps?: ComponentsProps["AdaptiveCheckbox"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveCheckbox"];
   };
   AdaptiveDialog?: {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
@@ -108,6 +116,7 @@ export interface AdaptiveComponents {
 export interface AdaptiveComponentsPropsList {
   AdaptiveButton: AdaptiveButtonProps;
   AdaptiveButtonStack: AdaptiveButtonStackProps;
+  AdaptiveCheckbox: AdaptiveCheckboxProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveDialogActions: AdaptiveDialogActionsProps;
   AdaptiveFilledInput: AdaptiveFilledInputProps;
@@ -124,6 +133,7 @@ export interface AdaptiveComponentsPropsList {
 export interface AdaptiveComponentNameToClassKey {
   AdaptiveButton: keyof AdaptiveButtonClasses;
   AdaptiveButtonStack: keyof AdaptiveButtonStackClasses;
+  AdaptiveCheckbox: keyof AdaptiveCheckboxClasses;
   AdaptiveDialog: keyof AdaptiveDialogClasses;
   AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
   AdaptiveFilledInput: keyof AdaptiveFilledInputClasses;

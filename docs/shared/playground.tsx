@@ -12,6 +12,7 @@ import {
   AdaptiveButtonStack,
   adaptiveButtonStackClasses,
 } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox/adaptiveCheckbox";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
@@ -62,6 +63,19 @@ const theme = createTheme({
           [`& .${adaptiveButtonClasses.ios}`]: {
             marginTop: 10,
           },
+        },
+      },
+    },
+    AdaptiveCheckbox: {
+      defaultProps: {
+        defaultChecked: true,
+      },
+      styleOverrides: {
+        ios: {
+          backgroundColor: "purple",
+        },
+        root: {
+          backgroundColor: "blue",
         },
       },
     },
@@ -336,6 +350,10 @@ export default function () {
             label="Filled"
             variant="filled"
           />
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveCheckbox />
+          <AdaptiveCheckbox adaptiveMode="ios" />
         </Stack>
       </Stack>
     </ThemeProvider>

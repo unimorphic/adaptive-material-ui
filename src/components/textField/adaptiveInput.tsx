@@ -16,16 +16,14 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { IosClasses } from "../../shared/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveInputProps = Omit<InputProps, "classes"> &
   StyledComponentProps<keyof AdaptiveInputClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveInputClasses extends InputClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveInputClasses extends InputClasses, IosClasses {}
 
 export const adaptiveInputClasses = {
   ...inputClasses,
@@ -36,10 +34,9 @@ export type AdaptiveFilledInputProps = Omit<FilledInputProps, "classes"> &
   StyledComponentProps<keyof AdaptiveFilledInputClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveFilledInputClasses extends FilledInputClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveFilledInputClasses
+  extends FilledInputClasses,
+    IosClasses {}
 
 export const adaptiveFilledInputClasses = {
   ...filledInputClasses,
@@ -50,10 +47,9 @@ export type AdaptiveOutlinedInputProps = Omit<OutlinedInputProps, "classes"> &
   StyledComponentProps<keyof AdaptiveOutlinedInputClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveOutlinedInputClasses extends OutlinedInputClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveOutlinedInputClasses
+  extends OutlinedInputClasses,
+    IosClasses {}
 
 export const adaptiveOutlinedInputClasses = {
   ...outlinedInputClasses,

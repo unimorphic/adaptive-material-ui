@@ -1,4 +1,5 @@
 export * from "./button/adaptiveButton";
+export * from "./checkbox/adaptiveCheckbox";
 export * from "./buttonStack/adaptiveButtonStack";
 export * from "./dialog/adaptiveDialog";
 export * from "./menu/adaptiveMenu";

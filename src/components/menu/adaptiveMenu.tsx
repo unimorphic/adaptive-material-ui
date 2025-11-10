@@ -7,16 +7,14 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { IosClasses } from "../../shared/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveMenuProps = MenuProps &
   StyledComponentProps<keyof AdaptiveMenuClasses> &
   AdaptiveModeProp;
 
-export interface AdaptiveMenuClasses extends MenuClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveMenuClasses extends MenuClasses, IosClasses {}
 
 export const adaptiveMenuClasses = {
   ...menuClasses,

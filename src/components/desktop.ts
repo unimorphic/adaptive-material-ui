@@ -1,4 +1,5 @@
 export * from "./button/buttonDesktop";
+export * from "./checkbox/checkboxDesktop";
 export * from "./dialog/dialogDesktop";
 export * from "./menu/menuDesktop";
 export * from "./select/selectDesktop";

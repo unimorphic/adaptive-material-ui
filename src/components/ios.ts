@@ -1,4 +1,5 @@
 export * from "./button/buttonIOS";
+export * from "./checkbox/checkboxIOS";
 export * from "./dialog/dialogIOS";
 export * from "./menu/menuIOS";
 export * from "./select/selectIOS";

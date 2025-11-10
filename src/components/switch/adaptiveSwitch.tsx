@@ -10,6 +10,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { IosClasses } from "../../shared/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export interface AdaptiveSwitchProps
@@ -17,10 +18,7 @@ export interface AdaptiveSwitchProps
     StyledComponentProps<keyof AdaptiveSwitchClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveSwitchClasses extends SwitchClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveSwitchClasses extends SwitchClasses, IosClasses {}
 
 export const adaptiveSwitchClasses = {
   ...switchClasses,

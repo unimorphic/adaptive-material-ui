@@ -6,6 +6,7 @@ import {
   AdaptiveModeProp,
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
+import { IosClasses } from "../../shared/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
 import { ButtonRoundProps } from "./buttonRound";
@@ -15,10 +16,7 @@ export interface AdaptiveButtonProps
     StyledComponentProps<keyof AdaptiveButtonClasses>,
     AdaptiveModeProp {}
 
-export interface AdaptiveButtonClasses extends ButtonClasses {
-  /** Styles applied to the iOS mode */
-  ios: string;
-}
+export interface AdaptiveButtonClasses extends ButtonClasses, IosClasses {}
 
 export const adaptiveButtonClasses = {
   ...buttonClasses,
