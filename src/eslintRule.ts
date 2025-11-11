@@ -5,6 +5,7 @@ const componentMap = [
   { old: "DialogActions", new: "AdaptiveDialogActions" },
   { old: "Fab", new: "AdaptiveFab" },
   { old: "FilledInput", new: "AdaptiveFilledInput" },
+  { old: "IconButton", new: "AdaptiveIconButton" },
   { old: "Input", new: "AdaptiveInput" },
   { old: "Menu", new: "AdaptiveMenu" },
   { old: "OutlinedInput", new: "AdaptiveOutlinedInput" },

@@ -1,5 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -23,6 +24,7 @@ import {
   adaptiveDialogClasses,
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { AdaptiveFab } from "adaptive-material-ui/components/fab/adaptiveFab";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/adaptiveIconButton";
 import {
   AdaptiveMenu,
   adaptiveMenuClasses,
@@ -138,6 +140,19 @@ const theme = createTheme({
       styleOverrides: {
         ios: {
           outline: "1px solid blue",
+        },
+      },
+    },
+    AdaptiveIconButton: {
+      defaultProps: {
+        size: "large",
+      },
+      styleOverrides: {
+        ios: {
+          color: "blue",
+        },
+        root: {
+          color: "red",
         },
       },
     },
@@ -453,6 +468,20 @@ export default function () {
             onClose={() => setOpen(0)}
             open={open === 4}
           />
+        </Stack>
+        <Stack alignItems="center" direction="row" spacing={2}>
+          <AdaptiveIconButton>
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton adaptiveMode="ios">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton adaptiveMode="ios" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
         </Stack>
       </Stack>
     </ThemeProvider>

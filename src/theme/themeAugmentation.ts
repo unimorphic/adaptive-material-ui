@@ -4,6 +4,10 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveIconButtonClasses,
+  AdaptiveIconButtonProps,
+} from "../components";
+import {
   AdaptiveButtonClasses,
   AdaptiveButtonProps,
 } from "../components/button/adaptiveButton";
@@ -95,6 +99,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveFilledInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFilledInput"];
   };
+  AdaptiveIconButton?: {
+    defaultProps?: ComponentsProps["AdaptiveIconButton"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveIconButton"];
+  };
   AdaptiveInput?: {
     defaultProps?: ComponentsProps["AdaptiveInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveInput"];
@@ -145,6 +153,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveDialogActions: AdaptiveDialogActionsProps;
   AdaptiveFab: AdaptiveFabProps;
   AdaptiveFilledInput: AdaptiveFilledInputProps;
+  AdaptiveIconButton: AdaptiveIconButtonProps;
   AdaptiveInput: AdaptiveInputProps;
   AdaptiveMenu: AdaptiveMenuProps;
   AdaptiveOutlinedInput: AdaptiveOutlinedInputProps;
@@ -165,6 +174,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
   AdaptiveFab: keyof AdaptiveFabClasses;
   AdaptiveFilledInput: keyof AdaptiveFilledInputClasses;
+  AdaptiveIconButton: keyof AdaptiveIconButtonClasses;
   AdaptiveInput: keyof AdaptiveInputClasses;
   AdaptiveMenu: keyof AdaptiveMenuClasses;
   AdaptiveOutlinedInput: keyof AdaptiveOutlinedInputClasses;

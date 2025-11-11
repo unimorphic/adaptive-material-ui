@@ -2,6 +2,7 @@ export * from "./button/buttonDesktop";
 export * from "./checkbox/checkboxDesktop";
 export * from "./dialog/dialogDesktop";
 export * from "./fab/fabDesktop";
+export * from "./iconButton/iconButtonDesktop";
 export * from "./menu/menuDesktop";
 export * from "./radio/radioDesktop";
 export * from "./select/selectDesktop";

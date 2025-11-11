@@ -2,6 +2,7 @@ export * from "./button/buttonIOS";
 export * from "./checkbox/checkboxIOS";
 export * from "./dialog/dialogIOS";
 export * from "./fab/fabIOS";
+export * from "./iconButton/iconButtonIOS";
 export * from "./menu/menuIOS";
 export * from "./radio/radioIOS";
 export * from "./select/selectIOS";

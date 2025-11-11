@@ -30,14 +30,13 @@ function createAdaptiveTheme(
   adaptiveMode: AdaptiveMode,
   options?: ThemeOptions,
 ) {
-  const mergedOptions = deepmerge(
-    {
-      typography: {
-        fontFamily: adaptiveMode === "ios" ? iosFontFamily : undefined,
-      },
+  const defaultOptions: ThemeOptions = {
+    typography: {
+      fontFamily: adaptiveMode === "ios" ? iosFontFamily : undefined,
     },
-    options ?? {},
-  );
+  };
+
+  const mergedOptions = deepmerge(defaultOptions, options ?? {});
 
   return createTheme(mergedOptions);
 }

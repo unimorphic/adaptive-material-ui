@@ -3,6 +3,7 @@ export * from "./checkbox/adaptiveCheckbox";
 export * from "./buttonStack/adaptiveButtonStack";
 export * from "./dialog/adaptiveDialog";
 export * from "./fab/adaptiveFab";
+export * from "./iconButton/adaptiveIconButton";
 export * from "./menu/adaptiveMenu";
 export * from "./radio/adaptiveRadio";
 export * from "./select/adaptiveSelect";

@@ -1,0 +1,13 @@
+import { IconButtonTypeMap } from "@mui/material/IconButton";
+import {
+  IconButtonContained,
+  IconButtonContainedProps,
+} from "./iconButtonContained";
+
+export function IconButtonAndroid<
+  RootComponent extends
+    React.ElementType = IconButtonTypeMap["defaultComponent"],
+  AdditionalProps = {},
+>(props: IconButtonContainedProps<RootComponent, AdditionalProps>) {
+  return <IconButtonContained<RootComponent, AdditionalProps> {...props} />;
+}

@@ -95,6 +95,115 @@ export default function () {
 }
 ```
 
+## Icon Button
+
+### Adaptiveness
+
+- iOS: native styling
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/AdaptiveIconButton";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveIconButton aria-label="delete">
+        <DeleteIcon />
+      </AdaptiveIconButton>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+### iOS Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/AdaptiveIconButton";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Size">
+          <AdaptiveIconButton size="small">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="medium">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="large">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+### Variant
+
+The `variant="contained"` prop can be used to add a background to the button on all devices.
+To apply it to only specific devices you can use the [useAdaptiveMode](/docs/adaptiveMode.html#useadaptivemode) hook.
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/AdaptiveIconButton";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="desktop">
+      <DemoList>
+        <DemoListItem title="Size">
+          <AdaptiveIconButton size="small" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="medium" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="large" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+        </DemoListItem>
+        <DemoListItem title="Color">
+          <AdaptiveIconButton color="inherit" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="default" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="primary" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="secondary" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="error" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="info" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="success" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton color="warning" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
 ## API
 
 [MUI Button API](https://mui.com/material-ui/api/button/) with the following changes:
@@ -109,6 +218,19 @@ Increases the border radius to make the button corners appear rounded
 
 - Type: `boolean`
 - Default: `false`
+
+### Icon Button
+
+[MUI Icon Button API](https://mui.com/material-ui/api/icon-button/) with the following changes:
+
+- iOS: `disableTouchRipple` defaults to `true`
+
+#### variant
+
+Adds a background to the button when set to `contained`
+
+- Type: `"contained" | "default"`
+- Default: `"default"`
 
 ## Browser Compatibility
 
