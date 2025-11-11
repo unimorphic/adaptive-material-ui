@@ -1,5 +1,6 @@
 export * from "./button/buttonDesktop";
 export * from "./checkbox/checkboxDesktop";
+export * from "./circularProgress/circularProgressDesktop";
 export * from "./dialog/dialogDesktop";
 export * from "./fab/fabDesktop";
 export * from "./iconButton/iconButtonDesktop";

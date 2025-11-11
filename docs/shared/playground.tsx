@@ -18,6 +18,7 @@ import {
   adaptiveButtonStackClasses,
 } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
 import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox/adaptiveCheckbox";
+import { AdaptiveCircularProgress } from "adaptive-material-ui/components/circularProgress/adaptiveCircularProgress";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
@@ -85,6 +86,19 @@ const theme = createTheme({
         },
         root: {
           backgroundColor: "blue",
+        },
+      },
+    },
+    AdaptiveCircularProgress: {
+      defaultProps: {
+        size: 50,
+      },
+      styleOverrides: {
+        ios: {
+          color: "pink",
+        },
+        root: {
+          color: "orange",
         },
       },
     },
@@ -482,6 +496,10 @@ export default function () {
           <AdaptiveIconButton adaptiveMode="ios" variant="contained">
             <PlayArrowIcon />
           </AdaptiveIconButton>
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveCircularProgress />
+          <AdaptiveCircularProgress adaptiveMode="ios" />
         </Stack>
       </Stack>
     </ThemeProvider>

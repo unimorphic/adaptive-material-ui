@@ -4,6 +4,8 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveCircularProgressClasses,
+  AdaptiveCircularProgressProps,
   AdaptiveIconButtonClasses,
   AdaptiveIconButtonProps,
 } from "../components";
@@ -83,6 +85,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveCheckbox"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveCheckbox"];
   };
+  AdaptiveCircularProgress?: {
+    defaultProps?: ComponentsProps["AdaptiveCircularProgress"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveCircularProgress"];
+  };
   AdaptiveDialog?: {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
@@ -149,6 +155,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveButton: AdaptiveButtonProps;
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveCheckbox: AdaptiveCheckboxProps;
+  AdaptiveCircularProgress: AdaptiveCircularProgressProps;
   AdaptiveDialog: AdaptiveDialogProps;
   AdaptiveDialogActions: AdaptiveDialogActionsProps;
   AdaptiveFab: AdaptiveFabProps;
@@ -170,6 +177,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveButton: keyof AdaptiveButtonClasses;
   AdaptiveButtonStack: keyof AdaptiveButtonStackClasses;
   AdaptiveCheckbox: keyof AdaptiveCheckboxClasses;
+  AdaptiveCircularProgress: keyof AdaptiveCircularProgressClasses;
   AdaptiveDialog: keyof AdaptiveDialogClasses;
   AdaptiveDialogActions: keyof AdaptiveDialogActionsClasses;
   AdaptiveFab: keyof AdaptiveFabClasses;

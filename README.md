@@ -18,7 +18,6 @@ This project is licensed under the terms of the [MIT license](/LICENSE)
 ## TODO
 
 - Date picker
-- Progress bar & circle
 
 - Finish Contributing.md
 - Cross browser test

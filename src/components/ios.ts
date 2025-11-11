@@ -1,5 +1,6 @@
 export * from "./button/buttonIOS";
 export * from "./checkbox/checkboxIOS";
+export * from "./circularProgress/circularProgressIOS";
 export * from "./dialog/dialogIOS";
 export * from "./fab/fabIOS";
 export * from "./iconButton/iconButtonIOS";

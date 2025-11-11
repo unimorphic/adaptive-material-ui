@@ -1,5 +1,6 @@
 export * from "./button/buttonAndroid";
 export * from "./checkbox/checkboxAndroid";
+export * from "./circularProgress/circularProgressAndroid";
 export * from "./dialog/dialogAndroid";
 export * from "./fab/fabAndroid";
 export * from "./iconButton/iconButtonAndroid";
