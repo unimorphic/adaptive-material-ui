@@ -4,7 +4,7 @@ pageType: home
 hero:
   name: Adaptive Material UI
   text: React Components that Device Adapt
-  tagline: The Awesomeness of Material UI + Adaptiveness
+  tagline: ⚠️ This library is currently in beta, there may be breaking changes between versions
   actions:
     - theme: brand
       text: Overview

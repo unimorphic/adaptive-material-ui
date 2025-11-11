@@ -45,3 +45,38 @@ export default function () {
   );
 }
 ```
+
+## adaptiveMode Prop
+
+Components with behavior that varies based on device type have a `adaptiveMode` prop which can be used to
+override the current adaptive mode. Note the iOS font will not be applied when only this prop is set since
+it is applied via `AdaptiveThemeProvider`.
+
+This prop can be useful for testing and can also be used to pin
+specific component types to a adaptive mode via the theme as shown here.
+
+```tsx pure
+import { ThemeOptions } from "@mui/material/styles";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
+
+const theme: ThemeOptions = {
+  colorSchemes: { dark: true },
+  components: {
+    AdaptiveSwitch: {
+      defaultProps: {
+        adaptiveMode: "ios",
+      },
+    },
+  },
+};
+
+export default function () {
+  return (
+    <AdaptiveThemeProvider theme={theme}>
+      <AdaptiveSwitch defaultChecked />
+    </AdaptiveThemeProvider>
+  );
+}
+```
