@@ -4,7 +4,7 @@ import Links from "@/shared/links";
 
 ## Adaptiveness
 
-- iOS: native styling
+- iOS: native animation
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -28,11 +28,11 @@ import { AdaptiveCircularProgress } from "adaptive-material-ui/components/circul
 import { useEffect, useState } from "react";
 
 export default function () {
-  const [progress, setProgress] = useState(1);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setProgress((v) => (v + 12.5 >= 100 ? 1 : v + 12.5));
+      setProgress((v) => (v >= 100 ? 0 : v + 12.5));
     }, 1000);
 
     return () => window.clearInterval(timer);

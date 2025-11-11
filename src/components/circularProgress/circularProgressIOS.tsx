@@ -1,9 +1,16 @@
 import { CircularProgressProps } from "@mui/material/CircularProgress";
 import { css, keyframes, styled } from "@mui/material/styles";
+import capitalize from "@mui/utils/capitalize";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import { Ref } from "react";
+
+interface OwnerState {
+  color: NonNullable<CircularProgressProps["color"]>;
+  size: NonNullable<CircularProgressProps["size"]>;
+  variant: NonNullable<CircularProgressProps["variant"]>;
+}
 
 const rotateKeyframe = keyframes`
   0% {
@@ -23,19 +30,16 @@ const rotateAnimation =
       `
     : { animation: `${rotateKeyframe} 1s steps(8, end) infinite` };
 
-function Spinner(props: { percent?: number }) {
+function Spinner(props: { className?: string; percent?: number }) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
+      className={props.className}
+      fill="currentcolor"
       height="20"
       viewBox="0 0 20 20"
-      fill="currentcolor"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M10,0 C10.5522847,0 11,0.44771525 11,1 L11,6 C11,6.55228475 10.5522847,7 10,7 C9.44771525,7 9,6.55228475 9,6 L9,1 C9,0.44771525 9.44771525,0 10,0 Z"
-        opacity={props.percent !== undefined ? (props.percent > 0 ? 1 : 0) : 1}
-      />
       <path
         d="M12.1211263,7.87887373 C11.730602,7.48834944 11.730602,6.85518446 12.1211263,6.46466017 L15.6566602,2.92912627 C16.0471845,2.53860197 16.6803494,2.53860197 17.0708737,2.92912627 C17.461398,3.31965056 17.461398,3.95281554 17.0708737,4.34333983 L13.5353398,7.87887373 C13.1448155,8.26939803 12.5116506,8.26939803 12.1211263,7.87887373 Z"
         opacity={
@@ -78,28 +82,45 @@ function Spinner(props: { percent?: number }) {
           props.percent !== undefined ? (props.percent >= 87.5 ? 1 : 0) : 0.37
         }
       />
+      <path
+        d="M10,0 C10.5522847,0 11,0.44771525 11,1 L11,6 C11,6.55228475 10.5522847,7 10,7 C9.44771525,7 9,6.55228475 9,6 L9,1 C9,0.44771525 9.44771525,0 10,0 Z"
+        opacity={
+          props.percent !== undefined ? (props.percent >= 100 ? 1 : 0) : 1
+        }
+      />
     </svg>
   );
 }
 
+const StyledSpinner = styled(Spinner, {
+  name: "MuiCircularProgress",
+  slot: "svg",
+})({
+  height: "100%",
+  width: "100%",
+});
+
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Progress%2520Indicators
  */
-const StyledSpan = styled("div", {
+const StyledRoot = styled("div", {
   name: "AdaptiveCircularProgress",
   slot: "ios",
-})<{ ownerState: CircularProgressProps }>(({ ownerState, theme }) => ({
+  overridesResolver: (props: { ownerState: OwnerState }, styles) => {
+    return [
+      styles.root,
+      styles[props.ownerState.variant],
+      styles[`color${capitalize(props.ownerState.color)}`],
+      styles.ios,
+    ];
+  },
+})<{ ownerState: OwnerState }>(({ ownerState, theme }) => ({
   color:
     ownerState.color !== "inherit"
-      ? (theme.vars ?? theme).palette[ownerState.color ?? "primary"].main
+      ? (theme.vars ?? theme).palette[ownerState.color].main
       : undefined,
-  height: ownerState.size ?? 30,
-  width: ownerState.size ?? 30,
-
-  "& svg": {
-    height: "100%",
-    width: "100%",
-  },
+  height: ownerState.size,
+  width: ownerState.size,
 
   variants: [
     {
@@ -112,14 +133,14 @@ const StyledSpan = styled("div", {
 export function CircularProgressIOS(props: CircularProgressProps) {
   const {
     className,
-    color,
+    color = "primary",
     disableShrink,
     enableTrackSlot,
     ref,
-    size,
+    size = 30,
     thickness,
     value = 0,
-    variant,
+    variant = "indeterminate",
     ...otherProps
   } = props;
 
@@ -128,17 +149,25 @@ export function CircularProgressIOS(props: CircularProgressProps) {
     (s) => generateUtilityClass("AdaptiveCircularProgress", s),
     props.classes,
   );
+  const muiComposedClasses = composeClasses(
+    { root: ["root", variant, `color${capitalize(color)}`], svg: ["svg"] },
+    (s) => generateUtilityClass("MuiCircularProgress", s),
+    props.classes,
+  );
 
   return (
-    <StyledSpan
+    <StyledRoot
       aria-valuenow={variant === "determinate" ? Math.round(value) : undefined}
-      className={clsx(composedClasses.ios, className)}
-      ownerState={props}
+      className={clsx(composedClasses.ios, muiComposedClasses.root, className)}
+      ownerState={{ color: color, size: size, variant: variant }}
       ref={ref as Ref<HTMLDivElement>}
       role="progressbar"
       {...otherProps}
     >
-      <Spinner percent={variant === "determinate" ? value : undefined} />
-    </StyledSpan>
+      <StyledSpinner
+        className={muiComposedClasses.svg}
+        percent={variant === "determinate" ? value : undefined}
+      />
+    </StyledRoot>
   );
 }

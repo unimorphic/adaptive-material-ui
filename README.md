@@ -12,7 +12,7 @@ See the [documentation site](https://unimorphic.github.io/adaptive-material-ui/d
 
 ## Contributing
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes
+Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process and how to build & test your changes
 
 ## License
 

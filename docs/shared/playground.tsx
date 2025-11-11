@@ -500,6 +500,11 @@ export default function () {
         <Stack direction="row" spacing={2}>
           <AdaptiveCircularProgress />
           <AdaptiveCircularProgress adaptiveMode="ios" />
+          <AdaptiveCircularProgress
+            adaptiveMode="ios"
+            value={50}
+            variant="determinate"
+          />
         </Stack>
       </Stack>
     </ThemeProvider>
