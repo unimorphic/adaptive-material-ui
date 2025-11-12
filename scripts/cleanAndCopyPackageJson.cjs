@@ -16,3 +16,8 @@ fs.writeFileSync(
   JSON.stringify(packageInfo, null, 2),
   "utf-8",
 );
+
+fs.copyFileSync(
+  __dirname + "/esm-package.json",
+  __dirname + "/../dist/esm/package.json",
+);

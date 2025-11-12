@@ -4,14 +4,6 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
-  AdaptiveCircularProgressClasses,
-  AdaptiveCircularProgressProps,
-  AdaptiveIconButtonClasses,
-  AdaptiveIconButtonProps,
-  AdaptiveLinearProgressClasses,
-  AdaptiveLinearProgressProps,
-} from "../components";
-import {
   AdaptiveButtonClasses,
   AdaptiveButtonProps,
 } from "../components/button/adaptiveButton";
@@ -24,6 +16,10 @@ import {
   AdaptiveCheckboxProps,
 } from "../components/checkbox/adaptiveCheckbox";
 import {
+  AdaptiveCircularProgressClasses,
+  AdaptiveCircularProgressProps,
+} from "../components/circularProgress/adaptiveCircularProgress";
+import {
   AdaptiveDialogActionsClasses,
   AdaptiveDialogActionsProps,
   AdaptiveDialogClasses,
@@ -33,6 +29,14 @@ import {
   AdaptiveFabClasses,
   AdaptiveFabProps,
 } from "../components/fab/adaptiveFab";
+import {
+  AdaptiveIconButtonClasses,
+  AdaptiveIconButtonProps,
+} from "../components/iconButton/adaptiveIconButton";
+import {
+  AdaptiveLinearProgressClasses,
+  AdaptiveLinearProgressProps,
+} from "../components/linearProgress/adaptiveLinearProgress";
 import {
   AdaptiveMenuClasses,
   AdaptiveMenuProps,

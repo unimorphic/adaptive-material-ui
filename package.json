@@ -28,15 +28,34 @@
         "default": "./dist/esm/adaptiveMode/index.mjs"
       }
     },
-    "./dist/esm": null,
-    "./*": {
+    "./eslintRule": {
       "require": {
-        "types": "./dist/*.d.ts",
-        "default": "./dist/*.js"
+        "types": "./dist/eslintRule.d.ts",
+        "default": "./dist/eslintRule.js"
       },
       "default": {
-        "types": "./dist/esm/*.d.ts",
-        "default": "./dist/esm/*.mjs"
+        "types": "./dist/esm/eslintRule.d.ts",
+        "default": "./dist/esm/eslintRule.mjs"
+      }
+    },
+    "./components/*": {
+      "require": {
+        "types": "./dist/components/*.d.ts",
+        "default": "./dist/components/*.js"
+      },
+      "default": {
+        "types": "./dist/esm/components/*.d.ts",
+        "default": "./dist/esm/components/*.mjs"
+      }
+    },
+    "./theme/*": {
+      "require": {
+        "types": "./dist/theme/*.d.ts",
+        "default": "./dist/theme/*.js"
+      },
+      "default": {
+        "types": "./dist/esm/theme/*.d.ts",
+        "default": "./dist/esm/theme/*.mjs"
       }
     }
   },
