@@ -5,6 +5,7 @@ export * from "./circularProgress/adaptiveCircularProgress";
 export * from "./dialog/adaptiveDialog";
 export * from "./fab/adaptiveFab";
 export * from "./iconButton/adaptiveIconButton";
+export * from "./linearProgress/adaptiveLinearProgress";
 export * from "./menu/adaptiveMenu";
 export * from "./radio/adaptiveRadio";
 export * from "./select/adaptiveSelect";

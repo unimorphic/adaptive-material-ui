@@ -1,6 +1,20 @@
 import Grid from "@mui/material/Grid";
+import { linearProgressClasses } from "@mui/material/LinearProgress";
+import { sliderClasses } from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
 import React from "react";
+
+const StyledStack = styled(Stack)({
+  flexWrap: "wrap",
+
+  [`& .${linearProgressClasses.root}`]: {
+    width: "100%",
+  },
+  [`& .${sliderClasses.root}`]: {
+    display: "block",
+  },
+});
 
 export function DemoListItem(props: {
   children: React.ReactNode;
@@ -10,15 +24,9 @@ export function DemoListItem(props: {
     <React.Fragment>
       <Grid size={3}>{props.title}</Grid>
       <Grid size={9}>
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={2}
-          sx={{ flexWrap: "wrap" }}
-          useFlexGap
-        >
+        <StyledStack alignItems="center" direction="row" spacing={2} useFlexGap>
           {props.children}
-        </Stack>
+        </StyledStack>
       </Grid>
     </React.Fragment>
   );

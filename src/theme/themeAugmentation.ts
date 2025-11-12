@@ -8,6 +8,8 @@ import {
   AdaptiveCircularProgressProps,
   AdaptiveIconButtonClasses,
   AdaptiveIconButtonProps,
+  AdaptiveLinearProgressClasses,
+  AdaptiveLinearProgressProps,
 } from "../components";
 import {
   AdaptiveButtonClasses,
@@ -113,6 +115,10 @@ export interface AdaptiveComponents {
     defaultProps?: ComponentsProps["AdaptiveInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveInput"];
   };
+  AdaptiveLinearProgress?: {
+    defaultProps?: ComponentsProps["AdaptiveLinearProgress"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveLinearProgress"];
+  };
   AdaptiveMenu?: {
     defaultProps?: ComponentsProps["AdaptiveMenu"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveMenu"];
@@ -162,6 +168,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveFilledInput: AdaptiveFilledInputProps;
   AdaptiveIconButton: AdaptiveIconButtonProps;
   AdaptiveInput: AdaptiveInputProps;
+  AdaptiveLinearProgress: AdaptiveLinearProgressProps;
   AdaptiveMenu: AdaptiveMenuProps;
   AdaptiveOutlinedInput: AdaptiveOutlinedInputProps;
   AdaptiveRadio: AdaptiveRadioProps;
@@ -184,6 +191,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveFilledInput: keyof AdaptiveFilledInputClasses;
   AdaptiveIconButton: keyof AdaptiveIconButtonClasses;
   AdaptiveInput: keyof AdaptiveInputClasses;
+  AdaptiveLinearProgress: keyof AdaptiveLinearProgressClasses;
   AdaptiveMenu: keyof AdaptiveMenuClasses;
   AdaptiveOutlinedInput: keyof AdaptiveOutlinedInputClasses;
   AdaptiveRadio: keyof AdaptiveRadioClasses;

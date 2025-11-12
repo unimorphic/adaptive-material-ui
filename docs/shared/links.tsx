@@ -1,7 +1,8 @@
+import Stack from "@mui/material/Stack";
 import { getCustomMDXComponent } from "rspress/theme";
 
 interface Props {
-  codeUrl: string;
+  codeUrl: string | string[];
   docsUrl: string;
   mui?: { title: string; url: string };
 }
@@ -20,9 +21,19 @@ export default function Links(props: Props) {
     <List>
       <ListItem>
         Component Source&nbsp;
-        <Link href={`${githubRootUrl}/src/${props.codeUrl}`} target="_blank">
-          {props.codeUrl.substring(props.codeUrl.lastIndexOf("/") + 1)}
-        </Link>
+        <Stack direction="row" spacing={1} sx={{ display: "inline" }}>
+          {(Array.isArray(props.codeUrl) ? props.codeUrl : [props.codeUrl]).map(
+            (url) => (
+              <Link
+                href={`${githubRootUrl}/src/${url}`}
+                key={url}
+                target="_blank"
+              >
+                {url.substring(url.lastIndexOf("/") + 1)}
+              </Link>
+            ),
+          )}
+        </Stack>
       </ListItem>
       <ListItem>
         Doc Source&nbsp;

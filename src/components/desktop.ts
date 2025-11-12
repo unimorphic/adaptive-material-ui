@@ -4,6 +4,7 @@ export * from "./circularProgress/circularProgressDesktop";
 export * from "./dialog/dialogDesktop";
 export * from "./fab/fabDesktop";
 export * from "./iconButton/iconButtonDesktop";
+export * from "./linearProgress/linearProgressDesktop";
 export * from "./menu/menuDesktop";
 export * from "./radio/radioDesktop";
 export * from "./select/selectDesktop";

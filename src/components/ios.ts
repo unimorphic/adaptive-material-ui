@@ -4,6 +4,7 @@ export * from "./circularProgress/circularProgressIOS";
 export * from "./dialog/dialogIOS";
 export * from "./fab/fabIOS";
 export * from "./iconButton/iconButtonIOS";
+export * from "./linearProgress/linearProgressIOS";
 export * from "./menu/menuIOS";
 export * from "./radio/radioIOS";
 export * from "./select/selectIOS";

@@ -123,8 +123,5 @@ div.rspress-preview {
         background-color: var(--rp-c-bg-soft);
       }
     }
-    .MuiSlider-root {
-      display: block;
-    }
   }
 }

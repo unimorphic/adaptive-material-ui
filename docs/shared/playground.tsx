@@ -26,6 +26,7 @@ import {
 } from "adaptive-material-ui/components/dialog/adaptiveDialog";
 import { AdaptiveFab } from "adaptive-material-ui/components/fab/adaptiveFab";
 import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/adaptiveIconButton";
+import { AdaptiveLinearProgress } from "adaptive-material-ui/components/linearProgress/adaptiveLinearProgress";
 import {
   AdaptiveMenu,
   adaptiveMenuClasses,
@@ -177,6 +178,20 @@ const theme = createTheme({
       styleOverrides: {
         ios: {
           outline: "1px solid blue",
+        },
+      },
+    },
+    AdaptiveLinearProgress: {
+      defaultProps: {
+        value: 75,
+        variant: "determinate",
+      },
+      styleOverrides: {
+        ios: {
+          backgroundColor: "blue",
+        },
+        root: {
+          backgroundColor: "red",
         },
       },
     },
@@ -505,6 +520,10 @@ export default function () {
             value={50}
             variant="determinate"
           />
+        </Stack>
+        <Stack spacing={2}>
+          <AdaptiveLinearProgress />
+          <AdaptiveLinearProgress adaptiveMode="ios" />
         </Stack>
       </Stack>
     </ThemeProvider>

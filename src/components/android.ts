@@ -4,6 +4,7 @@ export * from "./circularProgress/circularProgressAndroid";
 export * from "./dialog/dialogAndroid";
 export * from "./fab/fabAndroid";
 export * from "./iconButton/iconButtonAndroid";
+export * from "./linearProgress/linearProgressAndroid";
 export * from "./menu/menuAndroid";
 export * from "./radio/radioAndroid";
 export * from "./select/selectAndroid";
