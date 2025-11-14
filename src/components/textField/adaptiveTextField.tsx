@@ -5,7 +5,7 @@ import TextField, {
   TextFieldProps,
   TextFieldVariants,
 } from "@mui/material/TextField";
-import resolveComponentProps from "@mui/utils/resolveComponentProps";
+import { mergeSlotProps } from "@mui/material/utils";
 import {
   AdaptiveModeContext,
   AdaptiveModeProp,
@@ -54,8 +54,6 @@ export function AdaptiveTextField<
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
   const { slotProps, slots, ...textFieldProps } = otherProps;
 
-  const inputLabelProps = resolveComponentProps(slotProps?.inputLabel, props);
-
   return (
     <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>
       <ReplaceComponentInTheme
@@ -66,10 +64,9 @@ export function AdaptiveTextField<
           {...textFieldProps}
           slotProps={{
             ...slotProps,
-            inputLabel: {
+            inputLabel: mergeSlotProps(slotProps?.inputLabel, {
               focused: adaptiveMode === "ios" ? false : undefined,
-              ...inputLabelProps,
-            },
+            }),
           }}
           slots={{
             input: variantComponent[textFieldProps.variant ?? "outlined"],

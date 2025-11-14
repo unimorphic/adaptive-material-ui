@@ -98,23 +98,23 @@ export default function () {
   const [buffer, setBuffer] = useState(10);
 
   useEffect(() => {
-    let oldProgress = 0;
-    let oldBuffer = 0;
+    let prevProgress = 0;
+    let prevBuffer = 0;
 
     function updateProgress() {
-      if (oldProgress === 100) {
+      if (prevProgress === 100) {
         setProgress(0);
         setBuffer(10);
-        oldProgress = 0;
-        oldBuffer = 10;
+        prevProgress = 0;
+        prevBuffer = 10;
       } else {
-        setProgress(oldProgress + 1);
+        setProgress(prevProgress + 1);
 
-        if (oldBuffer < 100 && oldProgress % 5 === 0) {
-          const newBuffer = oldBuffer + 1 + Math.random() * 10;
-          setBuffer((oldBuffer = newBuffer > 100 ? 100 : newBuffer));
+        if (prevBuffer < 100 && prevProgress % 5 === 0) {
+          const newBuffer = prevBuffer + 1 + Math.random() * 10;
+          setBuffer((prevBuffer = newBuffer > 100 ? 100 : newBuffer));
         }
-        oldProgress = oldProgress + 1;
+        prevProgress = prevProgress + 1;
       }
     }
 
