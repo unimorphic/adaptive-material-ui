@@ -1,8 +1,12 @@
 import {
   buttonClasses,
   ButtonClasses,
-  ButtonTypeMap,
+  ButtonOwnProps,
 } from "@mui/material/Button";
+import {
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from "@mui/material/ButtonBase";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode, useContext } from "react";
@@ -13,14 +17,27 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
-import { ButtonRoundProps } from "./buttonRound";
+import { ButtonRoundOwnProps, ButtonRoundProps } from "./buttonRound";
+
+type AdaptiveButtonOwnProps = AdaptiveModeProp &
+  StyledComponentProps<keyof AdaptiveButtonClasses>;
+
+type AdaptiveButtonTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = "button",
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps &
+    ButtonOwnProps &
+    ButtonRoundOwnProps &
+    AdaptiveButtonOwnProps;
+  defaultComponent: RootComponent;
+}>;
 
 export type AdaptiveButtonProps<
-  RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
+  RootComponent extends
+    React.ElementType = AdaptiveButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = Omit<ButtonRoundProps<RootComponent, AdditionalProps>, "classes"> &
-  StyledComponentProps<keyof AdaptiveButtonClasses> &
-  AdaptiveModeProp;
+> = ButtonRoundProps<RootComponent, AdditionalProps> & AdaptiveButtonOwnProps;
 
 export interface AdaptiveButtonClasses extends ButtonClasses, IosClasses {}
 
@@ -43,37 +60,37 @@ const ButtonIOS = lazy(async () => {
   return { default: ButtonIOS };
 });
 
-export function AdaptiveButton<
-  RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
-  AdditionalProps = {},
->(inProps: AdaptiveButtonProps<RootComponent, AdditionalProps>) {
-  const defaultProps = useContext(AdaptiveDialogActionsContext);
+export const AdaptiveButton: ExtendButtonBase<AdaptiveButtonTypeMap> =
+  function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+    inProps: AdaptiveButtonProps<RootComponent, AdditionalProps>,
+  ) {
+    const defaultProps = useContext(AdaptiveDialogActionsContext);
 
-  const props = useThemeProps({
-    props: { ...defaultProps, ...inProps },
-    name: "AdaptiveButton",
-  });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+    const props = useThemeProps({
+      props: { ...defaultProps, ...inProps },
+      name: "AdaptiveButton",
+    });
+    const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
-  let content: ReactNode;
-  switch (adaptiveMode) {
-    case "android":
-      content = <ButtonAndroid {...(otherProps as AdaptiveButtonProps)} />;
-      break;
-    case "ios":
-      content = <ButtonIOS {...(otherProps as AdaptiveButtonProps)} />;
-      break;
-    default:
-      content = <ButtonDesktop {...(otherProps as AdaptiveButtonProps)} />;
-      break;
-  }
+    let content: ReactNode;
+    switch (adaptiveMode) {
+      case "android":
+        content = <ButtonAndroid {...(otherProps as AdaptiveButtonProps)} />;
+        break;
+      case "ios":
+        content = <ButtonIOS {...(otherProps as AdaptiveButtonProps)} />;
+        break;
+      default:
+        content = <ButtonDesktop {...(otherProps as AdaptiveButtonProps)} />;
+        break;
+    }
 
-  return (
-    <ReplaceComponentInTheme
-      sourceComponentName="AdaptiveButton"
-      targetComponentName="MuiButton"
-    >
-      {content}
-    </ReplaceComponentInTheme>
-  );
-}
+    return (
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveButton"
+        targetComponentName="MuiButton"
+      >
+        {content}
+      </ReplaceComponentInTheme>
+    );
+  };

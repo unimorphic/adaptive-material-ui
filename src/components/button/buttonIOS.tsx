@@ -18,7 +18,7 @@ const StyledButton = styled(ButtonRound, {
       : ownerState.size === "small"
         ? "3px 10px"
         : "5px 12px",
-})) as unknown as typeof ButtonRound;
+}));
 
 export function ButtonIOS<
   RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
@@ -37,7 +37,7 @@ export function ButtonIOS<
       className={clsx(composedClasses.ios, className)}
       disableTouchRipple
       ownerState={props}
-      {...(otherProps as ButtonRoundProps<RootComponent, AdditionalProps>)}
+      {...otherProps}
     />
   );
 }

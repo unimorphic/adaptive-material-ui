@@ -9,5 +9,5 @@ export function IconButtonDesktop<
     React.ElementType = IconButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
 >(props: IconButtonContainedProps<RootComponent, AdditionalProps>) {
-  return <IconButtonContained<RootComponent, AdditionalProps> {...props} />;
+  return <IconButtonContained {...props} />;
 }

@@ -1,7 +1,11 @@
 import {
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from "@mui/material/ButtonBase";
+import {
   iconButtonClasses,
   IconButtonClasses,
-  IconButtonTypeMap,
+  IconButtonOwnProps,
 } from "@mui/material/IconButton";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
@@ -12,15 +16,31 @@ import {
 } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import { IconButtonContainedProps } from "./iconButtonContained";
+import {
+  IconButtonContainedOwnProps,
+  IconButtonContainedProps,
+} from "./iconButtonContained";
+
+type AdaptiveIconButtonOwnProps = AdaptiveModeProp &
+  StyledComponentProps<keyof AdaptiveIconButtonClasses>;
+
+type AdaptiveIconButtonTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = "button",
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps &
+    IconButtonOwnProps &
+    IconButtonContainedOwnProps &
+    AdaptiveIconButtonOwnProps;
+  defaultComponent: RootComponent;
+}>;
 
 export type AdaptiveIconButtonProps<
   RootComponent extends
-    React.ElementType = IconButtonTypeMap["defaultComponent"],
+    React.ElementType = AdaptiveIconButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = Omit<IconButtonContainedProps<RootComponent, AdditionalProps>, "classes"> &
-  StyledComponentProps<keyof AdaptiveIconButtonClasses> &
-  AdaptiveModeProp;
+> = IconButtonContainedProps<RootComponent, AdditionalProps> &
+  AdaptiveIconButtonOwnProps;
 
 export interface AdaptiveIconButtonClasses
   extends IconButtonClasses,
@@ -45,37 +65,38 @@ const IconButtonIOS = lazy(async () => {
   return { default: IconButtonIOS };
 });
 
-export function AdaptiveIconButton<
-  RootComponent extends
-    React.ElementType = IconButtonTypeMap["defaultComponent"],
-  AdditionalProps = {},
->(inProps: AdaptiveIconButtonProps<RootComponent, AdditionalProps>) {
-  const props = useThemeProps({ props: inProps, name: "AdaptiveIconButton" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+export const AdaptiveIconButton: ExtendButtonBase<AdaptiveIconButtonTypeMap> =
+  function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+    inProps: AdaptiveIconButtonProps<RootComponent, AdditionalProps>,
+  ) {
+    const props = useThemeProps({ props: inProps, name: "AdaptiveIconButton" });
+    const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
-  let content: ReactNode;
-  switch (adaptiveMode) {
-    case "android":
-      content = (
-        <IconButtonAndroid {...(otherProps as AdaptiveIconButtonProps)} />
-      );
-      break;
-    case "ios":
-      content = <IconButtonIOS {...(otherProps as AdaptiveIconButtonProps)} />;
-      break;
-    default:
-      content = (
-        <IconButtonDesktop {...(otherProps as AdaptiveIconButtonProps)} />
-      );
-      break;
-  }
+    let content: ReactNode;
+    switch (adaptiveMode) {
+      case "android":
+        content = (
+          <IconButtonAndroid {...(otherProps as AdaptiveIconButtonProps)} />
+        );
+        break;
+      case "ios":
+        content = (
+          <IconButtonIOS {...(otherProps as AdaptiveIconButtonProps)} />
+        );
+        break;
+      default:
+        content = (
+          <IconButtonDesktop {...(otherProps as AdaptiveIconButtonProps)} />
+        );
+        break;
+    }
 
-  return (
-    <ReplaceComponentInTheme
-      sourceComponentName="AdaptiveIconButton"
-      targetComponentName="MuiIconButton"
-    >
-      {content}
-    </ReplaceComponentInTheme>
-  );
-}
+    return (
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveIconButton"
+        targetComponentName="MuiIconButton"
+      >
+        {content}
+      </ReplaceComponentInTheme>
+    );
+  };
