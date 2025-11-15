@@ -23,7 +23,7 @@ import {
 } from "./adaptiveInput";
 
 export type AdaptiveTextFieldProps<
-  Variant extends TextFieldVariants = "outlined",
+  Variant extends TextFieldVariants = TextFieldVariants,
 > = Omit<TextFieldProps<Variant>, "classes" | "slotProps" | "variant"> &
   StyledComponentProps<keyof AdaptiveTextFieldClasses> &
   AdaptiveModeProp & {
