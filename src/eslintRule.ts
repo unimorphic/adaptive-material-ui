@@ -58,6 +58,10 @@ export function warnNonAdaptiveComponents(excludeComponentNames?: string[]) {
         selector: `CallExpression[callee.name='styled'][arguments.0.name='${c.old}']`,
         message: `Use ${c.new} instead`,
       },
+      {
+        selector: `Property[key.name='Mui${c.old}']`,
+        message: `Use ${c.new} instead`,
+      },
       ...(c.rules ?? []),
     ]);
 }

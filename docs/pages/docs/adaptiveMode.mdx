@@ -25,6 +25,7 @@ on the current context & device. In this example all buttons will default to `ro
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+// 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
 function createTheme(adaptiveMode: AdaptiveMode) {
@@ -59,6 +60,7 @@ specific component types to a adaptive mode via the theme as shown here.
 import { ThemeOptions } from "@mui/material/styles";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+// 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
 const theme: ThemeOptions = {

@@ -1,6 +1,7 @@
 import {
   ComponentsOverrides,
   ComponentsProps,
+  ComponentsVariants,
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
@@ -82,82 +83,102 @@ export interface AdaptiveComponents {
   AdaptiveButton?: {
     defaultProps?: ComponentsProps["AdaptiveButton"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButton"];
+    variants?: ComponentsVariants<Theme>["AdaptiveButton"];
   };
   AdaptiveButtonStack?: {
     defaultProps?: ComponentsProps["AdaptiveButtonStack"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButtonStack"];
+    variants?: ComponentsVariants<Theme>["AdaptiveButtonStack"];
   };
   AdaptiveCheckbox?: {
     defaultProps?: ComponentsProps["AdaptiveCheckbox"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveCheckbox"];
+    variants?: ComponentsVariants<Theme>["AdaptiveCheckbox"];
   };
   AdaptiveCircularProgress?: {
     defaultProps?: ComponentsProps["AdaptiveCircularProgress"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveCircularProgress"];
+    variants?: ComponentsVariants<Theme>["AdaptiveCircularProgress"];
   };
   AdaptiveDialog?: {
     defaultProps?: ComponentsProps["AdaptiveDialog"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialog"];
+    variants?: ComponentsVariants<Theme>["AdaptiveDialog"];
   };
   AdaptiveDialogActions?: {
     defaultProps?: ComponentsProps["AdaptiveDialogActions"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveDialogActions"];
+    variants?: ComponentsVariants<Theme>["AdaptiveDialogActions"];
   };
   AdaptiveFab?: {
     defaultProps?: ComponentsProps["AdaptiveFab"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFab"];
+    variants?: ComponentsVariants<Theme>["AdaptiveFab"];
   };
   AdaptiveFilledInput?: {
     defaultProps?: ComponentsProps["AdaptiveFilledInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveFilledInput"];
+    variants?: ComponentsVariants<Theme>["AdaptiveFilledInput"];
   };
   AdaptiveIconButton?: {
     defaultProps?: ComponentsProps["AdaptiveIconButton"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveIconButton"];
+    variants?: ComponentsVariants<Theme>["AdaptiveIconButton"];
   };
   AdaptiveInput?: {
     defaultProps?: ComponentsProps["AdaptiveInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveInput"];
+    variants?: ComponentsVariants<Theme>["AdaptiveInput"];
   };
   AdaptiveLinearProgress?: {
     defaultProps?: ComponentsProps["AdaptiveLinearProgress"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveLinearProgress"];
+    variants?: ComponentsVariants<Theme>["AdaptiveLinearProgress"];
   };
   AdaptiveMenu?: {
     defaultProps?: ComponentsProps["AdaptiveMenu"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveMenu"];
+    variants?: ComponentsVariants<Theme>["AdaptiveMenu"];
   };
   AdaptiveOutlinedInput?: {
     defaultProps?: ComponentsProps["AdaptiveOutlinedInput"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveOutlinedInput"];
+    variants?: ComponentsVariants<Theme>["AdaptiveOutlinedInput"];
   };
   AdaptiveRadio?: {
     defaultProps?: ComponentsProps["AdaptiveRadio"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveRadio"];
+    variants?: ComponentsVariants<Theme>["AdaptiveRadio"];
   };
   AdaptiveSelect?: {
     defaultProps?: ComponentsProps["AdaptiveSelect"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelect"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSelect"];
   };
   AdaptiveSelectItem?: {
     defaultProps?: ComponentsProps["AdaptiveSelectItem"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelectItem"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSelectItem"];
   };
   AdaptiveSlider?: {
     defaultProps?: ComponentsProps["AdaptiveSlider"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSlider"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSlider"];
   };
   AdaptiveSnackbar?: {
     defaultProps?: ComponentsProps["AdaptiveSnackbar"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSnackbar"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSnackbar"];
   };
   AdaptiveSwitch?: {
     defaultProps?: ComponentsProps["AdaptiveSwitch"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSwitch"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSwitch"];
   };
   AdaptiveTextField?: {
     defaultProps?: ComponentsProps["AdaptiveTextField"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveTextField"];
+    variants?: ComponentsVariants<Theme>["AdaptiveTextField"];
   };
 }
 

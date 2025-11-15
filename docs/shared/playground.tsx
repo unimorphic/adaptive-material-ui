@@ -58,6 +58,14 @@ const theme = createTheme({
           alignSelf: "flex-start",
         },
       },
+      variants: [
+        {
+          props: (p) => p.variant === "contained",
+          style: {
+            backgroundColor: "blue",
+          },
+        },
+      ],
     },
     AdaptiveButtonStack: {
       defaultProps: {
@@ -76,6 +84,14 @@ const theme = createTheme({
           },
         },
       },
+      variants: [
+        {
+          props: (p) => p.spacing === 1,
+          style: {
+            backgroundColor: "lightgrey",
+          },
+        },
+      ],
     },
     AdaptiveCheckbox: {
       defaultProps: {
@@ -102,6 +118,14 @@ const theme = createTheme({
           color: "orange",
         },
       },
+      variants: [
+        {
+          props: (p) => p.size === 50,
+          style: {
+            backgroundColor: "blue",
+          },
+        },
+      ],
     },
     AdaptiveDialog: {
       defaultProps: {
@@ -256,6 +280,14 @@ const theme = createTheme({
           backgroundColor: "blue",
         },
       },
+      variants: [
+        {
+          props: (p) => p.dense === true,
+          style: {
+            border: "1px solid green",
+          },
+        },
+      ],
     },
     AdaptiveSlider: {
       defaultProps: {
@@ -303,6 +335,7 @@ const theme = createTheme({
     AdaptiveTextField: {
       defaultProps: {
         helperText: "hi",
+        variant: "filled",
       },
       styleOverrides: {
         root: {
@@ -321,7 +354,7 @@ export default function () {
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={2}>
-        <AdaptiveButton>Button</AdaptiveButton>
+        <AdaptiveButton variant="outlined">Button</AdaptiveButton>
 
         <AdaptiveButtonStack>
           <AdaptiveButton>Button</AdaptiveButton>
@@ -333,6 +366,9 @@ export default function () {
           </AdaptiveButton>
           <AdaptiveButton>Button</AdaptiveButton>
           <AdaptiveButton>Stack</AdaptiveButton>
+        </AdaptiveButtonStack>
+        <AdaptiveButtonStack spacing={1}>
+          <AdaptiveButton>Button</AdaptiveButton>
         </AdaptiveButtonStack>
 
         <Stack direction="row" spacing={2}>
