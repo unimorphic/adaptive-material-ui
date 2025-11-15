@@ -1,7 +1,6 @@
 "use client";
 
-import { ThemeOptions } from "@mui/material/styles";
-import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import { createTheme } from "@mui/material/styles";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { Roboto } from "next/font/google";
 
@@ -11,17 +10,10 @@ const roboto = Roboto({
   display: "swap",
 });
 
-function createTheme(adaptiveMode: AdaptiveMode): ThemeOptions {
-  const theme: ThemeOptions = {
-    colorSchemes: { light: true, dark: true },
-  };
-
-  if (adaptiveMode !== "ios") {
-    theme.typography = { fontFamily: roboto.style.fontFamily };
-  }
-
-  return theme;
-}
+const theme = createTheme({
+  colorSchemes: { light: true, dark: true },
+  typography: { fontFamily: roboto.style.fontFamily },
+});
 
 export default function App({
   children,
@@ -30,7 +22,7 @@ export default function App({
   return (
     <AdaptiveThemeProvider
       adaptiveModeInfo={{ userAgent: userAgent }}
-      theme={createTheme}
+      theme={theme}
     >
       {children}
     </AdaptiveThemeProvider>

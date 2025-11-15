@@ -1,11 +1,10 @@
 import {
   createTheme,
   Theme,
-  ThemeOptions,
   ThemeProvider,
   ThemeProviderProps,
+  TypographyVariants,
 } from "@mui/material/styles";
-import deepmerge from "@mui/utils/deepmerge";
 import { useMemo } from "react";
 import {
   AdaptiveMode,
@@ -20,7 +19,7 @@ export interface AdaptiveThemeProps
     userAgent?: string;
   };
 
-  theme?: ThemeOptions | ((adaptiveMode: AdaptiveMode) => ThemeOptions);
+  theme?: Partial<Theme> | ((adaptiveMode: AdaptiveMode) => Partial<Theme>);
 }
 
 const iosFontFamily =
@@ -28,17 +27,39 @@ const iosFontFamily =
 
 function createAdaptiveTheme(
   adaptiveMode: AdaptiveMode,
-  options?: ThemeOptions,
-) {
-  const defaultOptions: ThemeOptions = {
-    typography: {
-      fontFamily: adaptiveMode === "ios" ? iosFontFamily : undefined,
-    },
-  };
+  themePartial?: Partial<Theme>,
+): Partial<Theme> {
+  const theme = !themePartial?.typography
+    ? createTheme(themePartial ?? {})
+    : (themePartial as Theme);
 
-  const mergedOptions = deepmerge(defaultOptions, options ?? {});
+  if (adaptiveMode !== "ios") {
+    return theme;
+  }
 
-  return createTheme(mergedOptions);
+  theme.typography.fontFamily = iosFontFamily;
+
+  for (const key of Object.keys(theme.typography)) {
+    const typography = theme.typography[key as keyof TypographyVariants];
+
+    if (
+      typography &&
+      typeof typography === "object" &&
+      "fontFamily" in typography &&
+      typography.fontFamily?.toLowerCase().includes("roboto")
+    ) {
+      typography.fontFamily = iosFontFamily;
+    }
+  }
+
+  if (!theme.vars) {
+    return theme;
+  }
+
+  if ("font" in theme) {
+    theme.font = undefined;
+  }
+  return createTheme({ ...theme, cssVariables: true });
 }
 
 export function AdaptiveThemeProvider(props: AdaptiveThemeProps) {

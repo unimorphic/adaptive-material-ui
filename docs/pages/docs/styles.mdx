@@ -34,7 +34,7 @@ The following is a example of styling all `AdaptiveSwitch` components using a th
 [Themed Components](https://mui.com/material-ui/customization/theme-components/) for more info.
 
 ```tsx
-import { ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
@@ -43,7 +43,7 @@ import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeP
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-const theme: ThemeOptions = {
+const theme = createTheme({
   colorSchemes: { dark: true },
   components: {
     AdaptiveSwitch: {
@@ -60,7 +60,7 @@ const theme: ThemeOptions = {
       },
     },
   },
-};
+});
 
 export default function () {
   return (
@@ -149,7 +149,7 @@ export default function () {
 ### Theme
 
 ```tsx
-import { ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
@@ -158,7 +158,7 @@ import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeP
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-const theme: ThemeOptions = {
+const theme = createTheme({
   colorSchemes: { dark: true },
   components: {
     AdaptiveSwitch: {
@@ -180,7 +180,7 @@ const theme: ThemeOptions = {
       },
     },
   },
-};
+});
 
 export default function () {
   return (

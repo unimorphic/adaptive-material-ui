@@ -10,7 +10,12 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import IconButton, { iconButtonClasses } from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import { styled, ThemeOptions, useColorScheme } from "@mui/material/styles";
+import {
+  createTheme,
+  styled,
+  ThemeOptions,
+  useColorScheme,
+} from "@mui/material/styles";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { useContext, useEffect, useState } from "react";
@@ -53,14 +58,14 @@ const sharedTheme: ThemeOptions = {
     },
   },
 };
-const ltrTheme: ThemeOptions = {
+const ltrTheme = createTheme({
   ...sharedTheme,
   direction: "ltr",
-};
-const rtlTheme: ThemeOptions = {
+});
+const rtlTheme = createTheme({
   ...sharedTheme,
   direction: "rtl",
-};
+});
 
 function Layout() {
   const [isRtl, setIsRtl] = useState(false);

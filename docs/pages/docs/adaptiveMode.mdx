@@ -22,25 +22,26 @@ export default function () {
 on the current context & device. In this example all buttons will default to `round` only on iOS devices.
 
 ```tsx pure
+import { createTheme } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-function createTheme(adaptiveMode: AdaptiveMode) {
-  return {
+function createAdaptiveTheme(adaptiveMode: AdaptiveMode) {
+  return createTheme({
     components: {
       AdaptiveButton: {
         defaultProps: { round: adaptiveMode === "ios" },
       },
     },
-  };
+  });
 }
 
 export default function () {
   return (
-    <AdaptiveThemeProvider theme={createTheme}>
+    <AdaptiveThemeProvider theme={createAdaptiveTheme}>
       <AdaptiveButton>Button</AdaptiveButton>
     </AdaptiveThemeProvider>
   );
@@ -57,13 +58,13 @@ This prop can be useful for testing and can also be used to pin
 specific component types to a adaptive mode via the theme as shown here.
 
 ```tsx pure
-import { ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 
-const theme: ThemeOptions = {
+const theme = createTheme({
   colorSchemes: { dark: true },
   components: {
     AdaptiveSwitch: {
@@ -72,7 +73,7 @@ const theme: ThemeOptions = {
       },
     },
   },
-};
+});
 
 export default function () {
   return (
