@@ -30,17 +30,22 @@ export default function () {
   return (
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
-        <DemoListItem title="Secondary Color">
+        <DemoListItem title="Color">
+          <AdaptiveSlider color="primary" defaultValue={30} />
           <AdaptiveSlider color="secondary" defaultValue={30} />
-        </DemoListItem>
-        <DemoListItem title="Disabled">
-          <AdaptiveSlider defaultValue={30} disabled />
+          <AdaptiveSlider color="error" defaultValue={30} />
+          <AdaptiveSlider color="info" defaultValue={30} />
+          <AdaptiveSlider color="success" defaultValue={30} />
+          <AdaptiveSlider color="warning" defaultValue={30} />
         </DemoListItem>
         <DemoListItem title="Small">
           <AdaptiveSlider defaultValue={30} size="small" />
         </DemoListItem>
         <DemoListItem title="Discrete">
           <AdaptiveSlider defaultValue={30} marks shiftStep={30} step={10} />
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveSlider defaultValue={30} disabled />
         </DemoListItem>
         <DemoListItem title="Vertical">
           <AdaptiveSlider

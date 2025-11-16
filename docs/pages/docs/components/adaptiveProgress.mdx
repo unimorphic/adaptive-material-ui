@@ -44,9 +44,9 @@ export default function () {
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
         <DemoListItem title="Color">
-          <AdaptiveCircularProgress color="inherit" />
           <AdaptiveCircularProgress color="primary" />
           <AdaptiveCircularProgress color="secondary" />
+          <AdaptiveCircularProgress color="inherit" />
           <AdaptiveCircularProgress color="error" />
           <AdaptiveCircularProgress color="info" />
           <AdaptiveCircularProgress color="success" />
@@ -126,11 +126,12 @@ export default function () {
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
         <DemoListItem title="Color">
-          <AdaptiveLinearProgress
-            color="secondary"
-            variant="determinate"
-            value={25}
-          />
+          <AdaptiveLinearProgress color="primary" />
+          <AdaptiveLinearProgress color="secondary" />
+          <AdaptiveLinearProgress color="inherit" />
+        </DemoListItem>
+        <DemoListItem title="Determinate">
+          <AdaptiveLinearProgress variant="determinate" value={45} />
         </DemoListItem>
         <DemoListItem title="Buffer">
           <AdaptiveLinearProgress

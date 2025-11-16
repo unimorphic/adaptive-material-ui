@@ -24,25 +24,24 @@ export default function () {
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
 
 export default function () {
   return (
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
-        <DemoListItem title="Secondary Color">
+        <DemoListItem title="Color">
+          <AdaptiveSwitch color="primary" defaultChecked />
           <AdaptiveSwitch color="secondary" defaultChecked />
+          <AdaptiveSwitch color="error" defaultChecked />
+          <AdaptiveSwitch color="info" defaultChecked />
+          <AdaptiveSwitch color="success" defaultChecked />
+          <AdaptiveSwitch color="warning" defaultChecked />
+          <AdaptiveSwitch color="default" defaultChecked />
         </DemoListItem>
         <DemoListItem title="Size">
-          <FormControlLabel
-            control={<AdaptiveSwitch defaultChecked size="small" />}
-            label="Small"
-          />
-          <FormControlLabel
-            control={<AdaptiveSwitch defaultChecked size="medium" />}
-            label="Medium"
-          />
+          <AdaptiveSwitch defaultChecked size="small" />
+          <AdaptiveSwitch defaultChecked size="medium" />
         </DemoListItem>
         <DemoListItem title="Disabled">
           <AdaptiveSwitch defaultChecked disabled />

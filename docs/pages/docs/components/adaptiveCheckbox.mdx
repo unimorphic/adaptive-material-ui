@@ -24,7 +24,6 @@ export default function () {
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox";
 import { useState } from "react";
 
@@ -35,36 +34,20 @@ export default function () {
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
         <DemoListItem title="Color">
-          <FormControlLabel
-            control={<AdaptiveCheckbox defaultChecked color="secondary" />}
-            label="Secondary"
-          />
-          <FormControlLabel
-            control={<AdaptiveCheckbox defaultChecked color="success" />}
-            label="Success"
-          />
-          <FormControlLabel
-            control={<AdaptiveCheckbox defaultChecked color="default" />}
-            label="Default"
-          />
+          <AdaptiveCheckbox defaultChecked color="primary" />
+          <AdaptiveCheckbox defaultChecked color="secondary" />
+          <AdaptiveCheckbox defaultChecked color="error" />
+          <AdaptiveCheckbox defaultChecked color="info" />
+          <AdaptiveCheckbox defaultChecked color="success" />
+          <AdaptiveCheckbox defaultChecked color="warning" />
+          <AdaptiveCheckbox defaultChecked color="default" />
         </DemoListItem>
         <DemoListItem title="Size">
-          <FormControlLabel
-            control={<AdaptiveCheckbox defaultChecked size="small" />}
-            label="Small"
-          />
-          <FormControlLabel
-            control={<AdaptiveCheckbox defaultChecked size="medium" />}
-            label="Medium"
-          />
-          <FormControlLabel
-            control={
-              <AdaptiveCheckbox
-                defaultChecked
-                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-              />
-            }
-            label="Custom"
+          <AdaptiveCheckbox defaultChecked size="small" />
+          <AdaptiveCheckbox defaultChecked size="medium" />
+          <AdaptiveCheckbox
+            defaultChecked
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
           />
         </DemoListItem>
         <DemoListItem title="Indeterminate">

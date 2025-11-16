@@ -29,7 +29,6 @@ export default function () {
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import { AdaptiveRadio } from "adaptive-material-ui/components/radio";
 import { useState } from "react";
@@ -47,67 +46,41 @@ export default function () {
     <AdaptiveModeDemo adaptiveMode="ios">
       <DemoList>
         <DemoListItem title="Color">
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                color="secondary"
-                onClick={onClick}
-              />
-            }
-            label="Secondary"
+          <AdaptiveRadio
+            checked={isChecked}
+            color="primary"
+            onClick={onClick}
           />
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                color="success"
-                onClick={onClick}
-              />
-            }
-            label="Success"
+          <AdaptiveRadio
+            checked={isChecked}
+            color="secondary"
+            onClick={onClick}
           />
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                color="default"
-                onClick={onClick}
-              />
-            }
-            label="Default"
+          <AdaptiveRadio checked={isChecked} color="error" onClick={onClick} />
+          <AdaptiveRadio checked={isChecked} color="info" onClick={onClick} />
+          <AdaptiveRadio
+            checked={isChecked}
+            color="success"
+            onClick={onClick}
+          />
+          <AdaptiveRadio
+            checked={isChecked}
+            color="warning"
+            onClick={onClick}
+          />
+          <AdaptiveRadio
+            checked={isChecked}
+            color="default"
+            onClick={onClick}
           />
         </DemoListItem>
         <DemoListItem title="Size">
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                onClick={onClick}
-                size="small"
-              />
-            }
-            label="Small"
-          />
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                onClick={onClick}
-                size="medium"
-              />
-            }
-            label="Medium"
-          />
-          <FormControlLabel
-            control={
-              <AdaptiveRadio
-                checked={isChecked}
-                onClick={onClick}
-                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-              />
-            }
-            label="Custom"
+          <AdaptiveRadio checked={isChecked} onClick={onClick} size="small" />
+          <AdaptiveRadio checked={isChecked} onClick={onClick} size="medium" />
+          <AdaptiveRadio
+            checked={isChecked}
+            onClick={onClick}
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
           />
         </DemoListItem>
         <DemoListItem title="Disabled">

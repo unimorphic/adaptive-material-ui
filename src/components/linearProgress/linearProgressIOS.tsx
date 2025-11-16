@@ -22,6 +22,9 @@ const StyledLinearProgress = styled(LinearProgress, {
     backgroundColor: "rgba(120, 120, 128, 0.36)",
   }),
 
+  "&:before": {
+    display: "none",
+  },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: "inherit",
   },
