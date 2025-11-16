@@ -3,5 +3,5 @@
     "^@mui/[^/]+$",
     "^.*dist.*$"
   ],
-  "cSpell.words": ["prefixer", "rspress", "stylis"]
+  "cSpell.words": ["prefixer", "rspress", "stylis", "unimorphic"]
 }
