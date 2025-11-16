@@ -10,7 +10,7 @@ import {
   AdaptiveMode,
   AdaptiveModeContext,
   useAdaptiveMode,
-} from "../adaptiveMode";
+} from "../adaptiveMode/adaptiveMode";
 
 export interface AdaptiveThemeProps
   extends Omit<ThemeProviderProps<Theme>, "theme"> {
