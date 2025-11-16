@@ -101,7 +101,10 @@ similar ESLint & VS Code settings can be configured as shown here.
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [{ "regex": "^@mui/[^/]+$" }, "adaptive-material-ui"]
+        "patterns": [
+          { "regex": "^@mui/[^/]+$" },
+          { "regex": "^adaptive-material-ui$" }
+        ]
       }
     ]
   }
