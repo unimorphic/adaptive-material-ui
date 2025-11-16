@@ -39,16 +39,11 @@ const componentMap = [
   },
 ];
 
-export function warnNonAdaptiveComponents(excludeComponentNames?: string[]) {
-  if (
-    excludeComponentNames !== undefined &&
-    !Array.isArray(excludeComponentNames)
-  ) {
-    throw new Error("excludeAdaptiveComponentNames must be an array");
-  }
-
+export function warnNonAdaptiveComponents(props?: {
+  excludeComponents?: string[];
+}) {
   return componentMap
-    .filter((c) => !excludeComponentNames?.includes(c.old))
+    .filter((c) => !props?.excludeComponents?.includes(c.old))
     .flatMap((c) => [
       {
         selector: `JSXElement[openingElement.name.name='${c.old}']`,

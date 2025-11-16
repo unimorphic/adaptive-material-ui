@@ -16,6 +16,7 @@ import {
   ThemeOptions,
   useColorScheme,
 } from "@mui/material/styles";
+// eslint-disable-next-line no-restricted-imports
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { useContext, useEffect, useState } from "react";

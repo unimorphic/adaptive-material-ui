@@ -60,6 +60,10 @@ export default defineConfig(
         "warn",
         { ignoreRestSiblings: true },
       ],
+      "no-restricted-imports": [
+        "warn",
+        { patterns: [{ regex: "^@mui/[^/]+$" }] },
+      ],
     },
   },
 );

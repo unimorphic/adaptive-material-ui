@@ -1,29 +1,5 @@
 # Config
 
-## ESLint
-
-ESLint can be configured to warn when using components that have Adaptive counterparts
-by adding the following to the `rules` section in `eslint.config.mjs`.
-This will for example warn if the `<Button>` component is used instead of `<AdaptiveButton>`.
-
-```tsx pure
-import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
-
-rules: {
-  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
-}
-```
-
-Specific components can be excluded by passing a list of names into `warnNonAdaptiveComponents`.
-
-```tsx pure
-import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
-
-rules: {
-  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents(["Button"])],
-}
-```
-
 ## Custom Adaptive Logic
 
 `AdaptiveThemeProvider.adaptiveModeInfo` can be set if you want to use a different user agent
@@ -84,3 +60,61 @@ if (user.name === "personIdoNotLike") {
 
 See the [example project](https://github.com/unimorphic/adaptive-material-ui/tree/master/examples/next-js)
 using [Next.js](https://nextjs.org/)
+
+## Enforce Adaptive Component Use
+
+ESLint can be configured to warn when using MUI components that have Adaptive counterparts
+by adding the following rule to your ESLint config file.
+This will for example warn if the `<Button>` component is used instead of `<AdaptiveButton>`.
+
+```tsx pure
+import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+
+rules: {
+  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
+}
+```
+
+Specific components can be excluded by passing a list of MUI names into the `excludeComponents` option.
+
+```tsx pure
+import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+
+rules: {
+  "no-restricted-syntax": [
+    "warn",
+    ...warnNonAdaptiveComponents({ excludeComponents: ["Button"] }),
+  ],
+}
+```
+
+## Minimizing Bundle Size
+
+To [avoid barrel imports](https://mui.com/material-ui/guides/minimizing-bundle-size/#avoid-barrel-imports)
+similar ESLint & VS Code settings can be configured as shown here.
+
+### ESLint Config
+
+```json
+{
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [{ "regex": "^@mui/[^/]+$" }, "adaptive-material-ui"]
+      }
+    ]
+  }
+}
+```
+
+### VS Code Setting
+
+```json
+{
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^@mui/[^/]+$",
+    "^adaptive-material-ui$"
+  ]
+}
+```

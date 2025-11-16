@@ -1,5 +1,5 @@
 import { ComponentsProps, Theme, ThemeProvider } from "@mui/material/styles";
-import { useThemeWithoutDefault } from "@mui/system";
+import useThemeWithoutDefault from "@mui/system/useThemeWithoutDefault";
 import { ReactNode } from "react";
 
 export interface ReplaceComponentInThemeProps {
