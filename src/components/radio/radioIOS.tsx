@@ -16,6 +16,10 @@ const StyledRadio = styled(Radio, {
     fontSize: ownerState.size === "small" ? "21px" : "24px",
     height: "0.92em",
     width: "0.92em",
+
+    "& svg": {
+      display: "block",
+    },
   },
 }));
 
