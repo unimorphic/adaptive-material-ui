@@ -40,12 +40,12 @@
     },
     "./components/*": {
       "require": {
-        "types": "./dist/components/*.d.ts",
-        "default": "./dist/components/*.js"
+        "types": "./dist/components/*/index.d.ts",
+        "default": "./dist/components/*/index.js"
       },
       "default": {
-        "types": "./dist/esm/components/*.d.ts",
-        "default": "./dist/esm/components/*.mjs"
+        "types": "./dist/esm/components/*/index.d.ts",
+        "default": "./dist/esm/components/*/index.mjs"
       }
     },
     "./theme/*": {

@@ -35,6 +35,14 @@ import {
   AdaptiveIconButtonProps,
 } from "../components/iconButton/adaptiveIconButton";
 import {
+  AdaptiveFilledInputClasses,
+  AdaptiveFilledInputProps,
+  AdaptiveInputClasses,
+  AdaptiveInputProps,
+  AdaptiveOutlinedInputClasses,
+  AdaptiveOutlinedInputProps,
+} from "../components/input/adaptiveInput";
+import {
   AdaptiveLinearProgressClasses,
   AdaptiveLinearProgressProps,
 } from "../components/linearProgress/adaptiveLinearProgress";
@@ -64,14 +72,6 @@ import {
   AdaptiveSwitchClasses,
   AdaptiveSwitchProps,
 } from "../components/switch/adaptiveSwitch";
-import {
-  AdaptiveFilledInputClasses,
-  AdaptiveFilledInputProps,
-  AdaptiveInputClasses,
-  AdaptiveInputProps,
-  AdaptiveOutlinedInputClasses,
-  AdaptiveOutlinedInputProps,
-} from "../components/textField/adaptiveInput";
 import {
   AdaptiveTextFieldClasses,
   AdaptiveTextFieldProps,

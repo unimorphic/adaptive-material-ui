@@ -12,37 +12,37 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   AdaptiveButton,
   adaptiveButtonClasses,
-} from "adaptive-material-ui/components/button/adaptiveButton";
+} from "adaptive-material-ui/components/button";
 import {
   AdaptiveButtonStack,
   adaptiveButtonStackClasses,
-} from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
-import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox/adaptiveCheckbox";
-import { AdaptiveCircularProgress } from "adaptive-material-ui/components/circularProgress/adaptiveCircularProgress";
+} from "adaptive-material-ui/components/buttonStack";
+import { AdaptiveCheckbox } from "adaptive-material-ui/components/checkbox";
+import { AdaptiveCircularProgress } from "adaptive-material-ui/components/circularProgress";
 import {
   AdaptiveDialog,
   AdaptiveDialogActions,
   adaptiveDialogClasses,
-} from "adaptive-material-ui/components/dialog/adaptiveDialog";
-import { AdaptiveFab } from "adaptive-material-ui/components/fab/adaptiveFab";
-import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton/adaptiveIconButton";
-import { AdaptiveLinearProgress } from "adaptive-material-ui/components/linearProgress/adaptiveLinearProgress";
+} from "adaptive-material-ui/components/dialog";
+import { AdaptiveFab } from "adaptive-material-ui/components/fab";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton";
+import { AdaptiveLinearProgress } from "adaptive-material-ui/components/linearProgress";
 import {
   AdaptiveMenu,
   adaptiveMenuClasses,
-} from "adaptive-material-ui/components/menu/adaptiveMenu";
-import { AdaptiveRadio } from "adaptive-material-ui/components/radio/adaptiveRadio";
+} from "adaptive-material-ui/components/menu";
+import { AdaptiveRadio } from "adaptive-material-ui/components/radio";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
-} from "adaptive-material-ui/components/select/adaptiveSelect";
-import { AdaptiveSlider } from "adaptive-material-ui/components/slider/adaptiveSlider";
-import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar/adaptiveSnackbar";
+} from "adaptive-material-ui/components/select";
+import { AdaptiveSlider } from "adaptive-material-ui/components/slider";
+import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar";
 import {
   AdaptiveSwitch,
   adaptiveSwitchClasses,
-} from "adaptive-material-ui/components/switch/adaptiveSwitch";
-import { AdaptiveTextField } from "adaptive-material-ui/components/textField/adaptiveTextField";
+} from "adaptive-material-ui/components/switch";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
 

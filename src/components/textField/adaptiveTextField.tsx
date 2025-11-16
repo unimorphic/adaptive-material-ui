@@ -12,7 +12,6 @@ import {
   useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import { AdaptiveSelect } from "../select/adaptiveSelect";
 import {
   AdaptiveFilledInput,
   AdaptiveFilledInputProps,
@@ -20,7 +19,8 @@ import {
   AdaptiveInputProps,
   AdaptiveOutlinedInput,
   AdaptiveOutlinedInputProps,
-} from "./adaptiveInput";
+} from "../input/adaptiveInput";
+import { AdaptiveSelect } from "../select/adaptiveSelect";
 
 export type AdaptiveTextFieldProps<
   Variant extends TextFieldVariants = TextFieldVariants,

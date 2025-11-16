@@ -4,7 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme } from "@mui/material/styles";
-import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 
 const theme = createTheme({

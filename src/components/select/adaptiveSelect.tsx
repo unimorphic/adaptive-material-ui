@@ -20,7 +20,7 @@ import {
   AdaptiveFilledInput,
   AdaptiveInput,
   AdaptiveOutlinedInput,
-} from "../textField/adaptiveInput";
+} from "../input/adaptiveInput";
 import { SelectItemProps } from "./selectItemProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectProps<Value> &

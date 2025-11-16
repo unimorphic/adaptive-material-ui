@@ -7,8 +7,8 @@ import Links from "@/shared/links";
 - Stretches it's children (probably buttons) on the extra-small breakpoint (customizable using the `stretchBreakpoint` prop)
 
 ```tsx
-import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
-import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack";
 
 export default function () {
   return (
@@ -29,8 +29,8 @@ When children are stretched by the `stretchBreakpoint` prop, they behave differe
 ```tsx
 import DemoSelector from "@/shared/demoSelector";
 import Stack from "@mui/material/Stack";
-import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
-import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveButtonStack } from "adaptive-material-ui/components/buttonStack";
 import { useState } from "react";
 
 export default function () {
@@ -67,11 +67,11 @@ export default function () {
 `adaptiveButtonStackClasses.alignStart` can be used to align children at both ends of the stack when stacked horizontally
 
 ```tsx
-import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import {
   AdaptiveButtonStack,
   adaptiveButtonStackClasses,
-} from "adaptive-material-ui/components/buttonStack/adaptiveButtonStack";
+} from "adaptive-material-ui/components/buttonStack";
 
 export default function () {
   return (

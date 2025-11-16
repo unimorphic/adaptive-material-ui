@@ -7,7 +7,7 @@ In this example the button will be `round` only on iOS devices.
 
 ```tsx pure
 import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
 
 export default function () {
   const adaptiveMode = useAdaptiveMode();
@@ -24,7 +24,7 @@ on the current context & device. In this example all buttons will default to `ro
 ```tsx pure
 import { createTheme } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
-import { AdaptiveButton } from "adaptive-material-ui/components/button/adaptiveButton";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
@@ -59,7 +59,7 @@ specific component types to a adaptive mode via the theme as shown here.
 
 ```tsx pure
 import { createTheme } from "@mui/material/styles";
-import { AdaptiveSwitch } from "adaptive-material-ui/components/switch/adaptiveSwitch";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 // 👇 Note the type import required for TypeScript
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
