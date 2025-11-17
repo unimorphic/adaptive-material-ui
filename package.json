@@ -63,7 +63,7 @@
     "build": "rslib build",
     "format": "prettier --write .",
     "lint": "eslint . && tsc && cd docs && tsc",
-    "publish": "npm run build && node scripts/cleanAndCopyPackageJson.cjs && cd dist && npm pack",
+    "pack": "npm run build && node scripts/cleanAndCopyPackageJson.cjs && cd dist && npm pack",
     "start": "rslib build --watch",
     "start-docs": "concurrently --kill-others \"npm run start\" \"cd docs && npm run start\"",
     "test": "vitest",

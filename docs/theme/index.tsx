@@ -19,6 +19,7 @@ import {
 // eslint-disable-next-line no-restricted-imports
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext, useDark } from "rspress/runtime";
 import Theme from "rspress/theme";
@@ -54,7 +55,10 @@ const sharedTheme: ThemeOptions = {
   components: {
     AdaptiveDialog: {
       defaultProps: {
-        container: document.getElementById("dialog-container"),
+        container:
+          typeof window === "object"
+            ? window.document.getElementById("dialog-container")
+            : undefined,
       },
     },
   },
@@ -80,11 +84,11 @@ function Layout() {
   useEffect(() => {
     const direction = isRtl ? "rtl" : "ltr";
 
-    const root = document.getElementById("root");
+    const root = window.document.getElementById("root");
     if (root) {
       root.setAttribute("dir", direction);
     }
-    const dialogContainer = document.getElementById("dialog-container");
+    const dialogContainer = window.document.getElementById("dialog-container");
     if (dialogContainer) {
       dialogContainer.setAttribute("dir", direction);
     }
