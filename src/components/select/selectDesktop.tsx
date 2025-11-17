@@ -2,7 +2,10 @@ import ListSubheader from "@mui/material/ListSubheader";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import * as React from "react";
-import { ModalNonBlocking } from "../../shared/modalNonBlocking";
+import {
+  ModalNonBlocking,
+  ModalNonBlockingProps,
+} from "../../shared/modalNonBlocking";
 import { AdaptiveSelectItemGroup } from "./adaptiveSelectItemGroup";
 import {
   SelectItemGroupProps,
@@ -26,6 +29,17 @@ export function SelectItemGroupDesktop<
   // Children are rendered in the parent SelectDesktop
 
   return <ListSubheader {...otherProps}>{label}</ListSubheader>;
+}
+
+/**
+ * Suspense added for when AdaptiveSelectItem is bundled separately
+ */
+function ModalNonBlockingWithSuspense(props: ModalNonBlockingProps) {
+  return (
+    <React.Suspense>
+      <ModalNonBlocking {...props} />
+    </React.Suspense>
+  );
 }
 
 /**
@@ -57,7 +71,7 @@ export function SelectDesktop<Value = unknown>(
       MenuProps={{
         disableScrollLock: true,
         ...MenuProps,
-        slots: { root: ModalNonBlocking, ...MenuProps?.slots },
+        slots: { root: ModalNonBlockingWithSuspense, ...MenuProps?.slots },
       }}
       {...otherProps}
     >

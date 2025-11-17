@@ -35,6 +35,7 @@ import { AdaptiveRadio } from "adaptive-material-ui/components/radio";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
+  AdaptiveSelectItemGroup,
 } from "adaptive-material-ui/components/select";
 import { AdaptiveSlider } from "adaptive-material-ui/components/slider";
 import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar";
@@ -289,6 +290,16 @@ const theme = createTheme({
         },
       ],
     },
+    AdaptiveSelectItemGroup: {
+      defaultProps: {
+        color: "primary",
+      },
+      styleOverrides: {
+        root: {
+          backgroundColor: "grey",
+        },
+      },
+    },
     AdaptiveSlider: {
       defaultProps: {
         marks: true,
@@ -446,10 +457,26 @@ export default function () {
           </AdaptiveMenu>
         </Stack>
 
-        <AdaptiveSelect defaultValue={1}>
-          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-        </AdaptiveSelect>
+        <Stack direction="row" spacing={2}>
+          <AdaptiveSelect defaultValue={1}>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+          <AdaptiveSelect defaultValue={1}>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItemGroup label="Group">
+              <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+              <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
+            </AdaptiveSelectItemGroup>
+          </AdaptiveSelect>
+          <AdaptiveSelect adaptiveMode="ios" defaultValue={1}>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItemGroup label="Group">
+              <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+              <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
+            </AdaptiveSelectItemGroup>
+          </AdaptiveSelect>
+        </Stack>
 
         <AdaptiveSlider defaultValue={30} />
         <AdaptiveSlider adaptiveMode="ios" defaultValue={30} />

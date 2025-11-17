@@ -1,15 +1,32 @@
+import {
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from "@mui/material/ButtonBase";
 import { menuItemClasses, MenuItemClasses } from "@mui/material/MenuItem";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import { AdaptiveModeContext } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import { SelectItemProps } from "./selectProps";
+import { SelectItemOwnProps, SelectItemProps } from "./selectProps";
+
+type AdaptiveSelectItemOwnProps = StyledComponentProps<
+  keyof AdaptiveSelectItemClasses
+>;
+
+type AdaptiveSelectItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = "li",
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & SelectItemOwnProps & AdaptiveSelectItemOwnProps;
+  defaultComponent: RootComponent;
+}>;
 
 export type AdaptiveSelectItemProps<
-  RootComponent extends React.ElementType = "li",
+  RootComponent extends
+    React.ElementType = AdaptiveSelectItemTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = SelectItemProps<RootComponent, AdditionalProps> &
-  StyledComponentProps<keyof AdaptiveSelectItemClasses>;
+  AdaptiveSelectItemOwnProps;
 
 export interface AdaptiveSelectItemClasses extends MenuItemClasses {}
 
@@ -29,36 +46,36 @@ const SelectItemIOS = lazy(async () => {
   return { default: SelectItemIOS };
 });
 
-export function AdaptiveSelectItem<
-  RootComponent extends React.ElementType = "li",
-  AdditionalProps = {},
->(inProps: AdaptiveSelectItemProps<RootComponent, AdditionalProps>) {
-  const props = useThemeProps({ props: inProps, name: "AdaptiveSelectItem" });
-  const modeContext = useContext(AdaptiveModeContext);
+export const AdaptiveSelectItem: ExtendButtonBase<AdaptiveSelectItemTypeMap> =
+  function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+    inProps: AdaptiveSelectItemProps<RootComponent, AdditionalProps>,
+  ) {
+    const props = useThemeProps({ props: inProps, name: "AdaptiveSelectItem" });
+    const modeContext = useContext(AdaptiveModeContext);
 
-  let content: ReactNode;
-  switch (modeContext.mode) {
-    case "android":
-      content = (
-        <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />
-      );
-      break;
-    case "ios":
-      content = <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
-      break;
-    default:
-      content = (
-        <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />
-      );
-      break;
-  }
+    let content: ReactNode;
+    switch (modeContext.mode) {
+      case "android":
+        content = (
+          <SelectItemAndroid<RootComponent, AdditionalProps> {...props} />
+        );
+        break;
+      case "ios":
+        content = <SelectItemIOS<RootComponent, AdditionalProps> {...props} />;
+        break;
+      default:
+        content = (
+          <SelectItemDesktop<RootComponent, AdditionalProps> {...props} />
+        );
+        break;
+    }
 
-  return (
-    <ReplaceComponentInTheme
-      sourceComponentName="AdaptiveSelectItem"
-      targetComponentName="MuiMenuItem"
-    >
-      {content}
-    </ReplaceComponentInTheme>
-  );
-}
+    return (
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveSelectItem"
+        targetComponentName="MuiMenuItem"
+      >
+        {content}
+      </ReplaceComponentInTheme>
+    );
+  };

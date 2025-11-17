@@ -2,17 +2,33 @@ import {
   ListSubheaderClasses,
   listSubheaderClasses,
 } from "@mui/material/ListSubheader";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode, useContext } from "react";
 import { AdaptiveModeContext } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import { SelectItemGroupProps } from "./selectProps";
+import { SelectItemGroupOwnProps, SelectItemGroupProps } from "./selectProps";
+
+type AdaptiveSelectItemGroupOwnProps = StyledComponentProps<
+  keyof AdaptiveSelectItemGroupClasses
+>;
+
+interface AdaptiveSelectItemGroupTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = "li",
+> {
+  props: AdditionalProps &
+    SelectItemGroupOwnProps &
+    AdaptiveSelectItemGroupOwnProps;
+  defaultComponent: RootComponent;
+}
 
 export type AdaptiveSelectItemGroupProps<
-  RootComponent extends React.ElementType = "li",
+  RootComponent extends
+    React.ElementType = AdaptiveSelectItemGroupTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = SelectItemGroupProps<RootComponent, AdditionalProps> &
-  StyledComponentProps<keyof AdaptiveSelectItemGroupClasses>;
+  AdaptiveSelectItemGroupOwnProps;
 
 export interface AdaptiveSelectItemGroupClasses extends ListSubheaderClasses {}
 
@@ -32,10 +48,11 @@ const SelectItemGroupIOS = lazy(async () => {
   return { default: SelectItemGroupIOS };
 });
 
-function AdaptiveSelectItemGroup<
-  RootComponent extends React.ElementType = "li",
-  AdditionalProps = {},
->(inProps: AdaptiveSelectItemGroupProps<RootComponent, AdditionalProps>) {
+const AdaptiveSelectItemGroup: OverridableComponent<AdaptiveSelectItemGroupTypeMap> & {
+  muiSkipListHighlight?: boolean;
+} = function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+  inProps: AdaptiveSelectItemGroupProps<RootComponent, AdditionalProps>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: "AdaptiveSelectItemGroup",
@@ -69,7 +86,7 @@ function AdaptiveSelectItemGroup<
       {content}
     </ReplaceComponentInTheme>
   );
-}
+};
 
 // https://mui.com/material-ui/react-select/#grouping
 AdaptiveSelectItemGroup.muiSkipListHighlight = true;

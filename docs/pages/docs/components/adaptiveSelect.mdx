@@ -73,10 +73,11 @@ export default function () {
         </DemoListItem>
         <DemoListItem title="Label">
           <FormControl sx={{ width: 120 }}>
-            <InputLabel focused={false} id="demo-label">
+            {/* https://mui.com/material-ui/react-select/#accessibility */}
+            <InputLabel focused={false} htmlFor="label-select">
               Label
             </InputLabel>
-            <AdaptiveSelect defaultValue={1} labelId="demo-label" label="Label">
+            <AdaptiveSelect defaultValue={1} id="label-select" label="Label">
               <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
               <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
             </AdaptiveSelect>
@@ -139,6 +140,40 @@ export default function () {
 }
 ```
 
+## Non String Values
+
+Native selects only support string values. Remember to parse the value or always use string values.
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { SelectChangeEvent } from "@mui/material/Select";
+import {
+  AdaptiveSelect,
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/select";
+import { useState } from "react";
+
+export default function () {
+  const [selectedValueType, setSelectedValueType] = useState<string | null>(
+    null,
+  );
+
+  function onChange(event: SelectChangeEvent) {
+    setSelectedValueType(typeof event.target.value);
+  }
+
+  return (
+    <AdaptiveModeDemo>
+      <AdaptiveSelect defaultValue="" onChange={onChange} sx={{ width: 100 }}>
+        <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+        <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+      </AdaptiveSelect>
+      <div>Selected value type: {selectedValueType}</div>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
 ## API
 
 [MUI Select API](https://mui.com/material-ui/api/select/) with the following changes:
@@ -160,14 +195,16 @@ Removes the hidden empty value native `option`
 [MUI MenuItem API](https://mui.com/material-ui/api/menu-item/) with the following changes:
 
 - Props not applicable to a `<option>` element are ignored on Android & iOS.
-  See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/62be40b5d1bce3bce0f0131bacf3eb91d9e48e5f/src/components/select/selectNative.tsx#L14)
+  See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/c8a426dc97f18688aaa30168fa495101529a45ba/src/components/select/selectNative.tsx#L18)
   for the full list of ignored props.
 
 ### AdaptiveSelectItemGroup
 
 [MUI ListSubheader API](https://mui.com/material-ui/api/list-subheader/) with the following changes:
 
-- Props not applicable to a `<optgroup>` element are ignored on Android & iOS
+- Props not applicable to a `<optgroup>` element are ignored on Android & iOS.
+  See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/c8a426dc97f18688aaa30168fa495101529a45ba/src/components/select/selectNative.tsx#L58)
+  for the full list of ignored props.
 
 ## Links
 
