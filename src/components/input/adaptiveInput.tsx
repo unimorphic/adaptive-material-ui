@@ -19,7 +19,7 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export type AdaptiveInputProps = Omit<InputProps, "classes"> &
+export type AdaptiveInputProps = InputProps &
   StyledComponentProps<keyof AdaptiveInputClasses> &
   AdaptiveModeProp;
 
@@ -30,7 +30,7 @@ export const adaptiveInputClasses = {
   ...generateUtilityClasses("AdaptiveInput", ["ios"]),
 };
 
-export type AdaptiveFilledInputProps = Omit<FilledInputProps, "classes"> &
+export type AdaptiveFilledInputProps = FilledInputProps &
   StyledComponentProps<keyof AdaptiveFilledInputClasses> &
   AdaptiveModeProp;
 
@@ -43,7 +43,7 @@ export const adaptiveFilledInputClasses = {
   ...generateUtilityClasses("AdaptiveFilledInput", ["ios"]),
 };
 
-export type AdaptiveOutlinedInputProps = Omit<OutlinedInputProps, "classes"> &
+export type AdaptiveOutlinedInputProps = OutlinedInputProps &
   StyledComponentProps<keyof AdaptiveOutlinedInputClasses> &
   AdaptiveModeProp;
 

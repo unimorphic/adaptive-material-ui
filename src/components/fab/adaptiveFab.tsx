@@ -1,8 +1,12 @@
 import {
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from "@mui/material/ButtonBase";
+import {
   fabClasses,
   FabClasses,
+  FabOwnProps,
   FabProps,
-  FabTypeMap,
 } from "@mui/material/Fab";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
@@ -14,12 +18,22 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export type AdaptiveFabProps<
-  RootComponent extends React.ElementType = FabTypeMap["defaultComponent"],
+type AdaptiveFabOwnProps = AdaptiveModeProp &
+  StyledComponentProps<keyof AdaptiveFabClasses>;
+
+type AdaptiveFabTypeMap<
   AdditionalProps = {},
-> = Omit<FabProps<RootComponent, AdditionalProps>, "classes"> &
-  StyledComponentProps<keyof AdaptiveFabClasses> &
-  AdaptiveModeProp;
+  RootComponent extends React.ElementType = "button",
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & FabOwnProps & AdaptiveFabOwnProps;
+  defaultComponent: RootComponent;
+}>;
+
+export type AdaptiveFabProps<
+  RootComponent extends
+    React.ElementType = AdaptiveFabTypeMap["defaultComponent"],
+  AdditionalProps = {},
+> = FabProps<RootComponent, AdditionalProps> & AdaptiveFabOwnProps;
 
 export interface AdaptiveFabClasses extends FabClasses, IosClasses {}
 
@@ -42,8 +56,8 @@ const FabIOS = lazy(async () => {
   return { default: FabIOS };
 });
 
-export function AdaptiveFab<
-  RootComponent extends React.ElementType = FabTypeMap["defaultComponent"],
+export const AdaptiveFab: ExtendButtonBase<AdaptiveFabTypeMap> = function <
+  RootComponent extends React.ElementType,
   AdditionalProps = {},
 >(inProps: AdaptiveFabProps<RootComponent, AdditionalProps>) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveFab" });
@@ -70,4 +84,4 @@ export function AdaptiveFab<
       {content}
     </ReplaceComponentInTheme>
   );
-}
+};

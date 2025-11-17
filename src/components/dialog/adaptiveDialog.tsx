@@ -31,10 +31,9 @@ import { AdaptiveButtonProps } from "../button/adaptiveButton";
 import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 import { DialogResponsiveProps } from "./dialogResponsive";
 
-export interface AdaptiveDialogProps
-  extends Omit<DialogResponsiveProps, "classes">,
-    StyledComponentProps<keyof AdaptiveDialogClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveDialogProps = DialogResponsiveProps &
+  StyledComponentProps<keyof AdaptiveDialogClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveDialogClasses extends DialogClasses, IosClasses {}
 
@@ -43,19 +42,18 @@ export const adaptiveDialogClasses = {
   ...generateUtilityClasses("AdaptiveDialog", ["ios"]),
 };
 
-export interface AdaptiveDialogActionsProps
-  extends Omit<DialogActionsProps, "classes">,
-    StyledComponentProps<keyof AdaptiveDialogActionsClasses> {
-  /** Props passed to child AdaptiveButton components */
-  buttonDefaultProps?: AdaptiveButtonProps;
+export type AdaptiveDialogActionsProps = DialogActionsProps &
+  StyledComponentProps<keyof AdaptiveDialogActionsClasses> & {
+    /** Props passed to child AdaptiveButton components */
+    buttonDefaultProps?: AdaptiveButtonProps;
 
-  /**
-   * Breakpoint or screen width in px and below at which the children will be stretched.
-   * This behavior can be disabled by setting it to false
-   * @default xs
-   */
-  stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
-}
+    /**
+     * Breakpoint or screen width in px and below at which the children will be stretched.
+     * This behavior can be disabled by setting it to false
+     * @default xs
+     */
+    stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
+  };
 
 export interface AdaptiveDialogActionsClasses extends DialogActionsClasses {}
 

@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveLinearProgressProps
-  extends Omit<LinearProgressProps, "classes">,
-    StyledComponentProps<keyof AdaptiveLinearProgressClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveLinearProgressProps = LinearProgressProps &
+  StyledComponentProps<keyof AdaptiveLinearProgressClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveLinearProgressClasses
   extends LinearProgressClasses,

@@ -2,10 +2,11 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import TextField, {
   textFieldClasses,
   TextFieldClasses,
+  TextFieldOwnerState,
   TextFieldProps,
   TextFieldVariants,
 } from "@mui/material/TextField";
-import { mergeSlotProps } from "@mui/material/utils";
+import { mergeSlotProps, SlotProps } from "@mui/material/utils";
 import {
   AdaptiveModeContext,
   AdaptiveModeProp,
@@ -22,20 +23,22 @@ import {
 } from "../input/adaptiveInput";
 import { AdaptiveSelect } from "../select/adaptiveSelect";
 
+interface InputSlotProps<Props> {
+  slotProps?: {
+    input?: SlotProps<React.ElementType<Props>, {}, TextFieldOwnerState>;
+  };
+}
+
 export type AdaptiveTextFieldProps<
   Variant extends TextFieldVariants = TextFieldVariants,
-> = Omit<TextFieldProps<Variant>, "classes" | "slotProps" | "variant"> &
+> = TextFieldProps<Variant> &
   StyledComponentProps<keyof AdaptiveTextFieldClasses> &
-  AdaptiveModeProp & {
-    slotProps?: Omit<TextFieldProps<Variant>["slotProps"], "input"> & {
-      input?: Variant extends "filled"
-        ? AdaptiveFilledInputProps
-        : Variant extends "outlined"
-          ? AdaptiveOutlinedInputProps
-          : AdaptiveInputProps;
-    };
-    variant?: Variant;
-  };
+  AdaptiveModeProp &
+  (Variant extends "filled"
+    ? InputSlotProps<AdaptiveFilledInputProps>
+    : Variant extends "outlined"
+      ? InputSlotProps<AdaptiveOutlinedInputProps>
+      : InputSlotProps<AdaptiveInputProps>);
 
 export interface AdaptiveTextFieldClasses extends TextFieldClasses {}
 
@@ -47,9 +50,15 @@ const variantComponent = {
   outlined: AdaptiveOutlinedInput,
 };
 
-export function AdaptiveTextField<
-  Variant extends TextFieldVariants = "outlined",
->(inProps: AdaptiveTextFieldProps<Variant>) {
+export function AdaptiveTextField(
+  inProps: {
+    /**
+     * The variant to use.
+     * @default 'outlined'
+     */
+    variant?: TextFieldVariants;
+  } & Omit<AdaptiveTextFieldProps, "variant">,
+) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveTextField" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
   const { slotProps, slots, ...textFieldProps } = otherProps;

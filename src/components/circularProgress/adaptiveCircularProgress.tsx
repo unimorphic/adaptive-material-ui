@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveCircularProgressProps
-  extends Omit<CircularProgressProps, "classes">,
-    StyledComponentProps<keyof AdaptiveCircularProgressClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveCircularProgressProps = CircularProgressProps &
+  StyledComponentProps<keyof AdaptiveCircularProgressClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveCircularProgressClasses
   extends CircularProgressClasses,

@@ -1,5 +1,5 @@
 import Stack, { StackProps } from "@mui/material/Stack";
-import { useTheme } from "@mui/material/styles";
+import { createTheme, useTheme } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { useState } from "react";
@@ -15,6 +15,12 @@ export default function AdaptiveModeDemo(props: Props) {
   const [selectedAdaptiveMode, setSelectedAdaptiveMode] =
     useState(adaptiveMode);
   const theme = useTheme();
+
+  const adaptiveTheme = createTheme({
+    colorSchemes: { dark: theme.palette.mode === "dark" },
+    components: theme.components,
+    direction: theme.direction,
+  });
 
   function onChange(value: AdaptiveMode | "") {
     setSelectedAdaptiveMode(value !== "" ? value : undefined);
@@ -37,11 +43,7 @@ export default function AdaptiveModeDemo(props: Props) {
       <AutoHeightSuspenseSkeleton>
         <AdaptiveThemeProvider
           adaptiveModeInfo={{ mode: selectedAdaptiveMode }}
-          theme={{
-            colorSchemes: { dark: theme.palette.mode === "dark" },
-            components: theme.components,
-            direction: theme.direction,
-          }}
+          theme={adaptiveTheme}
         >
           {children}
         </AdaptiveThemeProvider>

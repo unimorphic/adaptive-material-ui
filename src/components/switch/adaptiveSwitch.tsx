@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveSwitchProps
-  extends Omit<SwitchProps, "classes">,
-    StyledComponentProps<keyof AdaptiveSwitchClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveSwitchProps = SwitchProps &
+  StyledComponentProps<keyof AdaptiveSwitchClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveSwitchClasses extends SwitchClasses, IosClasses {}
 

@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveSnackbarProps
-  extends Omit<SnackbarProps, "classes">,
-    StyledComponentProps<keyof AdaptiveSnackbarClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveSnackbarProps = SnackbarProps &
+  StyledComponentProps<keyof AdaptiveSnackbarClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveSnackbarClasses extends SnackbarClasses, IosClasses {}
 

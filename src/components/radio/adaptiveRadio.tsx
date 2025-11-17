@@ -9,10 +9,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveRadioProps
-  extends Omit<RadioProps, "classes">,
-    StyledComponentProps<keyof AdaptiveRadioClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveRadioProps = RadioProps &
+  StyledComponentProps<keyof AdaptiveRadioClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveRadioClasses extends RadioClasses, IosClasses {}
 

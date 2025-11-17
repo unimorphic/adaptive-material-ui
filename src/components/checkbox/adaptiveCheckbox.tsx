@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveCheckboxProps
-  extends Omit<CheckboxProps, "classes">,
-    StyledComponentProps<keyof AdaptiveCheckboxClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveCheckboxProps = CheckboxProps &
+  StyledComponentProps<keyof AdaptiveCheckboxClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveCheckboxClasses extends CheckboxClasses, IosClasses {}
 

@@ -13,10 +13,9 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveSliderProps
-  extends Omit<SliderProps, "classes">,
-    StyledComponentProps<keyof AdaptiveSliderClasses>,
-    AdaptiveModeProp {}
+export type AdaptiveSliderProps = SliderProps &
+  StyledComponentProps<keyof AdaptiveSliderClasses> &
+  AdaptiveModeProp;
 
 export interface AdaptiveSliderClasses extends SliderClasses, IosClasses {}
 

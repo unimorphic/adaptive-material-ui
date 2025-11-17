@@ -21,16 +21,18 @@ import {
 } from "../../shared/inclusiveToExclusiveBreakpoint";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export interface AdaptiveButtonStackProps
-  extends Omit<StackProps, "classes" | "direction" | "useFlexGap">,
-    StyledComponentProps<keyof AdaptiveButtonStackClasses> {
-  /**
-   * Breakpoint or screen width in px and below at which the children will be stretched.
-   * This behavior can be disabled by setting it to false
-   * @default xs
-   */
-  stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
-}
+export type AdaptiveButtonStackProps = Omit<
+  StackProps,
+  "direction" | "useFlexGap"
+> &
+  StyledComponentProps<keyof AdaptiveButtonStackClasses> & {
+    /**
+     * Breakpoint or screen width in px and below at which the children will be stretched.
+     * This behavior can be disabled by setting it to false
+     * @default xs
+     */
+    stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
+  };
 
 export interface AdaptiveButtonStackClasses extends StackClasses {}
 
