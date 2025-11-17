@@ -1,9 +1,13 @@
-import Select, { SelectProps } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { SelectItemProps } from "./selectItemProps";
+import {
+  SelectItemGroupProps,
+  SelectItemProps,
+  SelectNativeProps,
+} from "./selectProps";
 
 const StyledOption = styled("option", {
   name: "AdaptiveSelectItem",
@@ -45,6 +49,46 @@ export function SelectItemNative(props: SelectItemProps<"option">) {
   );
 }
 
-export function SelectNative<Value = unknown>(props: SelectProps<Value>) {
-  return <Select native {...props} />;
+const StyledOptGroup = styled("optgroup", {
+  name: "AdaptiveSelectItemGroup",
+  slot: "root",
+})();
+
+export function SelectItemGroupNative(props: SelectItemGroupProps<"optgroup">) {
+  const {
+    classes,
+    className,
+    color,
+    component,
+    disableGutters,
+    disableSticky,
+    inset,
+    ...otherProps
+  } = props;
+
+  const composedClasses = composeClasses(
+    { root: ["root"] },
+    (s) => generateUtilityClass("AdaptiveSelectItemGroup", s),
+    classes,
+  );
+
+  return (
+    <StyledOptGroup
+      className={clsx(composedClasses.root, className)}
+      {...otherProps}
+    />
+  );
+}
+
+export function SelectNative<Value = unknown>(props: SelectNativeProps<Value>) {
+  const { children, disableNativeEmptyValue, ...otherProps } = props;
+
+  return (
+    <Select native {...otherProps}>
+      {!disableNativeEmptyValue ? (
+        <SelectItemNative sx={{ display: "none" }} value="" />
+      ) : null}
+      {children}
+    </Select>
+  );
 }

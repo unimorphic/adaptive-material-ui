@@ -37,6 +37,7 @@ import InputLabel from "@mui/material/InputLabel";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
+  AdaptiveSelectItemGroup,
 } from "adaptive-material-ui/components/select";
 
 export default function () {
@@ -81,6 +82,57 @@ export default function () {
             </AdaptiveSelect>
           </FormControl>
         </DemoListItem>
+        <DemoListItem title="Multiple Values">
+          <AdaptiveSelect multiple defaultValue={[1]}>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
+          </AdaptiveSelect>
+        </DemoListItem>
+        <DemoListItem title="Grouping">
+          <AdaptiveSelect defaultValue={1}>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItemGroup label="Category 1">
+              <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+              <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
+            </AdaptiveSelectItemGroup>
+          </AdaptiveSelect>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## No Selected Value
+
+To keep the native select behavior consistent when there isn't a selected value, a hidden `option` with a empty value is added by default.
+The `disableNativeEmptyValue` prop can be used to disable this behavior.
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import {
+  AdaptiveSelect,
+  AdaptiveSelectItem,
+} from "adaptive-material-ui/components/select";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <DemoList>
+        <DemoListItem title="Default">
+          <AdaptiveSelect defaultValue="">
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+        </DemoListItem>
+        <DemoListItem title="Disabled">
+          <AdaptiveSelect defaultValue="" disableNativeEmptyValue>
+            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+            <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+          </AdaptiveSelect>
+        </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>
   );
@@ -96,6 +148,13 @@ export default function () {
 - Desktop: `MenuProps.slots.root` defaults to `ModalNonBlocking`
 - Android & iOS: `native` defaults to `true`
 
+### disableNativeEmptyValue
+
+Removes the hidden empty value native `option`
+
+- Type: `boolean`
+- Default: `false`
+
 ### AdaptiveSelectItem
 
 [MUI MenuItem API](https://mui.com/material-ui/api/menu-item/) with the following changes:
@@ -103,6 +162,12 @@ export default function () {
 - Props not applicable to a `<option>` element are ignored on Android & iOS.
   See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/62be40b5d1bce3bce0f0131bacf3eb91d9e48e5f/src/components/select/selectNative.tsx#L14)
   for the full list of ignored props.
+
+### AdaptiveSelectItemGroup
+
+[MUI ListSubheader API](https://mui.com/material-ui/api/list-subheader/) with the following changes:
+
+- Props not applicable to a `<optgroup>` element are ignored on Android & iOS
 
 ## Links
 

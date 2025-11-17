@@ -55,11 +55,17 @@ import {
   AdaptiveRadioProps,
 } from "../components/radio/adaptiveRadio";
 import {
-  AdaptiveSelectItemClasses,
-  AdaptiveSelectItemProps,
   AdaptiveSelectClasses,
   AdaptiveSelectProps,
 } from "../components/select/adaptiveSelect";
+import {
+  AdaptiveSelectItemClasses,
+  AdaptiveSelectItemProps,
+} from "../components/select/adaptiveSelectItem";
+import {
+  AdaptiveSelectItemGroupClasses,
+  AdaptiveSelectItemGroupProps,
+} from "../components/select/adaptiveSelectItemGroup";
 import {
   AdaptiveSliderClasses,
   AdaptiveSliderProps,
@@ -160,6 +166,11 @@ export interface AdaptiveComponents {
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelectItem"];
     variants?: ComponentsVariants<Theme>["AdaptiveSelectItem"];
   };
+  AdaptiveSelectItemGroup?: {
+    defaultProps?: ComponentsProps["AdaptiveSelectItemGroup"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSelectItemGroup"];
+    variants?: ComponentsVariants<Theme>["AdaptiveSelectItemGroup"];
+  };
   AdaptiveSlider?: {
     defaultProps?: ComponentsProps["AdaptiveSlider"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveSlider"];
@@ -199,6 +210,7 @@ export interface AdaptiveComponentsPropsList {
   AdaptiveRadio: AdaptiveRadioProps;
   AdaptiveSelect: AdaptiveSelectProps;
   AdaptiveSelectItem: AdaptiveSelectItemProps;
+  AdaptiveSelectItemGroup: AdaptiveSelectItemGroupProps;
   AdaptiveSlider: AdaptiveSliderProps;
   AdaptiveSnackbar: AdaptiveSnackbarProps;
   AdaptiveSwitch: AdaptiveSwitchProps;
@@ -222,6 +234,7 @@ export interface AdaptiveComponentNameToClassKey {
   AdaptiveRadio: keyof AdaptiveRadioClasses;
   AdaptiveSelect: keyof AdaptiveSelectClasses;
   AdaptiveSelectItem: keyof AdaptiveSelectItemClasses;
+  AdaptiveSelectItemGroup: keyof AdaptiveSelectItemGroupClasses;
   AdaptiveSlider: keyof AdaptiveSliderClasses;
   AdaptiveSnackbar: keyof AdaptiveSnackbarClasses;
   AdaptiveSwitch: keyof AdaptiveSwitchClasses;
