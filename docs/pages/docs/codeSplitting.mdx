@@ -16,6 +16,7 @@ The build tool has to support this feature to work, those known with support:
 ### Example Import Code
 
 ```tsx pure
+/* eslint-disable */
 const SelectDesktop = lazy(async () => {
   const { SelectDesktop } = await import("./desktop");
   return { default: SelectDesktop };

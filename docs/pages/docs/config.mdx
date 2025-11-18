@@ -15,7 +15,7 @@ import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeP
 
 <AdaptiveThemeProvider
   adaptiveModeInfo={{ userAgent: req.headers["user-agent"] }}
->
+></AdaptiveThemeProvider>;
 ```
 
 #### Context
@@ -25,7 +25,7 @@ import { AdaptiveModeContext } from "adaptive-material-ui/adaptiveMode";
 
 <AdaptiveModeContext.Provider
   value={{ userAgent: req.headers["user-agent"] }}
->
+></AdaptiveModeContext.Provider>;
 ```
 
 ### Custom Logic
@@ -40,7 +40,9 @@ if (user.name === "personIdoNotLike") {
   mode = "desktop";
 }
 
-<AdaptiveThemeProvider adaptiveModeInfo={{ mode: mode }} >
+<AdaptiveThemeProvider
+  adaptiveModeInfo={{ mode: mode }}
+></AdaptiveThemeProvider>;
 ```
 
 #### Context
@@ -53,7 +55,9 @@ if (user.name === "personIdoNotLike") {
   mode = "desktop";
 }
 
-<AdaptiveModeContext.Provider value={{ mode: mode }} >
+<AdaptiveModeContext.Provider
+  value={{ mode: mode }}
+></AdaptiveModeContext.Provider>;
 ```
 
 ### SSR
@@ -68,24 +72,32 @@ by adding the following rule to your ESLint config file.
 This will for example warn if the `<Button>` component is used instead of `<AdaptiveButton>`.
 
 ```tsx pure
+/* eslint-disable */
 import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+import { defineConfig } from "eslint/config";
 
-rules: {
-  "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
-}
+export default defineConfig({
+  rules: {
+    "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
+  },
+});
 ```
 
 Specific components can be excluded by passing a list of MUI names into the `excludeComponents` option.
 
 ```tsx pure
+/* eslint-disable */
 import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+import { defineConfig } from "eslint/config";
 
-rules: {
-  "no-restricted-syntax": [
-    "warn",
-    ...warnNonAdaptiveComponents({ excludeComponents: ["Button"] }),
-  ],
-}
+export default defineConfig({
+  rules: {
+    "no-restricted-syntax": [
+      "warn",
+      ...warnNonAdaptiveComponents({ excludeComponents: ["Button"] }),
+    ],
+  },
+});
 ```
 
 ## Minimizing Bundle Size

@@ -85,6 +85,7 @@
     "eslint": "9.38.0",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-mdx": "3.6.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.0",
     "jsdom": "27.0.1",
