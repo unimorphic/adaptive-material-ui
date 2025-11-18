@@ -1,5 +1,5 @@
 import { pluginReact } from "@rsbuild/plugin-react";
-import { defineConfig } from "@rslib/core";
+import { defineConfig, LibConfig } from "@rslib/core";
 
 // https://github.com/mui/material-ui/blob/master/.browserslistrc
 const browserslist = [
@@ -11,14 +11,8 @@ const browserslist = [
   "iOS >= 15.4",
 ];
 
-export default defineConfig({
-  source: {
-    entry: {
-      index: ["./src/**", "!src/**/*.test.*", "!src/**/*testUtils*"],
-    },
-    tsconfigPath: "./tsconfig.build.json",
-  },
-  lib: [
+export default defineConfig((params) => {
+  const lib: LibConfig[] = [
     {
       bundle: false,
       dts: true,
@@ -26,10 +20,23 @@ export default defineConfig({
       output: { distPath: "./dist/esm" },
       syntax: browserslist,
     },
-    { bundle: false, dts: true, format: "cjs", syntax: browserslist },
-  ],
-  output: {
-    target: "web",
-  },
-  plugins: [pluginReact()],
+  ];
+
+  if (params.envMode === "production") {
+    lib.push({ bundle: false, dts: true, format: "cjs", syntax: browserslist });
+  }
+
+  return {
+    source: {
+      entry: {
+        index: ["./src/**", "!src/**/*.test.*", "!src/**/*testUtils*"],
+      },
+      tsconfigPath: "./tsconfig.build.json",
+    },
+    lib: lib,
+    output: {
+      target: "web",
+    },
+    plugins: [pluginReact()],
+  };
 });
