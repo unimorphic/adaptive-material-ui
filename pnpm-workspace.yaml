@@ -2,4 +2,5 @@ packages:
   - docs
   - examples/capacitor
   - examples/next-js
+  - examples/vite
 networkConcurrency: 8
