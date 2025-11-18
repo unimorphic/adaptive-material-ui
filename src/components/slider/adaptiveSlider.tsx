@@ -1,6 +1,8 @@
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import {
   sliderClasses,
   SliderClasses,
+  SliderOwnProps,
   SliderProps,
 } from "@mui/material/Slider";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
@@ -13,9 +15,23 @@ import {
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export type AdaptiveSliderProps = SliderProps &
-  StyledComponentProps<keyof AdaptiveSliderClasses> &
-  AdaptiveModeProp;
+type AdaptiveSliderOwnProps = AdaptiveModeProp &
+  StyledComponentProps<keyof AdaptiveSliderClasses>;
+
+interface AdaptiveSliderTypeMap<
+  RootComponent extends React.ElementType = "span",
+  AdditionalProps = {},
+  Value extends number | number[] = number | number[],
+> {
+  props: AdditionalProps & SliderOwnProps<Value> & AdaptiveSliderOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type AdaptiveSliderProps<
+  RootComponent extends
+    React.ElementType = AdaptiveSliderTypeMap["defaultComponent"],
+  AdditionalProps = {},
+> = SliderProps<RootComponent, AdditionalProps> & AdaptiveSliderOwnProps;
 
 export interface AdaptiveSliderClasses extends SliderClasses, IosClasses {}
 
@@ -38,7 +54,17 @@ const SliderIOS = lazy(async () => {
   return { default: SliderIOS };
 });
 
-export function AdaptiveSlider(inProps: AdaptiveSliderProps) {
+type SliderComponent<Value extends number | number[]> = OverridableComponent<
+  AdaptiveSliderTypeMap<"span", {}, Value>
+>;
+type SliderType = SliderComponent<number> &
+  SliderComponent<number[]> &
+  SliderComponent<number | number[]>;
+
+export const AdaptiveSlider: SliderType = function <
+  RootComponent extends React.ElementType,
+  AdditionalProps = {},
+>(inProps: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSlider" });
   const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
 
@@ -63,4 +89,4 @@ export function AdaptiveSlider(inProps: AdaptiveSliderProps) {
       {content}
     </ReplaceComponentInTheme>
   );
-}
+};

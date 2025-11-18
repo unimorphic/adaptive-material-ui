@@ -1,6 +1,8 @@
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import Stack, {
   stackClasses,
   StackClasses,
+  StackOwnProps,
   StackProps,
 } from "@mui/material/Stack";
 import {
@@ -21,18 +23,36 @@ import {
 } from "../../shared/inclusiveToExclusiveBreakpoint";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-export type AdaptiveButtonStackProps = Omit<
-  StackProps,
+type AdaptiveButtonStackOwnProps = StyledComponentProps<
+  keyof AdaptiveButtonStackClasses
+> & {
+  /**
+   * Breakpoint or screen width in px and below at which the children will be stretched.
+   * This behavior can be disabled by setting it to false
+   * @default xs
+   */
+  stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
+};
+
+interface AdaptiveButtonStackTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = "div",
+> {
+  props: AdditionalProps &
+    Omit<StackOwnProps, "direction" | "useFlexGap"> &
+    AdaptiveButtonStackOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type AdaptiveButtonStackProps<
+  RootComponent extends
+    React.ElementType = AdaptiveButtonStackTypeMap["defaultComponent"],
+  AdditionalProps = {},
+> = Omit<
+  StackProps<RootComponent, AdditionalProps>,
   "direction" | "useFlexGap"
 > &
-  StyledComponentProps<keyof AdaptiveButtonStackClasses> & {
-    /**
-     * Breakpoint or screen width in px and below at which the children will be stretched.
-     * This behavior can be disabled by setting it to false
-     * @default xs
-     */
-    stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
-  };
+  AdaptiveButtonStackOwnProps;
 
 export interface AdaptiveButtonStackClasses extends StackClasses {}
 
@@ -110,42 +130,45 @@ const StyledStack = styled(Stack, {
   }),
 }));
 
-export function AdaptiveButtonStack(inProps: AdaptiveButtonStackProps) {
-  const props = useThemeProps({
-    props: inProps,
-    name: "AdaptiveButtonStack",
-  });
-  const {
-    className,
-    justifyContent = "flex-end",
-    spacing = 2,
-    stretchBreakpoint = "xs",
-    ...otherProps
-  } = props;
+export const AdaptiveButtonStack: OverridableComponent<AdaptiveButtonStackTypeMap> =
+  function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+    inProps: AdaptiveButtonStackProps<RootComponent, AdditionalProps>,
+  ) {
+    const props = useThemeProps({
+      props: inProps,
+      name: "AdaptiveButtonStack",
+    });
+    const {
+      className,
+      justifyContent = "flex-end",
+      spacing = 2,
+      stretchBreakpoint = "xs",
+      ...otherProps
+    } = props;
 
-  const composedClasses = composeClasses(
-    { root: ["root"] },
-    (s) => generateUtilityClass("AdaptiveButtonStack", s),
-    props.classes,
-  );
+    const composedClasses = composeClasses(
+      { root: ["root"] },
+      (s) => generateUtilityClass("AdaptiveButtonStack", s),
+      props.classes,
+    );
 
-  return (
-    <ReplaceComponentInTheme
-      sourceComponentName="AdaptiveButtonStack"
-      targetComponentName="MuiStack"
-    >
-      <StyledStack
-        className={clsx(composedClasses.root, className)}
-        justifyContent={justifyContent}
-        ownerState={{
-          ...props,
-          stretchBreakpointExclusive:
-            inclusiveToExclusiveBreakpoint(stretchBreakpoint),
-        }}
-        spacing={spacing}
-        useFlexGap
-        {...otherProps}
-      />
-    </ReplaceComponentInTheme>
-  );
-}
+    return (
+      <ReplaceComponentInTheme
+        sourceComponentName="AdaptiveButtonStack"
+        targetComponentName="MuiStack"
+      >
+        <StyledStack
+          className={clsx(composedClasses.root, className)}
+          justifyContent={justifyContent}
+          ownerState={{
+            ...props,
+            stretchBreakpointExclusive:
+              inclusiveToExclusiveBreakpoint(stretchBreakpoint),
+          }}
+          spacing={spacing}
+          useFlexGap
+          {...otherProps}
+        />
+      </ReplaceComponentInTheme>
+    );
+  };
