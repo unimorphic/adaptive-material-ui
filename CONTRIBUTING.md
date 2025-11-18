@@ -29,6 +29,7 @@ http://localhost:3000/docs/playground.html
 - If it has device specific versions update src\components\android.ts, desktop.ts, & ios.ts
 - Update src\index.ts
 - Add a new documentation page under docs\pages\docs\components
+- Update docs\shared\componentsList.tsx
 - If it replaces a MUI component, update src\eslintRule.ts
 
 ## Creating a pull request

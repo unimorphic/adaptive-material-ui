@@ -36,7 +36,7 @@ async function replacePlaceholders(node: RemarkTreeNode) {
       }
     }
 
-    const parts = fileContent.split("\n<>\n");
+    const parts = fileContent.split("\nexport");
 
     if (parts.length !== 2) {
       throw new Error(`Invalid placeholder file ${filePath}`);
@@ -46,7 +46,13 @@ async function replacePlaceholders(node: RemarkTreeNode) {
 
     node.value =
       imports +
-      node.value.replace(placeholder, component.replace("\n</>;\n", ""));
+      node.value.replace(
+        placeholder,
+        component.substring(
+          component.indexOf(">") + 1,
+          component.lastIndexOf("\n    <"),
+        ),
+      );
   }
 
   node.value = await prettier(node.value, { parser: "typescript" });

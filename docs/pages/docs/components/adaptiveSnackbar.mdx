@@ -9,8 +9,8 @@ import Links from "@/shared/links";
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton";
 import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar";
 import { useState } from "react";
 
@@ -19,18 +19,20 @@ export default function () {
 
   return (
     <AdaptiveModeDemo>
-      <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
+      <AdaptiveButton onClick={() => setOpen(true)} variant="contained">
+        Open
+      </AdaptiveButton>
 
       <AdaptiveSnackbar
         action={
-          <IconButton
+          <AdaptiveIconButton
             size="small"
             aria-label="close"
             color="inherit"
             onClick={() => setOpen(false)}
           >
             <CloseIcon fontSize="small" />
-          </IconButton>
+          </AdaptiveIconButton>
         }
         anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
         autoHideDuration={6000}

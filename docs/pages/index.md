@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: Overview
-      link: /docs/index.html
+      link: /docs/index
     - theme: alt
       text: Components
-      link: /docs/components.html
+      link: /docs/components
   image:
     src:
       dark: /logo-dark.svg
@@ -21,13 +21,13 @@ features:
   - title: No Device Left Behind
     details: Desktop, iOS, & Android are all supported
     icon: 💻
-    link: /docs/index.html
+    link: /docs/index
   - title: Optimized
     details: Each device & project only loads the components it uses
     icon: 🏎️
-    link: /docs/codeSplitting.html
+    link: /docs/codeSplitting
   - title: Customizable
     details: Change the styles as much or as little as you want
     icon: 🎨
-    link: /docs/styles.html
+    link: /docs/styles
 ---

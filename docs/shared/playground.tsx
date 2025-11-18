@@ -4,7 +4,6 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
@@ -529,13 +528,13 @@ export default function () {
           <AdaptiveButton onClick={() => setOpen(3)}>Snackbar 1</AdaptiveButton>
           <AdaptiveSnackbar
             action={
-              <IconButton
+              <AdaptiveIconButton
                 size="small"
                 color="inherit"
                 onClick={() => setOpen(0)}
               >
                 <CloseIcon fontSize="small" />
-              </IconButton>
+              </AdaptiveIconButton>
             }
             anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
             message="Note archived"
@@ -546,13 +545,13 @@ export default function () {
           <AdaptiveButton onClick={() => setOpen(4)}>Snackbar 2</AdaptiveButton>
           <AdaptiveSnackbar
             action={
-              <IconButton
+              <AdaptiveIconButton
                 size="small"
                 color="inherit"
                 onClick={() => setOpen(0)}
               >
                 <CloseIcon fontSize="small" />
-              </IconButton>
+              </AdaptiveIconButton>
             }
             adaptiveMode="ios"
             anchorOrigin={{ horizontal: "center", vertical: "bottom" }}

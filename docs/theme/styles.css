@@ -76,37 +76,6 @@ div.rspress-nav {
   text-align: center;
 }
 
-div.overview-index {
-  padding: var(--rp-content-padding-y) var(--rp-content-padding-x);
-
-  .items-start {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  h2 {
-    display: none;
-  }
-
-  div[class*="overview-groups"] {
-    columns: 1;
-
-    div[class*="overview-group"] {
-      margin-bottom: 10px;
-      padding: 0;
-
-      a {
-        padding: 20px;
-      }
-      h3 {
-        flex: 1;
-        margin-bottom: 0 !important;
-      }
-    }
-  }
-}
-
 div.rspress-preview {
   .rspress-preview-card {
     padding: 0 16px 0 0;

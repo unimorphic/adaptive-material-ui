@@ -27,10 +27,13 @@ function Content() {
   return (
     <>
       <Stack direction="row" spacing={2}>
-        <AdaptiveButton onClick={() => setIsShortOpen(true)}>
+        <AdaptiveButton
+          onClick={() => setIsShortOpen(true)}
+          variant="contained"
+        >
           Open Short
         </AdaptiveButton>
-        <AdaptiveButton onClick={() => setIsTallOpen(true)}>
+        <AdaptiveButton onClick={() => setIsTallOpen(true)} variant="contained">
           Open Tall
         </AdaptiveButton>
       </Stack>
@@ -57,7 +60,15 @@ function Content() {
         onClose={() => setIsTallOpen(false)}
         variant="tall"
       >
-        [[exampleTallDialogContent]]
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Cras mattis
+            {Array.from(Array(10).keys())
+              .map(() => `metus felis, varius ut elit eu, convallis`)
+              .join(" ")}
+          </DialogContentText>
+        </DialogContent>
         <AdaptiveDialogActions>
           <AdaptiveButton
             color={adaptiveMode === "ios" ? "inherit" : undefined}
@@ -115,7 +126,7 @@ export default function () {
         ]}
         value={numberOfButtons}
       />
-      <AdaptiveButton onClick={() => setOpen(true)}>
+      <AdaptiveButton onClick={() => setOpen(true)} variant="contained">
         Open {numberOfButtons} Actions
       </AdaptiveButton>
 
@@ -159,7 +170,9 @@ export default function () {
 
   return (
     <div>
-      <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
+      <AdaptiveButton onClick={() => setOpen(true)} variant="contained">
+        Open
+      </AdaptiveButton>
 
       <AdaptiveDialog
         open={open}
@@ -202,7 +215,9 @@ export default function () {
 
   return (
     <AdaptiveModeDemo adaptiveMode="desktop">
-      <AdaptiveButton onClick={() => setOpen(true)}>Open</AdaptiveButton>
+      <AdaptiveButton onClick={() => setOpen(true)} variant="contained">
+        Open
+      </AdaptiveButton>
 
       <AdaptiveDialog
         open={open}
