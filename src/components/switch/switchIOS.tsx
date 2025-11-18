@@ -1,5 +1,5 @@
 import { buttonBaseClasses } from "@mui/material/ButtonBase";
-import { styled } from "@mui/material/styles";
+import { alpha, styled } from "@mui/material/styles";
 import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
@@ -44,7 +44,7 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
 
       [`&:hover, &.${buttonBaseClasses.focusVisible}`]: {
         [`& .${switchClasses.thumb}`]: {
-          boxShadow: `0px 0px 0px 8px ${theme.alpha(theme.palette.text.primary, 0.16)}`,
+          boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.text.primary, 0.16)}`,
 
           "@media (hover: none)": {
             boxShadow: "none",

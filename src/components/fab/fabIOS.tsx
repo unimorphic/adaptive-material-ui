@@ -1,5 +1,5 @@
 import Fab, { fabClasses, FabProps, FabTypeMap } from "@mui/material/Fab";
-import { styled } from "@mui/material/styles";
+import { alpha, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
@@ -19,7 +19,7 @@ const StyledFab = styled(Fab, {
     colorName === "grey"
       ? (theme.vars ?? theme).palette.grey[300]
       : (theme.vars ?? theme).palette[colorName].main;
-  const currentColorTransparent = theme.alpha(currentColor, 0.5);
+  const currentColorTransparent = alpha(currentColor, 0.5);
 
   const size =
     ownerState.variant !== "extended" && ownerState.size
