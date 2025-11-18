@@ -37,13 +37,14 @@ function resolveAnchorEl(anchorEl?: AnchorElType) {
   return element;
 }
 
-const RootContainer = styled("div")(() => ({
+const RootContainer = styled("div")(({ theme }) => ({
   bottom: 0,
   left: 0,
   pointerEvents: "none",
   position: "fixed",
   right: 0,
   top: 0,
+  zIndex: (theme.vars ?? theme).zIndex.modal,
 
   "& > *": {
     pointerEvents: "auto",
