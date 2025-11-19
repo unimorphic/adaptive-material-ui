@@ -15,6 +15,8 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
     ownerState.orientation === "vertical"
       ? "translate(-50%, 50%) rotate(90deg)"
       : "translate(-50%, -50%)";
+  const thumbBoxShadow =
+    "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)";
 
   return {
     borderRadius: 3,
@@ -51,8 +53,10 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       ...iosLiquidGlass.thumb(theme),
 
       [`&:not(:hover, .${sliderClasses.focusVisible})`]: {
-        boxShadow:
-          "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)",
+        boxShadow: thumbBoxShadow,
+      },
+      "@media (hover: none)": {
+        boxShadow: thumbBoxShadow,
       },
 
       [`&.${sliderClasses.active}`]: iosLiquidGlass.thumbActive(
