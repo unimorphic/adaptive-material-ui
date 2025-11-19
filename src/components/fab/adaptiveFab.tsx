@@ -11,15 +11,11 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-type AdaptiveFabOwnProps = AdaptiveModeProp &
-  StyledComponentProps<keyof AdaptiveFabClasses>;
+type AdaptiveFabOwnProps = StyledComponentProps<keyof AdaptiveFabClasses>;
 
 type AdaptiveFabTypeMap<
   AdditionalProps = {},
@@ -61,18 +57,18 @@ export const AdaptiveFab: ExtendButtonBase<AdaptiveFabTypeMap> = function <
   AdditionalProps = {},
 >(inProps: AdaptiveFabProps<RootComponent, AdditionalProps>) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveFab" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <FabAndroid {...(otherProps as AdaptiveFabProps)} />;
+      content = <FabAndroid {...(props as AdaptiveFabProps)} />;
       break;
     case "ios":
-      content = <FabIOS {...(otherProps as AdaptiveFabProps)} />;
+      content = <FabIOS {...(props as AdaptiveFabProps)} />;
       break;
     default:
-      content = <FabDesktop {...(otherProps as AdaptiveFabProps)} />;
+      content = <FabDesktop {...(props as AdaptiveFabProps)} />;
       break;
   }
 

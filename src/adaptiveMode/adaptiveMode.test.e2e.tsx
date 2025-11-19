@@ -3,10 +3,10 @@ import { test, expect } from "@playwright/experimental-ct-react";
 import { RenderAdaptiveMode } from "./testUtils/renderAdaptiveMode";
 
 test("User Agent", async ({ mount }, workerInfo) => {
+  const projectName = workerInfo.project.name;
+
   let expectedMode = "desktop";
-  switch (
-    workerInfo.project.name.substring(0, workerInfo.project.name.indexOf(" "))
-  ) {
+  switch (projectName.substring(0, projectName.indexOf(" "))) {
     case "Android":
       expectedMode = "android";
       break;

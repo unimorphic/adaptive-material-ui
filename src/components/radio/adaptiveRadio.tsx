@@ -2,16 +2,12 @@ import { radioClasses, RadioClasses, RadioProps } from "@mui/material/Radio";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveRadioProps = RadioProps &
-  StyledComponentProps<keyof AdaptiveRadioClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveRadioClasses>;
 
 export interface AdaptiveRadioClasses extends RadioClasses, IosClasses {}
 
@@ -36,18 +32,18 @@ const RadioIOS = lazy(async () => {
 
 export function AdaptiveRadio(inProps: AdaptiveRadioProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveRadio" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <RadioAndroid {...otherProps} />;
+      content = <RadioAndroid {...props} />;
       break;
     case "ios":
-      content = <RadioIOS {...otherProps} />;
+      content = <RadioIOS {...props} />;
       break;
     default:
-      content = <RadioDesktop {...otherProps} />;
+      content = <RadioDesktop {...props} />;
       break;
   }
 

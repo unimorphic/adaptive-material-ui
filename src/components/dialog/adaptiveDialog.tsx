@@ -17,9 +17,7 @@ import { clsx } from "clsx";
 import { createContext, lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
-  AdaptiveModeProp,
   useAdaptiveMode,
-  useAdaptiveModeFromProps,
 } from "../../adaptiveMode/adaptiveMode";
 import {
   inclusiveToExclusiveBreakpoint,
@@ -32,8 +30,7 @@ import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonSt
 import { DialogResponsiveProps } from "./dialogResponsive";
 
 export type AdaptiveDialogProps = DialogResponsiveProps &
-  StyledComponentProps<keyof AdaptiveDialogClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveDialogClasses>;
 
 export interface AdaptiveDialogClasses extends DialogClasses, IosClasses {}
 
@@ -151,18 +148,18 @@ export function AdaptiveDialogActions(inProps: AdaptiveDialogActionsProps) {
 
 export function AdaptiveDialog(inProps: AdaptiveDialogProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveDialog" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <DialogAndroid {...otherProps} />;
+      content = <DialogAndroid {...props} />;
       break;
     case "ios":
-      content = <DialogIOS {...otherProps} />;
+      content = <DialogIOS {...props} />;
       break;
     default:
-      content = <DialogDesktop {...otherProps} />;
+      content = <DialogDesktop {...props} />;
       break;
   }
 

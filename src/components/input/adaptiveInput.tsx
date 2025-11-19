@@ -12,16 +12,12 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveInputProps = InputProps &
-  StyledComponentProps<keyof AdaptiveInputClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveInputClasses>;
 
 export interface AdaptiveInputClasses extends InputClasses, IosClasses {}
 
@@ -31,8 +27,7 @@ export const adaptiveInputClasses = {
 };
 
 export type AdaptiveFilledInputProps = FilledInputProps &
-  StyledComponentProps<keyof AdaptiveFilledInputClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveFilledInputClasses>;
 
 export interface AdaptiveFilledInputClasses
   extends FilledInputClasses,
@@ -44,8 +39,7 @@ export const adaptiveFilledInputClasses = {
 };
 
 export type AdaptiveOutlinedInputProps = OutlinedInputProps &
-  StyledComponentProps<keyof AdaptiveOutlinedInputClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveOutlinedInputClasses>;
 
 export interface AdaptiveOutlinedInputClasses
   extends OutlinedInputClasses,
@@ -98,18 +92,18 @@ const OutlinedInputIOS = lazy(async () => {
 
 export function AdaptiveInput(inProps: AdaptiveInputProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveInput" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <InputAndroid {...otherProps} />;
+      content = <InputAndroid {...props} />;
       break;
     case "ios":
-      content = <InputIOS {...otherProps} />;
+      content = <InputIOS {...props} />;
       break;
     default:
-      content = <InputDesktop {...otherProps} />;
+      content = <InputDesktop {...props} />;
       break;
   }
 
@@ -125,18 +119,18 @@ export function AdaptiveInput(inProps: AdaptiveInputProps) {
 
 export function AdaptiveFilledInput(inProps: AdaptiveFilledInputProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveFilledInput" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <FilledInputAndroid {...otherProps} />;
+      content = <FilledInputAndroid {...props} />;
       break;
     case "ios":
-      content = <FilledInputIOS {...otherProps} />;
+      content = <FilledInputIOS {...props} />;
       break;
     default:
-      content = <FilledInputDesktop {...otherProps} />;
+      content = <FilledInputDesktop {...props} />;
       break;
   }
 
@@ -155,18 +149,18 @@ export function AdaptiveOutlinedInput(inProps: AdaptiveOutlinedInputProps) {
     props: inProps,
     name: "AdaptiveOutlinedInput",
   });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <OutlinedInputAndroid {...otherProps} />;
+      content = <OutlinedInputAndroid {...props} />;
       break;
     case "ios":
-      content = <OutlinedInputIOS {...otherProps} />;
+      content = <OutlinedInputIOS {...props} />;
       break;
     default:
-      content = <OutlinedInputDesktop {...otherProps} />;
+      content = <OutlinedInputDesktop {...props} />;
       break;
   }
 

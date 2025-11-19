@@ -6,16 +6,12 @@ import {
 } from "@mui/material/Switch";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveSwitchProps = SwitchProps &
-  StyledComponentProps<keyof AdaptiveSwitchClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveSwitchClasses>;
 
 export interface AdaptiveSwitchClasses extends SwitchClasses, IosClasses {}
 
@@ -40,18 +36,18 @@ const SwitchIOS = lazy(async () => {
 
 export function AdaptiveSwitch(inProps: AdaptiveSwitchProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSwitch" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <SwitchAndroid {...otherProps} />;
+      content = <SwitchAndroid {...props} />;
       break;
     case "ios":
-      content = <SwitchIOS {...otherProps} />;
+      content = <SwitchIOS {...props} />;
       break;
     default:
-      content = <SwitchDesktop {...otherProps} />;
+      content = <SwitchDesktop {...props} />;
       break;
   }
 

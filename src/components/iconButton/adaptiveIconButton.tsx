@@ -10,10 +10,7 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import {
@@ -21,8 +18,9 @@ import {
   IconButtonContainedProps,
 } from "./iconButtonContained";
 
-type AdaptiveIconButtonOwnProps = AdaptiveModeProp &
-  StyledComponentProps<keyof AdaptiveIconButtonClasses>;
+type AdaptiveIconButtonOwnProps = StyledComponentProps<
+  keyof AdaptiveIconButtonClasses
+>;
 
 type AdaptiveIconButtonTypeMap<
   AdditionalProps = {},
@@ -70,24 +68,18 @@ export const AdaptiveIconButton: ExtendButtonBase<AdaptiveIconButtonTypeMap> =
     inProps: AdaptiveIconButtonProps<RootComponent, AdditionalProps>,
   ) {
     const props = useThemeProps({ props: inProps, name: "AdaptiveIconButton" });
-    const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+    const adaptiveMode = useAdaptiveMode();
 
     let content: ReactNode;
     switch (adaptiveMode) {
       case "android":
-        content = (
-          <IconButtonAndroid {...(otherProps as AdaptiveIconButtonProps)} />
-        );
+        content = <IconButtonAndroid {...(props as AdaptiveIconButtonProps)} />;
         break;
       case "ios":
-        content = (
-          <IconButtonIOS {...(otherProps as AdaptiveIconButtonProps)} />
-        );
+        content = <IconButtonIOS {...(props as AdaptiveIconButtonProps)} />;
         break;
       default:
-        content = (
-          <IconButtonDesktop {...(otherProps as AdaptiveIconButtonProps)} />
-        );
+        content = <IconButtonDesktop {...(props as AdaptiveIconButtonProps)} />;
         break;
     }
 

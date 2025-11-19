@@ -6,16 +6,12 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveLinearProgressProps = LinearProgressProps &
-  StyledComponentProps<keyof AdaptiveLinearProgressClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveLinearProgressClasses>;
 
 export interface AdaptiveLinearProgressClasses
   extends LinearProgressClasses,
@@ -45,18 +41,18 @@ export function AdaptiveLinearProgress(inProps: AdaptiveLinearProgressProps) {
     props: inProps,
     name: "AdaptiveLinearProgress",
   });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <LinearProgressAndroid {...otherProps} />;
+      content = <LinearProgressAndroid {...props} />;
       break;
     case "ios":
-      content = <LinearProgressIOS {...otherProps} />;
+      content = <LinearProgressIOS {...props} />;
       break;
     default:
-      content = <LinearProgressDesktop {...otherProps} />;
+      content = <LinearProgressDesktop {...props} />;
       break;
   }
 

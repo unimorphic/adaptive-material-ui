@@ -8,15 +8,11 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-type AdaptiveSliderOwnProps = AdaptiveModeProp &
-  StyledComponentProps<keyof AdaptiveSliderClasses>;
+type AdaptiveSliderOwnProps = StyledComponentProps<keyof AdaptiveSliderClasses>;
 
 interface AdaptiveSliderTypeMap<
   RootComponent extends React.ElementType = "span",
@@ -66,18 +62,18 @@ export const AdaptiveSlider: SliderType = function <
   AdditionalProps = {},
 >(inProps: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSlider" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <SliderAndroid {...otherProps} />;
+      content = <SliderAndroid {...props} />;
       break;
     case "ios":
-      content = <SliderIOS {...otherProps} />;
+      content = <SliderIOS {...props} />;
       break;
     default:
-      content = <SliderDesktop {...otherProps} />;
+      content = <SliderDesktop {...props} />;
       break;
   }
 

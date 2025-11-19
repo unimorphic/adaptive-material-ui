@@ -2,11 +2,6 @@ import { createContext, useContext } from "react";
 
 export type AdaptiveMode = "android" | "desktop" | "ios";
 
-export interface AdaptiveModeProp {
-  /** The mode to render the component in. If undefined it chooses a mode based on the current device */
-  adaptiveMode?: AdaptiveMode;
-}
-
 /**
  * Context that can be used to configure the adaptive mode to use a specific user agent or mode
  */
@@ -25,18 +20,6 @@ function isIOS(userAgent: string) {
     window.navigator.maxTouchPoints >= 1;
 
   return /iPad|iPhone|iPod/.test(userAgent) || isIOS13;
-}
-
-/**
- * Resolves the current adaptive mode based on the current context & device
- * @param adaptiveModeProps The adaptive mode component props
- * @returns The adaptive mode to use and the rest of the props
- */
-export function useAdaptiveModeFromProps<T extends AdaptiveModeProp>(
-  adaptiveModeProps: T,
-): [AdaptiveMode, Omit<T, "adaptiveMode">] {
-  const { adaptiveMode, ...rest } = adaptiveModeProps;
-  return [useAdaptiveMode(adaptiveMode), rest];
 }
 
 /**

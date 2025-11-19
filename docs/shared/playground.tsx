@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import {
   AdaptiveButton,
   adaptiveButtonClasses,
@@ -43,8 +43,10 @@ import {
   adaptiveSwitchClasses,
 } from "adaptive-material-ui/components/switch";
 import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
+import AdaptiveModeDemo from "./adaptiveModeDemo";
 
 const theme = createTheme({
   colorSchemes: { dark: true },
@@ -356,22 +358,18 @@ const theme = createTheme({
   },
 });
 
-export default function () {
-  const [anchorEl1, setAnchorEl1] = useState<null | HTMLElement>(null);
-  const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
+function Content() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(0);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Stack spacing={2}>
         <AdaptiveButton variant="outlined">Button</AdaptiveButton>
 
         <AdaptiveButtonStack>
           <AdaptiveButton>Button</AdaptiveButton>
-          <AdaptiveButton
-            adaptiveMode="ios"
-            className={adaptiveButtonStackClasses.alignStart}
-          >
+          <AdaptiveButton className={adaptiveButtonStackClasses.alignStart}>
             Stack
           </AdaptiveButton>
           <AdaptiveButton>Button</AdaptiveButton>
@@ -382,30 +380,7 @@ export default function () {
         </AdaptiveButtonStack>
 
         <Stack direction="row" spacing={2}>
-          <AdaptiveButton onClick={() => setOpen(1)}>Dialog 1</AdaptiveButton>
-          <AdaptiveDialog
-            adaptiveMode="ios"
-            open={open === 1}
-            onClose={() => setOpen(0)}
-            variant="short"
-          >
-            <DialogTitle>Use Google's location service?</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Let Google help apps determine location. This means sending
-                anonymous location data to Google, even when no apps are
-                running.
-              </DialogContentText>
-            </DialogContent>
-            <AdaptiveDialogActions
-              buttonDefaultProps={{ variant: "contained" }}
-            >
-              <AdaptiveButton>Button 1</AdaptiveButton>
-              <AdaptiveButton>Button 2</AdaptiveButton>
-            </AdaptiveDialogActions>
-          </AdaptiveDialog>
-
-          <AdaptiveButton onClick={() => setOpen(2)}>Dialog 2</AdaptiveButton>
+          <AdaptiveButton onClick={() => setOpen(2)}>Dialog</AdaptiveButton>
           <AdaptiveDialog
             open={open === 2}
             onClose={() => setOpen(0)}
@@ -427,29 +402,14 @@ export default function () {
 
         <Stack direction="row" spacing={2}>
           <AdaptiveButton
-            onClick={(e) => setAnchorEl1((v) => (v ? null : e.currentTarget))}
+            onClick={(e) => setAnchorEl((v) => (v ? null : e.currentTarget))}
           >
-            Menu 1
+            Menu
           </AdaptiveButton>
           <AdaptiveMenu
-            anchorEl={anchorEl1}
-            onClose={() => setAnchorEl1(null)}
-            open={anchorEl1 !== null}
-          >
-            <MenuItem>MenuItem 1</MenuItem>
-            <MenuItem>MenuItem 2</MenuItem>
-          </AdaptiveMenu>
-
-          <AdaptiveButton
-            onClick={(e) => setAnchorEl2((v) => (v ? null : e.currentTarget))}
-          >
-            Menu 2
-          </AdaptiveButton>
-          <AdaptiveMenu
-            adaptiveMode="ios"
-            anchorEl={anchorEl2}
-            onClose={() => setAnchorEl2(null)}
-            open={anchorEl2 !== null}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+            open={anchorEl !== null}
           >
             <MenuItem>MenuItem 1</MenuItem>
             <MenuItem>MenuItem 2</MenuItem>
@@ -468,21 +428,12 @@ export default function () {
               <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
             </AdaptiveSelectItemGroup>
           </AdaptiveSelect>
-          <AdaptiveSelect adaptiveMode="ios" defaultValue={1}>
-            <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-            <AdaptiveSelectItemGroup label="Group">
-              <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-              <AdaptiveSelectItem value={3}>Three</AdaptiveSelectItem>
-            </AdaptiveSelectItemGroup>
-          </AdaptiveSelect>
         </Stack>
 
         <AdaptiveSlider defaultValue={30} />
-        <AdaptiveSlider adaptiveMode="ios" defaultValue={30} />
 
         <Stack direction="row" spacing={2}>
           <AdaptiveSwitch />
-          <AdaptiveSwitch adaptiveMode="ios" />
         </Stack>
 
         <Stack direction="row" spacing={2}>
@@ -491,41 +442,19 @@ export default function () {
           <AdaptiveTextField label="Filled" variant="filled" />
         </Stack>
         <Stack direction="row" spacing={2}>
-          <AdaptiveTextField
-            adaptiveMode="ios"
-            label="Standard"
-            variant="standard"
-          />
-          <AdaptiveTextField
-            adaptiveMode="ios"
-            label="Outlined"
-            variant="outlined"
-          />
-          <AdaptiveTextField
-            adaptiveMode="ios"
-            label="Filled"
-            variant="filled"
-          />
-        </Stack>
-        <Stack direction="row" spacing={2}>
           <AdaptiveCheckbox />
-          <AdaptiveCheckbox adaptiveMode="ios" />
         </Stack>
         <Stack direction="row" spacing={2}>
           <AdaptiveRadio />
-          <AdaptiveRadio adaptiveMode="ios" />
         </Stack>
         <Stack direction="row" spacing={2}>
           <AdaptiveFab>
             <AddIcon />
           </AdaptiveFab>
-          <AdaptiveFab adaptiveMode="ios">
-            <AddIcon />
-          </AdaptiveFab>
         </Stack>
 
         <Stack direction="row" spacing={2}>
-          <AdaptiveButton onClick={() => setOpen(3)}>Snackbar 1</AdaptiveButton>
+          <AdaptiveButton onClick={() => setOpen(3)}>Snackbar</AdaptiveButton>
           <AdaptiveSnackbar
             action={
               <AdaptiveIconButton
@@ -541,53 +470,32 @@ export default function () {
             onClose={() => setOpen(0)}
             open={open === 3}
           />
-
-          <AdaptiveButton onClick={() => setOpen(4)}>Snackbar 2</AdaptiveButton>
-          <AdaptiveSnackbar
-            action={
-              <AdaptiveIconButton
-                size="small"
-                color="inherit"
-                onClick={() => setOpen(0)}
-              >
-                <CloseIcon fontSize="small" />
-              </AdaptiveIconButton>
-            }
-            adaptiveMode="ios"
-            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
-            message="Note archived"
-            onClose={() => setOpen(0)}
-            open={open === 4}
-          />
         </Stack>
         <Stack alignItems="center" direction="row" spacing={2}>
           <AdaptiveIconButton>
             <PlayArrowIcon />
           </AdaptiveIconButton>
-          <AdaptiveIconButton adaptiveMode="ios">
-            <PlayArrowIcon />
-          </AdaptiveIconButton>
           <AdaptiveIconButton variant="contained">
-            <PlayArrowIcon />
-          </AdaptiveIconButton>
-          <AdaptiveIconButton adaptiveMode="ios" variant="contained">
             <PlayArrowIcon />
           </AdaptiveIconButton>
         </Stack>
         <Stack direction="row" spacing={2}>
           <AdaptiveCircularProgress />
-          <AdaptiveCircularProgress adaptiveMode="ios" />
-          <AdaptiveCircularProgress
-            adaptiveMode="ios"
-            value={50}
-            variant="determinate"
-          />
         </Stack>
         <Stack spacing={2}>
           <AdaptiveLinearProgress />
-          <AdaptiveLinearProgress adaptiveMode="ios" />
         </Stack>
       </Stack>
-    </ThemeProvider>
+    </>
+  );
+}
+
+export default function () {
+  return (
+    <AdaptiveThemeProvider theme={theme}>
+      <AdaptiveModeDemo>
+        <Content />
+      </AdaptiveModeDemo>
+    </AdaptiveThemeProvider>
   );
 }

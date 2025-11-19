@@ -4,15 +4,13 @@ import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
+  useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveMenuProps = MenuProps &
-  StyledComponentProps<keyof AdaptiveMenuClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveMenuClasses>;
 
 export interface AdaptiveMenuClasses extends MenuClasses, IosClasses {}
 
@@ -37,18 +35,18 @@ const MenuIOS = lazy(async () => {
 
 export function AdaptiveMenu(inProps: AdaptiveMenuProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveMenu" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <MenuAndroid {...otherProps} />;
+      content = <MenuAndroid {...props} />;
       break;
     case "ios":
-      content = <MenuIOS {...otherProps} />;
+      content = <MenuIOS {...props} />;
       break;
     default:
-      content = <MenuDesktop {...otherProps} />;
+      content = <MenuDesktop {...props} />;
       break;
   }
 

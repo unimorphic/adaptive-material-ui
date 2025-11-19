@@ -6,16 +6,12 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveCheckboxProps = CheckboxProps &
-  StyledComponentProps<keyof AdaptiveCheckboxClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveCheckboxClasses>;
 
 export interface AdaptiveCheckboxClasses extends CheckboxClasses, IosClasses {}
 
@@ -40,18 +36,18 @@ const CheckboxIOS = lazy(async () => {
 
 export function AdaptiveCheckbox(inProps: AdaptiveCheckboxProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveCheckbox" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <CheckboxAndroid {...otherProps} />;
+      content = <CheckboxAndroid {...props} />;
       break;
     case "ios":
-      content = <CheckboxIOS {...otherProps} />;
+      content = <CheckboxIOS {...props} />;
       break;
     default:
-      content = <CheckboxDesktop {...otherProps} />;
+      content = <CheckboxDesktop {...props} />;
       break;
   }
 

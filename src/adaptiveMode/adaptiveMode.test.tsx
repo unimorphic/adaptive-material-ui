@@ -1,4 +1,3 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, expect, test } from "vitest";
 import { AdaptiveModeContext } from "./adaptiveMode";
@@ -6,36 +5,6 @@ import { RenderAdaptiveMode } from "./testUtils/renderAdaptiveMode";
 
 afterEach(() => {
   cleanup();
-});
-
-test("Theme", () => {
-  let theme = createTheme({
-    components: {
-      AdaptiveSwitch: { defaultProps: { adaptiveMode: "ios" } },
-    },
-  });
-  let result = render(
-    <ThemeProvider theme={theme}>
-      <RenderAdaptiveMode />
-    </ThemeProvider>,
-  );
-
-  let adaptiveMode = result.getByText("ios");
-  expect(adaptiveMode).toBeDefined();
-
-  theme = createTheme({
-    components: {
-      AdaptiveSwitch: { defaultProps: { adaptiveMode: "android" } },
-    },
-  });
-  result = render(
-    <ThemeProvider theme={theme}>
-      <RenderAdaptiveMode />
-    </ThemeProvider>,
-  );
-
-  adaptiveMode = result.getByText("android");
-  expect(adaptiveMode).toBeDefined();
 });
 
 test("Context - Mode", () => {
@@ -83,18 +52,6 @@ test("Context - User Agent", () => {
       <RenderAdaptiveMode />
     </AdaptiveModeContext.Provider>,
   );
-
-  adaptiveMode = result.getByText("android");
-  expect(adaptiveMode).toBeDefined();
-});
-
-test("Prop", () => {
-  let result = render(<RenderAdaptiveMode adaptiveMode="ios" />);
-
-  let adaptiveMode = result.getByText("ios");
-  expect(adaptiveMode).toBeDefined();
-
-  result = render(<RenderAdaptiveMode adaptiveMode="android" />);
 
   adaptiveMode = result.getByText("android");
   expect(adaptiveMode).toBeDefined();

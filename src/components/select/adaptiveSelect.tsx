@@ -7,8 +7,7 @@ import {
 import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
+  useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import {
@@ -19,8 +18,7 @@ import {
 import { SelectNativeProps } from "./selectProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectNativeProps<Value> &
-  StyledComponentProps<keyof AdaptiveSelectClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveSelectClasses>;
 
 export interface AdaptiveSelectClasses extends SelectClasses {}
 
@@ -52,8 +50,8 @@ export function AdaptiveSelect<Value = unknown>(
   inProps: AdaptiveSelectProps<Value>,
 ) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelect" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
-  const { input, ...selectProps } = otherProps;
+  const adaptiveMode = useAdaptiveMode();
+  const { input, ...selectProps } = props;
 
   const inputComponent =
     input ??

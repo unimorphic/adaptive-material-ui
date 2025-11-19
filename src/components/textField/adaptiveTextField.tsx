@@ -9,8 +9,7 @@ import TextField, {
 import { mergeSlotProps, SlotProps } from "@mui/material/utils";
 import {
   AdaptiveModeContext,
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
+  useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import {
@@ -33,7 +32,6 @@ export type AdaptiveTextFieldProps<
   Variant extends TextFieldVariants = TextFieldVariants,
 > = TextFieldProps<Variant> &
   StyledComponentProps<keyof AdaptiveTextFieldClasses> &
-  AdaptiveModeProp &
   (Variant extends "filled"
     ? InputSlotProps<AdaptiveFilledInputProps>
     : Variant extends "outlined"
@@ -60,8 +58,8 @@ export function AdaptiveTextField(
   } & Omit<AdaptiveTextFieldProps, "variant">,
 ) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveTextField" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
-  const { slotProps, slots, ...textFieldProps } = otherProps;
+  const adaptiveMode = useAdaptiveMode();
+  const { slotProps, slots, ...textFieldProps } = props;
 
   return (
     <AdaptiveModeContext.Provider value={{ mode: adaptiveMode }}>

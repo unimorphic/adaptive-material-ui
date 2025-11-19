@@ -6,16 +6,12 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveSnackbarProps = SnackbarProps &
-  StyledComponentProps<keyof AdaptiveSnackbarClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveSnackbarClasses>;
 
 export interface AdaptiveSnackbarClasses extends SnackbarClasses, IosClasses {}
 
@@ -40,18 +36,18 @@ const SnackbarIOS = lazy(async () => {
 
 export function AdaptiveSnackbar(inProps: AdaptiveSnackbarProps) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSnackbar" });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <SnackbarAndroid {...otherProps} />;
+      content = <SnackbarAndroid {...props} />;
       break;
     case "ios":
-      content = <SnackbarIOS {...otherProps} />;
+      content = <SnackbarIOS {...props} />;
       break;
     default:
-      content = <SnackbarDesktop {...otherProps} />;
+      content = <SnackbarDesktop {...props} />;
       break;
   }
 

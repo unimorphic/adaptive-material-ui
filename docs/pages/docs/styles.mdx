@@ -6,7 +6,7 @@ Component styles can be customized using the standard Material UI methods but ta
 
 ### Single Component
 
-The following is a example of styling a single `AdaptiveSwitch` component, there are examples in the
+The following is a example of styling a single `AdaptiveSwitch` component, there are similar examples in the
 MUI documentation for many components, like [Switch Customization](https://mui.com/material-ui/react-switch/#customization).
 
 ```tsx
@@ -79,6 +79,7 @@ or a theme style override as shown below.
 ### Classes Prop
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { styled } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
@@ -106,11 +107,9 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
 
 export default function () {
   return (
-    <AdaptiveSwitchStyled
-      adaptiveMode="ios"
-      classes={{ ios: iosClassName }}
-      defaultChecked
-    />
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <AdaptiveSwitchStyled classes={{ ios: iosClassName }} defaultChecked />
+    </AdaptiveModeDemo>
   );
 }
 ```
@@ -118,6 +117,7 @@ export default function () {
 ### Class Name
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { styled } from "@mui/material/styles";
 import {
   AdaptiveSwitch,
@@ -142,7 +142,11 @@ const AdaptiveSwitchStyled = styled(AdaptiveSwitch)({
 });
 
 export default function () {
-  return <AdaptiveSwitchStyled adaptiveMode="ios" defaultChecked />;
+  return (
+    <AdaptiveModeDemo adaptiveMode="ios">
+      <AdaptiveSwitchStyled defaultChecked />
+    </AdaptiveModeDemo>
+  );
 }
 ```
 
@@ -184,8 +188,8 @@ const theme = createTheme({
 
 export default function () {
   return (
-    <AdaptiveThemeProvider theme={theme}>
-      <AdaptiveSwitch adaptiveMode="ios" defaultChecked />
+    <AdaptiveThemeProvider adaptiveModeInfo={{ mode: "ios" }} theme={theme}>
+      <AdaptiveSwitch defaultChecked />
     </AdaptiveThemeProvider>
   );
 }

@@ -6,16 +6,12 @@ import {
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
-import {
-  AdaptiveModeProp,
-  useAdaptiveModeFromProps,
-} from "../../adaptiveMode/adaptiveMode";
+import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveCircularProgressProps = CircularProgressProps &
-  StyledComponentProps<keyof AdaptiveCircularProgressClasses> &
-  AdaptiveModeProp;
+  StyledComponentProps<keyof AdaptiveCircularProgressClasses>;
 
 export interface AdaptiveCircularProgressClasses
   extends CircularProgressClasses,
@@ -47,18 +43,18 @@ export function AdaptiveCircularProgress(
     props: inProps,
     name: "AdaptiveCircularProgress",
   });
-  const [adaptiveMode, otherProps] = useAdaptiveModeFromProps(props);
+  const adaptiveMode = useAdaptiveMode();
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <CircularProgressAndroid {...otherProps} />;
+      content = <CircularProgressAndroid {...props} />;
       break;
     case "ios":
-      content = <CircularProgressIOS {...otherProps} />;
+      content = <CircularProgressIOS {...props} />;
       break;
     default:
-      content = <CircularProgressDesktop {...otherProps} />;
+      content = <CircularProgressDesktop {...props} />;
       break;
   }
 
