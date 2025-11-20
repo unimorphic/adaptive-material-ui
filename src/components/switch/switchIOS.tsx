@@ -3,8 +3,12 @@ import { alpha, styled } from "@mui/material/styles";
 import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
+import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { clsx } from "clsx";
+import { ChangeEvent, useState } from "react";
 import { iosLiquidGlass } from "../../shared/ios/iosLiquidGlass";
+
+const privateClasses = generateUtilityClasses("AdaptiveSwitch", ["switching"]);
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Toggle
@@ -12,9 +16,12 @@ import { iosLiquidGlass } from "../../shared/ios/iosLiquidGlass";
 const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
   ownerState: SwitchProps;
 }>(({ theme, ownerState }) => {
-  const height = ownerState.size === "small" ? 24 : 28;
-  const width = ownerState.size === "small" ? 70 : 88;
-  const padding = ownerState.size === "small" ? 7 : 12;
+  const largeHeight = 28;
+  const largeWidth = 88;
+  const largePadding = 12;
+  const height = ownerState.size === "small" ? 24 : largeHeight;
+  const width = ownerState.size === "small" ? 70 : largeWidth;
+  const padding = ownerState.size === "small" ? 7 : largePadding;
 
   return {
     height: height,
@@ -31,18 +38,24 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       }),
 
       [`&.${switchClasses.checked}`]: {
-        transform: "translateX(21px)",
+        transform: `translateX(${(ownerState.size === "small" ? 18 : 21).toString()}px)`,
 
         [`& + .${switchClasses.track}`]: {
+          clipPath:
+            'path("M 30 -6 C 3 -6 3 34 30 34 L 0 34 L 0 -6 Z M 55 -6 C 82 -6 82 34 55 34 L 85 34 L 85 -6 Z M 0 -6 L 41 -6 L 41 34 L 0 34 Z M 41 34 L 85 34 L 85 -6 L 41 -6 Z")',
           opacity: 1,
-
-          "&:before": {
-            marginLeft: 0,
+        },
+        [`&:active, &.${privateClasses.switching}`]: {
+          [`& + .${switchClasses.track}`]: {
+            clipPath:
+              'path("M 30 -6 C 3 -6 3 34 30 34 L 0 34 L 0 -6 Z M 55 -6 C 82 -6 82 34 55 34 L 85 34 L 85 -6 Z M 0 4 L 41 4 L 41 24 L 0 24 Z M 41 24 L 85 24 L 85 4 L 41 4 Z")',
           },
         },
       },
 
       [`&:hover, &.${buttonBaseClasses.focusVisible}`]: {
+        backgroundColor: "transparent",
+
         [`& .${switchClasses.thumb}`]: {
           boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.text.primary, 0.16)}`,
 
@@ -52,14 +65,11 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
         },
       },
 
-      "&:active": {
-        [`& .${switchClasses.thumb}`]: iosLiquidGlass.thumbActive(1.3),
+      [`&:active, &.${privateClasses.switching}`]: {
+        [`& .${switchClasses.thumb}`]: iosLiquidGlass.thumbActive(1.7),
         [`& + .${switchClasses.track}`]: {
-          transform: "scale(0.75)",
-
-          "&:before": {
-            transform: "scale(calc(1/0.75))",
-          },
+          clipPath:
+            'path("M 9 -6 C -18 -6 -18 34 9 34 L -21 34 L -21 -6 Z M 34 -6 C 61 -6 61 34 34 34 L 64 34 L 64 -6 Z M -21 4 L 20 4 L 20 24 L -21 24 Z M 20 24 L 64 24 L 64 4 L 20 4 Z")',
         },
       },
 
@@ -74,53 +84,65 @@ const StyledSwitch = styled(Switch, { name: "AdaptiveSwitch", slot: "ios" })<{
       borderRadius: 13,
       boxShadow: "none",
       height: height - 4,
-      width: width - 25 - padding * 2,
+      width: width - (ownerState.size === "small" ? 22 : 25) - padding * 2,
       ...iosLiquidGlass.thumb(theme),
     },
 
     [`& .${switchClasses.track}`]: {
+      clipPath:
+        'path("M 9 -6 C -18 -6 -18 34 9 34 L -21 34 L -21 -6 Z M 34 -6 C 61 -6 61 34 34 34 L 64 34 L 64 -6 Z M -21 -6 L 20 -6 L 20 34 L -21 34 Z M 20 34 L 64 34 L 64 -6 L 20 -6 Z")',
       backgroundColor: "#C4C4C6",
       borderRadius: 15,
+      height: largeHeight,
       opacity: 1,
+      position: "absolute",
+      transform: `scale(${((width - padding * 2) / (largeWidth - largePadding * 2)).toString()}, ${(height / largeHeight).toString()})`,
+      transformOrigin: "left top",
       transition: theme.transitions.create(
-        ["background-color", "opacity", "transform"],
+        ["clip-path", "background-color", "opacity"],
         { duration: iosLiquidGlass.transitionDuration },
       ),
+      width: largeWidth - largePadding * 2,
       ...theme.applyStyles("dark", {
         backgroundColor: "#5B5B5F",
       }),
-
-      "&:before": {
-        backgroundColor: "inherit",
-        borderRadius: "inherit",
-        content: '""',
-        display: "block",
-        height: "100%",
-        position: "absolute",
-        marginLeft: width - height - padding * 2,
-        transition: theme.transitions.create(["margin-left", "transform"], {
-          duration: iosLiquidGlass.transitionDuration,
-        }),
-        width: height,
-        top: 0,
-      },
     },
   };
 });
 
 export function SwitchIOS(props: SwitchProps) {
-  const { className, ...otherProps } = props;
+  const { classes, className, onChange, ...otherProps } = props;
+  const [isSwitching, setIsSwitching] = useState(false);
 
   const composedClasses = composeClasses(
-    { ios: ["ios"] },
+    { ios: ["ios"], switchBase: [isSwitching ? "switching" : undefined] },
     (s) => generateUtilityClass("AdaptiveSwitch", s),
     props.classes,
   );
 
+  function onChangeSwitch(
+    event: ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) {
+    setIsSwitching(true);
+
+    window.setTimeout(
+      () => setIsSwitching(false),
+      iosLiquidGlass.transitionDuration,
+    );
+
+    onChange?.(event, checked);
+  }
+
   return (
     <StyledSwitch
+      classes={{
+        ...classes,
+        switchBase: clsx(composedClasses.switchBase, classes?.switchBase),
+      }}
       className={clsx(composedClasses.ios, className)}
       disableRipple
+      onChange={onChangeSwitch}
       ownerState={props}
       {...otherProps}
     />

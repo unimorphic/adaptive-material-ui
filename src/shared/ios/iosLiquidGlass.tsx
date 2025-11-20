@@ -33,9 +33,10 @@ export const iosLiquidGlass: IosLiquidGlass = {
   thumb: (theme: Theme) => ({
     backgroundColor: theme.palette.common.white,
     display: "block",
-    transition: theme.transitions.create(["background-color", "transform"], {
-      duration: iosLiquidGlass.transitionDuration,
-    }),
+    transition: theme.transitions.create(
+      ["background-color", "box-shadow", "transform"],
+      { duration: iosLiquidGlass.transitionDuration },
+    ),
 
     "&:after": {
       content: '""',
