@@ -1,3 +1,4 @@
+import { ExtendButtonBase } from "@mui/material/ButtonBase";
 import Fab, { fabClasses, FabProps, FabTypeMap } from "@mui/material/Fab";
 import { alpha, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
@@ -46,8 +47,8 @@ const StyledFab = styled(Fab, {
   };
 });
 
-export function FabIOS<
-  RootComponent extends React.ElementType = FabTypeMap["defaultComponent"],
+export const FabIOS: ExtendButtonBase<FabTypeMap> = function <
+  RootComponent extends React.ElementType,
   AdditionalProps = {},
 >(props: FabProps<RootComponent, AdditionalProps>) {
   const { className, size = "medium", ...otherProps } = props;
@@ -67,4 +68,4 @@ export function FabIOS<
       {...otherProps}
     />
   );
-}
+};

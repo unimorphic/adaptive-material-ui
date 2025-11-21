@@ -62,13 +62,13 @@ export const AdaptiveFab: ExtendButtonBase<AdaptiveFabTypeMap> = function <
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <FabAndroid {...(props as AdaptiveFabProps)} />;
+      content = <FabAndroid {...props} />;
       break;
     case "ios":
-      content = <FabIOS {...(props as AdaptiveFabProps)} />;
+      content = <FabIOS {...props} />;
       break;
     default:
-      content = <FabDesktop {...(props as AdaptiveFabProps)} />;
+      content = <FabDesktop {...props} />;
       break;
   }
 

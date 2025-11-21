@@ -13,7 +13,7 @@ export interface IconButtonContainedOwnProps {
   variant?: "contained" | "default";
 }
 
-type IconButtonContainedTypeMap<
+export type IconButtonContainedTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{

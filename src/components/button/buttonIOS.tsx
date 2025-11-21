@@ -1,9 +1,13 @@
-import { ButtonTypeMap } from "@mui/material/Button";
+import { ExtendButtonBase } from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import { ButtonRound, ButtonRoundProps } from "./buttonRound";
+import {
+  ButtonRound,
+  ButtonRoundProps,
+  ButtonRoundTypeMap,
+} from "./buttonRound";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Buttons
@@ -20,8 +24,8 @@ const StyledButton = styled(ButtonRound, {
         : "5px 12px",
 }));
 
-export function ButtonIOS<
-  RootComponent extends React.ElementType = ButtonTypeMap["defaultComponent"],
+export const ButtonIOS: ExtendButtonBase<ButtonRoundTypeMap> = function <
+  RootComponent extends React.ElementType,
   AdditionalProps = {},
 >(props: ButtonRoundProps<RootComponent, AdditionalProps>) {
   const { className, ...otherProps } = props;
@@ -40,4 +44,4 @@ export function ButtonIOS<
       {...otherProps}
     />
   );
-}
+};

@@ -1,4 +1,4 @@
-import { IconButtonTypeMap } from "@mui/material/IconButton";
+import { ExtendButtonBase } from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
@@ -6,6 +6,7 @@ import { clsx } from "clsx";
 import {
   IconButtonContained,
   IconButtonContainedProps,
+  IconButtonContainedTypeMap,
 } from "./iconButtonContained";
 
 /**
@@ -27,25 +28,24 @@ const StyledIconButtonContained = styled(IconButtonContained, {
   },
 }));
 
-export function IconButtonIOS<
-  RootComponent extends
-    React.ElementType = IconButtonTypeMap["defaultComponent"],
-  AdditionalProps = {},
->(props: IconButtonContainedProps<RootComponent, AdditionalProps>) {
-  const { className, ...otherProps } = props;
+export const IconButtonIOS: ExtendButtonBase<IconButtonContainedTypeMap> =
+  function <RootComponent extends React.ElementType, AdditionalProps = {}>(
+    props: IconButtonContainedProps<RootComponent, AdditionalProps>,
+  ) {
+    const { className, ...otherProps } = props;
 
-  const composedClasses = composeClasses(
-    { ios: ["ios"] },
-    (s) => generateUtilityClass("AdaptiveIconButton", s),
-    props.classes,
-  );
+    const composedClasses = composeClasses(
+      { ios: ["ios"] },
+      (s) => generateUtilityClass("AdaptiveIconButton", s),
+      props.classes,
+    );
 
-  return (
-    <StyledIconButtonContained
-      className={clsx(composedClasses.ios, className)}
-      disableTouchRipple
-      ownerState={props}
-      {...otherProps}
-    />
-  );
-}
+    return (
+      <StyledIconButtonContained
+        className={clsx(composedClasses.ios, className)}
+        disableTouchRipple
+        ownerState={props}
+        {...otherProps}
+      />
+    );
+  };

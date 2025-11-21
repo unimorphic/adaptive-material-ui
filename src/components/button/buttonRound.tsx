@@ -11,7 +11,7 @@ export interface ButtonRoundOwnProps {
   round?: boolean;
 }
 
-type ButtonRoundTypeMap<
+export type ButtonRoundTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{

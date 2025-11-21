@@ -1,5 +1,8 @@
-import Slider, { SliderProps } from "@mui/material/Slider";
+import Slider, { SliderProps, SliderType } from "@mui/material/Slider";
 
-export function SliderAndroid(props: SliderProps) {
+export const SliderAndroid: SliderType = function <
+  RootComponent extends React.ElementType,
+  AdditionalProps = {},
+>(props: SliderProps<RootComponent, AdditionalProps>) {
   return <Slider {...props} />;
-}
+};

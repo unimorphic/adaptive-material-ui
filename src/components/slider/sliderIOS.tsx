@@ -1,4 +1,8 @@
-import Slider, { sliderClasses, SliderProps } from "@mui/material/Slider";
+import Slider, {
+  sliderClasses,
+  SliderProps,
+  SliderType,
+} from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
@@ -75,7 +79,10 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
   };
 });
 
-export function SliderIOS(props: SliderProps) {
+export const SliderIOS: SliderType = function <
+  RootComponent extends React.ElementType,
+  AdditionalProps = {},
+>(props: SliderProps<RootComponent, AdditionalProps>) {
   const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
@@ -91,4 +98,4 @@ export function SliderIOS(props: SliderProps) {
       {...otherProps}
     />
   );
-}
+};

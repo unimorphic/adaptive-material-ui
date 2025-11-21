@@ -73,13 +73,13 @@ export const AdaptiveIconButton: ExtendButtonBase<AdaptiveIconButtonTypeMap> =
     let content: ReactNode;
     switch (adaptiveMode) {
       case "android":
-        content = <IconButtonAndroid {...(props as AdaptiveIconButtonProps)} />;
+        content = <IconButtonAndroid {...props} />;
         break;
       case "ios":
-        content = <IconButtonIOS {...(props as AdaptiveIconButtonProps)} />;
+        content = <IconButtonIOS {...props} />;
         break;
       default:
-        content = <IconButtonDesktop {...(props as AdaptiveIconButtonProps)} />;
+        content = <IconButtonDesktop {...props} />;
         break;
     }
 
