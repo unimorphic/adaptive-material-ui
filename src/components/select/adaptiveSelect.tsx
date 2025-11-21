@@ -34,18 +34,17 @@ export function AdaptiveSelect<Value = unknown>(
 ) {
   const props = useThemeProps({ props: inProps, name: "AdaptiveSelect" });
   const adaptiveMode = useAdaptiveMode();
-  const { input, ...selectProps } = props;
 
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = <SelectAndroid<Value> {...selectProps} />;
+      content = <SelectAndroid<Value> {...props} />;
       break;
     case "ios":
-      content = <SelectIOS<Value> {...selectProps} />;
+      content = <SelectIOS<Value> {...props} />;
       break;
     default:
-      content = <SelectDesktop<Value> {...selectProps} />;
+      content = <SelectDesktop<Value> {...props} />;
       break;
   }
 
