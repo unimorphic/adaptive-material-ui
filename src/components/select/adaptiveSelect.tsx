@@ -1,20 +1,11 @@
 import { selectClasses, SelectClasses } from "@mui/material/Select";
-import {
-  styled,
-  StyledComponentProps,
-  useThemeProps,
-} from "@mui/material/styles";
+import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import { lazy, ReactNode } from "react";
 import {
   AdaptiveModeContext,
   useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import {
-  AdaptiveFilledInput,
-  AdaptiveInput,
-  AdaptiveOutlinedInput,
-} from "../input/adaptiveInput";
 import { SelectBaseProps } from "./selectProps";
 
 export type AdaptiveSelectProps<Value = unknown> = SelectBaseProps<Value> &
@@ -38,14 +29,6 @@ const SelectIOS = lazy(async () => {
   return { default: SelectIOS };
 });
 
-const styleConfig = { name: "AdaptiveSelect", slot: "Root" };
-const StyledAdaptiveInput = styled(AdaptiveInput, styleConfig)();
-const StyledAdaptiveOutlinedInput = styled(
-  AdaptiveOutlinedInput,
-  styleConfig,
-)();
-const StyledAdaptiveFilledInput = styled(AdaptiveFilledInput, styleConfig)();
-
 export function AdaptiveSelect<Value = unknown>(
   inProps: AdaptiveSelectProps<Value>,
 ) {
@@ -53,28 +36,16 @@ export function AdaptiveSelect<Value = unknown>(
   const adaptiveMode = useAdaptiveMode();
   const { input, ...selectProps } = props;
 
-  const inputComponent =
-    input ??
-    {
-      standard: <StyledAdaptiveInput />,
-      outlined: <StyledAdaptiveOutlinedInput label={selectProps.label} />,
-      filled: <StyledAdaptiveFilledInput />,
-    }[selectProps.variant ?? "outlined"];
-
   let content: ReactNode;
   switch (adaptiveMode) {
     case "android":
-      content = (
-        <SelectAndroid<Value> input={inputComponent} {...selectProps} />
-      );
+      content = <SelectAndroid<Value> {...selectProps} />;
       break;
     case "ios":
-      content = <SelectIOS<Value> input={inputComponent} {...selectProps} />;
+      content = <SelectIOS<Value> {...selectProps} />;
       break;
     default:
-      content = (
-        <SelectDesktop<Value> input={inputComponent} {...selectProps} />
-      );
+      content = <SelectDesktop<Value> {...selectProps} />;
       break;
   }
 

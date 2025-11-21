@@ -5,6 +5,11 @@ import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import * as React from "react";
+import {
+  AdaptiveFilledInput,
+  AdaptiveInput,
+  AdaptiveOutlinedInput,
+} from "../input/adaptiveInput";
 import { AdaptiveSelectItemGroup } from "./adaptiveSelectItemGroup";
 import {
   SelectItemGroupProps,
@@ -87,15 +92,32 @@ export function SelectItemGroupNative(props: SelectItemGroupProps<"optgroup">) {
   );
 }
 
+const styleConfig = { name: "AdaptiveSelect", slot: "Root" };
+const StyledAdaptiveInput = styled(AdaptiveInput, styleConfig)();
+const StyledAdaptiveOutlinedInput = styled(
+  AdaptiveOutlinedInput,
+  styleConfig,
+)();
+const StyledAdaptiveFilledInput = styled(AdaptiveFilledInput, styleConfig)();
+
 export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
   const {
     children,
     classes,
     disableNativeEmptyValue,
+    input,
     variant = "outlined",
     ...otherProps
   } = props;
   const native = props.native ?? false;
+
+  const inputComponent =
+    input ??
+    {
+      standard: <StyledAdaptiveInput />,
+      outlined: <StyledAdaptiveOutlinedInput label={otherProps.label} />,
+      filled: <StyledAdaptiveFilledInput />,
+    }[variant];
 
   const expandedChildren = native
     ? children
@@ -140,7 +162,12 @@ export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
 
   return (
     <SelectContext.Provider value={{ native: native }}>
-      <Select classes={composedClasses} variant={variant} {...otherProps}>
+      <Select
+        classes={composedClasses}
+        input={inputComponent}
+        variant={variant}
+        {...otherProps}
+      >
         {native && !disableNativeEmptyValue ? (
           <SelectItemNative sx={{ display: "none" }} value="" />
         ) : null}
