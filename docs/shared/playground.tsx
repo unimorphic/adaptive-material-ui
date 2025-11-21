@@ -33,6 +33,7 @@ import {
 import { AdaptiveRadio } from "adaptive-material-ui/components/radio";
 import {
   AdaptiveSelect,
+  adaptiveSelectClasses,
   AdaptiveSelectItem,
   AdaptiveSelectItemGroup,
 } from "adaptive-material-ui/components/select";
@@ -270,6 +271,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           alignSelf: "flex-start",
+
+          [`& .${adaptiveSelectClasses.icon}`]: {
+            color: "blue",
+          },
+        },
+        select: {
+          paddingRight: "55px !important",
         },
       },
     },

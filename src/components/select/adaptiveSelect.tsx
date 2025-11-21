@@ -84,7 +84,12 @@ export function AdaptiveSelect<Value = unknown>(
         sourceComponentName="AdaptiveSelect"
         targetComponentName="MuiSelect"
       >
-        {content}
+        <ReplaceComponentInTheme
+          sourceComponentName="AdaptiveSelect"
+          targetComponentName="MuiNativeSelect"
+        >
+          {content}
+        </ReplaceComponentInTheme>
       </ReplaceComponentInTheme>
     </AdaptiveModeContext.Provider>
   );

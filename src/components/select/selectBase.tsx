@@ -1,5 +1,6 @@
 import Select from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
+import capitalize from "@mui/utils/capitalize";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
@@ -87,7 +88,13 @@ export function SelectItemGroupNative(props: SelectItemGroupProps<"optgroup">) {
 }
 
 export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
-  const { children, disableNativeEmptyValue, ...otherProps } = props;
+  const {
+    children,
+    classes,
+    disableNativeEmptyValue,
+    variant = "outlined",
+    ...otherProps
+  } = props;
   const native = props.native ?? false;
 
   const expandedChildren = native
@@ -107,9 +114,33 @@ export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
         return child;
       });
 
+  // Apply standard classes to the native select
+  // https://github.com/mui/material-ui/blob/92c82252c77237100aebbea0446848a70d0ba2a7/packages/mui-material/src/NativeSelect/NativeSelectInput.js#L15
+  const composedClasses = native
+    ? composeClasses(
+        {
+          select: [
+            "select",
+            variant,
+            props.disabled && "disabled",
+            props.multiple && "multiple",
+            props.error && "error",
+          ],
+          icon: [
+            "icon",
+            `icon${capitalize(variant)}`,
+            props.open && "iconOpen",
+            props.disabled && "disabled",
+          ],
+        },
+        (s) => generateUtilityClass("MuiSelect", s),
+        props.classes,
+      )
+    : classes;
+
   return (
     <SelectContext.Provider value={{ native: native }}>
-      <Select {...otherProps}>
+      <Select classes={composedClasses} variant={variant} {...otherProps}>
         {native && !disableNativeEmptyValue ? (
           <SelectItemNative sx={{ display: "none" }} value="" />
         ) : null}
