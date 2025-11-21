@@ -29,7 +29,7 @@ export type SelectItemGroupOwnProps = ListSubheaderOwnProps & {
   label?: string;
 };
 
-export type SelectNativeProps<Value = unknown> = SelectProps<Value> & {
+export type SelectBaseProps<Value = unknown> = SelectProps<Value> & {
   /**
    * Removes the hidden empty value native `option`
    * @default false

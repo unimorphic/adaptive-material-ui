@@ -105,10 +105,18 @@ export default function () {
 }
 ```
 
-## No Selected Value
+## Native Limitations
 
-To keep the native select behavior consistent when there isn't a selected value, a hidden `option` with a empty value is added by default.
-The `disableNativeEmptyValue` prop can be used to disable this behavior.
+- The `event.target.value` for the native `onChange` event is always a string
+- The `option` element [browser support](https://caniuse.com/?search=base-select) &
+  [React support](https://github.com/facebook/react/issues/33038) for content other than text is currently limited
+  [MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select)
+
+### No Selected Value
+
+The first value is auto selected if there's no specified selected value on a native select.
+To compensate for this the AdaptiveSelect adds a hidden `option` with a empty value, which can be removed
+using the `disableNativeEmptyValue` prop if needed.
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -140,45 +148,45 @@ export default function () {
 }
 ```
 
-## Non String Values
+### Disable Native
 
-Native selects only support string values. Remember to parse the value or always use string values.
+To disable the native select for all environments, `native={false}` can be added to the component or theme
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
-import { SelectChangeEvent } from "@mui/material/Select";
+import { createTheme } from "@mui/material/styles";
 import {
   AdaptiveSelect,
   AdaptiveSelectItem,
 } from "adaptive-material-ui/components/select";
-import { useState } from "react";
+import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
+// 👇 Note the type import required for TypeScript
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
+
+const theme = createTheme({
+  colorSchemes: { dark: true },
+  components: {
+    AdaptiveSelect: {
+      defaultProps: {
+        native: false,
+      },
+    },
+  },
+});
 
 export default function () {
-  const [selectedValueType, setSelectedValueType] = useState<string | null>(
-    null,
-  );
-
-  function onChange(event: SelectChangeEvent) {
-    setSelectedValueType(typeof event.target.value);
-  }
-
   return (
     <AdaptiveModeDemo>
-      <AdaptiveSelect defaultValue="" onChange={onChange} sx={{ width: 100 }}>
-        <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
-        <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
-      </AdaptiveSelect>
-      <div>Selected value type: {selectedValueType}</div>
+      <AdaptiveThemeProvider theme={theme}>
+        <AdaptiveSelect defaultValue={1}>
+          <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
+          <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
+        </AdaptiveSelect>
+      </AdaptiveThemeProvider>
     </AdaptiveModeDemo>
   );
 }
 ```
-
-## Native Item Content Limitations
-
-Note the `option` element [browser support](https://caniuse.com/?search=base-select) &
-[React support](https://github.com/facebook/react/issues/33038) for content other than text is currently limited
-[MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select).
 
 ## API
 
@@ -200,7 +208,7 @@ Removes the hidden empty value native `option`
 
 [MUI MenuItem API](https://mui.com/material-ui/api/menu-item/) with the following changes:
 
-- Props not applicable to a `<option>` element are ignored on Android & iOS.
+- Props not applicable to a `<option>` element are ignored on native.
   See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/c8a426dc97f18688aaa30168fa495101529a45ba/src/components/select/selectNative.tsx#L18)
   for the full list of ignored props.
 
@@ -208,7 +216,7 @@ Removes the hidden empty value native `option`
 
 [MUI ListSubheader API](https://mui.com/material-ui/api/list-subheader/) with the following changes:
 
-- Props not applicable to a `<optgroup>` element are ignored on Android & iOS.
+- Props not applicable to a `<optgroup>` element are ignored on native.
   See the [source](https://github.com/unimorphic/adaptive-material-ui/blob/c8a426dc97f18688aaa30168fa495101529a45ba/src/components/select/selectNative.tsx#L58)
   for the full list of ignored props.
 

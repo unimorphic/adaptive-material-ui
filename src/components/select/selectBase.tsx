@@ -3,11 +3,17 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import * as React from "react";
+import { AdaptiveSelectItemGroup } from "./adaptiveSelectItemGroup";
 import {
   SelectItemGroupProps,
   SelectItemProps,
-  SelectNativeProps,
+  SelectBaseProps,
 } from "./selectProps";
+
+export const SelectContext = React.createContext<{ native: boolean }>({
+  native: false,
+});
 
 const StyledOption = styled("option", {
   name: "AdaptiveSelectItem",
@@ -80,15 +86,35 @@ export function SelectItemGroupNative(props: SelectItemGroupProps<"optgroup">) {
   );
 }
 
-export function SelectNative<Value = unknown>(props: SelectNativeProps<Value>) {
+export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
   const { children, disableNativeEmptyValue, ...otherProps } = props;
+  const native = props.native ?? false;
+
+  const expandedChildren = native
+    ? children
+    : React.Children.map(children, (child) => {
+        if (
+          React.isValidElement(child) &&
+          child.type === AdaptiveSelectItemGroup &&
+          child.props &&
+          typeof child.props === "object" &&
+          "children" in child.props &&
+          Array.isArray(child.props.children)
+        ) {
+          return [child, ...(child.props.children as React.ReactNode[])];
+        }
+
+        return child;
+      });
 
   return (
-    <Select native {...otherProps}>
-      {!disableNativeEmptyValue ? (
-        <SelectItemNative sx={{ display: "none" }} value="" />
-      ) : null}
-      {children}
-    </Select>
+    <SelectContext.Provider value={{ native: native }}>
+      <Select {...otherProps}>
+        {native && !disableNativeEmptyValue ? (
+          <SelectItemNative sx={{ display: "none" }} value="" />
+        ) : null}
+        {expandedChildren}
+      </Select>
+    </SelectContext.Provider>
   );
 }

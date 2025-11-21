@@ -15,9 +15,9 @@ import {
   AdaptiveInput,
   AdaptiveOutlinedInput,
 } from "../input/adaptiveInput";
-import { SelectNativeProps } from "./selectProps";
+import { SelectBaseProps } from "./selectProps";
 
-export type AdaptiveSelectProps<Value = unknown> = SelectNativeProps<Value> &
+export type AdaptiveSelectProps<Value = unknown> = SelectBaseProps<Value> &
   StyledComponentProps<keyof AdaptiveSelectClasses>;
 
 export interface AdaptiveSelectClasses extends SelectClasses {}

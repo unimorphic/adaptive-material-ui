@@ -1,12 +1,12 @@
-import {
+import ListSubheader, {
   ListSubheaderClasses,
   listSubheaderClasses,
 } from "@mui/material/ListSubheader";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import { lazy, ReactNode, useContext } from "react";
-import { AdaptiveModeContext } from "../../adaptiveMode/adaptiveMode";
+import { useContext } from "react";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import { SelectContext, SelectItemGroupNative } from "./selectBase";
 import { SelectItemGroupOwnProps, SelectItemGroupProps } from "./selectProps";
 
 type AdaptiveSelectItemGroupOwnProps = StyledComponentProps<
@@ -34,20 +34,6 @@ export interface AdaptiveSelectItemGroupClasses extends ListSubheaderClasses {}
 
 export const adaptiveSelectItemGroupClasses = listSubheaderClasses;
 
-// See docs\pages\docs\codeSplitting.md
-const SelectItemGroupAndroid = lazy(async () => {
-  const { SelectItemGroupAndroid } = await import("../android");
-  return { default: SelectItemGroupAndroid };
-});
-const SelectItemGroupDesktop = lazy(async () => {
-  const { SelectItemGroupDesktop } = await import("../desktop");
-  return { default: SelectItemGroupDesktop };
-});
-const SelectItemGroupIOS = lazy(async () => {
-  const { SelectItemGroupIOS } = await import("../ios");
-  return { default: SelectItemGroupIOS };
-});
-
 const AdaptiveSelectItemGroup: OverridableComponent<AdaptiveSelectItemGroupTypeMap> & {
   muiSkipListHighlight?: boolean;
 } = function <RootComponent extends React.ElementType, AdditionalProps = {}>(
@@ -57,33 +43,19 @@ const AdaptiveSelectItemGroup: OverridableComponent<AdaptiveSelectItemGroupTypeM
     props: inProps,
     name: "AdaptiveSelectItemGroup",
   });
-  const modeContext = useContext(AdaptiveModeContext);
-
-  let content: ReactNode;
-  switch (modeContext.mode) {
-    case "android":
-      content = (
-        <SelectItemGroupAndroid<RootComponent, AdditionalProps> {...props} />
-      );
-      break;
-    case "ios":
-      content = (
-        <SelectItemGroupIOS<RootComponent, AdditionalProps> {...props} />
-      );
-      break;
-    default:
-      content = (
-        <SelectItemGroupDesktop<RootComponent, AdditionalProps> {...props} />
-      );
-      break;
-  }
+  const { children, label, ...otherProps } = props;
+  const isNative = useContext(SelectContext).native;
 
   return (
     <ReplaceComponentInTheme
       sourceComponentName="AdaptiveSelectItemGroup"
       targetComponentName="MuiListSubheader"
     >
-      {content}
+      {isNative ? (
+        <SelectItemGroupNative {...props} />
+      ) : (
+        <ListSubheader {...otherProps}>{label}</ListSubheader>
+      )}
     </ReplaceComponentInTheme>
   );
 };
