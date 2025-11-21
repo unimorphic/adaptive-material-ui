@@ -5,6 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
+import Portal from "@mui/material/Portal";
 import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
 import { createTheme } from "@mui/material/styles";
@@ -463,21 +464,23 @@ function Content() {
 
         <Stack direction="row" spacing={2}>
           <AdaptiveButton onClick={() => setOpen(3)}>Snackbar</AdaptiveButton>
-          <AdaptiveSnackbar
-            action={
-              <AdaptiveIconButton
-                size="small"
-                color="inherit"
-                onClick={() => setOpen(0)}
-              >
-                <CloseIcon fontSize="small" />
-              </AdaptiveIconButton>
-            }
-            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
-            message="Note archived"
-            onClose={() => setOpen(0)}
-            open={open === 3}
-          />
+          <Portal>
+            <AdaptiveSnackbar
+              action={
+                <AdaptiveIconButton
+                  size="small"
+                  color="inherit"
+                  onClick={() => setOpen(0)}
+                >
+                  <CloseIcon fontSize="small" />
+                </AdaptiveIconButton>
+              }
+              anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+              message="Note archived"
+              onClose={() => setOpen(0)}
+              open={open === 3}
+            />
+          </Portal>
         </Stack>
         <Stack alignItems="center" direction="row" spacing={2}>
           <AdaptiveIconButton>

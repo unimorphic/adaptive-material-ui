@@ -21,7 +21,7 @@ export const iosLiquidGlass: IosLiquidGlass = {
     backdropFilter: "blur(16px)",
     background: "#ffffffbf",
     boxShadow:
-      "inset -1px -1px 0px -.5px #fff, inset 1px 1px 0px -.5px #fff, inset 3px 3px 10px -3px #ddd, inset -3px -3px 10px -3px #ddd, inset 0 0 5px 1px #fff, inset 0 0 0 .5px #00000040, inset 0 0 24px 0 #0000001a, 0 0 25px 0 #0003",
+      "inset -1px -1px 0px -.5px #fff, inset 1px 1px 0px -.5px #fff, inset 3px 3px 10px -3px #ddd, inset -3px -3px 10px -3px #ddd, inset 0 0 5px 1px #fff, inset 0 0 0 .5px #00000040, 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)",
 
     ...theme.applyStyles("dark", {
       background: "#32323280",

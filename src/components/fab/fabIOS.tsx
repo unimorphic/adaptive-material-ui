@@ -9,18 +9,13 @@ const StyledFab = styled(Fab, {
   name: "AdaptiveFab",
   slot: "ios",
 })<{ ownerState: FabProps }>(({ ownerState, theme }) => {
-  const colorName =
+  const currentColor =
     !ownerState.color ||
     ownerState.color === "default" ||
     ownerState.color === "inherit"
-      ? "grey"
-      : ownerState.color;
-
-  const currentColor =
-    colorName === "grey"
       ? (theme.vars ?? theme).palette.grey[300]
-      : (theme.vars ?? theme).palette[colorName].main;
-  const currentColorTransparent = alpha(currentColor, 0.5);
+      : (theme.vars ?? theme).palette[ownerState.color].main;
+  const currentColorTransparent = alpha(currentColor, 0.7);
 
   const size =
     ownerState.variant !== "extended" && ownerState.size
@@ -38,7 +33,7 @@ const StyledFab = styled(Fab, {
     }),
 
     [`&, &:active, &.${fabClasses.focusVisible}`]: {
-      boxShadow: `inset -3px -3px 0px -3.5px #fff, inset 3px 3px 0px -3.5px #fff,inset 0px 0px 0px .5px #ffffff80, inset 3px 3px 10px -2px ${currentColor}, inset -3px -3px 10px -2px ${currentColor}, inset 0 0 5px 1px #fff, 0 0 15px 4px ${colorName === "grey" ? "#00000010" : "#00000030"}`,
+      boxShadow: `inset -3px -3px 0px -3.5px #fff, inset 3px 3px 0px -3.5px #fff, inset 0px 0px 0px .5px #ffffff80, inset 3px 3px 10px -2px ${currentColor}, inset -3px -3px 10px -2px ${currentColor}, inset 0 0 5px 1px #fff, 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)`,
 
       ...theme.applyStyles("dark", {
         boxShadow: `inset 3px 3px 0px -3.5px ${currentColor}, inset -3px -3px 0px -3.5px ${currentColor}, inset -.5px -.5px 0px #ffffff80, inset .5px .5px 0px #ffffff1a, inset -3px 3px 0px -3.5px #ffffff40, inset 0px -5px 0px -3.5px ${currentColorTransparent}, inset 0px -5px 5px ${currentColorTransparent}, 0 0 15px 4px #0003`,
