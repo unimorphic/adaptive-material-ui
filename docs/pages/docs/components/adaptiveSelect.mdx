@@ -116,7 +116,7 @@ export default function () {
 
 The first value is auto selected if there's no specified selected value on a native select.
 To compensate for this the AdaptiveSelect adds a hidden `option` with a empty value, which can be removed
-using the `disableNativeEmptyValue` prop if needed.
+using the `nativeEmptyValueOption` prop if needed.
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -137,7 +137,7 @@ export default function () {
           </AdaptiveSelect>
         </DemoListItem>
         <DemoListItem title="Disabled">
-          <AdaptiveSelect defaultValue="" disableNativeEmptyValue>
+          <AdaptiveSelect defaultValue="" nativeEmptyValueOption={false}>
             <AdaptiveSelectItem value={1}>One</AdaptiveSelectItem>
             <AdaptiveSelectItem value={2}>Two</AdaptiveSelectItem>
           </AdaptiveSelect>
@@ -197,12 +197,12 @@ export default function () {
 - Desktop: `MenuProps.slots.root` defaults to `ModalNonBlocking`
 - Android & iOS: `native` defaults to `true`
 
-### disableNativeEmptyValue
+### nativeEmptyValueOption
 
-Removes the hidden empty value native `option`
+Adds a hidden empty value `option` element when native
 
 - Type: `boolean`
-- Default: `false`
+- Default: `true`
 
 ### AdaptiveSelectItem
 

@@ -104,7 +104,7 @@ export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
   const {
     children,
     classes,
-    disableNativeEmptyValue,
+    nativeEmptyValueOption = true,
     input,
     variant = "outlined",
     ...otherProps
@@ -168,7 +168,7 @@ export function SelectBase<Value = unknown>(props: SelectBaseProps<Value>) {
         variant={variant}
         {...otherProps}
       >
-        {native && !disableNativeEmptyValue ? (
+        {native && nativeEmptyValueOption ? (
           <SelectItemNative sx={{ display: "none" }} value="" />
         ) : null}
         {expandedChildren}

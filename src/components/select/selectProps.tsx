@@ -31,8 +31,8 @@ export type SelectItemGroupOwnProps = ListSubheaderOwnProps & {
 
 export type SelectBaseProps<Value = unknown> = SelectProps<Value> & {
   /**
-   * Removes the hidden empty value native `option`
-   * @default false
+   * Adds a hidden empty value `option` element when native
+   * @default true
    */
-  disableNativeEmptyValue?: boolean;
+  nativeEmptyValueOption?: boolean;
 };
