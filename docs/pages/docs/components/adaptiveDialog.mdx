@@ -235,6 +235,11 @@ export default function () {
 }
 ```
 
+## Background Limitations
+
+The iOS dialog background uses `backdrop-filter` which has [limitations](https://stackoverflow.com/questions/60997948/backdrop-filter-not-working-for-nested-elements-in-chrome)
+based on it's parent elements. Typically most of these limitations will be avoided as long as `disablePortal={true}` isn't set.
+
 ## API
 
 [MUI Dialog API](https://mui.com/material-ui/api/dialog/) with the following changes:

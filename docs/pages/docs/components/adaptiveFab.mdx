@@ -1,6 +1,10 @@
+---
+title: Adaptive Floating Action Button
+---
+
 import Links from "@/shared/links";
 
-# Adaptive Floating Action Button
+# Adaptive Floating Action Button (FAB)
 
 ## Adaptiveness
 
@@ -92,6 +96,12 @@ export default function () {
   );
 }
 ```
+
+## Background Limitations
+
+The iOS FAB background uses `backdrop-filter` which has [limitations](https://stackoverflow.com/questions/60997948/backdrop-filter-not-working-for-nested-elements-in-chrome)
+based on it's parent elements. One solution may be to wrap it in a [Portal](https://mui.com/material-ui/react-portal/)
+if it's used as a fixed page element.
 
 ## API
 

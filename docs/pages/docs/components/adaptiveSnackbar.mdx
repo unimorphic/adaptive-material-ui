@@ -9,6 +9,7 @@ import Links from "@/shared/links";
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import CloseIcon from "@mui/icons-material/Close";
+import Portal from "@mui/material/Portal";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton";
 import { AdaptiveSnackbar } from "adaptive-material-ui/components/snackbar";
@@ -23,27 +24,35 @@ export default function () {
         Open
       </AdaptiveButton>
 
-      <AdaptiveSnackbar
-        action={
-          <AdaptiveIconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={() => setOpen(false)}
-          >
-            <CloseIcon fontSize="small" />
-          </AdaptiveIconButton>
-        }
-        anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
-        autoHideDuration={6000}
-        message="Note archived"
-        onClose={() => setOpen(false)}
-        open={open}
-      />
+      <Portal>
+        <AdaptiveSnackbar
+          action={
+            <AdaptiveIconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={() => setOpen(false)}
+            >
+              <CloseIcon fontSize="small" />
+            </AdaptiveIconButton>
+          }
+          anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+          autoHideDuration={6000}
+          message="Note archived"
+          onClose={() => setOpen(false)}
+          open={open}
+        />
+      </Portal>
     </AdaptiveModeDemo>
   );
 }
 ```
+
+## Background Limitations
+
+The iOS snackbar background uses `backdrop-filter` which has [limitations](https://stackoverflow.com/questions/60997948/backdrop-filter-not-working-for-nested-elements-in-chrome)
+based on it's parent elements. Usually the simplest solution is to wrap it in a [Portal](https://mui.com/material-ui/react-portal/)
+like what was done in the above example.
 
 ## API
 
