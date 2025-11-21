@@ -52,16 +52,6 @@ const rtlCache = createCache({
 
 const sharedTheme: ThemeOptions = {
   colorSchemes: { dark: true },
-  components: {
-    AdaptiveDialog: {
-      defaultProps: {
-        container:
-          typeof window === "object"
-            ? window.document.getElementById("dialog-container")
-            : undefined,
-      },
-    },
-  },
 };
 const ltrTheme = createTheme({
   ...sharedTheme,
@@ -88,10 +78,7 @@ function Layout() {
     if (root) {
       root.setAttribute("dir", direction);
     }
-    const dialogContainer = window.document.getElementById("dialog-container");
-    if (dialogContainer) {
-      dialogContainer.setAttribute("dir", direction);
-    }
+    window.document.body.style.direction = direction;
   }, [isRtl]);
 
   return (
