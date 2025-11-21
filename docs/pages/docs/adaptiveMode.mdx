@@ -47,3 +47,29 @@ export default function () {
   );
 }
 ```
+
+## Mode Specific Components
+
+Most components with behavior that varies based on device type have component counterparts for each device type,
+for example `AdaptiveSlider` has `SliderAndroid`, `SliderDesktop`, & `SliderIOS`.
+These components can be used directly to have the same behavior across all devices, like in the following example
+where the `SliderIOS` component is used.
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { SliderIOS } from "adaptive-material-ui/components/slider";
+
+export default function () {
+  return (
+    <AdaptiveModeDemo>
+      <SliderIOS defaultValue={30} />
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+Note:
+
+- The font will not vary between components since it's applied via `AdaptiveThemeProvider`.
+- To style the components via a [theme](./styles.html#theme) use the MUI component names instead of the Adaptive ones
+  (eg. `MuiButton` not `AdaptiveButton`)
