@@ -18,28 +18,13 @@ export const iosLiquidGlass: IosLiquidGlass = {
   }),
 
   overlay: (theme: Theme) => ({
-    background: "transparent",
+    backdropFilter: "blur(16px)",
+    background: "#ffffffbf",
     boxShadow:
       "inset -1px -1px 0px -.5px #fff, inset 1px 1px 0px -.5px #fff, inset 3px 3px 10px -3px #ddd, inset -3px -3px 10px -3px #ddd, inset 0 0 5px 1px #fff, inset 0 0 0 .5px #00000040, inset 0 0 24px 0 #0000001a, 0 0 25px 0 #0003",
 
-    // Use `before` to allow backdropFilter on children https://stackoverflow.com/questions/60997948/backdrop-filter-not-working-for-nested-elements-in-chrome
-    "&:before": {
-      borderRadius: "inherit",
-      backdropFilter: "blur(16px)",
-      background: "#ffffffbf",
-      content: '""',
-      display: "block",
-      height: "100%",
-      left: 0,
-      position: "absolute",
-      top: 0,
-      width: "100%",
-      zIndex: -1,
-
-      ...theme.applyStyles("dark", { background: "#32323280" }),
-    },
-
     ...theme.applyStyles("dark", {
+      background: "#32323280",
       boxShadow:
         "inset -2px -2px .5px -2.5px #fff6, inset 3px 3px .5px -3.5px #fff6, inset 2px 2px .5px -2px #262626, inset -2px -2px .5px -2px #262626, inset 0 0 5px 1px #141414, inset 0 0 0 1px #ffffff26, inset 0 0 10px 0 #ffffff13, inset 0 0 24px 0 #ffffff0d, 0 0 25px 0 #00000026",
     }),
