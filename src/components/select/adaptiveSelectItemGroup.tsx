@@ -9,11 +9,11 @@ import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { SelectContext, SelectItemGroupNative } from "./selectBase";
 import { SelectItemGroupOwnProps, SelectItemGroupProps } from "./selectProps";
 
-type AdaptiveSelectItemGroupOwnProps = StyledComponentProps<
+export type AdaptiveSelectItemGroupOwnProps = StyledComponentProps<
   keyof AdaptiveSelectItemGroupClasses
 >;
 
-interface AdaptiveSelectItemGroupTypeMap<
+export interface AdaptiveSelectItemGroupTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "li",
 > {

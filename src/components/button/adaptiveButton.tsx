@@ -13,12 +13,14 @@ import { lazy, ReactNode, useContext } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialog";
+import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialogActions";
 import { ButtonRoundOwnProps, ButtonRoundProps } from "./buttonRound";
 
-type AdaptiveButtonOwnProps = StyledComponentProps<keyof AdaptiveButtonClasses>;
+export type AdaptiveButtonOwnProps = StyledComponentProps<
+  keyof AdaptiveButtonClasses
+>;
 
-type AdaptiveButtonTypeMap<
+export type AdaptiveButtonTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{

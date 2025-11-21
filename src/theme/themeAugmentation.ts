@@ -21,11 +21,13 @@ import {
   AdaptiveCircularProgressProps,
 } from "../components/circularProgress/adaptiveCircularProgress";
 import {
-  AdaptiveDialogActionsClasses,
-  AdaptiveDialogActionsProps,
   AdaptiveDialogClasses,
   AdaptiveDialogProps,
 } from "../components/dialog/adaptiveDialog";
+import {
+  AdaptiveDialogActionsClasses,
+  AdaptiveDialogActionsProps,
+} from "../components/dialog/adaptiveDialogActions";
 import {
   AdaptiveFabClasses,
   AdaptiveFabProps,

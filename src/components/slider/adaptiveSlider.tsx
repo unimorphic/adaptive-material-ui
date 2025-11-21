@@ -12,9 +12,11 @@ import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-type AdaptiveSliderOwnProps = StyledComponentProps<keyof AdaptiveSliderClasses>;
+export type AdaptiveSliderOwnProps = StyledComponentProps<
+  keyof AdaptiveSliderClasses
+>;
 
-interface AdaptiveSliderTypeMap<
+export interface AdaptiveSliderTypeMap<
   RootComponent extends React.ElementType = "span",
   AdditionalProps = {},
   Value extends number | number[] = number | number[],

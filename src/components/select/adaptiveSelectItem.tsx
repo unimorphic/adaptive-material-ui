@@ -12,11 +12,11 @@ import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { SelectContext, SelectItemNative } from "./selectBase";
 import { SelectItemOwnProps, SelectItemProps } from "./selectProps";
 
-type AdaptiveSelectItemOwnProps = StyledComponentProps<
+export type AdaptiveSelectItemOwnProps = StyledComponentProps<
   keyof AdaptiveSelectItemClasses
 >;
 
-type AdaptiveSelectItemTypeMap<
+export type AdaptiveSelectItemTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "li",
 > = ExtendButtonBaseTypeMap<{

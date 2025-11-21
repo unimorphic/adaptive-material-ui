@@ -15,9 +15,11 @@ import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-type AdaptiveFabOwnProps = StyledComponentProps<keyof AdaptiveFabClasses>;
+export type AdaptiveFabOwnProps = StyledComponentProps<
+  keyof AdaptiveFabClasses
+>;
 
-type AdaptiveFabTypeMap<
+export type AdaptiveFabTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{

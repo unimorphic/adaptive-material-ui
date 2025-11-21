@@ -18,11 +18,11 @@ import {
   IconButtonContainedProps,
 } from "./iconButtonContained";
 
-type AdaptiveIconButtonOwnProps = StyledComponentProps<
+export type AdaptiveIconButtonOwnProps = StyledComponentProps<
   keyof AdaptiveIconButtonClasses
 >;
 
-type AdaptiveIconButtonTypeMap<
+export type AdaptiveIconButtonTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{

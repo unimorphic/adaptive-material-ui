@@ -23,7 +23,7 @@ import {
 } from "../../shared/inclusiveToExclusiveBreakpoint";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
-type AdaptiveButtonStackOwnProps = StyledComponentProps<
+export type AdaptiveButtonStackOwnProps = StyledComponentProps<
   keyof AdaptiveButtonStackClasses
 > & {
   /**
@@ -34,7 +34,7 @@ type AdaptiveButtonStackOwnProps = StyledComponentProps<
   stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
 };
 
-interface AdaptiveButtonStackTypeMap<
+export interface AdaptiveButtonStackTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "div",
 > {
