@@ -12,8 +12,8 @@ See the [documentation site](https://unimorphic.github.io/adaptive-material-ui/d
 
 ## Contributing
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process and how to build & test your changes
+Read the [contributing guide](https://github.com/unimorphic/adaptive-material-ui/blob/master/CONTRIBUTING.md) to learn about our development process and how to build & test your changes
 
 ## License
 
-This project is licensed under the terms of the [MIT license](/LICENSE)
+This project is licensed under the terms of the [MIT license](https://github.com/unimorphic/adaptive-material-ui/blob/master/LICENSE)
