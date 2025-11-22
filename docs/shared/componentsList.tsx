@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
+import NoSsr from "@mui/material/NoSsr";
 import Portal from "@mui/material/Portal";
 import RadioGroup from "@mui/material/RadioGroup";
 import { styled } from "@mui/material/styles";
@@ -249,12 +250,14 @@ export default function () {
   }, []);
 
   return (
-    <AdaptiveModeDemo>
-      <Divider />
-      <br />
-      <Content />
-      <br />
-      <Divider />
-    </AdaptiveModeDemo>
+    <NoSsr>
+      <AdaptiveModeDemo>
+        <Divider />
+        <br />
+        <Content />
+        <br />
+        <Divider />
+      </AdaptiveModeDemo>
+    </NoSsr>
   );
 }
