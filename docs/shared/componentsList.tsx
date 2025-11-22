@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
+import Portal from "@mui/material/Portal";
 import RadioGroup from "@mui/material/RadioGroup";
 import { styled } from "@mui/material/styles";
 import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
@@ -206,23 +207,25 @@ function Content() {
         <AdaptiveButton onClick={() => setOpen(2)} variant="contained">
           Open
         </AdaptiveButton>
-        <AdaptiveSnackbar
-          action={
-            <AdaptiveIconButton
-              size="small"
-              aria-label="close"
-              color="inherit"
-              onClick={() => setOpen(0)}
-            >
-              <CloseIcon fontSize="small" />
-            </AdaptiveIconButton>
-          }
-          anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
-          autoHideDuration={6000}
-          message="Note archived"
-          onClose={() => setOpen(0)}
-          open={open === 2}
-        />
+        <Portal>
+          <AdaptiveSnackbar
+            action={
+              <AdaptiveIconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={() => setOpen(0)}
+              >
+                <CloseIcon fontSize="small" />
+              </AdaptiveIconButton>
+            }
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            autoHideDuration={6000}
+            message="Note archived"
+            onClose={() => setOpen(0)}
+            open={open === 2}
+          />
+        </Portal>
       </DemoListItem>
       <DemoListItem
         title="Adaptive Switch"
