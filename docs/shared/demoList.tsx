@@ -1,7 +1,6 @@
 import Grid, { GridProps } from "@mui/material/Grid";
 import { linearProgressClasses } from "@mui/material/LinearProgress";
 import Skeleton from "@mui/material/Skeleton";
-import { sliderClasses } from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { adaptiveButtonStackClasses } from "adaptive-material-ui/components/buttonStack";
@@ -15,9 +14,6 @@ const StyledStack = styled(Stack)({
   [`& .${linearProgressClasses.root}, & .${adaptiveButtonStackClasses.root}`]: {
     width: "100%",
   },
-  [`& .${sliderClasses.root}`]: {
-    display: "block",
-  },
 });
 
 const components = getCustomMDXComponent();
@@ -30,14 +26,14 @@ export function DemoListItem(props: {
 }) {
   return (
     <React.Fragment>
-      <Grid size={3}>
+      <Grid size={{ xs: 4, sm: 3 }}>
         {props.titleHref ? (
           <Link href={props.titleHref}>{props.title}</Link>
         ) : (
           props.title
         )}
       </Grid>
-      <Grid size={9}>
+      <Grid size={{ xs: 8, sm: 9 }}>
         <StyledStack alignItems="center" direction="row" spacing={2} useFlexGap>
           <DelayedSuspense
             fallback={
@@ -53,5 +49,7 @@ export function DemoListItem(props: {
 }
 
 export function DemoList(props: GridProps) {
-  return <Grid alignItems="center" container spacing={3} {...props} />;
+  return (
+    <Grid alignItems="center" container spacing={{ xs: 2, sm: 3 }} {...props} />
+  );
 }

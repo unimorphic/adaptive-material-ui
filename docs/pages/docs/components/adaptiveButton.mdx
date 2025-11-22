@@ -19,7 +19,7 @@ export default function () {
 }
 ```
 
-## iOS Variations
+## Variations
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -28,7 +28,7 @@ import { AdaptiveButton } from "adaptive-material-ui/components/button";
 
 export default function () {
   return (
-    <AdaptiveModeDemo adaptiveMode="ios">
+    <AdaptiveModeDemo>
       <DemoList>
         <DemoListItem title="Size">
           <AdaptiveButton size="small" variant="contained">
@@ -116,7 +116,7 @@ export default function () {
 }
 ```
 
-### iOS Variations
+### Variations
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -126,7 +126,7 @@ import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton";
 
 export default function () {
   return (
-    <AdaptiveModeDemo adaptiveMode="ios">
+    <AdaptiveModeDemo>
       <DemoList>
         <DemoListItem title="Size">
           <AdaptiveIconButton size="small">
@@ -160,17 +160,6 @@ export default function () {
   return (
     <AdaptiveModeDemo adaptiveMode="desktop">
       <DemoList>
-        <DemoListItem title="Size">
-          <AdaptiveIconButton size="small" variant="contained">
-            <PlayArrowIcon />
-          </AdaptiveIconButton>
-          <AdaptiveIconButton size="medium" variant="contained">
-            <PlayArrowIcon />
-          </AdaptiveIconButton>
-          <AdaptiveIconButton size="large" variant="contained">
-            <PlayArrowIcon />
-          </AdaptiveIconButton>
-        </DemoListItem>
         <DemoListItem title="Color">
           <AdaptiveIconButton color="default" variant="contained">
             <PlayArrowIcon />
@@ -191,6 +180,17 @@ export default function () {
             <PlayArrowIcon />
           </AdaptiveIconButton>
           <AdaptiveIconButton color="warning" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <AdaptiveIconButton size="small" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="medium" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
+          <AdaptiveIconButton size="large" variant="contained">
             <PlayArrowIcon />
           </AdaptiveIconButton>
         </DemoListItem>

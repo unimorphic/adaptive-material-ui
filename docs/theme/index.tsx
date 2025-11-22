@@ -93,9 +93,9 @@ function Layout() {
                 title={theme === "light" ? "Toggle dark" : "Toggle light"}
               >
                 {theme === "light" ? (
-                  <LightModeIcon />
-                ) : (
                   <DarkModeOutlinedIcon />
+                ) : (
+                  <LightModeIcon />
                 )}
               </IconButton>
               <IconButton
