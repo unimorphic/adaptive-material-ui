@@ -61,6 +61,10 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       },
       "@media (hover: none)": {
         boxShadow: thumbBoxShadow,
+
+        [`&:hover, &.${sliderClasses.focusVisible}`]: {
+          boxShadow: thumbBoxShadow,
+        },
       },
 
       [`&.${sliderClasses.active}`]: iosLiquidGlass.thumbActive(

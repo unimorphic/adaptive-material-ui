@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "rspress build && node -e \"require('fs').unlinkSync('dist/docs/playground.html')\"",
+    "build": "node -e \"require('fs').unlinkSync('pages/docs/playground.mdx')\" && rspress build",
     "preview": "rspress preview",
     "start": "rspress dev"
   },
