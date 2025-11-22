@@ -1,6 +1,7 @@
 import Skeleton from "@mui/material/Skeleton";
 import { styled } from "@mui/material/styles";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import DelayedSuspense from "./delayedSuspense";
 
 const StyledDiv = styled("div")(() => ({
   width: "100%",
@@ -23,36 +24,19 @@ function Container(props: {
 }
 
 /**
- * Only show a skeleton if the suspense lasts long
+ * Suspense with a Skeleton that remembers the previous content height
  */
-function TimedFallback(props: { height: number }) {
-  const [timedOut, setTimedOut] = useState(false);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setTimedOut(true);
-    }, 500);
-
-    return () => window.clearTimeout(timeout);
-  }, []);
-
-  if (timedOut) {
-    return (
-      <Skeleton height={props.height} variant="rectangular" width="100%" />
-    );
-  }
-
-  return <div style={{ height: props.height }} />;
-}
-
 export default function AutoHeightSuspenseSkeleton(props: {
   children?: React.ReactNode;
 }) {
   const [height, setHeight] = useState(100);
 
   return (
-    <Suspense fallback={<TimedFallback height={height} />}>
+    <DelayedSuspense
+      fallback={<Skeleton height={height} variant="rectangular" width="100%" />}
+      placeholderProps={{ style: { height: height } }}
+    >
       <Container onLoad={setHeight}>{props.children}</Container>
-    </Suspense>
+    </DelayedSuspense>
   );
 }

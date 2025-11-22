@@ -24,7 +24,6 @@ const StyledFab = styled(Fab, {
 
   return {
     backgroundColor: currentColor,
-    backdropFilter: "blur(16px)",
     height: size,
     width: size,
 

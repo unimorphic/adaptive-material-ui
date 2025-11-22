@@ -73,12 +73,12 @@ This will for example warn if the `<Button>` component is used instead of `<Adap
 
 ```tsx pure
 /* eslint-disable */
-import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+import { restrictToAdaptiveComponents } from "adaptive-material-ui/eslintRule";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig({
   rules: {
-    "no-restricted-syntax": ["warn", ...warnNonAdaptiveComponents()],
+    "no-restricted-syntax": ["warn", ...restrictToAdaptiveComponents()],
   },
 });
 ```
@@ -87,14 +87,14 @@ Specific components can be excluded by passing a list of MUI names into the `exc
 
 ```tsx pure
 /* eslint-disable */
-import { warnNonAdaptiveComponents } from "adaptive-material-ui/eslintRule";
+import { restrictToAdaptiveComponents } from "adaptive-material-ui/eslintRule";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig({
   rules: {
     "no-restricted-syntax": [
       "warn",
-      ...warnNonAdaptiveComponents({ excludeComponents: ["Button"] }),
+      ...restrictToAdaptiveComponents({ excludeComponents: ["Button"] }),
     ],
   },
 });

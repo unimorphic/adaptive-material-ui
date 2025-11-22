@@ -39,7 +39,7 @@ const componentMap = [
   },
 ];
 
-export function warnNonAdaptiveComponents(props?: {
+export function restrictToAdaptiveComponents(props?: {
   excludeComponents?: string[];
 }) {
   return componentMap
