@@ -19,9 +19,6 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./docs
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,13 +36,14 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Install dependencies
         run: pnpm install
-      - name: Build with Rspress
-        run: |
-          pnpm run build
+      - name: Build lib
+        run: pnpm run build
+      - name: Build docs
+        run: cd docs && pnpm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: docs/dist
 
   # Deployment job
   deploy:
