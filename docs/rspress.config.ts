@@ -6,6 +6,7 @@ import placeholderPlugin from "./config/placeholderPlugin";
 import previewWrapSuspensePlugin from "./config/previewWrapSuspensePlugin";
 
 export default defineConfig({
+  base: "/adaptive-material-ui/",
   builderConfig: {
     html: {
       template: "./index.html",
