@@ -22,4 +22,5 @@ fs.copyFileSync(
   __dirname + "/../dist/esm/package.json",
 );
 
+fs.copyFileSync(__dirname + "/../LICENSE", __dirname + "/../dist/LICENSE");
 fs.copyFileSync(__dirname + "/../README.md", __dirname + "/../dist/README.md");
