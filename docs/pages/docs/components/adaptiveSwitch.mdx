@@ -24,6 +24,8 @@ export default function () {
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
 
 export default function () {
@@ -40,11 +42,25 @@ export default function () {
           <AdaptiveSwitch color="default" defaultChecked />
         </DemoListItem>
         <DemoListItem title="Size">
-          <AdaptiveSwitch defaultChecked size="small" />
           <AdaptiveSwitch defaultChecked size="medium" />
+          <AdaptiveSwitch defaultChecked size="small" />
+        </DemoListItem>
+        <DemoListItem title="Icon">
+          <AdaptiveSwitch
+            defaultChecked
+            thumbIconChecked={<CheckIcon />}
+            thumbIcon={<CloseIcon />}
+          />
+          <AdaptiveSwitch
+            defaultChecked
+            size="small"
+            thumbIconChecked={<CheckIcon />}
+            thumbIcon={<CloseIcon />}
+          />
         </DemoListItem>
         <DemoListItem title="Disabled">
           <AdaptiveSwitch defaultChecked disabled />
+          <AdaptiveSwitch disabled />
         </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>
@@ -56,7 +72,22 @@ export default function () {
 
 [MUI Switch API](https://mui.com/material-ui/api/switch/) with the following changes:
 
-- iOS: `disableRipple` defaults to `true`
+- `slotProps.thumb.children` defaults to `thumbIcon`/`thumbIconChecked`
+- iOS & Android: `disableRipple` defaults to `true`
+
+### thumbIcon
+
+Icon displayed inside the thumb when not checked
+
+- Type: `ReactNode`
+- Default: `undefined`
+
+### thumbIconChecked
+
+Icon displayed inside the thumb when checked
+
+- Type: `ReactNode`
+- Default: `undefined`
 
 ## Links
 
