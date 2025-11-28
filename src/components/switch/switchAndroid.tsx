@@ -203,7 +203,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 });
 
 export function SwitchAndroid(props: SwitchBaseProps) {
-  const { className, onChange, ...otherProps } = props;
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { android: ["android"] },
