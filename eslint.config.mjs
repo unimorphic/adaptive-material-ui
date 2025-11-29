@@ -85,6 +85,7 @@ export default defineConfig(
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/no-unsafe-call": "warn",
+      "@typescript-eslint/no-unsafe-return": "warn",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { ignoreRestSiblings: true },

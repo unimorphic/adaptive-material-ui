@@ -3,7 +3,7 @@ import Slider, {
   SliderProps,
   SliderType,
 } from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { CSSObject, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
@@ -21,6 +21,15 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       : "translate(-50%, -50%)";
   const thumbBoxShadow =
     "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)";
+
+  const railStyles: CSSObject = {
+    backgroundColor: "#E4E4E4",
+    opacity: 1,
+
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#35373B",
+    }),
+  };
 
   return {
     borderRadius: 3,
@@ -40,14 +49,8 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       }),
     },
 
-    [`& .${sliderClasses.rail}`]: {
-      backgroundColor: "rgba(120, 120, 120, 0.2)",
-      opacity: 1,
-
-      ...theme.applyStyles("dark", {
-        backgroundColor: "rgba(120, 120, 128, 0.36)",
-      }),
-    },
+    [`& .${sliderClasses.rail}`]:
+      ownerState.track === "inverted" ? undefined : railStyles,
 
     [`& .${sliderClasses.thumb}`]: {
       borderRadius: 12,
@@ -75,6 +78,7 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 
     [`& .${sliderClasses.track}`]: {
       border: "none",
+      ...(ownerState.track === "inverted" ? railStyles : {}),
     },
 
     [`&.${sliderClasses.disabled} .${sliderClasses.thumb}`]: {
