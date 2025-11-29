@@ -35,7 +35,7 @@ export interface AdaptiveSliderClasses extends SliderClasses, IosClasses {}
 
 export const adaptiveSliderClasses = {
   ...sliderClasses,
-  ...generateUtilityClasses("AdaptiveSlider", ["ios"]),
+  ...generateUtilityClasses("AdaptiveSlider", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md
