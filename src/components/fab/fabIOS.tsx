@@ -17,15 +17,12 @@ const StyledFab = styled(Fab, {
       : (theme.vars ?? theme).palette[ownerState.color].main;
   const currentColorTransparent = alpha(currentColor, 0.7);
 
-  const size =
-    ownerState.variant !== "extended" && ownerState.size
-      ? { large: 52, medium: 44, small: 36 }[ownerState.size]
-      : undefined;
+  const size = { large: 52, medium: 44, small: 36 }[ownerState.size ?? "large"];
 
   return {
     backgroundColor: currentColor,
     height: size,
-    width: size,
+    width: ownerState.variant !== "extended" ? size : undefined,
 
     ...theme.applyStyles("dark", {
       backgroundColor: currentColorTransparent,
@@ -45,7 +42,7 @@ export const FabIOS: ExtendButtonBase<FabTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
 >(props: FabProps<RootComponent, AdditionalProps>) {
-  const { className, size = "medium", ...otherProps } = props;
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },
@@ -58,7 +55,6 @@ export const FabIOS: ExtendButtonBase<FabTypeMap> = function <
       className={clsx(composedClasses.ios, className)}
       disableTouchRipple
       ownerState={props}
-      size={size}
       {...otherProps}
     />
   );
