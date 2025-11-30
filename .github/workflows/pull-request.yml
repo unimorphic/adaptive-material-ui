@@ -28,14 +28,14 @@ jobs:
       - name: install dependencies
         run: pnpm install
 
+      - name: run prettier
+        run: pnpm run format-check
+
       - name: build lib
         run: pnpm run build
 
       - name: run lint
         run: pnpm run lint
-
-      - name: run prettier
-        run: pnpm run format-check
 
       - name: run test
         run: pnpm run test run
