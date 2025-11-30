@@ -76,6 +76,7 @@
   "scripts": {
     "build": "rslib build",
     "format": "prettier --write .",
+    "format-check": "prettier --check .",
     "lint": "eslint . && tsc && cd docs && tsc",
     "pack": "npm run build && node scripts/preparePackage.cjs && cd dist && npm pack",
     "publish": "npm run build && node scripts/preparePackage.cjs && cd dist && npm publish",
