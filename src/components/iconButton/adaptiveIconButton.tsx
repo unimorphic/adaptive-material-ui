@@ -13,10 +13,7 @@ import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-import {
-  IconButtonContainedOwnProps,
-  IconButtonContainedProps,
-} from "./iconButtonContained";
+import { IconButtonBaseOwnProps, IconButtonBaseProps } from "./iconButtonBase";
 
 export type AdaptiveIconButtonOwnProps = StyledComponentProps<
   keyof AdaptiveIconButtonClasses
@@ -28,7 +25,7 @@ export type AdaptiveIconButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps &
     IconButtonOwnProps &
-    IconButtonContainedOwnProps &
+    IconButtonBaseOwnProps &
     AdaptiveIconButtonOwnProps;
   defaultComponent: RootComponent;
 }>;
@@ -37,7 +34,7 @@ export type AdaptiveIconButtonProps<
   RootComponent extends
     React.ElementType = AdaptiveIconButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = IconButtonContainedProps<RootComponent, AdditionalProps> &
+> = IconButtonBaseProps<RootComponent, AdditionalProps> &
   AdaptiveIconButtonOwnProps;
 
 export interface AdaptiveIconButtonClasses

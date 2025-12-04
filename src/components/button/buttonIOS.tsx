@@ -3,19 +3,15 @@ import { styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
-import {
-  ButtonRound,
-  ButtonRoundProps,
-  ButtonRoundTypeMap,
-} from "./buttonRound";
+import { ButtonBase, ButtonBaseProps, ButtonBaseTypeMap } from "./buttonBase";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Buttons
  */
-const StyledButton = styled(ButtonRound, {
+const StyledButton = styled(ButtonBase, {
   name: "AdaptiveButton",
   slot: "ios",
-})<{ ownerState: ButtonRoundProps }>(({ ownerState }) => ({
+})<{ ownerState: ButtonBaseProps }>(({ ownerState }) => ({
   padding:
     ownerState.size === "large"
       ? "12px 20px"
@@ -24,10 +20,10 @@ const StyledButton = styled(ButtonRound, {
         : "5px 12px",
 }));
 
-export const ButtonIOS: ExtendButtonBase<ButtonRoundTypeMap> = function <
+export const ButtonIOS: ExtendButtonBase<ButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: ButtonRoundProps<RootComponent, AdditionalProps>) {
+>(props: ButtonBaseProps<RootComponent, AdditionalProps>) {
   const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(

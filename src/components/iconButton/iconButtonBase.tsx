@@ -8,28 +8,27 @@ import IconButton, {
 } from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 
-export interface IconButtonContainedOwnProps {
+export interface IconButtonBaseOwnProps {
   /** Adds a background to the button when set to `contained` */
   variant?: "contained" | "default";
 }
 
-export type IconButtonContainedTypeMap<
+export type IconButtonBaseTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & IconButtonOwnProps & IconButtonContainedOwnProps;
+  props: AdditionalProps & IconButtonOwnProps & IconButtonBaseOwnProps;
   defaultComponent: RootComponent;
 }>;
 
-export type IconButtonContainedProps<
+export type IconButtonBaseProps<
   RootComponent extends
-    React.ElementType = IconButtonContainedTypeMap["defaultComponent"],
+    React.ElementType = IconButtonBaseTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = IconButtonProps<RootComponent, AdditionalProps> &
-  IconButtonContainedOwnProps;
+> = IconButtonProps<RootComponent, AdditionalProps> & IconButtonBaseOwnProps;
 
 const StyledIconButton = styled(IconButton)<{
-  ownerState: IconButtonContainedProps;
+  ownerState: IconButtonBaseProps;
 }>(({ ownerState, theme }) => {
   const backgroundColor =
     ownerState.color === "inherit"
@@ -69,9 +68,9 @@ const StyledIconButton = styled(IconButton)<{
   };
 });
 
-export const IconButtonContained: ExtendButtonBase<IconButtonContainedTypeMap> =
+export const IconButtonBase: ExtendButtonBase<IconButtonBaseTypeMap> =
   function <RootComponent extends React.ElementType, AdditionalProps = {}>(
-    props: IconButtonContainedProps<RootComponent, AdditionalProps>,
+    props: IconButtonBaseProps<RootComponent, AdditionalProps>,
   ) {
     const { variant, ...otherProps } = props;
 

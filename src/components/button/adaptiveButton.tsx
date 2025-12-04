@@ -14,7 +14,7 @@ import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialogActions";
-import { ButtonRoundOwnProps, ButtonRoundProps } from "./buttonRound";
+import { ButtonBaseOwnProps, ButtonBaseProps } from "./buttonBase";
 
 export type AdaptiveButtonOwnProps = StyledComponentProps<
   keyof AdaptiveButtonClasses
@@ -26,7 +26,7 @@ export type AdaptiveButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps &
     ButtonOwnProps &
-    ButtonRoundOwnProps &
+    ButtonBaseOwnProps &
     AdaptiveButtonOwnProps;
   defaultComponent: RootComponent;
 }>;
@@ -35,7 +35,7 @@ export type AdaptiveButtonProps<
   RootComponent extends
     React.ElementType = AdaptiveButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = ButtonRoundProps<RootComponent, AdditionalProps> & AdaptiveButtonOwnProps;
+> = ButtonBaseProps<RootComponent, AdditionalProps> & AdaptiveButtonOwnProps;
 
 export interface AdaptiveButtonClasses extends ButtonClasses, IosClasses {}
 

@@ -6,27 +6,27 @@ import {
 import { buttonGroupClasses } from "@mui/material/ButtonGroup";
 import { styled } from "@mui/material/styles";
 
-export interface ButtonRoundOwnProps {
+export interface ButtonBaseOwnProps {
   /** Increases the border radius to make the button corners appear rounded */
   round?: boolean;
 }
 
-export type ButtonRoundTypeMap<
+export type ButtonBaseTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & ButtonOwnProps & ButtonRoundOwnProps;
+  props: AdditionalProps & ButtonOwnProps & ButtonBaseOwnProps;
   defaultComponent: RootComponent;
 }>;
 
-export type ButtonRoundProps<
+export type ButtonBaseProps<
   RootComponent extends
-    React.ElementType = ButtonRoundTypeMap["defaultComponent"],
+    React.ElementType = ButtonBaseTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = ButtonProps<RootComponent, AdditionalProps> & ButtonRoundOwnProps;
+> = ButtonProps<RootComponent, AdditionalProps> & ButtonBaseOwnProps;
 
 const StyledButton = styled(Button)<{
-  ownerState: ButtonRoundProps;
+  ownerState: ButtonBaseProps;
 }>(() => ({
   variants: [
     {
@@ -42,10 +42,10 @@ const StyledButton = styled(Button)<{
   ],
 }));
 
-export const ButtonRound: ExtendButtonBase<ButtonRoundTypeMap> = function <
+export const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: ButtonRoundProps<RootComponent, AdditionalProps>) {
+>(props: ButtonBaseProps<RootComponent, AdditionalProps>) {
   const { round, ...otherProps } = props;
 
   return <StyledButton ownerState={props} {...otherProps} />;
