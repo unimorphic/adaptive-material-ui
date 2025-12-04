@@ -202,6 +202,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 
 export function SwitchAndroid(props: SwitchBaseProps) {
   const { className, disableFocusRipple, ...otherProps } = props;
+  const ownerState = materialDesign.useButtonBaseRippleProps(props);
 
   const composedClasses = composeClasses(
     { android: ["android"] },
@@ -214,7 +215,7 @@ export function SwitchAndroid(props: SwitchBaseProps) {
       className={clsx(composedClasses.android, className)}
       disableFocusRipple
       disableTouchRipple
-      ownerState={props}
+      ownerState={ownerState}
       {...otherProps}
     />
   );

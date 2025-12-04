@@ -54,6 +54,7 @@ export const FabAndroid: ExtendButtonBase<FabBaseTypeMap> = function <
   AdditionalProps = {},
 >(props: FabBaseProps<RootComponent, AdditionalProps>) {
   const { className, disableFocusRipple, ...otherProps } = props;
+  const ownerState = materialDesign.useButtonBaseRippleProps(props);
 
   const composedClasses = composeClasses(
     { android: ["android"] },
@@ -65,7 +66,7 @@ export const FabAndroid: ExtendButtonBase<FabBaseTypeMap> = function <
     <StyledFab
       className={clsx(composedClasses.android, className)}
       disableFocusRipple
-      ownerState={props}
+      ownerState={ownerState}
       {...otherProps}
     />
   );

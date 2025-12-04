@@ -1,6 +1,6 @@
-import { Theme } from "@mui/material/styles";
+import { Theme, useThemeProps } from "@mui/material/styles";
 
-interface RippleOwnerState {
+interface RippleProps {
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
 }
@@ -8,7 +8,7 @@ interface RippleOwnerState {
 export const materialDesign = {
   focusRipple: (
     theme: Theme,
-    ownerState: RippleOwnerState,
+    ownerState: RippleProps,
     transition?: string,
     offset = 2,
   ) => {
@@ -24,7 +24,7 @@ export const materialDesign = {
         }) + (transition ? `, ${transition}` : ""),
     };
   },
-  focusRippleVisible: (theme: Theme, ownerState: RippleOwnerState) => {
+  focusRippleVisible: (theme: Theme, ownerState: RippleProps) => {
     if (ownerState.disableFocusRipple || ownerState.disableRipple) {
       return {};
     }
@@ -35,6 +35,23 @@ export const materialDesign = {
       ...theme.applyStyles("dark", {
         outlineColor: theme.palette.common.white,
       }),
+    };
+  },
+
+  /**
+   * Sets the ripple props using the ButtonBase theme props.
+   * This allows disabling the ripple effect globally in a single place.
+   * https://mui.com/material-ui/getting-started/faq/#how-can-i-disable-the-ripple-effect-globally
+   */
+  useButtonBaseRippleProps: <T extends RippleProps>(props: T): T => {
+    const buttonBaseProps = useThemeProps({
+      props: props,
+      name: "MuiButtonBase",
+    });
+    return {
+      ...props,
+      disableFocusRipple: buttonBaseProps.disableFocusRipple,
+      disableRipple: buttonBaseProps.disableRipple,
     };
   },
 };

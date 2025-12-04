@@ -230,6 +230,7 @@ export const SliderAndroid: AdaptiveSliderType = function <
     ...otherProps
   } = props;
   const isRtl = useRtl();
+  const ownerState = materialDesign.useButtonBaseRippleProps(props);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: props.value,
@@ -279,7 +280,7 @@ export const SliderAndroid: AdaptiveSliderType = function <
       max={max}
       min={min}
       onChange={onChangeSlider}
-      ownerState={{ ...props, arrayValue: arrayValue }}
+      ownerState={{ ...ownerState, arrayValue: arrayValue }}
       slotProps={{
         ...slotProps,
         rail: mergeSlotProps(slotProps?.rail, {
