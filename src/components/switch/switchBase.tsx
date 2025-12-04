@@ -1,9 +1,6 @@
 import { styled, Theme } from "@mui/material/styles";
 import Switch, { switchClasses, SwitchProps } from "@mui/material/Switch";
 import { mergeSlotProps } from "@mui/material/utils";
-import composeClasses from "@mui/utils/composeClasses";
-import generateUtilityClass from "@mui/utils/generateUtilityClass";
-import { clsx } from "clsx";
 import { ReactNode } from "react";
 import { slotShouldForwardProp } from "../../shared/slotShouldForwardProp";
 import { adaptiveSwitchClasses } from "./adaptiveSwitch";
@@ -86,18 +83,10 @@ const StyledSwitch = styled(Switch, {
 }));
 
 export function SwitchBase(props: SwitchBaseProps) {
-  const { className, slotProps, thumbIcon, thumbIconChecked, ...otherProps } =
-    props;
-
-  const composedClasses = composeClasses(
-    { root: ["root"] },
-    (s) => generateUtilityClass("AdaptiveSwitch", s),
-    props.classes,
-  );
+  const { slotProps, thumbIcon, thumbIconChecked, ...otherProps } = props;
 
   return (
     <StyledSwitch
-      className={clsx(composedClasses.root, className)}
       ownerState={props}
       slotProps={{
         ...slotProps,

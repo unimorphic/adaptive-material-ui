@@ -3,6 +3,7 @@ import { switchClasses, SwitchClasses } from "@mui/material/Switch";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { SwitchBaseProps } from "./switchBase";
@@ -10,7 +11,10 @@ import { SwitchBaseProps } from "./switchBase";
 export type AdaptiveSwitchProps = SwitchBaseProps &
   StyledComponentProps<keyof AdaptiveSwitchClasses>;
 
-export interface AdaptiveSwitchClasses extends SwitchClasses, IosClasses {}
+export interface AdaptiveSwitchClasses
+  extends SwitchClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveSwitchClasses = {
   ...switchClasses,

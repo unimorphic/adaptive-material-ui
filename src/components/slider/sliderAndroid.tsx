@@ -1,8 +1,4 @@
-import Slider, {
-  sliderClasses,
-  SliderProps,
-  SliderType,
-} from "@mui/material/Slider";
+import Slider, { sliderClasses } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { mergeSlotProps } from "@mui/material/utils";
 import { useRtl } from "@mui/system/RtlProvider";
@@ -10,6 +6,8 @@ import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import useControlled from "@mui/utils/useControlled";
 import { clsx } from "clsx";
+import { materialDesign } from "../../shared/android/materialDesign";
+import { AdaptiveSliderProps, AdaptiveSliderType } from "./sliderProps";
 
 const thumbWidth = 4;
 const thumbPadding = 6;
@@ -20,7 +18,7 @@ const markWidth = 4;
 function getBorderRadius(
   firstRadius: string,
   secondRadius: string,
-  ownerState: SliderProps,
+  ownerState: AdaptiveSliderProps,
 ) {
   return ownerState.orientation === "vertical"
     ? `${secondRadius} ${secondRadius} ${firstRadius} ${firstRadius}`
@@ -37,7 +35,7 @@ function getPercent(value: number, total: number) {
 const StyledSlider = styled(Slider, {
   name: "AdaptiveSlider",
   slot: "android",
-})<{ ownerState: SliderProps & { arrayValue: number[] } }>(({
+})<{ ownerState: AdaptiveSliderProps & { arrayValue: number[] } }>(({
   ownerState,
   theme,
 }) => {
@@ -133,34 +131,28 @@ const StyledSlider = styled(Slider, {
         ownerState.orientation === "vertical"
           ? "translate(-50%, 50%)"
           : "translate(-50%, -50%)",
-      transition: sizeTransition,
       width: ownerState.orientation === "vertical" ? 44 : thumbWidth,
 
-      "&:before": {
-        border: "3px solid transparent",
-        boxShadow: "none",
-        height: `calc(100% + ${(halfThumbWidth * 2).toString()}px)`,
-        left: -1 * halfThumbWidth,
-        top: -1 * halfThumbWidth,
-        transition: theme.transitions.create(["border-color"], {
-          duration: transitionDuration,
-        }),
-        width: `calc(100% + ${(halfThumbWidth * 2).toString()}px)`,
-      },
-      [`&.${sliderClasses.focusVisible}`]: {
-        boxShadow: "none",
+      ...materialDesign.focusRipple(
+        theme,
+        ownerState,
+        sizeTransition,
+        thumbPadding,
+      ),
 
-        "&:before": {
-          borderColor: "currentColor",
-        },
+      "&:before": {
+        display: "none",
+      },
+      "&:hover": {
+        boxShadow: "none",
       },
       [`&.${sliderClasses.active}, &.${sliderClasses.focusVisible}`]: {
+        boxShadow: "none",
         [ownerState.orientation === "vertical" ? "height" : "width"]:
           thumbWidth / 2,
       },
-      [`&.${sliderClasses.active}:before`]: {
-        borderColor: "transparent",
-      },
+      [`&.${sliderClasses.focusVisible}:not(.${sliderClasses.active})`]:
+        materialDesign.focusRippleVisible(theme, ownerState),
     },
 
     [`& .${sliderClasses.track}`]: {
@@ -223,12 +215,14 @@ const StyledSlider = styled(Slider, {
   };
 });
 
-export const SliderAndroid: SliderType = function <
+export const SliderAndroid: AdaptiveSliderType = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: SliderProps<RootComponent, AdditionalProps>) {
+>(props: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
   const {
     className,
+    disableFocusRipple,
+    disableRipple,
     max = 100,
     min = 0,
     onChange,

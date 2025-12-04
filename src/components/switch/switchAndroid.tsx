@@ -4,6 +4,7 @@ import { switchClasses } from "@mui/material/Switch";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import { materialDesign } from "../../shared/android/materialDesign";
 import { adaptiveSwitchClasses } from "./adaptiveSwitch";
 import { getSwitchColor, SwitchBase, SwitchBaseProps } from "./switchBase";
 
@@ -112,16 +113,8 @@ const StyledSwitchBase = styled(SwitchBase, {
         },
       },
 
-      [`&.${buttonBaseClasses.focusVisible}`]: {
-        [`& + .${switchClasses.track}`]: {
-          borderColor: theme.palette.common.white,
-          boxShadow: `0px 0px 0px 3px ${currentColor}`,
-
-          ...theme.applyStyles("dark", {
-            borderColor: darkColor,
-          }),
-        },
-      },
+      [`&.${buttonBaseClasses.focusVisible} + .${switchClasses.track}`]:
+        materialDesign.focusRippleVisible(theme, ownerState),
 
       [`&:active`]: {
         [`& .${switchClasses.thumb}`]: {
@@ -160,13 +153,18 @@ const StyledSwitchBase = styled(SwitchBase, {
       height: height,
       opacity: 1,
       position: "absolute",
-      transition: theme.transitions.create(["background-color", "opacity"], {
-        duration: transitionDuration,
-      }),
       width: width - padding * 2,
       ...theme.applyStyles("dark", {
         backgroundColor: theme.palette.grey[800],
       }),
+
+      ...materialDesign.focusRipple(
+        theme,
+        ownerState,
+        theme.transitions.create(["background-color", "opacity"], {
+          duration: transitionDuration,
+        }),
+      ),
     },
 
     variants: [
@@ -203,7 +201,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 });
 
 export function SwitchAndroid(props: SwitchBaseProps) {
-  const { className, ...otherProps } = props;
+  const { className, disableFocusRipple, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { android: ["android"] },
@@ -214,7 +212,8 @@ export function SwitchAndroid(props: SwitchBaseProps) {
   return (
     <StyledSwitchBase
       className={clsx(composedClasses.android, className)}
-      disableRipple
+      disableFocusRipple
+      disableTouchRipple
       ownerState={props}
       {...otherProps}
     />

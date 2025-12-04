@@ -92,7 +92,7 @@ export default defineConfig(
       ],
       "no-restricted-imports": [
         "warn",
-        { patterns: [{ regex: "^@mui/[^/]+$" }] },
+        { patterns: [{ regex: "^@mui/(?!types$)[^/]+$" }] },
       ],
     },
   },

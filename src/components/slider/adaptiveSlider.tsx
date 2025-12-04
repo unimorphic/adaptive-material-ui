@@ -1,37 +1,10 @@
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import {
-  sliderClasses,
-  SliderClasses,
-  SliderOwnProps,
-  SliderProps,
-} from "@mui/material/Slider";
-import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import { sliderClasses } from "@mui/material/Slider";
+import { useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
-import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-
-export type AdaptiveSliderOwnProps = StyledComponentProps<
-  keyof AdaptiveSliderClasses
->;
-
-export interface AdaptiveSliderTypeMap<
-  RootComponent extends React.ElementType = "span",
-  AdditionalProps = {},
-  Value extends number | number[] = number | number[],
-> {
-  props: AdditionalProps & SliderOwnProps<Value> & AdaptiveSliderOwnProps;
-  defaultComponent: RootComponent;
-}
-
-export type AdaptiveSliderProps<
-  RootComponent extends
-    React.ElementType = AdaptiveSliderTypeMap["defaultComponent"],
-  AdditionalProps = {},
-> = SliderProps<RootComponent, AdditionalProps> & AdaptiveSliderOwnProps;
-
-export interface AdaptiveSliderClasses extends SliderClasses, IosClasses {}
+import { AdaptiveSliderProps, AdaptiveSliderType } from "./sliderProps";
 
 export const adaptiveSliderClasses = {
   ...sliderClasses,
@@ -52,14 +25,7 @@ const SliderIOS = lazy(async () => {
   return { default: SliderIOS };
 });
 
-type SliderComponent<Value extends number | number[]> = OverridableComponent<
-  AdaptiveSliderTypeMap<"span", {}, Value>
->;
-type SliderType = SliderComponent<number> &
-  SliderComponent<number[]> &
-  SliderComponent<number | number[]>;
-
-export const AdaptiveSlider: SliderType = function <
+export const AdaptiveSlider: AdaptiveSliderType = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
 >(inProps: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
