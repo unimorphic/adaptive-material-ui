@@ -1,5 +1,5 @@
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import { SwitchBase, SwitchBaseProps } from "./switchBase";
 
-export function SwitchDesktop(props: SwitchProps) {
-  return <Switch {...props} />;
+export function SwitchDesktop(props: SwitchBaseProps) {
+  return <SwitchBase {...props} />;
 }

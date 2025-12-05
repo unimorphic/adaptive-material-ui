@@ -5,6 +5,7 @@ import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import * as React from "react";
+import { slotShouldForwardProp } from "../../shared/slotShouldForwardProp";
 import {
   AdaptiveFilledInput,
   AdaptiveInput,
@@ -92,7 +93,11 @@ export function SelectItemGroupNative(props: SelectItemGroupProps<"optgroup">) {
   );
 }
 
-const styleConfig = { name: "AdaptiveSelect", slot: "Root" };
+const styleConfig = {
+  name: "AdaptiveSelect",
+  slot: "root",
+  shouldForwardProp: slotShouldForwardProp,
+};
 const StyledAdaptiveInput = styled(AdaptiveInput, styleConfig)();
 const StyledAdaptiveOutlinedInput = styled(
   AdaptiveOutlinedInput,

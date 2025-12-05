@@ -1,13 +1,10 @@
-import Slider, {
-  sliderClasses,
-  SliderProps,
-  SliderType,
-} from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import Slider, { sliderClasses, SliderProps } from "@mui/material/Slider";
+import { CSSObject, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import { iosLiquidGlass } from "../../shared/ios/iosLiquidGlass";
+import { AdaptiveSliderProps, AdaptiveSliderType } from "./sliderProps";
 
 /**
  * iOS 26 https://www.sketch.com/s/f63aa308-1f82-498c-8019-530f3b846db9/symbols?g=Sliders
@@ -21,6 +18,15 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       : "translate(-50%, -50%)";
   const thumbBoxShadow =
     "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)";
+
+  const railStyles: CSSObject = {
+    backgroundColor: "#E4E4E4",
+    opacity: 1,
+
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#35373B",
+    }),
+  };
 
   return {
     borderRadius: 3,
@@ -40,14 +46,8 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       }),
     },
 
-    [`& .${sliderClasses.rail}`]: {
-      backgroundColor: "rgba(120, 120, 120, 0.2)",
-      opacity: 1,
-
-      ...theme.applyStyles("dark", {
-        backgroundColor: "rgba(120, 120, 128, 0.36)",
-      }),
-    },
+    [`& .${sliderClasses.rail}`]:
+      ownerState.track === "inverted" ? undefined : railStyles,
 
     [`& .${sliderClasses.thumb}`]: {
       borderRadius: 12,
@@ -75,6 +75,7 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
 
     [`& .${sliderClasses.track}`]: {
       border: "none",
+      ...(ownerState.track === "inverted" ? railStyles : {}),
     },
 
     [`&.${sliderClasses.disabled} .${sliderClasses.thumb}`]: {
@@ -83,11 +84,11 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
   };
 });
 
-export const SliderIOS: SliderType = function <
+export const SliderIOS: AdaptiveSliderType = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: SliderProps<RootComponent, AdditionalProps>) {
-  const { className, ...otherProps } = props;
+>(props: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
+  const { className, disableFocusRipple, disableRipple, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },

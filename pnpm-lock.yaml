@@ -36,6 +36,9 @@ importers:
       '@eslint/js':
         specifier: 9.38.0
         version: 9.38.0
+      '@mui/types':
+        specifier: 7.4.7
+        version: 7.4.7(@types/react@19.2.2)
       '@playwright/experimental-ct-react':
         specifier: 1.56.1
         version: 1.56.1(@types/node@24.9.1)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.43.1)(vite@7.2.2(@types/node@24.9.1)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.43.1)(yaml@2.8.1))(yaml@2.8.1)

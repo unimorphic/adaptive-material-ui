@@ -5,7 +5,6 @@ interface IosLiquidGlass {
   overlay: (theme: Theme) => CSSObject;
   thumb: (theme: Theme) => CSSObject;
   thumbActive: (scale: number, transform?: string) => CSSObject;
-  transitionDuration: number;
 }
 
 export const iosLiquidGlass: IosLiquidGlass = {
@@ -32,11 +31,11 @@ export const iosLiquidGlass: IosLiquidGlass = {
 
   thumb: (theme: Theme) => ({
     backgroundColor: theme.palette.common.white,
-    display: "block",
-    transition: theme.transitions.create(
-      ["background-color", "box-shadow", "transform"],
-      { duration: iosLiquidGlass.transitionDuration },
-    ),
+    transition: theme.transitions.create([
+      "background-color",
+      "box-shadow",
+      "transform",
+    ]),
 
     "&:after": {
       content: '""',
@@ -47,9 +46,7 @@ export const iosLiquidGlass: IosLiquidGlass = {
       opacity: 0,
       position: "absolute",
       top: "50%",
-      transition: theme.transitions.create(["opacity", "transform"], {
-        duration: iosLiquidGlass.transitionDuration,
-      }),
+      transition: theme.transitions.create(["opacity", "transform"]),
       width: 1,
 
       ...theme.applyStyles("dark", {
@@ -65,6 +62,7 @@ export const iosLiquidGlass: IosLiquidGlass = {
       display: "block",
       height: "100%",
       opacity: 0,
+      position: "absolute",
       width: "100%",
 
       ...theme.applyStyles("dark", {
@@ -88,6 +86,4 @@ export const iosLiquidGlass: IosLiquidGlass = {
       opacity: 1,
     },
   }),
-
-  transitionDuration: 300,
 };

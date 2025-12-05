@@ -71,7 +71,7 @@ import {
 import {
   AdaptiveSliderClasses,
   AdaptiveSliderProps,
-} from "../components/slider/adaptiveSlider";
+} from "../components/slider/sliderProps";
 import {
   AdaptiveSnackbarClasses,
   AdaptiveSnackbarProps,

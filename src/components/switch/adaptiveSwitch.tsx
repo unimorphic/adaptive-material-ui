@@ -1,23 +1,29 @@
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
-import {
-  switchClasses,
-  SwitchClasses,
-  SwitchProps,
-} from "@mui/material/Switch";
+import { switchClasses, SwitchClasses } from "@mui/material/Switch";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import { SwitchBaseProps } from "./switchBase";
 
-export type AdaptiveSwitchProps = SwitchProps &
+export type AdaptiveSwitchProps = SwitchBaseProps &
   StyledComponentProps<keyof AdaptiveSwitchClasses>;
 
-export interface AdaptiveSwitchClasses extends SwitchClasses, IosClasses {}
+export interface AdaptiveSwitchClasses
+  extends SwitchClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveSwitchClasses = {
   ...switchClasses,
-  ...generateUtilityClasses("AdaptiveSwitch", ["ios"]),
+  ...generateUtilityClasses("AdaptiveSwitch", [
+    "android",
+    "ios",
+    "thumbIcon",
+    "thumbIconChecked",
+  ]),
 };
 
 // See docs\pages\docs\codeSplitting.md

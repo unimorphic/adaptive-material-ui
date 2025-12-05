@@ -1,13 +1,9 @@
 import { ExtendButtonBase } from "@mui/material/ButtonBase";
-import {
-  ButtonRound,
-  ButtonRoundProps,
-  ButtonRoundTypeMap,
-} from "./buttonRound";
+import { ButtonBase, ButtonBaseProps, ButtonBaseTypeMap } from "./buttonBase";
 
-export const ButtonDesktop: ExtendButtonBase<ButtonRoundTypeMap> = function <
+export const ButtonDesktop: ExtendButtonBase<ButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: ButtonRoundProps<RootComponent, AdditionalProps>) {
-  return <ButtonRound {...props} />;
+>(props: ButtonBaseProps<RootComponent, AdditionalProps>) {
+  return <ButtonBase {...props} />;
 };
