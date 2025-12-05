@@ -24,6 +24,7 @@ export default function () {
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 
 export default function () {
@@ -40,6 +41,69 @@ export default function () {
           <AdaptiveButton size="large" variant="contained">
             Large
           </AdaptiveButton>
+          <AdaptiveButton size="x-large" variant="contained">
+            X-Large
+          </AdaptiveButton>
+        </DemoListItem>
+        <DemoListItem title="Start Icon">
+          <AdaptiveButton
+            size="small"
+            variant="contained"
+            startIcon={<DeleteIcon />}
+          >
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="medium"
+            variant="contained"
+            startIcon={<DeleteIcon />}
+          >
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="large"
+            variant="contained"
+            startIcon={<DeleteIcon />}
+          >
+            Large
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="x-large"
+            variant="contained"
+            startIcon={<DeleteIcon />}
+          >
+            X-Large
+          </AdaptiveButton>
+        </DemoListItem>
+        <DemoListItem title="End Icon">
+          <AdaptiveButton
+            size="small"
+            variant="contained"
+            endIcon={<DeleteIcon />}
+          >
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="medium"
+            variant="contained"
+            endIcon={<DeleteIcon />}
+          >
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="large"
+            variant="contained"
+            endIcon={<DeleteIcon />}
+          >
+            Large
+          </AdaptiveButton>
+          <AdaptiveButton
+            size="x-large"
+            variant="contained"
+            endIcon={<DeleteIcon />}
+          >
+            X-Large
+          </AdaptiveButton>
         </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>
@@ -53,43 +117,49 @@ The `round` property can be used to make the button rounded on all devices.
 To apply it to only specific devices you can use the [useAdaptiveMode](/docs/adaptiveMode.html#useadaptivemode) hook.
 
 ```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 
 export default function () {
   return (
-    <DemoList>
-      <DemoListItem title="Variant">
-        <AdaptiveButton round variant="contained">
-          Contained
-        </AdaptiveButton>
-        <AdaptiveButton round variant="outlined">
-          Outlined
-        </AdaptiveButton>
-        <AdaptiveButton round variant="text">
-          Text
-        </AdaptiveButton>
-      </DemoListItem>
-      <DemoListItem title="Size">
-        <AdaptiveButton round size="small" variant="contained">
-          Small
-        </AdaptiveButton>
-        <AdaptiveButton round size="medium" variant="contained">
-          Medium
-        </AdaptiveButton>
-        <AdaptiveButton round size="large" variant="contained">
-          Large
-        </AdaptiveButton>
-      </DemoListItem>
-      <DemoListItem title="Group">
-        <ButtonGroup variant="contained">
-          <AdaptiveButton round>One</AdaptiveButton>
-          <AdaptiveButton round>Two</AdaptiveButton>
-          <AdaptiveButton round>Three</AdaptiveButton>
-        </ButtonGroup>
-      </DemoListItem>
-    </DemoList>
+    <AdaptiveModeDemo>
+      <DemoList>
+        <DemoListItem title="Variant">
+          <AdaptiveButton round variant="contained">
+            Contained
+          </AdaptiveButton>
+          <AdaptiveButton round variant="outlined">
+            Outlined
+          </AdaptiveButton>
+          <AdaptiveButton round variant="text">
+            Text
+          </AdaptiveButton>
+        </DemoListItem>
+        <DemoListItem title="Size">
+          <AdaptiveButton round size="small" variant="contained">
+            Small
+          </AdaptiveButton>
+          <AdaptiveButton round size="medium" variant="contained">
+            Medium
+          </AdaptiveButton>
+          <AdaptiveButton round size="large" variant="contained">
+            Large
+          </AdaptiveButton>
+          <AdaptiveButton round size="x-large" variant="contained">
+            X-Large
+          </AdaptiveButton>
+        </DemoListItem>
+        <DemoListItem title="Group">
+          <ButtonGroup variant="contained">
+            <AdaptiveButton round>One</AdaptiveButton>
+            <AdaptiveButton round>Two</AdaptiveButton>
+            <AdaptiveButton round>Three</AdaptiveButton>
+          </ButtonGroup>
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
   );
 }
 ```
@@ -204,6 +274,7 @@ export default function () {
 
 [MUI Button API](https://mui.com/material-ui/api/button/) with the following changes:
 
+- The `size` prop also accepts a `x-large` value
 - iOS: `disableTouchRipple` defaults to `true`
 
 ### round

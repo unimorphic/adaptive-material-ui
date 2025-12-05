@@ -1,14 +1,30 @@
-import Button, { ButtonOwnProps, ButtonProps } from "@mui/material/Button";
+import Button, {
+  buttonClasses,
+  ButtonOwnProps,
+  ButtonProps,
+  ButtonPropsSizeOverrides,
+} from "@mui/material/Button";
 import {
   ExtendButtonBase,
   ExtendButtonBaseTypeMap,
 } from "@mui/material/ButtonBase";
 import { buttonGroupClasses } from "@mui/material/ButtonGroup";
 import { styled } from "@mui/material/styles";
+import { OverridableStringUnion } from "@mui/types";
 
 export interface ButtonBaseOwnProps {
   /** Increases the border radius to make the button corners appear rounded */
   round?: boolean;
+
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense button styling.
+   * @default 'medium'
+   */
+  size?: OverridableStringUnion<
+    "small" | "medium" | "large" | "x-large",
+    ButtonPropsSizeOverrides
+  >;
 }
 
 export type ButtonBaseTypeMap<
@@ -27,20 +43,38 @@ export type ButtonBaseProps<
 
 const StyledButton = styled(Button)<{
   ownerState: ButtonBaseProps;
-}>(() => ({
-  variants: [
-    {
-      props: (props) => props.round === true,
-      style: {
-        borderRadius: 1000,
+}>(({ ownerState, theme }) => {
+  const sizeInfoMap = {
+    "x-large": { icon: 38, font: 23, padding: "24px 46px" },
+  };
+  const sizeInfo =
+    ownerState.size && ownerState.size in sizeInfoMap
+      ? sizeInfoMap[ownerState.size as keyof typeof sizeInfoMap]
+      : undefined;
 
-        [`.${buttonGroupClasses.root}:has(&)`]: {
-          borderRadius: 1000,
+  return {
+    fontSize: sizeInfo ? theme.typography.pxToRem(sizeInfo.font) : undefined,
+    padding: sizeInfo?.padding,
+
+    [`& .${buttonClasses.startIcon} > *:nth-of-type(1), & .${buttonClasses.endIcon} > *:nth-of-type(1)`]:
+      {
+        fontSize: sizeInfo?.icon,
+      },
+
+    variants: [
+      {
+        props: (props) => props.round === true,
+        style: {
+          borderRadius: "2em",
+
+          [`.${buttonGroupClasses.root}:has(&)`]: {
+            borderRadius: "2em",
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  };
+});
 
 export const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,

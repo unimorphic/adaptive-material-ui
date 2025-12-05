@@ -11,6 +11,7 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode, useContext } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { AdaptiveDialogActionsContext } from "../dialog/adaptiveDialogActions";
@@ -37,11 +38,14 @@ export type AdaptiveButtonProps<
   AdditionalProps = {},
 > = ButtonBaseProps<RootComponent, AdditionalProps> & AdaptiveButtonOwnProps;
 
-export interface AdaptiveButtonClasses extends ButtonClasses, IosClasses {}
+export interface AdaptiveButtonClasses
+  extends ButtonClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveButtonClasses = {
   ...buttonClasses,
-  ...generateUtilityClasses("AdaptiveButton", ["ios"]),
+  ...generateUtilityClasses("AdaptiveButton", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

@@ -42,27 +42,28 @@ const StyledFab = styled(Fab, {
   slot: "root",
   shouldForwardProp: slotShouldForwardProp,
 })<{ ownerState: FabProps }>(({ ownerState }) => {
-  const sizeMap = {
+  const infoBySize = {
     "x-large": { width: 80, extendedHeight: 72, icon: "1.75rem" },
     "xx-large": { width: 96, extendedHeight: 88, icon: "2.25rem" },
   };
-
-  const size =
-    ownerState.size && ownerState.size in sizeMap
-      ? sizeMap[ownerState.size as keyof typeof sizeMap]
+  const sizeInfo =
+    ownerState.size && ownerState.size in infoBySize
+      ? infoBySize[ownerState.size as keyof typeof infoBySize]
       : undefined;
 
   return {
     borderRadius:
-      ownerState.variant === "extended" && size
-        ? size.extendedHeight / 2
+      ownerState.variant === "extended" && sizeInfo
+        ? sizeInfo.extendedHeight / 2
         : undefined,
     height:
-      ownerState.variant === "extended" ? size?.extendedHeight : size?.width,
-    width: ownerState.variant === "extended" ? undefined : size?.width,
+      ownerState.variant === "extended"
+        ? sizeInfo?.extendedHeight
+        : sizeInfo?.width,
+    width: ownerState.variant === "extended" ? undefined : sizeInfo?.width,
 
     [`& .${svgIconClasses.root}`]: {
-      fontSize: size?.icon,
+      fontSize: sizeInfo?.icon,
     },
   };
 });

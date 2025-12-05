@@ -11,14 +11,21 @@ import { ButtonBase, ButtonBaseProps, ButtonBaseTypeMap } from "./buttonBase";
 const StyledButton = styled(ButtonBase, {
   name: "AdaptiveButton",
   slot: "ios",
-})<{ ownerState: ButtonBaseProps }>(({ ownerState }) => ({
-  padding:
-    ownerState.size === "large"
-      ? "12px 20px"
-      : ownerState.size === "small"
-        ? "3px 10px"
-        : "5px 12px",
-}));
+})<{ ownerState: ButtonBaseProps }>(({ ownerState, theme }) => {
+  const sizeInfo = {
+    small: { padding: "1px 10px", font: 15 },
+    medium: { padding: "2px 12px", font: 17 },
+    large: { padding: "10px 20px", font: 17 },
+    "x-large": { padding: "26px 44px", font: 24 },
+  }[ownerState.size ?? "medium"];
+
+  return {
+    fontSize: theme.typography.pxToRem(sizeInfo.font),
+    fontWeight: 400,
+    padding: sizeInfo.padding,
+    textTransform: "none",
+  };
+});
 
 export const ButtonIOS: ExtendButtonBase<ButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,
