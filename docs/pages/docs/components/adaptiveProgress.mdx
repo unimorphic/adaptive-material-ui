@@ -134,7 +134,21 @@ export default function () {
           <AdaptiveLinearProgress color="inherit" />
         </DemoListItem>
         <DemoListItem title="Determinate">
-          <AdaptiveLinearProgress variant="determinate" value={45} />
+          <AdaptiveLinearProgress
+            color="primary"
+            variant="determinate"
+            value={30}
+          />
+          <AdaptiveLinearProgress
+            color="secondary"
+            variant="determinate"
+            value={45}
+          />
+          <AdaptiveLinearProgress
+            color="inherit"
+            variant="determinate"
+            value={65}
+          />
         </DemoListItem>
         <DemoListItem title="Buffer">
           <AdaptiveLinearProgress
