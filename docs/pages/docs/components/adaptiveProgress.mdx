@@ -57,6 +57,9 @@ export default function () {
           <AdaptiveCircularProgress size={40} />
           <AdaptiveCircularProgress size="3rem" />
         </DemoListItem>
+        <DemoListItem title="No Shrink">
+          <AdaptiveCircularProgress disableShrink />
+        </DemoListItem>
         <DemoListItem title="Determinate">
           <AdaptiveCircularProgress variant="determinate" value={progress} />
         </DemoListItem>
@@ -154,6 +157,7 @@ export default function () {
 
 - iOS: `disableShrink`, `enableTrackSlot`, & `thickness` properties are not used
 - iOS: `size` defaults to `30`
+- Android: `enableTrackSlot` defaults to `true`
 
 ### Linear Progress
 
