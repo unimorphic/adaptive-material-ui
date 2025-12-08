@@ -15,18 +15,24 @@ import {
 const StyledIconButtonBase = styled(IconButtonBase, {
   name: "AdaptiveIconButton",
   slot: "ios",
-})<{ ownerState: IconButtonBaseProps }>(({ ownerState }) => ({
-  padding:
-    ownerState.size === "large"
-      ? "13px"
-      : ownerState.size === "small"
-        ? "3px"
-        : "5px",
+})<{ ownerState: IconButtonBaseProps }>(({ ownerState, theme }) => {
+  const sizeInfo = {
+    small: { padding: 3, font: 22 },
+    medium: { padding: 5 },
+    large: { padding: 13 },
+    "x-large": { padding: 29 },
+  }[ownerState.size ?? "medium"];
 
-  "& > *": {
-    fontSize: ownerState.size === "small" ? "1.4rem" : undefined,
-  },
-}));
+  return {
+    padding: sizeInfo.padding,
+
+    "& > *": {
+      fontSize: sizeInfo.font
+        ? theme.typography.pxToRem(sizeInfo.font)
+        : undefined,
+    },
+  };
+});
 
 export const IconButtonIOS: ExtendButtonBase<IconButtonBaseTypeMap> = function <
   RootComponent extends React.ElementType,

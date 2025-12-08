@@ -11,6 +11,7 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { IconButtonBaseOwnProps, IconButtonBaseProps } from "./iconButtonBase";
@@ -39,11 +40,12 @@ export type AdaptiveIconButtonProps<
 
 export interface AdaptiveIconButtonClasses
   extends IconButtonClasses,
-    IosClasses {}
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveIconButtonClasses = {
   ...iconButtonClasses,
-  ...generateUtilityClasses("AdaptiveIconButton", ["ios"]),
+  ...generateUtilityClasses("AdaptiveIconButton", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

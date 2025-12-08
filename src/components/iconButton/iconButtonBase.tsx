@@ -5,10 +5,22 @@ import {
 import IconButton, {
   IconButtonOwnProps,
   IconButtonProps,
+  IconButtonPropsSizeOverrides,
 } from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import { OverridableStringUnion } from "@mui/types";
 
 export interface IconButtonBaseOwnProps {
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense button styling.
+   * @default 'medium'
+   */
+  size?: OverridableStringUnion<
+    "small" | "medium" | "large" | "x-large",
+    IconButtonPropsSizeOverrides
+  >;
+
   /** Adds a background to the button when set to `contained` */
   variant?: "contained" | "default";
 }
@@ -48,7 +60,21 @@ const StyledIconButton = styled(IconButton)<{
         ? (theme.vars ?? theme).palette.text.secondary
         : (theme.vars ?? theme).palette[ownerState.color].dark;
 
+  const sizeInfoMap = {
+    "x-large": { font: 32, padding: 28 },
+  };
+  const sizeInfo =
+    ownerState.size && ownerState.size in sizeInfoMap
+      ? sizeInfoMap[ownerState.size as keyof typeof sizeInfoMap]
+      : undefined;
+
   return {
+    padding: sizeInfo?.padding,
+
+    "& > *": {
+      fontSize: sizeInfo ? theme.typography.pxToRem(sizeInfo.font) : undefined,
+    },
+
     variants: [
       {
         props: (props) => props.variant === "contained",

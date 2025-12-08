@@ -208,6 +208,9 @@ export default function () {
           <AdaptiveIconButton size="large">
             <PlayArrowIcon />
           </AdaptiveIconButton>
+          <AdaptiveIconButton size="x-large">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
         </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>
@@ -228,7 +231,7 @@ import { AdaptiveIconButton } from "adaptive-material-ui/components/iconButton";
 
 export default function () {
   return (
-    <AdaptiveModeDemo adaptiveMode="desktop">
+    <AdaptiveModeDemo>
       <DemoList>
         <DemoListItem title="Color">
           <AdaptiveIconButton color="default" variant="contained">
@@ -263,6 +266,9 @@ export default function () {
           <AdaptiveIconButton size="large" variant="contained">
             <PlayArrowIcon />
           </AdaptiveIconButton>
+          <AdaptiveIconButton size="x-large" variant="contained">
+            <PlayArrowIcon />
+          </AdaptiveIconButton>
         </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>
@@ -288,6 +294,7 @@ Increases the border radius to make the button corners appear rounded
 
 [MUI Icon Button API](https://mui.com/material-ui/api/icon-button/) with the following changes:
 
+- The `size` prop also accepts a `x-large` value
 - iOS: `disableTouchRipple` defaults to `true`
 
 #### variant
