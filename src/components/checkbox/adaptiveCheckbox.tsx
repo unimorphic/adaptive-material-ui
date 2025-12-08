@@ -7,17 +7,21 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveCheckboxProps = CheckboxProps &
   StyledComponentProps<keyof AdaptiveCheckboxClasses>;
 
-export interface AdaptiveCheckboxClasses extends CheckboxClasses, IosClasses {}
+export interface AdaptiveCheckboxClasses
+  extends CheckboxClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveCheckboxClasses = {
   ...checkboxClasses,
-  ...generateUtilityClasses("AdaptiveCheckbox", ["ios"]),
+  ...generateUtilityClasses("AdaptiveCheckbox", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md
