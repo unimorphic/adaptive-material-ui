@@ -6,17 +6,21 @@ import {
   AdaptiveModeContext,
   useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveMenuProps = MenuProps &
   StyledComponentProps<keyof AdaptiveMenuClasses>;
 
-export interface AdaptiveMenuClasses extends MenuClasses, IosClasses {}
+export interface AdaptiveMenuClasses
+  extends MenuClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveMenuClasses = {
   ...menuClasses,
-  ...generateUtilityClasses("AdaptiveMenu", ["ios"]),
+  ...generateUtilityClasses("AdaptiveMenu", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md
