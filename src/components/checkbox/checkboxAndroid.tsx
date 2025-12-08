@@ -59,6 +59,10 @@ const StyledCheckbox = styled(Checkbox, {
     ),
     [`& .${svgIconClasses.root}`]: {
       fontSize: fontSize,
+
+      "& svg": {
+        display: "block",
+      },
     },
     [`&:not(.${checkboxClasses.checked}, .${checkboxClasses.indeterminate}) .${svgIconClasses.root}`]:
       {
