@@ -1,23 +1,10 @@
-import {
-  circularProgressClasses,
-  CircularProgressClasses,
-  CircularProgressProps,
-} from "@mui/material/CircularProgress";
-import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import { circularProgressClasses } from "@mui/material/CircularProgress";
+import { useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
-import { AndroidClasses } from "../../shared/android/androidClasses";
-import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-
-export type AdaptiveCircularProgressProps = CircularProgressProps &
-  StyledComponentProps<keyof AdaptiveCircularProgressClasses>;
-
-export interface AdaptiveCircularProgressClasses
-  extends CircularProgressClasses,
-    IosClasses,
-    AndroidClasses {}
+import { AdaptiveCircularProgressProps } from "./circularProgressProps";
 
 export const adaptiveCircularProgressClasses = {
   ...circularProgressClasses,

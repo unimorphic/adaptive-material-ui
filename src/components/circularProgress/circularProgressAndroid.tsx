@@ -1,11 +1,12 @@
 import CircularProgress, {
   circularProgressClasses,
-  CircularProgressProps,
 } from "@mui/material/CircularProgress";
 import { css, CSSProperties, keyframes, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import { CircularProgressAndroidAlt } from "./circularProgressAndroidAlt";
+import { AdaptiveCircularProgressProps } from "./circularProgressProps";
 
 const gap = 8;
 const length = 126;
@@ -41,7 +42,7 @@ const dashAnimation =
 const StyledCircularProgress = styled(CircularProgress, {
   name: "AdaptiveCircularProgress",
   slot: "android",
-})<{ ownerState: CircularProgressProps }>(({ theme }) => {
+})<{ ownerState: AdaptiveCircularProgressProps }>(({ theme }) => {
   return {
     [`& .${circularProgressClasses.circle}`]: {
       strokeLinecap: "round",
@@ -75,8 +76,15 @@ const StyledCircularProgress = styled(CircularProgress, {
   };
 });
 
-export function CircularProgressAndroid(props: CircularProgressProps) {
-  const { className, style, thickness = 3.6, value = 0, ...otherProps } = props;
+export function CircularProgressAndroid(props: AdaptiveCircularProgressProps) {
+  const {
+    className,
+    style,
+    thickness = 3.6,
+    value = 0,
+    variant,
+    ...otherProps
+  } = props;
 
   const composedClasses = composeClasses(
     { android: ["android"] },
@@ -85,7 +93,7 @@ export function CircularProgressAndroid(props: CircularProgressProps) {
   );
 
   let determinateStyles: CSSProperties = {};
-  if (props.variant === "determinate" && props.enableTrackSlot !== false) {
+  if (variant === "determinate" && props.enableTrackSlot !== false) {
     // https://github.com/mui/material-ui/blob/aa8cf28cb4b32fafd7c398f52dd8fde2a632f8e2/packages/mui-material/src/CircularProgress/CircularProgress.js#L220
     const circumference = 2 * Math.PI * ((size - thickness) / 2);
     const percent = (100 - value) / 100;
@@ -96,6 +104,10 @@ export function CircularProgressAndroid(props: CircularProgressProps) {
     };
   }
 
+  if (variant === "indeterminate-alt") {
+    return <CircularProgressAndroidAlt {...props} variant="indeterminate" />;
+  }
+
   return (
     <StyledCircularProgress
       className={clsx(composedClasses.android, className)}
@@ -104,6 +116,7 @@ export function CircularProgressAndroid(props: CircularProgressProps) {
       style={{ ...style, ...determinateStyles }}
       thickness={thickness}
       value={value}
+      variant={variant}
       {...otherProps}
     />
   );
