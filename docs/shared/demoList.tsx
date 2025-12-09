@@ -26,7 +26,7 @@ export function DemoListItem(props: {
 }) {
   return (
     <React.Fragment>
-      <Grid size={{ xs: 4, sm: 3 }}>
+      <Grid alignSelf="flex-start" size={{ xs: 4, sm: 3 }}>
         {props.titleHref ? (
           <Link href={props.titleHref}>{props.title}</Link>
         ) : (
