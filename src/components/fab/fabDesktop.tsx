@@ -1,9 +1,9 @@
 import { ExtendButtonBase } from "@mui/material/ButtonBase";
-import Fab, { FabProps, FabTypeMap } from "@mui/material/Fab";
+import { FabBase, FabBaseProps, FabBaseTypeMap } from "./fabBase";
 
-export const FabDesktop: ExtendButtonBase<FabTypeMap> = function <
+export const FabDesktop: ExtendButtonBase<FabBaseTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: FabProps<RootComponent, AdditionalProps>) {
-  return <Fab {...props} />;
+>(props: FabBaseProps<RootComponent, AdditionalProps>) {
+  return <FabBase {...props} />;
 };

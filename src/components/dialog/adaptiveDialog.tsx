@@ -6,6 +6,7 @@ import {
   AdaptiveModeContext,
   useAdaptiveMode,
 } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 import { DialogResponsiveProps } from "./dialogResponsive";
@@ -13,11 +14,14 @@ import { DialogResponsiveProps } from "./dialogResponsive";
 export type AdaptiveDialogProps = DialogResponsiveProps &
   StyledComponentProps<keyof AdaptiveDialogClasses>;
 
-export interface AdaptiveDialogClasses extends DialogClasses, IosClasses {}
+export interface AdaptiveDialogClasses
+  extends DialogClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveDialogClasses = {
   ...dialogClasses,
-  ...generateUtilityClasses("AdaptiveDialog", ["ios"]),
+  ...generateUtilityClasses("AdaptiveDialog", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

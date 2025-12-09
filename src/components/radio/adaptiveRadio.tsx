@@ -3,17 +3,21 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveRadioProps = RadioProps &
   StyledComponentProps<keyof AdaptiveRadioClasses>;
 
-export interface AdaptiveRadioClasses extends RadioClasses, IosClasses {}
+export interface AdaptiveRadioClasses
+  extends RadioClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveRadioClasses = {
   ...radioClasses,
-  ...generateUtilityClasses("AdaptiveRadio", ["ios"]),
+  ...generateUtilityClasses("AdaptiveRadio", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

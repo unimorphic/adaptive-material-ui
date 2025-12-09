@@ -58,6 +58,12 @@ const theme = createTheme({
         variant: "contained",
       },
       styleOverrides: {
+        android: {
+          outline: "1px solid blue",
+        },
+        ios: {
+          outline: "1px solid purple",
+        },
         root: {
           alignSelf: "flex-start",
         },
@@ -83,6 +89,9 @@ const theme = createTheme({
           [`&.${adaptiveButtonStackClasses.root}`]: {
             marginLeft: 10,
           },
+          [`& .${adaptiveButtonClasses.android}`]: {
+            marginBottom: 10,
+          },
           [`& .${adaptiveButtonClasses.ios}`]: {
             marginTop: 10,
           },
@@ -102,6 +111,9 @@ const theme = createTheme({
         defaultChecked: true,
       },
       styleOverrides: {
+        android: {
+          backgroundColor: "darkred",
+        },
         ios: {
           backgroundColor: "purple",
         },
@@ -115,6 +127,9 @@ const theme = createTheme({
         size: 50,
       },
       styleOverrides: {
+        android: {
+          color: "darkred",
+        },
         ios: {
           color: "pink",
         },
@@ -136,6 +151,11 @@ const theme = createTheme({
         hideBackdrop: true,
       },
       styleOverrides: {
+        android: {
+          [`& .${adaptiveDialogClasses.paper}`]: {
+            background: "darkgreen",
+          },
+        },
         ios: {
           [`& .${adaptiveDialogClasses.paper}`]: {
             background: "grey",
@@ -157,6 +177,9 @@ const theme = createTheme({
         root: {
           backgroundColor: "black",
 
+          [`.${adaptiveDialogClasses.android} &`]: {
+            background: "darkred",
+          },
           [`.${adaptiveDialogClasses.ios} &`]: {
             background: "blue",
           },
@@ -168,6 +191,9 @@ const theme = createTheme({
         color: "primary",
       },
       styleOverrides: {
+        android: {
+          color: "darkred",
+        },
         ios: {
           color: "blue",
         },
@@ -191,6 +217,9 @@ const theme = createTheme({
         size: "large",
       },
       styleOverrides: {
+        android: {
+          color: "purple",
+        },
         ios: {
           color: "blue",
         },
@@ -215,6 +244,9 @@ const theme = createTheme({
         variant: "determinate",
       },
       styleOverrides: {
+        android: {
+          backgroundColor: "purple",
+        },
         ios: {
           backgroundColor: "blue",
         },
@@ -238,6 +270,11 @@ const theme = createTheme({
         slotProps: { list: { disablePadding: true } },
       },
       styleOverrides: {
+        android: {
+          [`& .${adaptiveMenuClasses.paper}`]: {
+            backgroundColor: "darkred",
+          },
+        },
         ios: {
           [`& .${adaptiveMenuClasses.paper}`]: {
             backgroundColor: "grey",
@@ -253,6 +290,9 @@ const theme = createTheme({
         checked: true,
       },
       styleOverrides: {
+        android: {
+          backgroundColor: "darkred",
+        },
         ios: {
           backgroundColor: "blue",
         },
@@ -315,6 +355,9 @@ const theme = createTheme({
         marks: true,
       },
       styleOverrides: {
+        android: {
+          backgroundColor: "darkred",
+        },
         ios: {
           backgroundColor: "grey",
         },

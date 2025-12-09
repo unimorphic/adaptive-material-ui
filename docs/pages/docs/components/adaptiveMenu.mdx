@@ -5,7 +5,7 @@ import Links from "@/shared/links";
 ## Adaptiveness
 
 - Desktop: doesn't block interaction with other page elements when open
-- iOS: native styling
+- Android & iOS: native styling
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -44,7 +44,7 @@ export default function () {
           </ListItemIcon>
           <ListItemText>Cut</ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>
+        <MenuItem onClick={() => setAnchorEl(null)} selected>
           <ListItemIcon>
             <ContentCopyIcon fontSize="small" />
           </ListItemIcon>

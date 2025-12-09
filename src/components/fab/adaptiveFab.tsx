@@ -2,18 +2,15 @@ import {
   ExtendButtonBase,
   ExtendButtonBaseTypeMap,
 } from "@mui/material/ButtonBase";
-import {
-  fabClasses,
-  FabClasses,
-  FabOwnProps,
-  FabProps,
-} from "@mui/material/Fab";
+import { fabClasses, FabClasses, FabOwnProps } from "@mui/material/Fab";
 import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import { FabBaseOwnProps, FabBaseProps } from "./fabBase";
 
 export type AdaptiveFabOwnProps = StyledComponentProps<
   keyof AdaptiveFabClasses
@@ -23,7 +20,7 @@ export type AdaptiveFabTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = "button",
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & FabOwnProps & AdaptiveFabOwnProps;
+  props: AdditionalProps & FabOwnProps & FabBaseOwnProps & AdaptiveFabOwnProps;
   defaultComponent: RootComponent;
 }>;
 
@@ -31,13 +28,16 @@ export type AdaptiveFabProps<
   RootComponent extends
     React.ElementType = AdaptiveFabTypeMap["defaultComponent"],
   AdditionalProps = {},
-> = FabProps<RootComponent, AdditionalProps> & AdaptiveFabOwnProps;
+> = FabBaseProps<RootComponent, AdditionalProps> & AdaptiveFabOwnProps;
 
-export interface AdaptiveFabClasses extends FabClasses, IosClasses {}
+export interface AdaptiveFabClasses
+  extends FabClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveFabClasses = {
   ...fabClasses,
-  ...generateUtilityClasses("AdaptiveFab", ["ios"]),
+  ...generateUtilityClasses("AdaptiveFab", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

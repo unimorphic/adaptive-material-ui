@@ -20,6 +20,7 @@ import {
   ValidInclusiveBreakpoint,
 } from "../../shared/inclusiveToExclusiveBreakpoint";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import { slotShouldForwardProp } from "../../shared/slotShouldForwardProp";
 import { AdaptiveButtonProps } from "../button/adaptiveButton";
 import { createAdaptiveButtonStackStyles } from "../buttonStack/adaptiveButtonStack";
 
@@ -51,6 +52,7 @@ export const AdaptiveDialogActionsContext = createContext<
 const StyledDialogActions = styled(DialogActions, {
   name: "AdaptiveDialogActions",
   slot: "root",
+  shouldForwardProp: slotShouldForwardProp,
 })<{
   ownerState: { stretchBreakpointExclusive: Breakpoint | number };
 }>(({ theme, ownerState }) => ({

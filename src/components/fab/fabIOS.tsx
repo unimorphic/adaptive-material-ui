@@ -1,14 +1,15 @@
 import { ExtendButtonBase } from "@mui/material/ButtonBase";
-import Fab, { fabClasses, FabProps, FabTypeMap } from "@mui/material/Fab";
+import { fabClasses } from "@mui/material/Fab";
 import { alpha, styled } from "@mui/material/styles";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
+import { FabBase, FabBaseProps, FabBaseTypeMap } from "./fabBase";
 
-const StyledFab = styled(Fab, {
+const StyledFab = styled(FabBase, {
   name: "AdaptiveFab",
   slot: "ios",
-})<{ ownerState: FabProps }>(({ ownerState, theme }) => {
+})<{ ownerState: FabBaseProps }>(({ ownerState, theme }) => {
   const currentColor =
     !ownerState.color ||
     ownerState.color === "default" ||
@@ -17,15 +18,18 @@ const StyledFab = styled(Fab, {
       : (theme.vars ?? theme).palette[ownerState.color].main;
   const currentColorTransparent = alpha(currentColor, 0.7);
 
-  const size =
-    ownerState.variant !== "extended" && ownerState.size
-      ? { large: 52, medium: 44, small: 36 }[ownerState.size]
-      : undefined;
+  const size = {
+    "xx-large": 92,
+    "x-large": 76,
+    large: 52,
+    medium: 44,
+    small: 36,
+  }[ownerState.size ?? "large"];
 
   return {
     backgroundColor: currentColor,
     height: size,
-    width: size,
+    width: ownerState.variant !== "extended" ? size : undefined,
 
     ...theme.applyStyles("dark", {
       backgroundColor: currentColorTransparent,
@@ -41,15 +45,15 @@ const StyledFab = styled(Fab, {
   };
 });
 
-export const FabIOS: ExtendButtonBase<FabTypeMap> = function <
+export const FabIOS: ExtendButtonBase<FabBaseTypeMap> = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: FabProps<RootComponent, AdditionalProps>) {
-  const { className, size = "medium", ...otherProps } = props;
+>(props: FabBaseProps<RootComponent, AdditionalProps>) {
+  const { className, ...otherProps } = props;
 
   const composedClasses = composeClasses(
     { ios: ["ios"] },
-    (s) => generateUtilityClass("AdaptiveButton", s),
+    (s) => generateUtilityClass("AdaptiveFab", s),
     props.classes,
   );
 
@@ -58,7 +62,6 @@ export const FabIOS: ExtendButtonBase<FabTypeMap> = function <
       className={clsx(composedClasses.ios, className)}
       disableTouchRipple
       ownerState={props}
-      size={size}
       {...otherProps}
     />
   );

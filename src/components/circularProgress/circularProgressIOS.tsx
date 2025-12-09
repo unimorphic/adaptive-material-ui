@@ -1,15 +1,15 @@
-import { CircularProgressProps } from "@mui/material/CircularProgress";
 import { css, keyframes, styled } from "@mui/material/styles";
 import capitalize from "@mui/utils/capitalize";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
 import { clsx } from "clsx";
 import { Ref } from "react";
+import { AdaptiveCircularProgressProps } from "./circularProgressProps";
 
 interface OwnerState {
-  color: NonNullable<CircularProgressProps["color"]>;
-  size: NonNullable<CircularProgressProps["size"]>;
-  variant: NonNullable<CircularProgressProps["variant"]>;
+  color: NonNullable<AdaptiveCircularProgressProps["color"]>;
+  size: NonNullable<AdaptiveCircularProgressProps["size"]>;
+  variant: NonNullable<AdaptiveCircularProgressProps["variant"]>;
 }
 
 const rotateKeyframe = keyframes`
@@ -95,10 +95,7 @@ function Spinner(props: { className?: string; percent?: number }) {
 const StyledSpinner = styled(Spinner, {
   name: "MuiCircularProgress",
   slot: "svg",
-})({
-  height: "100%",
-  width: "100%",
-});
+})({ height: "100%", width: "100%" });
 
 const StyledMuiRoot = styled("div", {
   name: "MuiCircularProgress",
@@ -135,7 +132,7 @@ const StyledRoot = styled(StyledMuiRoot, {
   ],
 }));
 
-export function CircularProgressIOS(props: CircularProgressProps) {
+export function CircularProgressIOS(props: AdaptiveCircularProgressProps) {
   const {
     className,
     color = "primary",

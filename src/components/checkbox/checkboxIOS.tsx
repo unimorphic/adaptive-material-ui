@@ -21,12 +21,15 @@ const StyledCheckbox = styled(Checkbox, {
     ownerState.color === "default"
       ? (theme.vars ?? theme).palette.text.secondary
       : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].main;
+  const fontSize = { small: "21px", medium: "24px", large: "40px" }[
+    ownerState.size ?? "medium"
+  ];
 
   return {
     [`& .${svgIconClasses.root}`]: {
       border: "1px solid currentColor",
       borderRadius: "50%",
-      fontSize: ownerState.size === "small" ? "21px" : "24px",
+      fontSize: fontSize,
       height: "0.92em",
       width: "0.92em",
 

@@ -4,7 +4,7 @@ import Links from "@/shared/links";
 
 ## Adaptiveness
 
-- iOS: native styling
+- Android & iOS: native styling
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -44,17 +44,34 @@ export default function () {
         <DemoListItem title="Discrete">
           <AdaptiveSlider defaultValue={30} marks shiftStep={30} step={10} />
         </DemoListItem>
+        <DemoListItem title="Range">
+          <AdaptiveSlider
+            defaultValue={[30, 50, 70]}
+            valueLabelDisplay="auto"
+          />
+        </DemoListItem>
+        <DemoListItem title="Inverted Track">
+          <AdaptiveSlider defaultValue={30} track="inverted" />
+        </DemoListItem>
+        <DemoListItem title="No Track">
+          <AdaptiveSlider defaultValue={30} track={false} />
+        </DemoListItem>
         <DemoListItem title="Disabled">
           <AdaptiveSlider defaultValue={30} disabled />
         </DemoListItem>
         <DemoListItem title="Vertical">
           <AdaptiveSlider
-            defaultValue={40}
+            defaultValue={30}
             marks
             orientation="vertical"
-            shiftStep={40}
-            step={20}
-            sx={{ height: 100 }}
+            shiftStep={30}
+            step={10}
+            sx={{ height: 200 }}
+          />
+          <AdaptiveSlider
+            defaultValue={[30, 80]}
+            orientation="vertical"
+            sx={{ height: 200 }}
           />
         </DemoListItem>
       </DemoList>
@@ -65,7 +82,23 @@ export default function () {
 
 ## API
 
-[MUI Slider API](https://mui.com/material-ui/api/slider/)
+[MUI Slider API](https://mui.com/material-ui/api/slider/) with the following changes:
+
+- Android: `slotProps.rail.children` & `slotProps.track.children` default to background elements
+
+### disableFocusRipple
+
+If `true`, the keyboard focus ripple is disabled
+
+- Type: `boolean`
+- Default: `false`
+
+### disableRipple
+
+If `true`, the ripple effect is disabled
+
+- Type: `boolean`
+- Default: `false`
 
 ## Links
 

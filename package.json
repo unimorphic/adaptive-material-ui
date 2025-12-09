@@ -2,7 +2,7 @@
   "name": "adaptive-material-ui",
   "description": "Collection of React components based off the MUI library which adapt to the current device",
   "license": "MIT",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "homepage": "https://unimorphic.github.io/adaptive-material-ui/",
   "keywords": [
     "adaptive",
@@ -88,6 +88,7 @@
   },
   "devDependencies": {
     "@eslint/js": "9.38.0",
+    "@mui/types": "7.4.7",
     "@playwright/experimental-ct-react": "1.56.1",
     "@rsbuild/plugin-react": "1.4.1",
     "@rslib/core": "0.16.1",

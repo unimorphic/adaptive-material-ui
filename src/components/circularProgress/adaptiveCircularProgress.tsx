@@ -1,25 +1,14 @@
-import {
-  circularProgressClasses,
-  CircularProgressClasses,
-  CircularProgressProps,
-} from "@mui/material/CircularProgress";
-import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
+import { circularProgressClasses } from "@mui/material/CircularProgress";
+import { useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
-import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
-
-export type AdaptiveCircularProgressProps = CircularProgressProps &
-  StyledComponentProps<keyof AdaptiveCircularProgressClasses>;
-
-export interface AdaptiveCircularProgressClasses
-  extends CircularProgressClasses,
-    IosClasses {}
+import { AdaptiveCircularProgressProps } from "./circularProgressProps";
 
 export const adaptiveCircularProgressClasses = {
   ...circularProgressClasses,
-  ...generateUtilityClasses("AdaptiveCircularProgress", ["ios"]),
+  ...generateUtilityClasses("AdaptiveCircularProgress", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

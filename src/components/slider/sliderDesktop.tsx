@@ -1,8 +1,11 @@
-import Slider, { SliderProps, SliderType } from "@mui/material/Slider";
+import Slider from "@mui/material/Slider";
+import { AdaptiveSliderProps, AdaptiveSliderType } from "./sliderProps";
 
-export const SliderDesktop: SliderType = function <
+export const SliderDesktop: AdaptiveSliderType = function <
   RootComponent extends React.ElementType,
   AdditionalProps = {},
->(props: SliderProps<RootComponent, AdditionalProps>) {
-  return <Slider {...props} />;
+>(props: AdaptiveSliderProps<RootComponent, AdditionalProps>) {
+  const { disableFocusRipple, disableRipple, ...otherProps } = props;
+
+  return <Slider {...otherProps} />;
 };

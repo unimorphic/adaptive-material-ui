@@ -4,7 +4,7 @@ import Links from "@/shared/links";
 
 ## Adaptiveness
 
-- iOS: native styling
+- Android & iOS: native styling
 
 ```tsx
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
@@ -45,6 +45,7 @@ export default function () {
         <DemoListItem title="Size">
           <AdaptiveCheckbox defaultChecked size="small" />
           <AdaptiveCheckbox defaultChecked size="medium" />
+          <AdaptiveCheckbox defaultChecked size="large" />
           <AdaptiveCheckbox
             defaultChecked
             sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
@@ -55,6 +56,19 @@ export default function () {
             checked={count === 0}
             indeterminate={count === 1}
             onChange={() => setCount((v) => (v >= 2 ? 0 : v + 1))}
+            size="small"
+          />
+          <AdaptiveCheckbox
+            checked={count === 0}
+            indeterminate={count === 1}
+            onChange={() => setCount((v) => (v >= 2 ? 0 : v + 1))}
+            size="medium"
+          />
+          <AdaptiveCheckbox
+            checked={count === 0}
+            indeterminate={count === 1}
+            onChange={() => setCount((v) => (v >= 2 ? 0 : v + 1))}
+            size="large"
           />
         </DemoListItem>
         <DemoListItem title="Disabled">

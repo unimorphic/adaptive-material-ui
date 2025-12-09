@@ -19,7 +19,7 @@ import {
 import {
   AdaptiveCircularProgressClasses,
   AdaptiveCircularProgressProps,
-} from "../components/circularProgress/adaptiveCircularProgress";
+} from "../components/circularProgress/circularProgressProps";
 import {
   AdaptiveDialogClasses,
   AdaptiveDialogProps,
@@ -71,7 +71,7 @@ import {
 import {
   AdaptiveSliderClasses,
   AdaptiveSliderProps,
-} from "../components/slider/adaptiveSlider";
+} from "../components/slider/sliderProps";
 import {
   AdaptiveSnackbarClasses,
   AdaptiveSnackbarProps,

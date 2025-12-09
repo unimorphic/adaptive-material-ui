@@ -22,6 +22,7 @@ import {
   ValidInclusiveBreakpoint,
 } from "../../shared/inclusiveToExclusiveBreakpoint";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
+import { slotShouldForwardProp } from "../../shared/slotShouldForwardProp";
 
 export type AdaptiveButtonStackOwnProps = StyledComponentProps<
   keyof AdaptiveButtonStackClasses
@@ -108,6 +109,7 @@ export function createAdaptiveButtonStackStyles(
 const StyledStack = styled(Stack, {
   name: "AdaptiveButtonStack",
   slot: "root",
+  shouldForwardProp: slotShouldForwardProp,
 })<{
   ownerState: { stretchBreakpointExclusive: Breakpoint | number } & Omit<
     AdaptiveButtonStackProps,

@@ -15,9 +15,7 @@ import { iosLiquidGlass } from "../../shared/ios/iosLiquidGlass";
 const StyledMenu = styled(Menu, {
   name: "AdaptiveMenu",
   slot: "ios",
-})<{
-  ownerState: MenuProps;
-}>(({ theme }) => ({
+})<{ ownerState: MenuProps }>(({ theme }) => ({
   [`& .${backdropClasses.root}`]: iosLiquidGlass.backdrop(theme),
 
   [`& .${menuClasses.paper}`]: {
