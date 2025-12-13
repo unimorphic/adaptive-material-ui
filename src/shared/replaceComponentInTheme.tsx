@@ -21,7 +21,7 @@ export function ReplaceComponentInTheme(props: ReplaceComponentInThemeProps) {
 
   return (
     <ThemeProvider
-      theme={{
+      theme={() => ({
         ...outerTheme,
         components: {
           ...outerTheme.components,
@@ -30,7 +30,7 @@ export function ReplaceComponentInTheme(props: ReplaceComponentInThemeProps) {
             defaultProps: {},
           },
         },
-      }}
+      })}
     >
       {props.children}
     </ThemeProvider>
