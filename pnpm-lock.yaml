@@ -14,6 +14,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.3.0
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0)
+      '@material/material-color-utilities':
+        specifier: 0.3.0
+        version: 0.3.0
       '@mui/material':
         specifier: ^7.0.0
         version: 7.3.4(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -161,13 +164,13 @@ importers:
         specifier: 7.4.4
         version: 7.4.4(@capacitor/core@7.4.4)
       '@capacitor/camera':
-        specifier: latest
+        specifier: 7.0.2
         version: 7.0.2(@capacitor/core@7.4.4)
       '@capacitor/core':
-        specifier: latest
+        specifier: 7.4.4
         version: 7.4.4
       '@capacitor/splash-screen':
-        specifier: latest
+        specifier: 7.0.3
         version: 7.0.3(@capacitor/core@7.4.4)
       '@emotion/react':
         specifier: 11.14.0
@@ -192,7 +195,7 @@ importers:
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@capacitor/cli':
-        specifier: latest
+        specifier: 7.4.4
         version: 7.4.4
       '@vitejs/plugin-react':
         specifier: 5.1.0
@@ -1270,6 +1273,9 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@material/material-color-utilities@0.3.0':
+    resolution: {integrity: sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g==}
 
   '@mdx-js/loader@2.3.0':
     resolution: {integrity: sha512-IqsscXh7Q3Rzb+f5DXYk0HU71PK+WuFsEhf+mSV3fOhpLcEpgsHvTQ2h0T6TlZ5gHOaBeFjkXwB52by7ypMyNg==}
@@ -6842,6 +6848,8 @@ snapshots:
       '@jsonjoy.com/buffers': 1.2.1(tslib@2.8.1)
       '@jsonjoy.com/codegen': 1.0.0(tslib@2.8.1)
       tslib: 2.8.1
+
+  '@material/material-color-utilities@0.3.0': {}
 
   '@mdx-js/loader@2.3.0(webpack@5.102.1)':
     dependencies:
