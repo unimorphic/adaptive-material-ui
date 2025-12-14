@@ -74,7 +74,7 @@ const StyledOutlinedInput = styled(OutlinedInput, {
   slot: "android",
 })<{ ownerState: OutlinedInputProps }>(({ theme, ownerState }) => ({
   caretColor: getCaretColor(theme, ownerState),
-  
+
   [`& .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: theme.palette.dividerSecondary,
   },

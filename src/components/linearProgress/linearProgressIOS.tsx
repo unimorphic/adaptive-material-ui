@@ -14,13 +14,9 @@ const StyledLinearProgress = styled(LinearProgress, {
   name: "AdaptiveLinearProgress",
   slot: "ios",
 })<{ ownerState: LinearProgressProps }>(({ theme }) => ({
-  backgroundColor: "rgba(120, 120, 120, 0.2)",
+  backgroundColor: theme.palette.background.container.highest,
   borderRadius: 3,
   height: 6,
-
-  ...theme.applyStyles("dark", {
-    backgroundColor: "rgba(120, 120, 128, 0.36)",
-  }),
 
   "&:before": {
     display: "none",
