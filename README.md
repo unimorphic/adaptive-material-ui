@@ -1,14 +1,14 @@
 # Adaptive Material UI
 
 This library is a collection of React components based off the [MUI library](https://mui.com/)
-which adapt to the current device. See more details in the [overview](https://unimorphic.github.io/adaptive-material-ui/docs/index.html)
+which adapt to the current device. See more details in the [docs](https://unimorphic.github.io/adaptive-material-ui/)
 
 > [!WARNING]
 > This library is currently in beta, there may be breaking changes between versions
 
 ## Getting started
 
-See the [documentation site](https://unimorphic.github.io/adaptive-material-ui/docs/gettingStarted.html)
+See the [docs](https://unimorphic.github.io/adaptive-material-ui/docs/gettingStarted.html)
 
 ## Contributing
 
