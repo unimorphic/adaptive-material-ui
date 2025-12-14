@@ -18,12 +18,17 @@ const StyledDialogResponsive = styled(DialogResponsive, {
   const edgePadding = theme.spacing(3);
 
   return {
-    [`& .${dialogClasses.paperFullScreen} .${dialogTitleClasses.root}`]: {
-      fontSize: theme.typography.pxToRem(22),
-      fontWeight: 400,
-      lineHeight: theme.typography.pxToRem(28),
+    [`& .${dialogClasses.paperFullScreen}`]: {
+      backgroundColor: theme.palette.background.container.main,
+
+      [`.${dialogTitleClasses.root}`]: {
+        fontSize: theme.typography.pxToRem(22),
+        fontWeight: 400,
+        lineHeight: theme.typography.pxToRem(28),
+      },
     },
     [`& .${dialogClasses.paper}:not(.${dialogClasses.paperFullScreen})`]: {
+      backgroundColor: theme.palette.background.container.high,
       borderRadius: 28,
       maxWidth: 560,
       minWidth: 280,

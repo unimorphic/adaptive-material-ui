@@ -42,10 +42,11 @@ const StyledCheckbox = styled(Checkbox, {
   name: "AdaptiveCheckbox",
   slot: "android",
 })<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => {
-  const currentColor =
+  const markColor =
     ownerState.color === "default"
-      ? (theme.vars ?? theme).palette.text.secondary
-      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].main;
+      ? (theme.vars ?? theme).palette.background.default
+      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"]
+          .contrastText;
   const fontSize = { small: "1.25rem", medium: "1.5rem", large: "2.1875rem" }[
     ownerState.size ?? "medium"
   ];
@@ -86,7 +87,7 @@ const StyledCheckbox = styled(Checkbox, {
         borderRadius: 2,
 
         "& .mark": {
-          color: theme.palette.getContrastText(currentColor),
+          color: markColor,
           transform: "scaleY(-1) translate(7px, -14px) rotate(45deg)",
 
           "&.short": {

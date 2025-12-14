@@ -16,11 +16,6 @@ interface MaterialTheme {
   secondaryContainer: string;
   onSecondaryContainer: string;
 
-  tertiary: string;
-  onTertiary: string;
-  tertiaryContainer: string;
-  onTertiaryContainer: string;
-
   error: string;
   onError: string;
   errorContainer: string;
@@ -28,7 +23,6 @@ interface MaterialTheme {
 
   surface: string;
   onSurface: string;
-  surfaceVariant: string;
   onSurfaceVariant: string;
 
   outline: string;
@@ -36,12 +30,17 @@ interface MaterialTheme {
 
   inverseSurface: string;
   inverseOnSurface: string;
-  inversePrimary: string;
+
+  surfaceContainerLowest: string;
+  surfaceContainerLow: string;
+  surfaceContainer: string;
+  surfaceContainerHigh: string;
+  surfaceContainerHighest: string;
 }
 
 function convertColor(
   theme: MaterialTheme,
-  color: "Error" | "Primary" | "Secondary" | "Tertiary",
+  color: "Error" | "Primary" | "Secondary",
 ) {
   const colorLowercase = color.toLowerCase() as Lowercase<typeof color>;
 
@@ -58,19 +57,25 @@ function convertColor(
 function convertJson(theme: MaterialTheme) {
   const palette: PaletteOptions = {
     background: {
+      container: {
+        lowest: theme.surfaceContainerLowest,
+        low: theme.surfaceContainerLow,
+        main: theme.surfaceContainer,
+        high: theme.surfaceContainerHigh,
+        highest: theme.surfaceContainerHighest,
+      },
       default: theme.surface,
-      paper: theme.surfaceVariant,
+      paper: theme.surfaceContainerHighest,
     },
     divider: theme.outlineVariant,
+    dividerSecondary: theme.outline,
     error: convertColor(theme, "Error"),
     inverse: {
       background: theme.inverseSurface,
       contrastText: theme.inverseOnSurface,
-      primary: theme.inversePrimary,
     },
     primary: convertColor(theme, "Primary"),
     secondary: convertColor(theme, "Secondary"),
-    tertiary: convertColor(theme, "Tertiary"),
     text: {
       primary: theme.onSurface,
       secondary: theme.onSurfaceVariant,

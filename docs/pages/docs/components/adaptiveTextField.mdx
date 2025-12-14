@@ -4,7 +4,7 @@ import Links from "@/shared/links";
 
 ## Adaptiveness
 
-- iOS: native styling
+- Android & iOS: native styling
 - `AdaptiveSelect` behavior when `select={true}`
 
 ```tsx
@@ -48,6 +48,30 @@ export default function () {
             variant="filled"
             sx={{ width: 100 }}
           />
+        </DemoListItem>
+        <DemoListItem title="Color">
+          <AdaptiveTextField
+            label="Primary"
+            color="primary"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            label="Secondary"
+            color="secondary"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField label="Info" color="info" sx={{ width: 100 }} />
+          <AdaptiveTextField
+            label="Success"
+            color="success"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField
+            label="Warning"
+            color="warning"
+            sx={{ width: 100 }}
+          />
+          <AdaptiveTextField label="Error" color="error" sx={{ width: 100 }} />
         </DemoListItem>
         <DemoListItem title="Error">
           <AdaptiveTextField

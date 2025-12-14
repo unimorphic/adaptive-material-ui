@@ -7,17 +7,21 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveSnackbarProps = SnackbarProps &
   StyledComponentProps<keyof AdaptiveSnackbarClasses>;
 
-export interface AdaptiveSnackbarClasses extends SnackbarClasses, IosClasses {}
+export interface AdaptiveSnackbarClasses
+  extends SnackbarClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveSnackbarClasses = {
   ...snackbarClasses,
-  ...generateUtilityClasses("AdaptiveSnackbar", ["ios"]),
+  ...generateUtilityClasses("AdaptiveSnackbar", ["android", "ios"]),
 };
 
 // See docs\pages\docs\codeSplitting.md

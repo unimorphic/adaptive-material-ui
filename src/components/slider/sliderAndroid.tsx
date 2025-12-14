@@ -186,14 +186,10 @@ const StyledSlider = styled(Slider, {
     },
 
     [`& .${sliderClasses.valueLabel}`]: {
-      backgroundColor: theme.palette.common.black,
+      backgroundColor: theme.palette.inverse.background,
       borderRadius: "50%",
-      color: theme.palette.getContrastText(theme.palette.common.black),
+      color: theme.palette.inverse.contrastText,
       padding: "0.8rem 1rem",
-      ...theme.applyStyles("dark", {
-        backgroundColor: theme.palette.grey[300],
-        color: theme.palette.getContrastText(theme.palette.grey[300]),
-      }),
 
       "&:before": {
         display: "none",

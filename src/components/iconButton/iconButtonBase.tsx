@@ -42,24 +42,6 @@ export type IconButtonBaseProps<
 const StyledIconButton = styled(IconButton)<{
   ownerState: IconButtonBaseProps;
 }>(({ ownerState, theme }) => {
-  const backgroundColor =
-    ownerState.color === "inherit"
-      ? theme.palette.mode === "light"
-        ? theme.palette.grey[300]
-        : theme.palette.grey[800]
-      : !ownerState.color || ownerState.color === "default"
-        ? (theme.vars ?? theme).palette.text.primary
-        : (theme.vars ?? theme).palette[ownerState.color].main;
-
-  const hoverColor =
-    ownerState.color === "inherit"
-      ? theme.palette.mode === "light"
-        ? theme.palette.grey.A100
-        : theme.palette.grey[700]
-      : !ownerState.color || ownerState.color === "default"
-        ? (theme.vars ?? theme).palette.text.secondary
-        : (theme.vars ?? theme).palette[ownerState.color].dark;
-
   const sizeInfoMap = {
     "x-large": { font: 32, padding: 28 },
   };
@@ -67,6 +49,27 @@ const StyledIconButton = styled(IconButton)<{
     ownerState.size && ownerState.size in sizeInfoMap
       ? sizeInfoMap[ownerState.size as keyof typeof sizeInfoMap]
       : undefined;
+
+  const containedColors =
+    ownerState.color === "inherit"
+      ? theme.palette.mode === "light"
+        ? {
+            contrastText: "inherit",
+            dark: theme.palette.grey.A100,
+            main: theme.palette.grey[300],
+          }
+        : {
+            contrastText: "inherit",
+            dark: theme.palette.grey[700],
+            main: theme.palette.grey[800],
+          }
+      : !ownerState.color || ownerState.color === "default"
+        ? {
+            contrastText: (theme.vars ?? theme).palette.background.default,
+            dark: (theme.vars ?? theme).palette.text.secondary,
+            main: (theme.vars ?? theme).palette.text.primary,
+          }
+        : (theme.vars ?? theme).palette[ownerState.color];
 
   return {
     padding: sizeInfo?.padding,
@@ -79,14 +82,11 @@ const StyledIconButton = styled(IconButton)<{
       {
         props: (props) => props.variant === "contained",
         style: {
-          color:
-            ownerState.color === "inherit"
-              ? "inherit"
-              : theme.palette.getContrastText(backgroundColor),
-          backgroundColor: backgroundColor,
+          backgroundColor: containedColors.main,
+          color: containedColors.contrastText,
 
           "&:hover": {
-            backgroundColor: hoverColor,
+            backgroundColor: containedColors.dark,
           },
         },
       },

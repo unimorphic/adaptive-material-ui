@@ -59,8 +59,12 @@ export default function () {
           />
         </DemoListItem>
         <DemoListItem title="Disabled">
-          <AdaptiveSwitch defaultChecked disabled />
-          <AdaptiveSwitch disabled />
+          <AdaptiveSwitch
+            defaultChecked
+            disabled
+            thumbIconChecked={<CheckIcon />}
+          />
+          <AdaptiveSwitch disabled thumbIcon={<CloseIcon />} />
         </DemoListItem>
       </DemoList>
     </AdaptiveModeDemo>

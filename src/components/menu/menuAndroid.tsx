@@ -16,6 +16,7 @@ const StyledMenu = styled(Menu, {
   slot: "android",
 })<{ ownerState: MenuProps }>(({ theme }) => ({
   [`& .${menuClasses.paper}`]: {
+    backgroundColor: theme.palette.background.container.low,
     borderRadius: 16,
   },
   [`& .${menuClasses.list}`]: {

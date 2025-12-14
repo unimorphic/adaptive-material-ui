@@ -19,15 +19,29 @@ export interface SwitchBaseProps extends SwitchProps {
 export function getSwitchColor(theme: Theme, color: SwitchProps["color"]) {
   return color === "default"
     ? getSwitchDefaultColor(theme)
-    : (theme.vars ?? theme).palette[color ?? "primary"].main;
+    : (theme.vars ?? theme).palette[color ?? "primary"];
 }
 
 function getSwitchDefaultColor(theme: Theme) {
-  return theme.vars
+  const main = theme.vars
     ? theme.vars.palette.Switch.defaultColor
     : theme.palette.mode === "light"
       ? theme.palette.common.white
       : theme.palette.grey[300];
+
+  return theme.palette.mode === "light"
+    ? {
+        container: theme.palette.grey[200],
+        containerContrastText: main,
+        contrastText: theme.palette.common.white,
+        main: main,
+      }
+    : {
+        container: theme.palette.grey[500],
+        containerContrastText: main,
+        contrastText: theme.palette.common.black,
+        main: main,
+      };
 }
 
 const StyledSwitch = styled(Switch, {
@@ -44,7 +58,7 @@ const StyledSwitch = styled(Switch, {
 
   [`& .${adaptiveSwitchClasses.thumbIcon}, & .${adaptiveSwitchClasses.thumbIconChecked}`]:
     {
-      color: theme.palette.getContrastText(getSwitchDefaultColor(theme)),
+      color: getSwitchDefaultColor(theme).contrastText,
       display: "flex",
       minWidth: 0,
       transition: theme.transitions.create(["opacity"], {
@@ -60,9 +74,7 @@ const StyledSwitch = styled(Switch, {
     opacity: 1,
   },
   [`& .${adaptiveSwitchClasses.thumbIconChecked}`]: {
-    color: theme.palette.getContrastText(
-      getSwitchColor(theme, ownerState.color),
-    ),
+    color: getSwitchColor(theme, ownerState.color).contrastText,
     opacity: 0,
     visibility: "hidden",
     width: 0,

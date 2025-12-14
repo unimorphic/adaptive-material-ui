@@ -13,17 +13,21 @@ import { StyledComponentProps, useThemeProps } from "@mui/material/styles";
 import generateUtilityClasses from "@mui/utils/generateUtilityClasses";
 import { lazy, ReactNode } from "react";
 import { useAdaptiveMode } from "../../adaptiveMode/adaptiveMode";
+import { AndroidClasses } from "../../shared/android/androidClasses";
 import { IosClasses } from "../../shared/ios/iosClasses";
 import { ReplaceComponentInTheme } from "../../shared/replaceComponentInTheme";
 
 export type AdaptiveInputProps = InputProps &
   StyledComponentProps<keyof AdaptiveInputClasses>;
 
-export interface AdaptiveInputClasses extends InputClasses, IosClasses {}
+export interface AdaptiveInputClasses
+  extends InputClasses,
+    IosClasses,
+    AndroidClasses {}
 
 export const adaptiveInputClasses = {
   ...inputClasses,
-  ...generateUtilityClasses("AdaptiveInput", ["ios"]),
+  ...generateUtilityClasses("AdaptiveInput", ["android", "ios"]),
 };
 
 export type AdaptiveFilledInputProps = FilledInputProps &

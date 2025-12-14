@@ -1,7 +1,11 @@
 import {
   argbFromHex,
   customColor,
+  DynamicColor,
+  Hct,
   hexFromArgb,
+  MaterialDynamicColors,
+  SchemeContent,
 } from "@material/material-color-utilities";
 import {
   ColorSystemOptions,
@@ -58,30 +62,67 @@ function invertHexColor(hex: string) {
   );
 }
 
+function getSchemeColor(
+  scheme: SchemeContent,
+  name: keyof typeof MaterialDynamicColors,
+) {
+  return hexFromArgb(
+    (MaterialDynamicColors[name] as DynamicColor).getArgb(scheme),
+  );
+}
+
 function addMissingColors(palette: PaletteOptions | undefined, theme: Theme) {
   if (!palette) {
     return;
   }
 
-  palette.tertiary ??= theme.palette.augmentColor({
-    color: { main: "#7D5260" },
-    name: "tertiary",
-  });
-
   if (!palette.inverse) {
-    const background = palette.background?.default
+    let background = palette.background?.default
       ? convertColorToHex(palette.background.default)
       : null;
+    background = background
+      ? invertHexColor(background)
+      : palette.mode === "dark"
+        ? theme.palette.common.white
+        : theme.palette.common.black;
 
     palette.inverse = {
-      background: background
-        ? invertHexColor(background)
-        : theme.palette.common.black,
-      contrastText: background
-        ? theme.palette.getContrastText(background)
-        : theme.palette.common.white,
-      primary: theme.palette.primary.main,
+      background: background,
+      contrastText: theme.palette.getContrastText(background),
     };
+  }
+
+  if (
+    palette.background &&
+    palette.primary &&
+    "main" in palette.primary &&
+    (!palette.background.container || !palette.dividerSecondary)
+  ) {
+    try {
+      const scheme = new SchemeContent(
+        Hct.fromInt(
+          argbFromHex(
+            convertColorToHex(palette.primary.main) ?? "unknown-color-type",
+          ),
+        ),
+        palette.mode === "dark",
+        0,
+      );
+
+      palette.background.container ??= {
+        lowest: getSchemeColor(scheme, "surfaceContainerLowest"),
+        low: getSchemeColor(scheme, "surfaceContainerLow"),
+        main: getSchemeColor(scheme, "surfaceContainer"),
+        high: getSchemeColor(scheme, "surfaceContainerHigh"),
+        highest: getSchemeColor(scheme, "surfaceContainerHighest"),
+      };
+      palette.dividerSecondary ??= getSchemeColor(scheme, "outline");
+    } catch (ex) {
+      console.log(ex);
+      console.warn(
+        `Could not set the palette.background.container/palette.dividerSecondary colors. Value ${palette.primary.main} is in a unsupported format, set the colors manually`,
+      );
+    }
   }
 
   for (const key of Object.keys(palette)) {

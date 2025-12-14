@@ -3,7 +3,6 @@ import {
   ComponentsProps,
   ComponentsVariants,
   Theme as MuiTheme,
-  PaletteColorOptions,
 } from "@mui/material/styles";
 import {
   AdaptiveButtonClasses,
@@ -251,10 +250,18 @@ declare module "@mui/material/styles" {
 
   interface Components extends AdaptiveComponents {}
 
+  interface TypeBackground {
+    container: {
+      lowest: string;
+      low: string;
+      main: string;
+      high: string;
+      highest: string;
+    };
+  }
   interface InverseColor {
     background: string;
     contrastText: string;
-    primary: string;
   }
   interface PaletteColor {
     container: string;
@@ -265,11 +272,11 @@ declare module "@mui/material/styles" {
     containerContrastText?: string;
   }
   interface Palette {
+    dividerSecondary: string;
     inverse: InverseColor;
-    tertiary: PaletteColor;
   }
   interface PaletteOptions {
+    dividerSecondary?: string;
     inverse?: InverseColor;
-    tertiary?: PaletteColorOptions;
   }
 }
