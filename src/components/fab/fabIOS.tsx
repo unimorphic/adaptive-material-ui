@@ -14,8 +14,8 @@ const StyledFab = styled(FabBase, {
     !ownerState.color ||
     ownerState.color === "default" ||
     ownerState.color === "inherit"
-      ? (theme.vars ?? theme).palette.grey[300]
-      : (theme.vars ?? theme).palette[ownerState.color].main;
+      ? theme.palette.grey[300]
+      : theme.palette[ownerState.color].main;
   const currentColorTransparent = alpha(currentColor, 0.7);
 
   const size = {
