@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/unimorphic/adaptive-material-ui.git"
+    "url": "git+https://github.com/unimorphic/adaptive-material-ui.git"
   },
   "private": true,
   "type": "commonjs",
@@ -79,7 +79,7 @@
     "format-check": "prettier --check .",
     "lint": "eslint . && tsc && cd docs && tsc",
     "pack": "npm run build && node scripts/preparePackage.cjs && cd dist && npm pack",
-    "publish": "npm run build && node scripts/preparePackage.cjs && cd dist && npm publish",
+    "publish": "npm run build && node scripts/preparePackage.cjs && cd dist && npm publish --tag latest",
     "start": "rslib build --watch --env-mode development",
     "start-docs": "concurrently --kill-others \"npm run start\" \"cd docs && npm run start\"",
     "test": "vitest",
