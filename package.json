@@ -2,7 +2,7 @@
   "name": "adaptive-material-ui",
   "description": "Collection of React components based off the MUI library which adapt to the current device",
   "license": "MIT",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "homepage": "https://unimorphic.github.io/adaptive-material-ui/",
   "keywords": [
     "adaptive",
@@ -122,7 +122,8 @@
     "@material/material-color-utilities": "0.3.0",
     "@mui/system": "7.3.3",
     "@mui/utils": "7.3.3",
-    "clsx": "2.1.1"
+    "clsx": "2.1.1",
+    "invert-color": "2.0.0"
   },
   "peerDependenciesMeta": {
     "@emotion/react": {

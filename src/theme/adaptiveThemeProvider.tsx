@@ -19,6 +19,7 @@ import {
   ThemeProviderProps,
   TypographyVariants,
 } from "@mui/material/styles";
+import invert from "invert-color";
 import { useMemo } from "react";
 import {
   AdaptiveMode,
@@ -54,14 +55,6 @@ function convertColorToHex(color: string) {
         : null;
 }
 
-// https://stackoverflow.com/a/54569758/264921
-function invertHexColor(hex: string) {
-  return (
-    "#" +
-    (Number(`0x1${hex.substring(1)}`) ^ 0xffffff).toString(16).substring(1)
-  );
-}
-
 function getSchemeColor(
   scheme: SchemeContent,
   name: keyof typeof MaterialDynamicColors,
@@ -81,7 +74,7 @@ function addMissingColors(palette: PaletteOptions | undefined, theme: Theme) {
       ? convertColorToHex(palette.background.default)
       : null;
     background = background
-      ? invertHexColor(background)
+      ? invert(background)
       : palette.mode === "dark"
         ? theme.palette.common.white
         : theme.palette.common.black;
