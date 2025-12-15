@@ -22,6 +22,20 @@ interface PaletteColor {
   containerContrastText: string;
 }
 
+interface TypeBackground {
+  default: string;
+  paper: string;
+
+  // 👇 New
+  container: {
+    lowest: string;
+    low: string;
+    main: string;
+    high: string;
+    highest: string;
+  };
+}
+
 interface Palette {
   primary: PaletteColor;
   secondary: PaletteColor;
@@ -30,13 +44,15 @@ interface Palette {
   info: PaletteColor;
   success: PaletteColor;
 
+  divider: string;
+  background: TypeBackground;
+
   // 👇 New
+  dividerSecondary: string;
   inverse: {
     background: string;
     contrastText: string;
-    primary: string;
   };
-  tertiary: PaletteColor;
 }
 ```
 
