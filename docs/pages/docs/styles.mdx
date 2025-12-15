@@ -1,4 +1,90 @@
+import ThemeConverter from "@/shared/themeConverter";
+
 # Styles
+
+## Colors
+
+### Palette
+
+The MUI color [palette](https://mui.com/material-ui/customization/palette/) has been extended to support
+Material Design 3 [colors](https://m3.material.io/styles/color/roles)
+
+```ts
+/* eslint-disable */
+interface PaletteColor {
+  light: string;
+  main: string;
+  dark: string;
+  contrastText: string;
+
+  // 👇 New
+  container: string;
+  containerContrastText: string;
+}
+
+interface TypeBackground {
+  default: string;
+  paper: string;
+
+  // 👇 New
+  container: {
+    lowest: string;
+    low: string;
+    main: string;
+    high: string;
+    highest: string;
+  };
+}
+
+interface Palette {
+  primary: PaletteColor;
+  secondary: PaletteColor;
+  error: PaletteColor;
+  warning: PaletteColor;
+  info: PaletteColor;
+  success: PaletteColor;
+
+  divider: string;
+  background: TypeBackground;
+
+  // 👇 New
+  dividerSecondary: string;
+  inverse: {
+    background: string;
+    contrastText: string;
+  };
+}
+```
+
+Add the following import for TypeScript support
+
+```tsx pure
+import type {} from "adaptive-material-ui/theme/themeAugmentation";
+```
+
+### Theme Builder
+
+The [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) can be used to create a theme:
+
+1. Create a theme using the [builder](https://material-foundation.github.io/material-theme-builder/)
+2. Export the theme to `Material Theme (JSON)`
+3. Copy one of the schemes from the exported JSON file and paste it into the converter below. It should be in the form
+
+```json
+{
+  "primary": "#4C662B",
+  "surfaceTint": "#4C662B",
+  ...
+}
+```
+
+4. Copy the converted palette and paste it into your [theme](./styles.html#theme) either in the
+   [palette](https://mui.com/material-ui/customization/palette/#customization)
+   or a [colorSchemes](https://mui.com/material-ui/customization/palette/#color-schemes) palette
+
+#### Converter
+
+<ThemeConverter />
 
 ## Component Styles
 

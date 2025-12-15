@@ -249,4 +249,34 @@ declare module "@mui/material/styles" {
   interface ComponentsPropsList extends AdaptiveComponentsPropsList {}
 
   interface Components extends AdaptiveComponents {}
+
+  interface TypeBackground {
+    container: {
+      lowest: string;
+      low: string;
+      main: string;
+      high: string;
+      highest: string;
+    };
+  }
+  interface InverseColor {
+    background: string;
+    contrastText: string;
+  }
+  interface PaletteColor {
+    container: string;
+    containerContrastText: string;
+  }
+  interface SimplePaletteColorOptions {
+    container?: string;
+    containerContrastText?: string;
+  }
+  interface Palette {
+    dividerSecondary: string;
+    inverse: InverseColor;
+  }
+  interface PaletteOptions {
+    dividerSecondary?: string;
+    inverse?: InverseColor;
+  }
 }

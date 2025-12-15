@@ -27,11 +27,19 @@ export function DialogResponsive(props: DialogResponsiveProps) {
     ...otherProps
   } = props;
 
-  const isFullScreenBreakpoint = useMediaQuery((theme) =>
-    theme.breakpoints.down(
+  const isFullScreenBreakpoint = useMediaQuery((theme) => {
+    let mediaQuery = theme.breakpoints.down(
       inclusiveToExclusiveBreakpoint(fullScreenBreakpoint),
-    ),
-  );
+    );
+
+    // Tests
+    if (typeof mediaQuery === "undefined") {
+      console.warn("mediaQuery is undefined");
+      mediaQuery = "@media (min-width:500px)";
+    }
+
+    return mediaQuery;
+  });
 
   return (
     <Dialog

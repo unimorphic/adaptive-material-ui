@@ -25,15 +25,6 @@ const StyledSwitchBase = styled(SwitchBase, {
 
   const transitionDuration = theme.transitions.duration.shortest;
   const currentColor = getSwitchColor(theme, ownerState.color);
-  const lightColor =
-    ownerState.color === "default"
-      ? theme.palette.grey[200]
-      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].light;
-  let darkColor =
-    ownerState.color === "default"
-      ? theme.palette.grey[300]
-      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].dark;
-  darkColor = theme.darken(darkColor, 0.4);
   const hasThumbIcon =
     Boolean(ownerState.thumbIcon) || Boolean(ownerState.thumbIconChecked);
 
@@ -70,17 +61,14 @@ const StyledSwitchBase = styled(SwitchBase, {
           width: "250%",
         },
         [`& + .${switchClasses.track}`]: {
+          borderColor: "transparent",
           opacity: 1,
         },
         [`& .${switchClasses.thumb}`]: {
-          color: theme.palette.common.white,
-
-          ...theme.applyStyles("dark", {
-            color: darkColor,
-          }),
+          color: currentColor.contrastText,
 
           [`& .${adaptiveSwitchClasses.thumbIconChecked}`]: {
-            color: currentColor,
+            color: currentColor.containerContrastText,
           },
         },
       },
@@ -90,10 +78,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 
         [`& .${switchClasses.thumb}`]: {
           boxShadow: getBoxShadow(theme, hasThumbIcon ? 6 : 12),
-          color: theme.palette.grey[700],
-          ...theme.applyStyles("dark", {
-            color: theme.palette.grey[500],
-          }),
+          color: theme.palette.text.secondary,
 
           "@media (hover: none)": {
             boxShadow: "none",
@@ -102,10 +87,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 
         [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
           boxShadow: getBoxShadow(theme, 6),
-          color: lightColor,
-          ...theme.applyStyles("dark", {
-            color: darkColor,
-          }),
+          color: currentColor.container,
 
           "@media (hover: none)": {
             boxShadow: "none",
@@ -132,7 +114,7 @@ const StyledSwitchBase = styled(SwitchBase, {
 
     [`& .${switchClasses.thumb}`]: {
       boxShadow: "none",
-      color: theme.palette.grey[500],
+      color: theme.palette.dividerSecondary,
       height: height - 16,
       padding: ownerState.size !== "small" ? 3 : 1,
       transition: theme.transitions.create(
@@ -142,28 +124,26 @@ const StyledSwitchBase = styled(SwitchBase, {
       width: height - 16,
 
       [`& .${adaptiveSwitchClasses.thumbIcon}`]: {
-        color: theme.palette.common.white,
+        color: theme.palette.background.container.highest,
       },
     },
 
     [`& .${switchClasses.track}`]: {
-      backgroundColor: theme.palette.grey[300],
-      border: `2px solid ${theme.palette.divider}`,
+      backgroundColor: theme.palette.background.container.highest,
+      border: `2px solid ${theme.palette.dividerSecondary}`,
       borderRadius: 15,
       height: height,
       opacity: 1,
       position: "absolute",
       width: width - padding * 2,
-      ...theme.applyStyles("dark", {
-        backgroundColor: theme.palette.grey[800],
-      }),
 
       ...materialDesign.focusRipple(
         theme,
         ownerState,
-        theme.transitions.create(["background-color", "opacity"], {
-          duration: transitionDuration,
-        }),
+        theme.transitions.create(
+          ["background-color", "border-color", "opacity"],
+          { duration: transitionDuration },
+        ),
       ),
     },
 
@@ -171,29 +151,29 @@ const StyledSwitchBase = styled(SwitchBase, {
       {
         props: (props) => props.disabled === true,
         style: {
-          [`& .${switchClasses.switchBase}.${switchClasses.disabled} + .${switchClasses.track}`]:
-            {
-              backgroundColor: "transparent",
+          [`& .${switchClasses.switchBase}`]: {
+            [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+              borderColor: theme.palette.text.primary,
+              opacity: 0.12,
+            },
+            [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+              backgroundColor: theme.palette.text.primary,
+              opacity: 0.12,
+            },
+            [`& .${switchClasses.thumb}`]: {
+              backgroundColor: theme.palette.text.primary,
+              opacity: 0.38,
+            },
+            [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
+              backgroundColor: theme.palette.background.container.main,
               opacity: 1,
+
+              [`& .${adaptiveSwitchClasses.thumbIconChecked}`]: {
+                color: theme.palette.text.primary,
+                opacity: 0.38,
+              },
             },
-          [`& .${switchClasses.switchBase}.${switchClasses.checked} + .${switchClasses.track}`]:
-            {
-              backgroundColor: theme.palette.grey[300],
-              opacity: 0.4,
-              ...theme.applyStyles("dark", {
-                backgroundColor: theme.palette.grey[800],
-              }),
-            },
-          [`& .${switchClasses.switchBase} .${switchClasses.thumb}`]: {
-            opacity: 0.7,
           },
-          [`& .${switchClasses.switchBase}.${switchClasses.checked} .${switchClasses.thumb}`]:
-            {
-              backgroundColor: theme.palette.common.white,
-              ...theme.applyStyles("dark", {
-                backgroundColor: theme.palette.common.black,
-              }),
-            },
         },
       },
     ],

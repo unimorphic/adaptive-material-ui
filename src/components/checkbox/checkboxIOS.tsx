@@ -17,10 +17,11 @@ const StyledCheckbox = styled(Checkbox, {
   name: "AdaptiveCheckbox",
   slot: "ios",
 })<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => {
-  const currentColor =
+  const markColor =
     ownerState.color === "default"
-      ? (theme.vars ?? theme).palette.text.secondary
-      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].main;
+      ? (theme.vars ?? theme).palette.background.default
+      : (theme.vars ?? theme).palette[ownerState.color ?? "primary"]
+          .contrastText;
   const fontSize = { small: "21px", medium: "24px", large: "40px" }[
     ownerState.size ?? "medium"
   ];
@@ -43,7 +44,7 @@ const StyledCheckbox = styled(Checkbox, {
         borderColor: "transparent",
 
         "& svg": {
-          color: theme.palette.getContrastText(currentColor),
+          color: markColor,
         },
       },
     },

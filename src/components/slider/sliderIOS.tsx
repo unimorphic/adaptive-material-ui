@@ -20,12 +20,8 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
     "0 0.5px 4px 0 rgba(0, 0, 0, 0.12), 0 6px 13px 0 rgba(0, 0, 0, 0.12)";
 
   const railStyles: CSSObject = {
-    backgroundColor: "#E4E4E4",
+    backgroundColor: theme.palette.background.container.highest,
     opacity: 1,
-
-    ...theme.applyStyles("dark", {
-      backgroundColor: "#35373B",
-    }),
   };
 
   return {
@@ -34,16 +30,12 @@ const StyledSlider = styled(Slider, { name: "AdaptiveSlider", slot: "ios" })<{
       ownerState.size === "small" ? 4 : 6,
 
     [`& .${sliderClasses.mark}`]: {
-      backgroundColor: "rgba(60, 60, 67, 0.18)",
+      backgroundColor: theme.palette.background.container.highest,
       borderRadius: 3,
       height: 4,
       [ownerState.orientation === "vertical" ? "left" : "top"]:
         "calc(50% + 8px)",
       width: 4,
-
-      ...theme.applyStyles("dark", {
-        backgroundColor: "rgba(235, 235, 245, 0.16)",
-      }),
     },
 
     [`& .${sliderClasses.rail}`]:

@@ -31,6 +31,7 @@ http://localhost:3000/docs/playground.html
 - Add a new documentation page under docs\pages\docs\components
 - Update docs\shared\componentsList.tsx
 - If it replaces a MUI component, update src\eslintRule.ts
+- Update AllComponents in src\theme\adaptiveThemeProvider.story.tsx
 
 ## Creating a pull request
 

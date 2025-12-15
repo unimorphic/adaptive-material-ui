@@ -3,9 +3,7 @@ import { afterEach, expect, test } from "vitest";
 import { AdaptiveModeContext } from "./adaptiveMode";
 import { RenderAdaptiveMode } from "./testUtils/renderAdaptiveMode";
 
-afterEach(() => {
-  cleanup();
-});
+afterEach(cleanup);
 
 test("Context - Mode", () => {
   let result = render(

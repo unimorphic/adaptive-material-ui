@@ -1,5 +1,5 @@
 import Slider, { sliderClasses } from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { alpha, styled } from "@mui/material/styles";
 import { mergeSlotProps } from "@mui/material/utils";
 import { useRtl } from "@mui/system/RtlProvider";
 import composeClasses from "@mui/utils/composeClasses";
@@ -40,9 +40,9 @@ const StyledSlider = styled(Slider, {
   theme,
 }) => {
   const currentColor = ownerState.disabled
-    ? (theme.vars ?? theme).palette.grey[400]
-    : (theme.vars ?? theme).palette[ownerState.color ?? "primary"].main;
-  const trackColor = theme.alpha(currentColor, 0.2);
+    ? theme.palette.grey[400]
+    : theme.palette[ownerState.color ?? "primary"].main;
+  const trackColor = alpha(currentColor, 0.2);
   const opacity = ownerState.disabled ? 0.5 : undefined;
   const radius = { sm: "2px", md: "8px" };
 
@@ -186,14 +186,10 @@ const StyledSlider = styled(Slider, {
     },
 
     [`& .${sliderClasses.valueLabel}`]: {
-      backgroundColor: theme.palette.common.black,
+      backgroundColor: theme.palette.inverse.background,
       borderRadius: "50%",
-      color: theme.palette.getContrastText(theme.palette.common.black),
+      color: theme.palette.inverse.contrastText,
       padding: "0.8rem 1rem",
-      ...theme.applyStyles("dark", {
-        backgroundColor: theme.palette.grey[300],
-        color: theme.palette.getContrastText(theme.palette.grey[300]),
-      }),
 
       "&:before": {
         display: "none",
