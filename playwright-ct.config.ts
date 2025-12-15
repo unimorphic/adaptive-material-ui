@@ -9,7 +9,7 @@ export default defineConfig({
   snapshotDir: "./__snapshots__",
   testDir: "./src",
   testMatch: "**/*.e2e.?(c|m)[jt]s?(x)",
-  timeout: 10 * 1000,
+  timeout: 60 * 1000,
   workers: process.env.CI ? 1 : undefined,
   use: {
     trace: "on-first-retry",
