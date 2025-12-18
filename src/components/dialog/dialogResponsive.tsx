@@ -14,7 +14,7 @@ export interface DialogResponsiveProps extends DialogProps {
   fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | false;
 
   /**
-   * Short dialogs ignore the fullScreenBreakpoint logic and may be styled differently depending on the device
+   * Short dialogs ignore the fullScreenBreakpoint logic
    * @default tall
    */
   variant?: "short" | "tall";
