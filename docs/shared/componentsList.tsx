@@ -14,6 +14,7 @@ import Portal from "@mui/material/Portal";
 import RadioGroup from "@mui/material/RadioGroup";
 import { styled } from "@mui/material/styles";
 import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import {
   AdaptiveButtonStack,
@@ -41,6 +42,7 @@ import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useEffect, useState } from "react";
 import AdaptiveModeDemo from "./adaptiveModeDemo";
+import { allCountries } from "./countries";
 import { DemoList, DemoListItem } from "./demoList";
 import ExampleShortDialogContent from "./placeholders/exampleShortDialogContent";
 
@@ -64,6 +66,18 @@ function Content() {
 
   return (
     <StyledDemoList>
+      <DemoListItem
+        title="Adaptive Autocomplete"
+        titleHref="/docs/components/AdaptiveAutocomplete"
+      >
+        <AdaptiveAutocomplete
+          options={allCountries}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+          sx={{ minWidth: 200 }}
+        />
+      </DemoListItem>
       <DemoListItem
         title="Adaptive Button"
         titleHref="/docs/components/adaptiveButton"

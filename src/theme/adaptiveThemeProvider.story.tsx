@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
 import { createTheme } from "@mui/material/styles";
+import { AdaptiveAutocomplete } from "../components/autocomplete/adaptiveAutocomplete";
 import { AdaptiveButton } from "../components/button";
 import { AdaptiveButtonStack } from "../components/buttonStack";
 import { AdaptiveCheckbox } from "../components/checkbox";
@@ -25,6 +26,13 @@ import { AdaptiveThemeProvider } from "./adaptiveThemeProvider";
 function AllComponents() {
   return (
     <Stack spacing={2}>
+      <AdaptiveAutocomplete
+        options={["one", "two"]}
+        renderInput={(params) => (
+          <AdaptiveTextField {...params} label="Country" />
+        )}
+      />
+
       <AdaptiveButton variant="outlined">Button</AdaptiveButton>
 
       <AdaptiveButtonStack>

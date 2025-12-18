@@ -1,0 +1,92 @@
+import Links from "@/shared/links";
+
+# Adaptive Autocomplete
+
+## Adaptiveness
+
+- Opens a dialog on the extra-small breakpoint (customizable using the `dialogBreakpoint` prop)
+
+```tsx
+import { allCountries } from "@/shared/countries";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
+
+const options: string[] = allCountries;
+
+export default function () {
+  return (
+    <AdaptiveAutocomplete
+      options={options}
+      renderInput={(params) => (
+        <AdaptiveTextField {...params} label="Country" />
+      )}
+    />
+  );
+}
+```
+
+## Variations
+
+```tsx
+import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
+import { allCountries } from "@/shared/countries";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
+import { useState } from "react";
+
+const options: string[] = allCountries;
+
+export default function () {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <AdaptiveModeDemo>
+      <DemoList>
+        <DemoListItem title="Controlled">
+          <AdaptiveButton
+            onClick={() => setIsOpen((v) => !v)}
+            variant="contained"
+          >
+            Open
+          </AdaptiveButton>
+          <AdaptiveAutocomplete
+            onClose={() => setIsOpen(false)}
+            onOpen={() => setIsOpen(true)}
+            open={isOpen}
+            options={options}
+            renderInput={(params) => (
+              <AdaptiveTextField {...params} label="Country" />
+            )}
+            sx={{ minWidth: 150 }}
+          />
+        </DemoListItem>
+      </DemoList>
+    </AdaptiveModeDemo>
+  );
+}
+```
+
+## API
+
+[MUI Autocomplete API](https://mui.com/material-ui/api/autocomplete/) with the following changes:
+
+- `slots` & `slotProps` have a `dialog` member
+- `slots.popper` is set internally when inside the dialog
+
+### dialogBreakpoint
+
+Breakpoint or screen width in px and below at which a dialog will open.
+This behavior can be disabled by setting it to false
+
+- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Default: `xs`
+
+## Links
+
+<Links
+  codeUrl="components/autocomplete/adaptiveAutocomplete.tsx"
+  docsUrl="components/adaptiveAutocomplete.mdx"
+  mui={{ title: "Autocomplete", url: "react-autocomplete" }}
+/>

@@ -1,5 +1,6 @@
 export * from "./adaptiveMode";
 
+export * from "./components/autocomplete";
 export * from "./components/button";
 export * from "./components/buttonStack";
 export * from "./components/checkbox";
