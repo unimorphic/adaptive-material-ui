@@ -31,14 +31,6 @@ import { AdaptiveButton } from "../button/adaptiveButton";
 import { AdaptiveDialog, AdaptiveDialogProps } from "../dialog/adaptiveDialog";
 import { AdaptiveDialogActions } from "../dialog/adaptiveDialogActions";
 
-interface Slots {
-  /**
-   * The component used to render the dialog.
-   * @default AdaptiveDialog
-   */
-  dialog: React.JSXElementConstructor<AdaptiveDialogProps>;
-}
-
 type SlotsAndSlotProps<
   Value,
   Multiple extends boolean | undefined,
@@ -46,10 +38,51 @@ type SlotsAndSlotProps<
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 > = CreateSlotsAndSlotProps<
-  Slots,
+  {
+    /**
+     * The component used to render the dialog.
+     * @default AdaptiveDialog
+     */
+    dialog: React.JSXElementConstructor<AdaptiveDialogProps>;
+
+    /**
+     * The component used to render the autocomplete inside the dialog.
+     * @default AdaptiveDialog
+     */
+    dialogAutocomplete: React.JSXElementConstructor<
+      AutocompleteProps<
+        Value,
+        Multiple,
+        DisableClearable,
+        FreeSolo,
+        ChipComponent
+      >
+    >;
+  },
   {
     dialog: SlotProps<
       React.ElementType<Partial<AdaptiveDialogProps>>,
+      {},
+      AdaptiveAutocompleteProps<
+        Value,
+        Multiple,
+        DisableClearable,
+        FreeSolo,
+        ChipComponent
+      >
+    >;
+    dialogAutocomplete: SlotProps<
+      React.ElementType<
+        Partial<
+          AutocompleteProps<
+            Value,
+            Multiple,
+            DisableClearable,
+            FreeSolo,
+            ChipComponent
+          >
+        >
+      >,
       {},
       AdaptiveAutocompleteProps<
         Value,
@@ -84,10 +117,10 @@ export type AdaptiveAutocompleteProps<
   > & {
     /**
      * Breakpoint or screen width in px and below at which a dialog will open.
-     * This behavior can be disabled by setting it to false
+     * This behavior can be enabled/disabled always by setting it to true/false
      * @default xs
      */
-    dialogBreakpoint?: ValidInclusiveBreakpoint | number | false;
+    dialogBreakpoint?: ValidInclusiveBreakpoint | number | boolean;
   };
 
 export interface AdaptiveAutocompleteClasses extends AutocompleteClasses {}
@@ -194,7 +227,7 @@ export function AdaptiveAutocomplete<
     onOpen,
     open,
     readOnly,
-    renderInput,
+    ref,
     value,
     ...otherProps
   } = props;
@@ -227,6 +260,17 @@ export function AdaptiveAutocomplete<
     externalForwardedProps: { slots: props.slots, slotProps: props.slotProps },
     ownerState: props,
   });
+  const [DialogAutocompleteSlot, { ownerState, ...dialogAutocompleteProps }] =
+    useSlot("dialogAutocomplete", {
+      additionalProps: otherProps,
+      className: "",
+      elementType: Autocomplete,
+      externalForwardedProps: {
+        slots: props.slots,
+        slotProps: props.slotProps,
+      },
+      ownerState: otherProps,
+    });
 
   function onCloseAutocomplete(
     event: React.SyntheticEvent,
@@ -266,8 +310,10 @@ export function AdaptiveAutocomplete<
     }
   }
 
-  function renderInputAutocomplete(params: AutocompleteRenderInputParams) {
-    return renderInput({
+  function renderInputDialogAutocomplete(
+    params: AutocompleteRenderInputParams,
+  ) {
+    return dialogAutocompleteProps.renderInput({
       ...params,
       autoFocus: true,
     } as AutocompleteRenderInputParams);
@@ -291,7 +337,7 @@ export function AdaptiveAutocomplete<
           renderValue: props.renderValue,
           valueDerived: valueDerived,
         }}
-        renderInput={renderInput}
+        ref={ref}
         value={valueDerived}
       />
       {isDialog ? (
@@ -302,21 +348,25 @@ export function AdaptiveAutocomplete<
           ref={dialogElement}
         >
           <StyledDialogContent>
-            <Autocomplete
-              {...otherProps}
+            <DialogAutocompleteSlot
+              {...dialogAutocompleteProps}
               forcePopupIcon={false}
               onChange={onChangeAutocomplete}
               onClose={onCloseAutocomplete}
               open={true}
-              renderInput={renderInputAutocomplete}
+              renderInput={renderInputDialogAutocomplete}
               slotProps={{
-                ...otherProps.slotProps,
+                ...dialogAutocompleteProps.slotProps,
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-                listbox: mergeSlotProps(otherProps.slotProps?.listbox, {
-                  tabIndex: -1,
-                }) as never,
+                listbox: mergeSlotProps(
+                  dialogAutocompleteProps.slotProps?.listbox,
+                  { tabIndex: -1 },
+                ) as never,
               }}
-              slots={{ ...otherProps.slots, popper: OptionsContainer }}
+              slots={{
+                ...dialogAutocompleteProps.slots,
+                popper: OptionsContainer,
+              }}
               value={valueDerived}
             />
           </StyledDialogContent>

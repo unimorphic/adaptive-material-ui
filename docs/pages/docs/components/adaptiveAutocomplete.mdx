@@ -28,12 +28,12 @@ export default function () {
 ## Variations
 
 ```tsx
-import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { allCountries } from "@/shared/countries";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import Chip from "@mui/material/Chip";
 import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
 import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
 import { useState } from "react";
 
@@ -41,53 +41,79 @@ const options: string[] = allCountries;
 
 export default function () {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDialog, setIsDialog] = useState(true);
 
   return (
-    <AdaptiveModeDemo>
-      <DemoList>
-        <DemoListItem title="Controlled">
-          <AdaptiveButton
-            onClick={() => setIsOpen((v) => !v)}
-            variant="contained"
-          >
-            Open
-          </AdaptiveButton>
-          <AdaptiveAutocomplete
-            onClose={() => setIsOpen(false)}
-            onOpen={() => setIsOpen(true)}
-            open={isOpen}
-            options={options}
-            renderInput={(params) => (
-              <AdaptiveTextField {...params} label="Country" />
-            )}
-            sx={{ minWidth: 150 }}
-          />
-        </DemoListItem>
-        <DemoListItem title="Multiple Values">
-          <AdaptiveAutocomplete
-            disableCloseOnSelect
-            multiple
-            options={options}
-            renderInput={(params) => (
-              <AdaptiveTextField {...params} label="Countries" />
-            )}
-            sx={{ minWidth: 150 }}
-          />
-        </DemoListItem>
-        <DemoListItem title="Render Value">
-          <AdaptiveAutocomplete
-            options={options}
-            renderInput={(params) => (
-              <AdaptiveTextField {...params} label="Countries" />
-            )}
-            renderValue={(value, getItemProps) => (
-              <Chip label={value} {...getItemProps()} />
-            )}
-            sx={{ minWidth: 150 }}
-          />
-        </DemoListItem>
-      </DemoList>
-    </AdaptiveModeDemo>
+    <DemoList>
+      <DemoListItem title="Show Dialog">
+        <AdaptiveSwitch
+          checked={isDialog}
+          onChange={(e) => setIsDialog(e.target.checked)}
+        />
+      </DemoListItem>
+      <DemoListItem title="Controlled">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          onClose={() => setIsOpen(false)}
+          onOpen={() => setIsOpen(true)}
+          open={isOpen}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+        <AdaptiveButton
+          onClick={() => setIsOpen((v) => !v)}
+          variant="contained"
+        >
+          Open
+        </AdaptiveButton>
+      </DemoListItem>
+      <DemoListItem title="Multiple Values">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          disableCloseOnSelect
+          multiple
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Countries" />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+      <DemoListItem title="Render Value">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Countries" />
+          )}
+          renderValue={(value, getItemProps) => (
+            <Chip label={value} {...getItemProps()} />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+      <DemoListItem title="Customize Dialog">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Countries" />
+          )}
+          slotProps={{
+            dialog: { fullWidth: true },
+            dialogAutocomplete: {
+              renderInput: (params) => (
+                <AdaptiveTextField {...params} label="Search" />
+              ),
+            },
+          }}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+    </DemoList>
   );
 }
 ```
@@ -96,15 +122,15 @@ export default function () {
 
 [MUI Autocomplete API](https://mui.com/material-ui/api/autocomplete/) with the following changes:
 
-- `slots` & `slotProps` have a `dialog` member
+- `slots` & `slotProps` have `dialog` & `dialogAutocomplete` members
 - `slots.popper` is set internally when inside the dialog
 
 ### dialogBreakpoint
 
 Breakpoint or screen width in px and below at which a dialog will open.
-This behavior can be disabled by setting it to false
+This behavior can be enabled/disabled always by setting it to true/false
 
-- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Type: `"xs" | "sm" | "md" | "lg" | number | boolean`
 - Default: `xs`
 
 ## Links
