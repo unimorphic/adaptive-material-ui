@@ -31,6 +31,7 @@ export default function () {
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { allCountries } from "@/shared/countries";
 import { DemoList, DemoListItem } from "@/shared/demoList";
+import Chip from "@mui/material/Chip";
 import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
@@ -58,6 +59,29 @@ export default function () {
             options={options}
             renderInput={(params) => (
               <AdaptiveTextField {...params} label="Country" />
+            )}
+            sx={{ minWidth: 150 }}
+          />
+        </DemoListItem>
+        <DemoListItem title="Multiple Values">
+          <AdaptiveAutocomplete
+            disableCloseOnSelect
+            multiple
+            options={options}
+            renderInput={(params) => (
+              <AdaptiveTextField {...params} label="Countries" />
+            )}
+            sx={{ minWidth: 150 }}
+          />
+        </DemoListItem>
+        <DemoListItem title="Render Value">
+          <AdaptiveAutocomplete
+            options={options}
+            renderInput={(params) => (
+              <AdaptiveTextField {...params} label="Countries" />
+            )}
+            renderValue={(value, getItemProps) => (
+              <Chip label={value} {...getItemProps()} />
             )}
             sx={{ minWidth: 150 }}
           />

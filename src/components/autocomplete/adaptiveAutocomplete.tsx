@@ -16,6 +16,7 @@ import { styled, useTheme, useThemeProps } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   CreateSlotsAndSlotProps,
+  mergeSlotProps,
   SlotProps,
   useControlled,
 } from "@mui/material/utils";
@@ -122,6 +123,54 @@ const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   },
 }));
 
+interface OwnerState {
+  isDialog: boolean;
+  multiple: boolean;
+  renderValue: unknown;
+  valueDerived: unknown;
+}
+
+const StyledAutocomplete = styled(Autocomplete)<{ ownerState: OwnerState }>(
+  () => ({
+    variants: [
+      {
+        props: (props) =>
+          (props.multiple || props.renderValue !== undefined) &&
+          props.isDialog &&
+          props.valueDerived !== null &&
+          props.valueDerived !== undefined &&
+          (!Array.isArray(props.valueDerived) || props.valueDerived.length > 0),
+        style: {
+          [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}`]:
+            {
+              bottom: 0,
+              height: "auto",
+              left: 0,
+              position: "absolute",
+              right: 0,
+              top: 0,
+              width: "auto",
+            },
+        },
+      },
+    ],
+  }),
+) as unknown as <
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
+>(
+  props: AdaptiveAutocompleteProps<
+    Value,
+    Multiple,
+    DisableClearable,
+    FreeSolo,
+    ChipComponent
+  > & { ownerState: OwnerState },
+) => React.JSX.Element;
+
 export function AdaptiveAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
@@ -183,7 +232,7 @@ export function AdaptiveAutocomplete<
     event: React.SyntheticEvent,
     reason: AutocompleteCloseReason,
   ) {
-    if (!isDialog || reason !== "blur") {
+    if (!isDialog || !["blur", "toggleInput"].includes(reason)) {
       setOpenState(false);
       onClose?.(event, reason);
     }
@@ -229,13 +278,19 @@ export function AdaptiveAutocomplete<
       sourceComponentName="AdaptiveAutocomplete"
       targetComponentName="MuiAutocomplete"
     >
-      <Autocomplete
+      <StyledAutocomplete
         {...otherProps}
         readOnly={isDialog || readOnly}
         onChange={onChangeAutocomplete}
         onClose={onCloseAutocomplete}
         onOpen={onOpenAutocomplete}
         open={!isDialog && openDerived}
+        ownerState={{
+          isDialog: isDialog,
+          multiple: props.multiple ?? false,
+          renderValue: props.renderValue,
+          valueDerived: valueDerived,
+        }}
         renderInput={renderInput}
         value={valueDerived}
       />
@@ -254,6 +309,13 @@ export function AdaptiveAutocomplete<
               onClose={onCloseAutocomplete}
               open={true}
               renderInput={renderInputAutocomplete}
+              slotProps={{
+                ...otherProps.slotProps,
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+                listbox: mergeSlotProps(otherProps.slotProps?.listbox, {
+                  tabIndex: -1,
+                }) as never,
+              }}
               slots={{ ...otherProps.slots, popper: OptionsContainer }}
               value={valueDerived}
             />
