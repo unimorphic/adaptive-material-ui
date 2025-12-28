@@ -10,7 +10,10 @@ import Autocomplete, {
   AutocompleteValue,
 } from "@mui/material/Autocomplete";
 import { ChipTypeMap } from "@mui/material/Chip";
-import DialogContent from "@mui/material/DialogContent";
+import { dialogClasses } from "@mui/material/Dialog";
+import DialogContent, {
+  dialogContentClasses,
+} from "@mui/material/DialogContent";
 import { PopperProps } from "@mui/material/Popper";
 import { styled, useTheme, useThemeProps } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -125,7 +128,22 @@ export type AdaptiveAutocompleteProps<
 
 export interface AdaptiveAutocompleteClasses extends AutocompleteClasses {}
 
+interface OwnerState {
+  isDialog: boolean;
+  multiple: boolean;
+  renderValue: unknown;
+  valueDerived: unknown;
+}
+
 export const adaptiveAutocompleteClasses = autocompleteClasses;
+
+function hasValue(value: unknown): boolean {
+  return (
+    value !== null &&
+    value !== undefined &&
+    (!Array.isArray(value) || value.length > 0)
+  );
+}
 
 function OptionsContainer(
   props: PopperProps & AutocompletePopperSlotPropsOverrides,
@@ -138,41 +156,46 @@ function OptionsContainer(
     : props.children;
 }
 
-const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-
-  [`& .${autocompleteClasses.paper}`]: {
+const StyledAdaptiveDialog = styled(AdaptiveDialog)(({ theme }) => ({
+  [`& .${dialogClasses.container}`]: {
+    alignItems: "stretch",
+  },
+  [`& .${dialogContentClasses.root}`]: {
     display: "flex",
-    flex: 1,
     flexDirection: "column",
-    marginTop: theme.spacing(1),
-    minHeight: 0,
 
-    [`& .${autocompleteClasses.listbox}`]: {
+    [`& .${autocompleteClasses.paper}`]: {
+      display: "flex",
       flex: 1,
-      maxHeight: "none",
+      flexDirection: "column",
+      marginTop: theme.spacing(1),
+      minHeight: 0,
+
+      [`& .${autocompleteClasses.listbox}`]: {
+        flex: 1,
+        maxHeight: "none",
+      },
     },
   },
 }));
-
-interface OwnerState {
-  isDialog: boolean;
-  multiple: boolean;
-  renderValue: unknown;
-  valueDerived: unknown;
-}
 
 const StyledAutocomplete = styled(Autocomplete)<{ ownerState: OwnerState }>(
   () => ({
     variants: [
       {
+        props: (props) => props.isDialog,
+        style: {
+          [`& .${autocompleteClasses.inputRoot}, & .${autocompleteClasses.input}`]:
+            {
+              cursor: "pointer",
+            },
+        },
+      },
+      {
         props: (props) =>
           (props.multiple || props.renderValue !== undefined) &&
           props.isDialog &&
-          props.valueDerived !== null &&
-          props.valueDerived !== undefined &&
-          (!Array.isArray(props.valueDerived) || props.valueDerived.length > 0),
+          hasValue(props.valueDerived),
         style: {
           [`& .${autocompleteClasses.inputRoot} .${autocompleteClasses.input}`]:
             {
@@ -228,6 +251,7 @@ export function AdaptiveAutocomplete<
     open,
     readOnly,
     ref,
+    renderInput,
     value,
     ...otherProps
   } = props;
@@ -256,20 +280,20 @@ export function AdaptiveAutocomplete<
   });
   const [DialogSlot, dialogProps] = useSlot("dialog", {
     className: "",
-    elementType: AdaptiveDialog,
+    elementType: StyledAdaptiveDialog,
     externalForwardedProps: { slots: props.slots, slotProps: props.slotProps },
     ownerState: props,
   });
   const [DialogAutocompleteSlot, { ownerState, ...dialogAutocompleteProps }] =
     useSlot("dialogAutocomplete", {
-      additionalProps: otherProps,
+      additionalProps: { ...otherProps, renderInput: renderInput },
       className: "",
       elementType: Autocomplete,
       externalForwardedProps: {
         slots: props.slots,
         slotProps: props.slotProps,
       },
-      ownerState: otherProps,
+      ownerState: props,
     });
 
   function onCloseAutocomplete(
@@ -303,11 +327,20 @@ export function AdaptiveAutocomplete<
       !event.relatedTarget ||
       !dialogElement.current?.contains(event.relatedTarget as Node)
     ) {
-      if (!readOnly) {
-        setOpenState(true);
-      }
-      onOpen?.(event);
+      window.setTimeout(() => {
+        if (!readOnly) {
+          setOpenState(true);
+        }
+        onOpen?.(event);
+      });
     }
+  }
+
+  function renderInputAutocomplete(params: AutocompleteRenderInputParams) {
+    return renderInput({
+      ...params,
+      slotProps: { inputLabel: { shrink: hasValue(valueDerived) } },
+    });
   }
 
   function renderInputDialogAutocomplete(
@@ -316,7 +349,7 @@ export function AdaptiveAutocomplete<
     return dialogAutocompleteProps.renderInput({
       ...params,
       autoFocus: true,
-    } as AutocompleteRenderInputParams);
+    });
   }
 
   return (
@@ -337,17 +370,20 @@ export function AdaptiveAutocomplete<
           renderValue: props.renderValue,
           valueDerived: valueDerived,
         }}
+        renderInput={renderInputAutocomplete}
         ref={ref}
         value={valueDerived}
       />
       {isDialog ? (
         <DialogSlot
+          fullWidth
+          maxWidth="xs"
           {...dialogProps}
           onClose={onCloseDialog}
           open={openDerived}
           ref={dialogElement}
         >
-          <StyledDialogContent>
+          <DialogContent>
             <DialogAutocompleteSlot
               {...dialogAutocompleteProps}
               forcePopupIcon={false}
@@ -369,7 +405,7 @@ export function AdaptiveAutocomplete<
               }}
               value={valueDerived}
             />
-          </StyledDialogContent>
+          </DialogContent>
           <AdaptiveDialogActions>
             <AdaptiveButton onClick={onCloseDialog}>
               {props.closeText ?? "Close"}

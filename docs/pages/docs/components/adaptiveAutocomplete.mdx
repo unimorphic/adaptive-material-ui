@@ -45,7 +45,7 @@ export default function () {
 
   return (
     <DemoList>
-      <DemoListItem title="Show Dialog">
+      <DemoListItem title="Use Dialog">
         <AdaptiveSwitch
           checked={isDialog}
           onChange={(e) => setIsDialog(e.target.checked)}
@@ -103,7 +103,7 @@ export default function () {
             <AdaptiveTextField {...params} label="Countries" />
           )}
           slotProps={{
-            dialog: { fullWidth: true },
+            dialog: { maxWidth: "sm" },
             dialogAutocomplete: {
               renderInput: (params) => (
                 <AdaptiveTextField {...params} label="Search" />
