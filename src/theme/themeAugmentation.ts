@@ -292,10 +292,3 @@ declare module "@mui/material/styles" {
     inverse?: InverseColor;
   }
 }
-
-declare module "@mui/material/autocomplete" {
-  export interface AutocompleteRenderInputParams {
-    autoFocus?: boolean;
-    slotProps?: { inputLabel: { shrink: boolean } };
-  }
-}
