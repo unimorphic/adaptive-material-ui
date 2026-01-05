@@ -47,7 +47,7 @@ export default function () {
         ]}
         value={numberOfButtons}
       />
-      <AdaptiveButtonStack stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+      <AdaptiveButtonStack stretchBreakpoint={true}>
         {["Submit", "Back", "Delete"]
           .slice(0, parseInt(numberOfButtons))
           .reverse()
@@ -101,9 +101,9 @@ export default function () {
 ### stretchBreakpoint
 
 Breakpoint or screen width in px and below at which the children will be stretched.
-This behavior can be disabled by setting it to false
+This behavior can be enabled/disabled always by setting it to true/false
 
-- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Type: `"xs" | "sm" | "md" | "lg" | number | boolean`
 - Default: `xs`
 
 ## Browser Compatibility

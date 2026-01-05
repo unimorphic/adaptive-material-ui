@@ -136,7 +136,7 @@ export default function () {
         variant="short"
       >
         [[exampleShortDialogContent]]
-        <AdaptiveDialogActions stretchBreakpoint={Number.MAX_SAFE_INTEGER}>
+        <AdaptiveDialogActions stretchBreakpoint={true}>
           {["Submit", "Cancel", "Delete"]
             .slice(0, parseInt(numberOfButtons))
             .reverse()
@@ -249,7 +249,7 @@ based on it's parent elements. Typically most of these limitations will be avoid
 Breakpoint or screen width in px and below at which the dialog starts rendering full screen.
 This behavior can be disabled by setting the fullScreen or variant property or setting it to false
 
-- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Type: `"xs" | "sm" | "md" | "lg" | number | boolean`
 - Default: `xs`
 
 ### variant
@@ -273,9 +273,9 @@ Props passed to child `AdaptiveButton` components
 #### stretchBreakpoint
 
 Breakpoint or screen width in px and below at which the children will be stretched.
-This behavior can be disabled by setting it to false
+This behavior can be enabled/disabled always by setting it to true/false
 
-- Type: `"xs" | "sm" | "md" | "lg" | number | false`
+- Type: `"xs" | "sm" | "md" | "lg" | number | boolean`
 - Default: `xs`
 
 ## Browser Compatibility
