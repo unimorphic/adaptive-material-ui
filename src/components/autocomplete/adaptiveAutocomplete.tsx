@@ -34,7 +34,7 @@ import { AdaptiveButton } from "../button/adaptiveButton";
 import { AdaptiveDialog, AdaptiveDialogProps } from "../dialog/adaptiveDialog";
 import { AdaptiveDialogActions } from "../dialog/adaptiveDialogActions";
 
-declare module "@mui/material/autocomplete" {
+declare module "@mui/material/Autocomplete" {
   export interface AutocompleteRenderInputParams {
     autoFocus?: boolean;
     slotProps?: { inputLabel: { shrink: boolean } };
