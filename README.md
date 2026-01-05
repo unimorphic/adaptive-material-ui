@@ -17,3 +17,7 @@ Read the [contributing guide](https://github.com/unimorphic/adaptive-material-ui
 ## License
 
 This project is licensed under the terms of the [MIT license](https://github.com/unimorphic/adaptive-material-ui/blob/master/LICENSE)
+
+## Sponsoring services
+
+This project is tested with [BrowserStack](https://www.browserstack.com/)
