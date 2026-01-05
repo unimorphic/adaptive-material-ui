@@ -87,7 +87,7 @@ export default function () {
           dialogBreakpoint={isDialog}
           options={options}
           renderInput={(params) => (
-            <AdaptiveTextField {...params} label="Countries" />
+            <AdaptiveTextField {...params} label="Country" />
           )}
           renderValue={(value, getItemProps) => (
             <Chip label={value} {...getItemProps()} />
@@ -100,7 +100,7 @@ export default function () {
           dialogBreakpoint={isDialog}
           options={options}
           renderInput={(params) => (
-            <AdaptiveTextField {...params} label="Countries" />
+            <AdaptiveTextField {...params} label="Country" />
           )}
           slotProps={{
             dialog: { maxWidth: "sm" },
@@ -108,6 +108,7 @@ export default function () {
               renderInput: (params) => (
                 <AdaptiveTextField {...params} label="Search" />
               ),
+              renderValue: () => null,
             },
           }}
           sx={{ minWidth: 150 }}
@@ -118,12 +119,17 @@ export default function () {
 }
 ```
 
+## Limitations
+
+- The dialog input is not auto focused in dev mode when `<StrictMode>` is used: [MUI issue](https://github.com/mui/material-ui/issues/33004)
+
 ## API
 
 [MUI Autocomplete API](https://mui.com/material-ui/api/autocomplete/) with the following changes:
 
 - `slots` & `slotProps` have `dialog` & `dialogAutocomplete` members
 - `slots.popper` is set internally when inside the dialog
+- `AutocompleteRenderInputParams` has `autoFocus` & `slotProps` members
 
 ### dialogBreakpoint
 

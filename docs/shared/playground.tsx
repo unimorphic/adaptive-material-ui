@@ -55,6 +55,16 @@ import { allCountries } from "./countries";
 const theme = createTheme({
   colorSchemes: { dark: true },
   components: {
+    AdaptiveAutocomplete: {
+      defaultProps: {
+        openOnFocus: true,
+      },
+      styleOverrides: {
+        popupIndicator: {
+          background: "blue",
+        },
+      },
+    },
     AdaptiveButton: {
       defaultProps: {
         variant: "contained",
@@ -527,6 +537,7 @@ function Content() {
             />
           </Portal>
         </Stack>
+
         <Stack alignItems="center" direction="row" spacing={2}>
           <AdaptiveIconButton>
             <PlayArrowIcon />
@@ -535,12 +546,14 @@ function Content() {
             <PlayArrowIcon />
           </AdaptiveIconButton>
         </Stack>
+
         <Stack direction="row" spacing={2}>
           <AdaptiveCircularProgress />
         </Stack>
         <Stack spacing={2}>
           <AdaptiveLinearProgress />
         </Stack>
+
         <AdaptiveAutocomplete
           options={allCountries}
           renderInput={(params) => (
