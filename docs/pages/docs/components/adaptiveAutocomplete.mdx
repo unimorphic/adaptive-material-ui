@@ -1,0 +1,148 @@
+import Links from "@/shared/links";
+
+# Adaptive Autocomplete
+
+## Adaptiveness
+
+- Opens a dialog on the extra-small breakpoint (customizable using the `dialogBreakpoint` prop)
+
+```tsx
+import { allCountries } from "@/shared/countries";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
+
+const options: string[] = allCountries;
+
+export default function () {
+  return (
+    <AdaptiveAutocomplete
+      options={options}
+      renderInput={(params) => (
+        <AdaptiveTextField {...params} label="Country" />
+      )}
+    />
+  );
+}
+```
+
+## Variations
+
+```tsx
+import { allCountries } from "@/shared/countries";
+import { DemoList, DemoListItem } from "@/shared/demoList";
+import Chip from "@mui/material/Chip";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
+import { AdaptiveButton } from "adaptive-material-ui/components/button";
+import { AdaptiveSwitch } from "adaptive-material-ui/components/switch";
+import { AdaptiveTextField } from "adaptive-material-ui/components/textField";
+import { useState } from "react";
+
+const options: string[] = allCountries;
+
+export default function () {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDialog, setIsDialog] = useState(true);
+
+  return (
+    <DemoList>
+      <DemoListItem title="Use Dialog">
+        <AdaptiveSwitch
+          checked={isDialog}
+          onChange={(e) => setIsDialog(e.target.checked)}
+        />
+      </DemoListItem>
+      <DemoListItem title="Controlled">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          onClose={() => setIsOpen(false)}
+          onOpen={() => setIsOpen(true)}
+          open={isOpen}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+        <AdaptiveButton
+          onClick={() => setIsOpen((v) => !v)}
+          variant="contained"
+        >
+          Open
+        </AdaptiveButton>
+      </DemoListItem>
+      <DemoListItem title="Multiple Values">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          disableCloseOnSelect
+          multiple
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Countries" />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+      <DemoListItem title="Render Value">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+          renderValue={(value, getItemProps) => (
+            <Chip label={value} {...getItemProps()} />
+          )}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+      <DemoListItem title="Customize Dialog">
+        <AdaptiveAutocomplete
+          dialogBreakpoint={isDialog}
+          options={options}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+          slotProps={{
+            dialog: { maxWidth: "sm" },
+            dialogAutocomplete: {
+              renderInput: (params) => (
+                <AdaptiveTextField {...params} label="Search" />
+              ),
+              renderValue: () => null,
+            },
+          }}
+          sx={{ minWidth: 150 }}
+        />
+      </DemoListItem>
+    </DemoList>
+  );
+}
+```
+
+## Limitations
+
+- The dialog input is not auto focused in dev mode when `<StrictMode>` is used: [MUI issue](https://github.com/mui/material-ui/issues/33004)
+
+## API
+
+[MUI Autocomplete API](https://mui.com/material-ui/api/autocomplete/) with the following changes:
+
+- `slots` & `slotProps` have `dialog` & `dialogAutocomplete` members
+- `slots.popper` is set internally when inside the dialog
+- `AutocompleteRenderInputParams` has `autoFocus` & `slotProps` members
+
+### dialogBreakpoint
+
+Breakpoint or screen width in px and below at which a dialog will open.
+This behavior can be enabled/disabled always by setting it to true/false
+
+- Type: `"xs" | "sm" | "md" | "lg" | number | boolean`
+- Default: `xs`
+
+## Links
+
+<Links
+  codeUrl="components/autocomplete/adaptiveAutocomplete.tsx"
+  docsUrl="components/adaptiveAutocomplete.mdx"
+  mui={{ title: "Autocomplete", url: "react-autocomplete" }}
+/>

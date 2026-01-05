@@ -9,6 +9,7 @@ import Portal from "@mui/material/Portal";
 import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
 import { createTheme } from "@mui/material/styles";
+import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
 import {
   AdaptiveButton,
   adaptiveButtonClasses,
@@ -49,10 +50,21 @@ import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeP
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
 import AdaptiveModeDemo from "./adaptiveModeDemo";
+import { allCountries } from "./countries";
 
 const theme = createTheme({
   colorSchemes: { dark: true },
   components: {
+    AdaptiveAutocomplete: {
+      defaultProps: {
+        openOnFocus: true,
+      },
+      styleOverrides: {
+        popupIndicator: {
+          background: "blue",
+        },
+      },
+    },
     AdaptiveButton: {
       defaultProps: {
         variant: "contained",
@@ -525,6 +537,7 @@ function Content() {
             />
           </Portal>
         </Stack>
+
         <Stack alignItems="center" direction="row" spacing={2}>
           <AdaptiveIconButton>
             <PlayArrowIcon />
@@ -533,12 +546,20 @@ function Content() {
             <PlayArrowIcon />
           </AdaptiveIconButton>
         </Stack>
+
         <Stack direction="row" spacing={2}>
           <AdaptiveCircularProgress />
         </Stack>
         <Stack spacing={2}>
           <AdaptiveLinearProgress />
         </Stack>
+
+        <AdaptiveAutocomplete
+          options={allCountries}
+          renderInput={(params) => (
+            <AdaptiveTextField {...params} label="Country" />
+          )}
+        />
       </Stack>
     </>
   );

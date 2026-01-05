@@ -5,6 +5,10 @@ import {
   Theme as MuiTheme,
 } from "@mui/material/styles";
 import {
+  AdaptiveAutocompleteClasses,
+  AdaptiveAutocompleteProps,
+} from "../components/autocomplete/adaptiveAutocomplete";
+import {
   AdaptiveButtonClasses,
   AdaptiveButtonProps,
 } from "../components/button/adaptiveButton";
@@ -88,6 +92,11 @@ import {
 type Theme = Omit<MuiTheme, "components">;
 
 export interface AdaptiveComponents {
+  AdaptiveAutocomplete?: {
+    defaultProps?: ComponentsProps["AdaptiveAutocomplete"];
+    styleOverrides?: ComponentsOverrides<Theme>["AdaptiveAutocomplete"];
+    variants?: ComponentsVariants<Theme>["AdaptiveAutocomplete"];
+  };
   AdaptiveButton?: {
     defaultProps?: ComponentsProps["AdaptiveButton"];
     styleOverrides?: ComponentsOverrides<Theme>["AdaptiveButton"];
@@ -196,6 +205,8 @@ export interface AdaptiveComponents {
 }
 
 export interface AdaptiveComponentsPropsList {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  AdaptiveAutocomplete: AdaptiveAutocompleteProps<any, any, any, any>;
   AdaptiveButton: AdaptiveButtonProps;
   AdaptiveButtonStack: AdaptiveButtonStackProps;
   AdaptiveCheckbox: AdaptiveCheckboxProps;
@@ -220,6 +231,7 @@ export interface AdaptiveComponentsPropsList {
 }
 
 export interface AdaptiveComponentNameToClassKey {
+  AdaptiveAutocomplete: keyof AdaptiveAutocompleteClasses;
   AdaptiveButton: keyof AdaptiveButtonClasses;
   AdaptiveButtonStack: keyof AdaptiveButtonStackClasses;
   AdaptiveCheckbox: keyof AdaptiveCheckboxClasses;

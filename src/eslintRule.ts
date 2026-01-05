@@ -1,4 +1,5 @@
 const componentMap = [
+  { old: "Autocomplete", new: "AdaptiveAutocomplete" },
   { old: "Button", new: "AdaptiveButton" },
   { old: "Checkbox", new: "AdaptiveCheckbox" },
   { old: "CircularProgress", new: "AdaptiveCircularProgress" },

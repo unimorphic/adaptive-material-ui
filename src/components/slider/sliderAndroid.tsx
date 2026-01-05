@@ -1,10 +1,9 @@
 import Slider, { sliderClasses } from "@mui/material/Slider";
 import { alpha, styled } from "@mui/material/styles";
-import { mergeSlotProps } from "@mui/material/utils";
+import { mergeSlotProps, useControlled } from "@mui/material/utils";
 import { useRtl } from "@mui/system/RtlProvider";
 import composeClasses from "@mui/utils/composeClasses";
 import generateUtilityClass from "@mui/utils/generateUtilityClass";
-import useControlled from "@mui/utils/useControlled";
 import { clsx } from "clsx";
 import { materialDesign } from "../../shared/android/materialDesign";
 import { AdaptiveSliderProps, AdaptiveSliderType } from "./sliderProps";
