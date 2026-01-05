@@ -29,10 +29,10 @@ export type AdaptiveButtonStackOwnProps = StyledComponentProps<
 > & {
   /**
    * Breakpoint or screen width in px and below at which the children will be stretched.
-   * This behavior can be disabled by setting it to false
+   * This behavior can be enabled/disabled always by setting it to true/false
    * @default xs
    */
-  stretchBreakpoint?: ValidInclusiveBreakpoint | number | false;
+  stretchBreakpoint?: ValidInclusiveBreakpoint | number | boolean;
 };
 
 export interface AdaptiveButtonStackTypeMap<

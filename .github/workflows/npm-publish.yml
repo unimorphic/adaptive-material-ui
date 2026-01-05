@@ -1,10 +1,10 @@
-name: NPM Publish
+name: Publish Package
 
 on:
   push:
     branches: [master]
-    paths:
-      - "package.json"
+    tags:
+      - "v*"
 
   workflow_dispatch:
 

@@ -11,7 +11,7 @@ export interface DialogResponsiveProps extends DialogProps {
    * This behavior can be disabled by setting the fullScreen or variant property or setting it to false
    * @default xs
    */
-  fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | false;
+  fullScreenBreakpoint?: ValidInclusiveBreakpoint | number | boolean;
 
   /**
    * Short dialogs ignore the fullScreenBreakpoint logic
