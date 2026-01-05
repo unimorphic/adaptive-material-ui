@@ -113,7 +113,6 @@ function Layout() {
               </IconButton>
             </StyledStack>
           }
-          afterNavTitle={<div>⚠️ beta</div>}
         />
       </AdaptiveThemeProvider>
     </CacheProvider>
