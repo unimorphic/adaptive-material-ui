@@ -17,4 +17,4 @@ This project is licensed under the terms of the [MIT license](https://github.com
 
 ## Sponsoring services
 
-This project is tested with [BrowserStack](https://www.browserstack.com/)
+This project is tested with BrowserStack.
