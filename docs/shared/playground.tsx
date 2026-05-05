@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Portal from "@mui/material/Portal";
 import { snackbarContentClasses } from "@mui/material/SnackbarContent";
 import Stack from "@mui/material/Stack";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, styled } from "@mui/material/styles";
 import { AdaptiveAutocomplete } from "adaptive-material-ui/components/autocomplete";
 import {
   AdaptiveButton,
@@ -51,6 +51,10 @@ import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useState } from "react";
 import AdaptiveModeDemo from "./adaptiveModeDemo";
 import { allCountries } from "./countries";
+
+const StyledStack = styled(Stack)(() => ({
+  alignItems: "center",
+}));
 
 const theme = createTheme({
   colorSchemes: { dark: true },
@@ -538,14 +542,14 @@ function Content() {
           </Portal>
         </Stack>
 
-        <Stack alignItems="center" direction="row" spacing={2}>
+        <StyledStack direction="row" spacing={2}>
           <AdaptiveIconButton>
             <PlayArrowIcon />
           </AdaptiveIconButton>
           <AdaptiveIconButton variant="contained">
             <PlayArrowIcon />
           </AdaptiveIconButton>
-        </Stack>
+        </StyledStack>
 
         <Stack direction="row" spacing={2}>
           <AdaptiveCircularProgress />

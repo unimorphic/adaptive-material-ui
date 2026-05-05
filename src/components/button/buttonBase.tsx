@@ -36,8 +36,8 @@ export type ButtonBaseTypeMap<
 }>;
 
 export type ButtonBaseProps<
-  RootComponent extends
-    React.ElementType = ButtonBaseTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    ButtonBaseTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = ButtonProps<RootComponent, AdditionalProps> & ButtonBaseOwnProps;
 

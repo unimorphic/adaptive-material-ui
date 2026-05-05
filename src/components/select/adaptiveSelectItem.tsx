@@ -25,8 +25,8 @@ export type AdaptiveSelectItemTypeMap<
 }>;
 
 export type AdaptiveSelectItemProps<
-  RootComponent extends
-    React.ElementType = AdaptiveSelectItemTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveSelectItemTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = SelectItemProps<RootComponent, AdditionalProps> &
   AdaptiveSelectItemOwnProps;

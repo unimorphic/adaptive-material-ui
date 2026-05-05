@@ -47,7 +47,7 @@ import { DemoList, DemoListItem } from "./demoList";
 import ExampleShortDialogContent from "./placeholders/exampleShortDialogContent";
 
 const StyledDemoList = styled(DemoList)({
-  "& a[class*='inline-link']": {
+  "& a.rp-link": {
     display: "block",
     padding: `10px 0`,
     width: "100%",

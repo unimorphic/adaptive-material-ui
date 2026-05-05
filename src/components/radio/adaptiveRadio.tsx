@@ -11,9 +11,7 @@ export type AdaptiveRadioProps = RadioProps &
   StyledComponentProps<keyof AdaptiveRadioClasses>;
 
 export interface AdaptiveRadioClasses
-  extends RadioClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends RadioClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveRadioClasses = {
   ...radioClasses,

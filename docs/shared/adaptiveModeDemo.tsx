@@ -1,5 +1,5 @@
 import Stack, { StackProps } from "@mui/material/Stack";
-import { createTheme, useTheme } from "@mui/material/styles";
+import { createTheme, styled, useTheme } from "@mui/material/styles";
 import { AdaptiveMode } from "adaptive-material-ui/adaptiveMode";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import { useState } from "react";
@@ -9,6 +9,10 @@ import DemoSelector from "./demoSelector";
 interface Props extends Omit<StackProps, "onChange"> {
   adaptiveMode?: AdaptiveMode;
 }
+
+const StyledStack = styled(Stack)(() => ({
+  alignItems: "flex-start",
+}));
 
 export default function AdaptiveModeDemo(props: Props) {
   const { adaptiveMode, children, ...otherProps } = props;
@@ -27,7 +31,7 @@ export default function AdaptiveModeDemo(props: Props) {
   }
 
   return (
-    <Stack alignItems="flex-start" spacing={3} {...otherProps}>
+    <StyledStack spacing={3} {...otherProps}>
       {!adaptiveMode ? (
         <DemoSelector
           onChange={onChange}
@@ -48,6 +52,6 @@ export default function AdaptiveModeDemo(props: Props) {
           {children}
         </AdaptiveThemeProvider>
       </AutoHeightSuspenseSkeleton>
-    </Stack>
+    </StyledStack>
   );
 }

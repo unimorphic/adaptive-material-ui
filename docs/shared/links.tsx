@@ -1,5 +1,5 @@
 import Stack from "@mui/material/Stack";
-import { getCustomMDXComponent } from "rspress/theme";
+import { getCustomMDXComponent } from "@rspress/core/theme";
 
 interface Props {
   codeUrl: string | string[];

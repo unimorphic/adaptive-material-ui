@@ -53,24 +53,19 @@ const RootContainer = styled("div")(({ theme }) => ({
 
 /**
  * Modal that doesn't block interaction with other page elements
- * https://github.com/mui/material-ui/blob/v7.2.0/packages/mui-material/src/Modal/Modal.js
+ * https://github.com/mui/material-ui/blob/v9.0.0/packages/mui-material/src/Modal/Modal.js
  */
 export function ModalNonBlocking(inProps: ModalNonBlockingProps) {
   const props = useDefaultProps({ name: "MuiModal", props: inProps });
   const {
-    BackdropComponent,
-    BackdropProps,
     classes: classesProp,
     className,
     closeAfterTransition,
     children,
     container,
     component,
-    components,
-    componentsProps,
     disableAutoFocus,
     disableEnforceFocus,
-    disableEscapeKeyDown,
     disablePortal,
     disableRestoreFocus,
     disableScrollLock,
@@ -114,11 +109,7 @@ export function ModalNonBlocking(inProps: ModalNonBlockingProps) {
   }
 
   function onKeyDownRoot(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (
-      event.key === "Escape" &&
-      event.which !== 229 &&
-      !disableEscapeKeyDown
-    ) {
+    if (event.key === "Escape" && event.which !== 229) {
       event.stopPropagation();
       props.onClose?.(event, "escapeKeyDown");
     }

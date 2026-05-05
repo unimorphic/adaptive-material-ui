@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import "@fontsource/roboto/300.css";
@@ -18,11 +19,11 @@ import {
 } from "@mui/material/styles";
 // eslint-disable-next-line no-restricted-imports
 import rtlPlugin from "@mui/stylis-plugin-rtl";
+import { ThemeContext, useDark } from "@rspress/core/runtime";
+import { Layout as BasicLayout } from "@rspress/core/theme-original";
 import { AdaptiveThemeProvider } from "adaptive-material-ui/theme/adaptiveThemeProvider";
 import type {} from "adaptive-material-ui/theme/themeAugmentation";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext, useDark } from "rspress/runtime";
-import Theme from "rspress/theme";
 import { prefixer } from "stylis";
 
 function DarkModeMonitor() {
@@ -72,20 +73,14 @@ function Layout() {
   } = useContext(ThemeContext);
 
   useEffect(() => {
-    const direction = isRtl ? "rtl" : "ltr";
-
-    const root = window.document.getElementById("root");
-    if (root) {
-      root.setAttribute("dir", direction);
-    }
-    window.document.body.style.direction = direction;
+    window.document.body.style.direction = isRtl ? "rtl" : "ltr";
   }, [isRtl]);
 
   return (
     <CacheProvider value={isRtl ? rtlCache : ltrCache}>
       <AdaptiveThemeProvider theme={isRtl ? rtlTheme : ltrTheme}>
         <DarkModeMonitor />
-        <Theme.Layout
+        <BasicLayout
           afterNavMenu={
             <StyledStack direction="row" spacing={1}>
               <IconButton
@@ -119,9 +114,6 @@ function Layout() {
   );
 }
 
-export default {
-  ...Theme,
-  Layout,
-};
+export { Layout };
 
-export * from "rspress/theme";
+export * from "@rspress/core/theme-original";

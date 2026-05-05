@@ -34,8 +34,8 @@ export type IconButtonBaseTypeMap<
 }>;
 
 export type IconButtonBaseProps<
-  RootComponent extends
-    React.ElementType = IconButtonBaseTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    IconButtonBaseTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = IconButtonProps<RootComponent, AdditionalProps> & IconButtonBaseOwnProps;
 

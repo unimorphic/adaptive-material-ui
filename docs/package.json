@@ -11,17 +11,16 @@
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
-    "@fontsource/roboto": "5.2.8",
-    "@mui/icons-material": "7.3.4",
-    "@mui/material": "7.3.4",
-    "@mui/stylis-plugin-rtl": "7.3.3",
-    "@rspress/plugin-preview": "1.46.0",
-    "@rspress/shared": "1.46.0",
+    "@fontsource/roboto": "5.2.10",
+    "@mui/icons-material": "9.0.0",
+    "@mui/material": "9.0.0",
+    "@mui/stylis-plugin-rtl": "9.0.0",
+    "@rspress/core": "2.0.9",
+    "@rspress/plugin-preview": "2.0.9",
     "adaptive-material-ui": "workspace:*",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "rspress": "1.46.0",
-    "stylis": "4.3.6"
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "stylis": "4.4.0"
   },
   "overrides": {
     "prismjs": "1.30.0"

@@ -12,9 +12,7 @@ export type AdaptiveSwitchProps = SwitchBaseProps &
   StyledComponentProps<keyof AdaptiveSwitchClasses>;
 
 export interface AdaptiveSwitchClasses
-  extends SwitchClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends SwitchClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveSwitchClasses = {
   ...switchClasses,

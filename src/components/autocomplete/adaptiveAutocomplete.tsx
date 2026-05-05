@@ -34,13 +34,6 @@ import { AdaptiveButton } from "../button/adaptiveButton";
 import { AdaptiveDialog, AdaptiveDialogProps } from "../dialog/adaptiveDialog";
 import { AdaptiveDialogActions } from "../dialog/adaptiveDialogActions";
 
-declare module "@mui/material/Autocomplete" {
-  export interface AutocompleteRenderInputParams {
-    autoFocus?: boolean;
-    slotProps?: { inputLabel: { shrink: boolean } };
-  }
-}
-
 type SlotsAndSlotProps<
   Value,
   Multiple extends boolean | undefined,
@@ -346,7 +339,13 @@ export function AdaptiveAutocomplete<
   function renderInputAutocomplete(params: AutocompleteRenderInputParams) {
     return renderInput({
       ...params,
-      slotProps: { inputLabel: { shrink: hasValue(valueDerived) } },
+      slotProps: {
+        ...params.slotProps,
+        inputLabel: {
+          shrink: hasValue(valueDerived),
+          ...params.slotProps.inputLabel,
+        } as AutocompleteRenderInputParams["slotProps"]["inputLabel"],
+      },
     });
   }
 
@@ -356,7 +355,7 @@ export function AdaptiveAutocomplete<
     return dialogAutocompleteProps.renderInput({
       ...params,
       autoFocus: true,
-    });
+    } as AutocompleteRenderInputParams);
   }
 
   return (
@@ -389,6 +388,7 @@ export function AdaptiveAutocomplete<
           onClose={onCloseDialog}
           open={openDerived}
           ref={dialogElement}
+          role={dialogProps.role as "dialog"}
         >
           <DialogContent>
             <DialogAutocompleteSlot

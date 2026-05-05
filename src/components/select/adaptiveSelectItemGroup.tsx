@@ -24,8 +24,8 @@ export interface AdaptiveSelectItemGroupTypeMap<
 }
 
 export type AdaptiveSelectItemGroupProps<
-  RootComponent extends
-    React.ElementType = AdaptiveSelectItemGroupTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveSelectItemGroupTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = SelectItemGroupProps<RootComponent, AdditionalProps> &
   AdaptiveSelectItemGroupOwnProps;

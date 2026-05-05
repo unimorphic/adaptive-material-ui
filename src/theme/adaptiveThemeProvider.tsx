@@ -27,8 +27,10 @@ import {
   useAdaptiveMode,
 } from "../adaptiveMode/adaptiveMode";
 
-export interface AdaptiveThemeProps
-  extends Omit<ThemeProviderProps<Theme>, "theme"> {
+export interface AdaptiveThemeProps extends Omit<
+  ThemeProviderProps<Theme>,
+  "theme"
+> {
   adaptiveModeInfo?: {
     mode?: AdaptiveMode;
     userAgent?: string;

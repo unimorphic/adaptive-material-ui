@@ -15,9 +15,7 @@ export type AdaptiveDialogProps = DialogResponsiveProps &
   StyledComponentProps<keyof AdaptiveDialogClasses>;
 
 export interface AdaptiveDialogClasses
-  extends DialogClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends DialogClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveDialogClasses = {
   ...dialogClasses,

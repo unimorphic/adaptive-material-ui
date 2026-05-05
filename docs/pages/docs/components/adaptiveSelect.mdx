@@ -8,7 +8,7 @@ import Links from "@/shared/links";
 - Android & iOS: uses the native device select
 - iOS: native styling
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import {
   AdaptiveSelect,
@@ -29,7 +29,7 @@ export default function () {
 
 ## Variations
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import FormControl from "@mui/material/FormControl";
@@ -118,7 +118,7 @@ The first value is auto selected if there's no specified selected value on a nat
 To compensate for this the AdaptiveSelect adds a hidden `option` with a empty value, which can be removed
 using the `nativeEmptyValueOption` prop if needed.
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { DemoList, DemoListItem } from "@/shared/demoList";
 import {
@@ -152,7 +152,7 @@ export default function () {
 
 To disable the native select for all environments, `native={false}` can be added to the component or theme
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { createTheme } from "@mui/material/styles";
 import {

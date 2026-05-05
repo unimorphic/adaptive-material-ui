@@ -15,9 +15,7 @@ export type AdaptiveSnackbarProps = SnackbarProps &
   StyledComponentProps<keyof AdaptiveSnackbarClasses>;
 
 export interface AdaptiveSnackbarClasses
-  extends SnackbarClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends SnackbarClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveSnackbarClasses = {
   ...snackbarClasses,

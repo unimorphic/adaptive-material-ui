@@ -26,6 +26,4 @@ export type AdaptiveCircularProgressProps = Omit<
   };
 
 export interface AdaptiveCircularProgressClasses
-  extends CircularProgressClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends CircularProgressClasses, IosClasses, AndroidClasses {}

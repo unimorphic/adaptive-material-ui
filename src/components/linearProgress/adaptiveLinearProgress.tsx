@@ -15,9 +15,7 @@ export type AdaptiveLinearProgressProps = LinearProgressProps &
   StyledComponentProps<keyof AdaptiveLinearProgressClasses>;
 
 export interface AdaptiveLinearProgressClasses
-  extends LinearProgressClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends LinearProgressClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveLinearProgressClasses = {
   ...linearProgressClasses,

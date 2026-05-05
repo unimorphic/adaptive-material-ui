@@ -21,9 +21,7 @@ export type AdaptiveInputProps = InputProps &
   StyledComponentProps<keyof AdaptiveInputClasses>;
 
 export interface AdaptiveInputClasses
-  extends InputClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends InputClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveInputClasses = {
   ...inputClasses,
@@ -34,8 +32,7 @@ export type AdaptiveFilledInputProps = FilledInputProps &
   StyledComponentProps<keyof AdaptiveFilledInputClasses>;
 
 export interface AdaptiveFilledInputClasses
-  extends FilledInputClasses,
-    IosClasses {}
+  extends FilledInputClasses, IosClasses {}
 
 export const adaptiveFilledInputClasses = {
   ...filledInputClasses,
@@ -46,8 +43,7 @@ export type AdaptiveOutlinedInputProps = OutlinedInputProps &
   StyledComponentProps<keyof AdaptiveOutlinedInputClasses>;
 
 export interface AdaptiveOutlinedInputClasses
-  extends OutlinedInputClasses,
-    IosClasses {}
+  extends OutlinedInputClasses, IosClasses {}
 
 export const adaptiveOutlinedInputClasses = {
   ...outlinedInputClasses,

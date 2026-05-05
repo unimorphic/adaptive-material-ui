@@ -32,16 +32,14 @@ export type AdaptiveIconButtonTypeMap<
 }>;
 
 export type AdaptiveIconButtonProps<
-  RootComponent extends
-    React.ElementType = AdaptiveIconButtonTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveIconButtonTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = IconButtonBaseProps<RootComponent, AdditionalProps> &
   AdaptiveIconButtonOwnProps;
 
 export interface AdaptiveIconButtonClasses
-  extends IconButtonClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends IconButtonClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveIconButtonClasses = {
   ...iconButtonClasses,

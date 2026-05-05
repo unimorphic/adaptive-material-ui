@@ -25,15 +25,13 @@ export type AdaptiveFabTypeMap<
 }>;
 
 export type AdaptiveFabProps<
-  RootComponent extends
-    React.ElementType = AdaptiveFabTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveFabTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = FabBaseProps<RootComponent, AdditionalProps> & AdaptiveFabOwnProps;
 
 export interface AdaptiveFabClasses
-  extends FabClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends FabClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveFabClasses = {
   ...fabClasses,

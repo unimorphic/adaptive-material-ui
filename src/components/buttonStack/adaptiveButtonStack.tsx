@@ -46,8 +46,8 @@ export interface AdaptiveButtonStackTypeMap<
 }
 
 export type AdaptiveButtonStackProps<
-  RootComponent extends
-    React.ElementType = AdaptiveButtonStackTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveButtonStackTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = Omit<
   StackProps<RootComponent, AdditionalProps>,
@@ -117,6 +117,7 @@ const StyledStack = styled(Stack, {
   >;
 }>(({ theme, ownerState }) => ({
   flexDirection: "row",
+  justifyContent: "flex-end",
   ...createAdaptiveButtonStackStyles(
     theme,
     ownerState.stretchBreakpointExclusive,
@@ -142,7 +143,6 @@ export const AdaptiveButtonStack: OverridableComponent<AdaptiveButtonStackTypeMa
     });
     const {
       className,
-      justifyContent = "flex-end",
       spacing = 2,
       stretchBreakpoint = "xs",
       ...otherProps
@@ -161,7 +161,6 @@ export const AdaptiveButtonStack: OverridableComponent<AdaptiveButtonStackTypeMa
       >
         <StyledStack
           className={clsx(composedClasses.root, className)}
-          justifyContent={justifyContent}
           ownerState={{
             ...props,
             stretchBreakpointExclusive:

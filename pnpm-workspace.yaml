@@ -4,3 +4,5 @@ packages:
   - examples/next-js
   - examples/vite
 networkConcurrency: 8
+blockExoticSubdeps: true
+minimumReleaseAge: 10080

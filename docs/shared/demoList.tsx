@@ -3,12 +3,21 @@ import { linearProgressClasses } from "@mui/material/LinearProgress";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { getCustomMDXComponent } from "@rspress/core/theme";
 import { adaptiveButtonStackClasses } from "adaptive-material-ui/components/buttonStack";
 import React from "react";
-import { getCustomMDXComponent } from "rspress/theme";
 import DelayedSuspense from "./delayedSuspense";
 
+const StyledGrid = styled(Grid)(() => ({
+  alignSelf: "flex-start",
+}));
+
+const StyledGridCenter = styled(Grid)(() => ({
+  alignItems: "center",
+}));
+
 const StyledStack = styled(Stack)({
+  alignItems: "center",
   flexWrap: "wrap",
 
   [`& .${linearProgressClasses.root}, & .${adaptiveButtonStackClasses.root}`]: {
@@ -26,15 +35,15 @@ export function DemoListItem(props: {
 }) {
   return (
     <React.Fragment>
-      <Grid alignSelf="flex-start" size={{ xs: 4, sm: 3 }}>
+      <StyledGrid size={{ xs: 4, sm: 3 }}>
         {props.titleHref ? (
           <Link href={props.titleHref}>{props.title}</Link>
         ) : (
           props.title
         )}
-      </Grid>
+      </StyledGrid>
       <Grid size={{ xs: 8, sm: 9 }}>
-        <StyledStack alignItems="center" direction="row" spacing={2} useFlexGap>
+        <StyledStack direction="row" spacing={2} useFlexGap>
           <DelayedSuspense
             fallback={
               <Skeleton height={35} width="100%" variant="rectangular" />
@@ -49,7 +58,5 @@ export function DemoListItem(props: {
 }
 
 export function DemoList(props: GridProps) {
-  return (
-    <Grid alignItems="center" container spacing={{ xs: 2, sm: 3 }} {...props} />
-  );
+  return <StyledGridCenter container spacing={{ xs: 2, sm: 3 }} {...props} />;
 }

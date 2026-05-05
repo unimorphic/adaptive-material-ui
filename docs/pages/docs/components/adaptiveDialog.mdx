@@ -8,7 +8,7 @@ import Links from "@/shared/links";
 - Stretches it's actions on the extra-small breakpoint (customizable using the `AdaptiveDialogActions.stretchBreakpoint` prop)
 - `variant="tall"` defaults to full screen mode on the extra-small breakpoint (customizable using the `fullScreenBreakpoint` prop)
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import Stack from "@mui/material/Stack";
 import { useAdaptiveMode } from "adaptive-material-ui/adaptiveMode";
@@ -101,7 +101,7 @@ export default function () {
 Actions have the same [stretching](./adaptiveButtonStack.html#stretching) as the Adaptive Button Stack
 using the `AdaptiveDialogActions.stretchBreakpoint` prop
 
-```tsx
+```tsx preview
 import DemoSelector from "@/shared/demoSelector";
 import Stack from "@mui/material/Stack";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
@@ -116,7 +116,7 @@ export default function () {
   const [numberOfButtons, setNumberOfButtons] = useState("1");
 
   return (
-    <Stack alignItems="flex-start" spacing={3}>
+    <Stack spacing={3} sx={{ alignItems: "flex-start" }}>
       <DemoSelector
         onChange={setNumberOfButtons}
         options={[
@@ -156,7 +156,7 @@ export default function () {
 
 `adaptiveDialogActionsClasses.alignStart` can be used to align actions at both ends of the dialog when stacked horizontally
 
-```tsx
+```tsx preview
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import {
   AdaptiveDialog,
@@ -201,7 +201,7 @@ export default function () {
 `AdaptiveDialogActions.buttonDefaultProps` can be used to set props on all the child buttons on all devices.
 To apply them to only specific devices you can use the [useAdaptiveMode](/docs/adaptiveMode.html#useadaptivemode) hook.
 
-```tsx
+```tsx preview
 import AdaptiveModeDemo from "@/shared/adaptiveModeDemo";
 import { AdaptiveButton } from "adaptive-material-ui/components/button";
 import {

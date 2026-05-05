@@ -14,9 +14,7 @@ export type AdaptiveMenuProps = MenuProps &
   StyledComponentProps<keyof AdaptiveMenuClasses>;
 
 export interface AdaptiveMenuClasses
-  extends MenuClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends MenuClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveMenuClasses = {
   ...menuClasses,

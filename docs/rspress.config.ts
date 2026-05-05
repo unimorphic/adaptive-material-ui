@@ -1,6 +1,6 @@
+import { defineConfig } from "@rspress/core";
 import { pluginPreview } from "@rspress/plugin-preview";
 import * as path from "node:path";
-import { defineConfig } from "rspress/config";
 import eslintDisablePlugin from "./config/eslintDisablePlugin";
 import placeholderPlugin from "./config/placeholderPlugin";
 import previewWrapSuspensePlugin from "./config/previewWrapSuspensePlugin";
@@ -11,13 +11,8 @@ export default defineConfig({
       ? undefined
       : "/adaptive-material-ui/",
   builderConfig: {
-    html: {
-      template: "./index.html",
-    },
     resolve: {
-      alias: {
-        "@": "./",
-      },
+      alias: { "@": "./" },
     },
   },
   icon: "/logo-light.svg",
@@ -33,9 +28,7 @@ export default defineConfig({
   plugins: [pluginPreview(), previewWrapSuspensePlugin()],
   root: path.join(__dirname, "pages"),
   themeConfig: {
-    footer: {
-      message: "Copyright © 2025 Unimorphic",
-    },
+    footer: { message: "Copyright © 2026 Unimorphic" },
   },
   title: "Adaptive Material UI",
 });

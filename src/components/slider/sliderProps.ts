@@ -34,15 +34,13 @@ export interface AdaptiveSliderTypeMap<
 }
 
 export type AdaptiveSliderProps<
-  RootComponent extends
-    React.ElementType = AdaptiveSliderTypeMap["defaultComponent"],
+  RootComponent extends React.ElementType =
+    AdaptiveSliderTypeMap["defaultComponent"],
   AdditionalProps = {},
 > = SliderProps<RootComponent, AdditionalProps> & AdaptiveSliderOwnProps;
 
 export interface AdaptiveSliderClasses
-  extends SliderClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends SliderClasses, IosClasses, AndroidClasses {}
 
 type SliderComponent<Value extends number | number[]> = OverridableComponent<
   AdaptiveSliderTypeMap<"span", {}, Value>

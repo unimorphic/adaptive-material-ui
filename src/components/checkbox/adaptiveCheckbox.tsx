@@ -15,9 +15,7 @@ export type AdaptiveCheckboxProps = CheckboxProps &
   StyledComponentProps<keyof AdaptiveCheckboxClasses>;
 
 export interface AdaptiveCheckboxClasses
-  extends CheckboxClasses,
-    IosClasses,
-    AndroidClasses {}
+  extends CheckboxClasses, IosClasses, AndroidClasses {}
 
 export const adaptiveCheckboxClasses = {
   ...checkboxClasses,
