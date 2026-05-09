@@ -79,7 +79,7 @@
     "format-check": "prettier --check .",
     "lint": "eslint . && tsc && cd docs && tsc",
     "pack": "pnpm run build && node scripts/preparePackage.cjs && cd dist && pnpm pack",
-    "publish": "pnpm run build && node scripts/preparePackage.cjs && cd dist && pnpm publish --tag latest",
+    "publish": "pnpm run build && node scripts/preparePackage.cjs && cd dist && pnpm publish --tag latest --no-git-checks",
     "start": "rslib build --watch --env-mode development",
     "start-docs": "concurrently --kill-others \"pnpm run start\" \"cd docs && pnpm run start\"",
     "test": "vitest",
