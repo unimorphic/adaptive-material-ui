@@ -16,6 +16,7 @@ export default defineConfig(
       "examples/capacitor/dist/**",
       "examples/next-js/.next/**",
       "examples/next-js/next-env.d.ts",
+      "examples/vite/dist/**",
       "playwright/**",
       "scripts/**",
     ],

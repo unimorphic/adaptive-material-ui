@@ -8,43 +8,18 @@ import {
   SchemeContent,
 } from "@material/material-color-utilities";
 import {
-  ColorSystemOptions,
-  createTheme,
   decomposeColor,
   hslToRgb,
   PaletteOptions,
   rgbToHex,
   Theme,
-  ThemeProvider,
-  ThemeProviderProps,
-  TypographyVariants,
 } from "@mui/material/styles";
 import invert from "invert-color";
-import { useMemo } from "react";
 import {
-  AdaptiveMode,
-  AdaptiveModeContext,
-  useAdaptiveMode,
-} from "../adaptiveMode/adaptiveMode";
-
-export interface AdaptiveThemeProps extends Omit<
-  ThemeProviderProps<Theme>,
-  "theme"
-> {
-  adaptiveModeInfo?: {
-    mode?: AdaptiveMode;
-    userAgent?: string;
-  };
-
-  theme?: Partial<Theme> | ((adaptiveMode: AdaptiveMode) => Partial<Theme>);
-}
-
-interface FinalTheme extends Theme {
-  colorSchemes?: Partial<Record<"light" | "dark", ColorSystemOptions>>;
-}
-
-const iosFontFamily =
-  '-apple-system, "SF Pro Text", "SF UI Text", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif';
+  AdaptiveThemeProviderMin,
+  AdaptiveThemeProps,
+  AdaptiveTheme,
+} from "./adaptiveThemeProviderMin";
 
 function convertColorToHex(color: string) {
   const colorType = decomposeColor(color).type;
@@ -66,7 +41,10 @@ function getSchemeColor(
   );
 }
 
-function addMissingColors(palette: PaletteOptions | undefined, theme: Theme) {
+export function addMissingColorsToPalette(
+  palette: PaletteOptions | undefined,
+  theme: Theme,
+) {
   if (!palette) {
     return;
   }
@@ -149,68 +127,20 @@ function addMissingColors(palette: PaletteOptions | undefined, theme: Theme) {
   }
 }
 
-function createAdaptiveTheme(
-  adaptiveMode: AdaptiveMode,
-  themePartial?: Partial<Theme>,
-): Partial<Theme> {
-  const theme = !themePartial?.typography
-    ? (createTheme(themePartial ?? {}) as FinalTheme)
-    : (themePartial as FinalTheme);
-
-  addMissingColors(theme.palette, theme);
+function customizeTheme(theme: AdaptiveTheme) {
+  addMissingColorsToPalette(theme.palette, theme);
   if (theme.colorSchemes) {
     if (theme.colorSchemes.light) {
-      addMissingColors(theme.colorSchemes.light.palette, theme);
+      addMissingColorsToPalette(theme.colorSchemes.light.palette, theme);
     }
     if (theme.colorSchemes.dark) {
-      addMissingColors(theme.colorSchemes.dark.palette, theme);
+      addMissingColorsToPalette(theme.colorSchemes.dark.palette, theme);
     }
   }
-
-  if (adaptiveMode === "ios") {
-    theme.typography.fontFamily = iosFontFamily;
-
-    for (const key of Object.keys(theme.typography)) {
-      const typography = theme.typography[key as keyof TypographyVariants];
-
-      if (
-        typography &&
-        typeof typography === "object" &&
-        "fontFamily" in typography &&
-        typography.fontFamily?.toLowerCase().includes("roboto")
-      ) {
-        typography.fontFamily = iosFontFamily;
-      }
-    }
-  }
-
-  if (!theme.vars) {
-    return theme;
-  }
-
-  if ("font" in theme) {
-    theme.font = undefined;
-  }
-  return createTheme({ ...theme, cssVariables: true });
 }
 
 export function AdaptiveThemeProvider(props: AdaptiveThemeProps) {
-  const { adaptiveModeInfo, theme, ...otherProps } = props;
-  const resolvedAdaptiveMode = useAdaptiveMode(
-    adaptiveModeInfo?.mode,
-    adaptiveModeInfo?.userAgent,
-  );
-
-  const mergedTheme = useMemo(() => {
-    const resolvedTheme =
-      typeof theme === "function" ? theme(resolvedAdaptiveMode) : theme;
-
-    return createAdaptiveTheme(resolvedAdaptiveMode, resolvedTheme);
-  }, [resolvedAdaptiveMode, theme]);
-
   return (
-    <AdaptiveModeContext.Provider value={{ mode: resolvedAdaptiveMode }}>
-      <ThemeProvider {...otherProps} theme={mergedTheme}></ThemeProvider>
-    </AdaptiveModeContext.Provider>
+    <AdaptiveThemeProviderMin customizeTheme={customizeTheme} {...props} />
   );
 }

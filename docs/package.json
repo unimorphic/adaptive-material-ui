@@ -18,6 +18,7 @@
     "@rspress/core": "2.0.9",
     "@rspress/plugin-preview": "2.0.9",
     "adaptive-material-ui": "workspace:*",
+    "json5": "2.2.3",
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "stylis": "4.4.0"

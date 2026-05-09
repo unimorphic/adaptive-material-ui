@@ -19,4 +19,5 @@ export * from "./components/switch";
 export * from "./components/textField";
 
 export * from "./theme/adaptiveThemeProvider";
+export * from "./theme/adaptiveThemeProviderMin";
 export type * from "./theme/themeAugmentation";

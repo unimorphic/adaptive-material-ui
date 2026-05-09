@@ -141,6 +141,9 @@ importers:
       adaptive-material-ui:
         specifier: workspace:*
         version: link:..
+      json5:
+        specifier: 2.2.3
+        version: 2.2.3
       react:
         specifier: 19.2.5
         version: 19.2.5
